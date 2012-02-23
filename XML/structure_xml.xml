@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding="UTF8"?> 
+<date date="09/02/2012">
+
+<arbre>
+	<branche type="accueil">
+		<question id="0" texte="Que voyez vous ?">
+			<reponse texte="6 pattes " >
+			<media>
+				<img src="toto.png" />
+				<legende>c'est toto</legende>
+			</media>
+			<media><!-- ... --> </media>
+				<branche>
+					<!-- ... -->
+				</branche>
+			</reponse>
+			<reponse texte="8 pattes, ailes et antennes absentes" >
+				<branche type="Arachnide">
+					<question texte="Quelle est la taille de l'arachnide ?">
+						<reponse texte="Supérieur à 5 mm" >
+							<resultat type="MEL1" regimeAlimentaire="Prédateur" />
+						</reponse>
+						<reponse texte="Inférieur à 5 mm">
+							<!-- ... -->
+						</reponse>
+					</question>
+				</branche>
+			</reponse>
+		</question>
+	</branche>
+</arbre>
