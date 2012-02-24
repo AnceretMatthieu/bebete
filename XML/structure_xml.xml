@@ -4,12 +4,17 @@
 <arbre>
 	<branche type="accueil">
 		<question id="0" texte="Que voyez vous ?">
+		<media>
+			<legende>Vous devez nous dire ce que vous avez vue !!!</legende>
+		</media>
 			<reponse texte="6 pattes " >
 			<media>
-				<img src="toto.png" />
-				<legende>c'est toto</legende>
+				<img src="toto6pattes.png" />
+				<legende>c'est toto avec 6 pattes</legende>
 			</media>
-			<media><!-- ... --> </media>
+			<media>
+				<!-- ... --> 
+			</media>
 				<branche>
 					<!-- ... -->
 				</branche>
