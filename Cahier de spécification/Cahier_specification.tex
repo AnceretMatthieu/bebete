@@ -291,75 +291,77 @@ Notre base de données est représentée sous la forme d'un fichier XML. Nous avons
 Nous allons voir la structure de notre fichier XML sur un exemple : 
 \begin{lstlisting}
 <?xml version = '1.0' encoding="UTF8"?> 
+<!DOCTYPE arbre SYSTEM "arbre.dtd">
 
-<branche id="b1" type="accueil" date="jj/mm/yyyy">
-<question id="q1" texte="Que voyez vous ?">
-  <reponse id="r1" texte="6 pattes">
+<arbre>
+<branche id="b1" type="accueil" date="jj/mm/yyy">
+	<question id="q1" texte="Que voyez vous ?">
 	<media>
-	  <img src="mon_image.png" />
-	  <video src="ma_video.avi" />
-	  <sound src="mon_son.mp3" />
+		<legende>Vous devez nous dire ce que vous avez vue !!!</legende>
 	</media>
-	<branche id="b2" type="... >
-	  <!-- nouveau sous-arbre question/réponses -->
-	</branche>
-  </reponse>
-	<reponse id="r2" texte="8 pattes, ailes et antennes absentes" >
-	<branche id="b3" type="Arachnide">
-      <question id="q2" texte="Quelle est la taille de l'arachnide ?">
-		<reponse id="r3" texte="Supérieur à 5 mm">
-		  <resultat id="res1">
-			<nom>
-			<!-- Nom de la morpho-espèce -->
-			</nom>
-			<type>MEL1</type>
-			<regimeAlimentaire>
-			<!-- Prédateur -->
-			</regimeAlimentaire>
-			<informations>
-			<!-- Infos complementaires -->
-			</informations>
-			<media>
-			  <img src="mon_image.png" />
-			  <video src="ma_video.avi" />
-			  <sound src="mon_son.mp3" />
-			</media>
-			  </resultat>
+		<reponse id="r1" texte="6 pattes">
+		<media>
+			<img id="img1" src="toto6pattes.png" />
+			<legende>c'est toto avec 6 pattes</legende>
+		</media>
+			<branche id="b2">
+				<!-- ... -->
+			</branche>
 		</reponse>
-		<reponse id="r4" texte="Inférieur à 5 mm">
-		  <!-- ... on repart sur un sous-arbre question/réponses ... -->
+		<reponse id="r2" texte="8 pattes, ailes et antennes absentes">
+		  <branche id="b3" type="Arachnide">
+			<question id="q2" texte="Quelle est la taille de l'arachnide ?">
+				<reponse id="r3" texte="Supérieur à 5 mm" >
+				  <resultat id="res1">
+					<nom><!-- Nom de la morpho-espèce trouvée --></nom>
+					<type>MEL1</type>
+					<regimeAlimentaire>Prédateur</regimeAlimentaire>
+					<informations><!-- Des informations complementaires sur la morpho-espèce --></informations>
+					<media>
+						<img id"img2" src="coucou.jpg" />
+					</media>
+				  </resultat>
+				</reponse>
+				<reponse id="r4" texte="Inférieur à 5 mm">
+					<!-- ... -->
+				</reponse>
+			</question>
+		  </branche>
 		</reponse>
-	  </question>
-    </branche>
-  </reponse>
-</question>
+	</question>
 </branche>
+</arbre>
 \end{lstlisting}
 A ce fichier XML, nous avons associés une DTD. Une DTD est en quelque sorte le modèle d'un fichier XML. Elle permet de décrire sa structure logique : nom des éléments, contenu, attributs, nombre d'occurrence autorisée... Voici la DTD de notre fichier XML : 
 \begin{lstlisting}
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!ELEMENT arbre (branche+)>
-<!ATTLIST arbre date CDATA #IMPLIED>
+<!ELEMENT arbre (branche)>
 
 <!ELEMENT branche (question)>
+<!ATTLIST branche id ID #REQUIRED>
 <!ATTLIST branche type CDATA #IMPLIED>
+<!ATTLIST branche date CDATA #IMPLIED>
 
-<!ELEMENT question (reponse+)>
+<!ELEMENT question (reponse+, media*)>
+<!ATTLIST question id ID #REQUIRED>
 <!ATTLIST question texte NMTOKENS #REQUIRED>
 
-<!ELEMENT reponse (branche|resultat)>
+<!ELEMENT reponse ((branche|resultat), media*)>
+<!ATTLIST reponse id ID #REQUIRED>
 <!ATTLIST reponse texte NMTOKENS #REQUIRED>
 
 <!ELEMENT resultat (nom, type, regimeAlimentaire, media*)>
 <!ELEMENT nom (#PCDATA)>
-<!ELEMENT resultat (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
 <!ELEMENT regimeAlimentaire (#PCDATA)>
 <!ELEMENT informations (#PCDATA)>
 
-<!ELEMENT media (img+)>
-<!ELEMENT img ANY>
+<!ELEMENT media (img+, legende+)>
+<!ELEMENT img EMPTY>
+<!ATTLIST img id ID #REQUIRED>
 <!ATTLIST img src ENTITY #REQUIRED>
+<!ELEMENT legende (#PCDATA)>
 \end{lstlisting}
 
 	\section{Architecture générale du système}
