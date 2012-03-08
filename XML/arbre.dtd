@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!ELEMENT arbre (branche)>
@@ -26,3 +27,28 @@
 <!ATTLIST img id ID #REQUIRED>
 <!ATTLIST img src ENTITY #REQUIRED>
 <!ELEMENT legende (#PCDATA)>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT arbre (branche+)>
+<!ATTLIST arbre date CDATA #IMPLIED>
+
+<!ELEMENT branche (question)>
+<!ATTLIST branche type CDATA #IMPLIED>
+
+<!ELEMENT question (reponse+)>
+<!ATTLIST question texte NMTOKENS #REQUIRED>
+
+<!ELEMENT reponse (branche|resultat)>
+<!ATTLIST reponse texte NMTOKENS #REQUIRED>
+
+<!ELEMENT resultat (nom, type, regimeAlimentaire, media*)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT resultat (#PCDATA)>
+<!ELEMENT regimeAlimentaire (#PCDATA)>
+<!ELEMENT informations (#PCDATA)>
+
+<!ELEMENT media (img+)>
+<!ELEMENT img ANY>
+<!ATTLIST img src ENTITY #REQUIRED>
+>>>>>>> 2a51db980d60e00e2e5946860d9602f3d5ea7e90
