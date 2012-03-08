@@ -1,0 +1,3 @@
+PB : \RequirePackage{colortbl} à rajouter sous la config : Linux + gedit ou texmaker + UTF8
+(même problème sous windows avec texmaker en utf8 en plus des soucis d'encodages)
+
