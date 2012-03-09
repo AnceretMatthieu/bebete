@@ -1,0 +1,31 @@
+\BOOKMARK [-1][]{part*.2}{Cahier de spécification système}{}% 1
+\BOOKMARK [0][]{section.3}{1.1 Introduction}{part*.2}% 2
+\BOOKMARK [1][]{section.4}{1.2 Contexte de la réalisation}{section.3}% 3
+\BOOKMARK [2][]{subsection.5}{1.2.1 Contexte}{section.4}% 4
+\BOOKMARK [2][]{subsection.6}{1.2.2 Objectifs}{section.4}% 5
+\BOOKMARK [2][]{subsection.7}{1.2.3 Hypothèses}{section.4}% 6
+\BOOKMARK [2][]{subsection.8}{1.2.4 Bases méthodologiques}{section.4}% 7
+\BOOKMARK [1][]{section.9}{1.3 Description générale}{section.3}% 8
+\BOOKMARK [2][]{subsection.10}{1.3.1 Environnement du projet}{section.9}% 9
+\BOOKMARK [2][]{subsection.11}{1.3.2 Caractéristiques des utilisateurs}{section.9}% 10
+\BOOKMARK [2][]{subsection.14}{1.3.3 Fonctionnalités et structure générale du système}{section.9}% 11
+\BOOKMARK [2][]{subsection.17}{1.3.4 Contraintes de développement, d'exploitation et de maintenance}{section.9}% 12
+\BOOKMARK [1][]{section.19}{1.4 Description des interfaces externes du logiciel}{section.3}% 13
+\BOOKMARK [2][]{subsection.20}{1.4.1 Interfaces matériel/logiciel}{section.19}% 14
+\BOOKMARK [2][]{subsection.21}{1.4.2 Interfaces homme/machine}{section.19}% 15
+\BOOKMARK [2][]{subsection.32}{1.4.3 Interfaces logiciel/logiciel}{section.19}% 16
+\BOOKMARK [1][]{section.104}{1.5 Architecture générale du système}{section.3}% 17
+\BOOKMARK [1][]{section.106}{1.6 Description des fonctionnalités}{section.3}% 18
+\BOOKMARK [2][]{subsection.107}{1.6.1 Application PC}{section.106}% 19
+\BOOKMARK [2][]{subsection.115}{1.6.2 Application mobile}{section.106}% 20
+\BOOKMARK [1][]{section.123}{1.7 Conditions de fonctionnement}{section.3}% 21
+\BOOKMARK [2][]{subsection.124}{1.7.1 Capacités}{section.123}% 22
+\BOOKMARK [2][]{subsection.125}{1.7.2 Contrôlabilité}{section.123}% 23
+\BOOKMARK [2][]{subsection.126}{1.7.3 Sécurité}{section.123}% 24
+\BOOKMARK [-1][]{part*.127}{Plan de développement}{}% 25
+\BOOKMARK [0][]{section.128}{2.1 Découpage du projet en tâches}{part*.127}% 26
+\BOOKMARK [1][]{subsection.129}{2.1.1 Rédaction de la modélisation UML}{section.128}% 27
+\BOOKMARK [2][]{subsection.130}{2.1.2 Création du fichier XML et de sa DTD}{subsection.129}% 28
+\BOOKMARK [2][]{subsection.131}{2.1.3 Application PC}{subsection.129}% 29
+\BOOKMARK [2][]{subsection.138}{2.1.4 Application mobile}{subsection.129}% 30
+\BOOKMARK [1][]{section.144}{2.2 Planning}{section.128}% 31

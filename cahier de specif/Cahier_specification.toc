@@ -1,0 +1,60 @@
+\select@language {french}
+\contentsline {part}{Cahier de spécification système}{5}{part*.2}
+\contentsline {section}{\numberline {1.1}Introduction}{5}{section.3}
+\contentsline {section}{\numberline {1.2}Contexte de la réalisation}{5}{section.4}
+\contentsline {subsection}{\numberline {1.2.1}Contexte}{5}{subsection.5}
+\contentsline {subsection}{\numberline {1.2.2}Objectifs}{5}{subsection.6}
+\contentsline {subsection}{\numberline {1.2.3}Hypothèses}{5}{subsection.7}
+\contentsline {subsection}{\numberline {1.2.4}Bases méthodologiques}{6}{subsection.8}
+\contentsline {section}{\numberline {1.3}Description générale}{6}{section.9}
+\contentsline {subsection}{\numberline {1.3.1}Environnement du projet}{6}{subsection.10}
+\contentsline {subsection}{\numberline {1.3.2}Caractéristiques des utilisateurs}{6}{subsection.11}
+\contentsline {subsubsection}{Utilisateur de l'application PC}{6}{section*.12}
+\contentsline {subsubsection}{Utilisateur de l'application mobile}{7}{section*.13}
+\contentsline {subsection}{\numberline {1.3.3}Fonctionnalités et structure générale du système}{7}{subsection.14}
+\contentsline {subsection}{\numberline {1.3.4}Contraintes de développement, d'exploitation et de maintenance}{8}{subsection.17}
+\contentsline {subsubsection}{Contraintes de développement}{8}{section*.18}
+\contentsline {section}{\numberline {1.4}Description des interfaces externes du logiciel}{8}{section.19}
+\contentsline {subsection}{\numberline {1.4.1}Interfaces matériel/logiciel}{8}{subsection.20}
+\contentsline {subsection}{\numberline {1.4.2}Interfaces homme/machine}{9}{subsection.21}
+\contentsline {subsection}{\numberline {1.4.3}Interfaces logiciel/logiciel}{10}{subsection.32}
+\contentsline {section}{\numberline {1.5}Architecture générale du système}{11}{section.104}
+\contentsline {section}{\numberline {1.6}Description des fonctionnalités}{12}{section.106}
+\contentsline {subsection}{\numberline {1.6.1}Application PC}{12}{subsection.107}
+\contentsline {subsubsection}{Visualisation de l'arbre}{12}{section*.108}
+\contentsline {subsubsection}{Importer un fichier XML}{12}{section*.109}
+\contentsline {subsubsection}{Exporter l'arbre en fichier XML}{12}{section*.110}
+\contentsline {subsubsection}{Ajouter/modifier/supprimer questions/réponses}{12}{section*.111}
+\contentsline {subsubsection}{Ajouter/modifier/supprimer morpho-espèce}{12}{section*.112}
+\contentsline {subsubsection}{Ajouter/modifier/supprimer médias}{12}{section*.113}
+\contentsline {subsubsection}{Déplacer élément de l'arbre}{12}{section*.114}
+\contentsline {subsection}{\numberline {1.6.2}Application mobile}{12}{subsection.115}
+\contentsline {subsubsection}{Créer/modifier/supprimer une campagne}{12}{section*.116}
+\contentsline {subsubsection}{Créer/modifier/supprimer un piège}{13}{section*.117}
+\contentsline {subsubsection}{Importer un arbre XML}{13}{section*.118}
+\contentsline {subsubsection}{Voir une question}{13}{section*.119}
+\contentsline {subsubsection}{Répondre à une question}{13}{section*.120}
+\contentsline {subsubsection}{Visualisation de l'insecte}{13}{section*.121}
+\contentsline {subsubsection}{Poster une alerte}{13}{section*.122}
+\contentsline {section}{\numberline {1.7}Conditions de fonctionnement}{13}{section.123}
+\contentsline {subsection}{\numberline {1.7.1}Capacités}{13}{subsection.124}
+\contentsline {subsection}{\numberline {1.7.2}Contrôlabilité}{14}{subsection.125}
+\contentsline {subsection}{\numberline {1.7.3}Sécurité}{14}{subsection.126}
+\contentsline {part}{Plan de développement}{21}{part*.127}
+\contentsline {section}{\numberline {2.1}Découpage du projet en tâches}{21}{section.128}
+\contentsline {subsection}{\numberline {2.1.1}Rédaction de la modélisation UML}{21}{subsection.129}
+\contentsline {subsection}{\numberline {2.1.2}Création du fichier XML et de sa DTD}{21}{subsection.130}
+\contentsline {subsection}{\numberline {2.1.3}Application PC}{21}{subsection.131}
+\contentsline {subsubsection}{Réalisation de l'IHM de l'application PC}{21}{section*.132}
+\contentsline {subsubsection}{Développement de la classe de lecture/écriture de fichier XML}{21}{section*.133}
+\contentsline {subsubsection}{Développement du module de visualisation de l'arbre}{21}{section*.134}
+\contentsline {subsubsection}{Développement du module de modification de l'arbre XML}{21}{section*.135}
+\contentsline {subsubsection}{Développement du module de déplacement d'un sous-arbre XML}{21}{section*.136}
+\contentsline {subsubsection}{Développement du module de visualisation des médias}{21}{section*.137}
+\contentsline {subsection}{\numberline {2.1.4}Application mobile}{21}{subsection.138}
+\contentsline {subsubsection}{Prise en main de l'environnement de développement Android}{21}{section*.139}
+\contentsline {subsubsection}{Réalisation de l'IHM de l'application mobile}{21}{section*.140}
+\contentsline {subsubsection}{Développement des IHM en Java}{22}{section*.141}
+\contentsline {subsubsection}{Développement de la logique de l'application}{22}{section*.142}
+\contentsline {subsubsection}{Développement du module de log}{22}{section*.143}
+\contentsline {section}{\numberline {2.2}Planning}{22}{section.144}

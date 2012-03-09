@@ -363,10 +363,18 @@ A ce fichier XML, nous avons associés une DTD. Une DTD est en quelque sorte le m
 <!ATTLIST img src ENTITY #REQUIRED>
 <!ELEMENT legende (#PCDATA)>
 \end{lstlisting}
+Enfin, nous allons définir le format du fichier de sortie (le fichier de résultat). Ce fichier sera un fichier CSV. \\
+<!-- il faut définir les infos nécessaires (les colonnes) -->
 
 	\section{Architecture générale du système}
 	\label{sec:archi}
-<!-- Insérer le diagramme de composant - à faire -->
+La figure \ref{diag composants} présente le diagramme de composant de notre système. 
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=0.8\textwidth]{images/diag_composants.png}
+	\caption{Diagramme de composants}
+	\label{diag composants}
+\end{figure}
 
 	\section{Description des fonctionnalités}
 	\label{sec:fonctions}

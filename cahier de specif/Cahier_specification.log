@@ -1,0 +1,787 @@
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  9 MAR 2012 10:49
+entering extended mode
+**Cahier_specification.tex
+
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\Cahi
+er_specification.tex"
+LaTeX2e <2011/06/27>
+Babel <v3.8m> and hyphenation patterns for english, afrikaans, ancientgreek, ar
+abic, armenian, assamese, basque, bengali, bokmal, bulgarian, catalan, coptic, 
+croatian, czech, danish, dutch, esperanto, estonian, farsi, finnish, french, ga
+lician, german, german-x-2009-06-19, greek, gujarati, hindi, hungarian, iceland
+ic, indonesian, interlingua, irish, italian, kannada, kurmanji, lao, latin, lat
+vian, lithuanian, malayalam, marathi, mongolian, mongolianlmc, monogreek, ngerm
+an, ngerman-x-2009-06-19, nynorsk, oriya, panjabi, pinyin, polish, portuguese, 
+romanian, russian, sanskrit, serbian, slovak, slovenian, spanish, swedish, swis
+sgerman, tamil, telugu, turkish, turkmen, ukenglish, ukrainian, uppersorbian, u
+senglishmax, welsh, loaded.
+
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\EPUR
+apport.cls"
+Document Class: EPURapport 2009/10/21 - EPURapport document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\lmodern.sty"
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\fontenc.sty"
+Package: fontenc 2005/09/27 v1.99g Standard LaTeX package
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\t1enc.def"
+File: t1enc.def 2005/09/27 v1.99g Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding T1 on input line 43.
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\ifthen.sty"
+Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fancyhdr\fancyhdr.sty
+\fancy@headwidth=\skip41
+\f@ncyO@elh=\skip42
+\f@ncyO@erh=\skip43
+\f@ncyO@olh=\skip44
+\f@ncyO@orh=\skip45
+\f@ncyO@elf=\skip46
+\f@ncyO@erf=\skip47
+\f@ncyO@olf=\skip48
+\f@ncyO@orf=\skip49
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
+Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty"
+Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
+\col@sep=\dimen102
+\extrarowheight=\dimen103
+\NC@list=\toks14
+\extratabsurround=\skip50
+\backup@length=\skip51
+)
+\TX@col@width=\dimen104
+\TX@old@table=\dimen105
+\TX@old@col=\dimen106
+\TX@target=\dimen107
+\TX@delta=\dimen108
+\TX@cols=\count79
+\TX@ftn=\toks15
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\report.cls"
+Document Class: report 2007/10/19 v1.4h Standard LaTeX document class
+("C:\Program Files\MiKTeX 2.9\tex\latex\base\size11.clo"
+File: size11.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
+)
+\c@part=\count80
+\c@chapter=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\c@figure=\count87
+\c@table=\count88
+\abovecaptionskip=\skip52
+\belowcaptionskip=\skip53
+\bibindent=\dimen109
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.sty"
+Package: babel 2008/07/08 v3.8m The Babel package
+
+*************************************
+* Local config file bblopts.cfg used
+*
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\bblopts.cfg"
+File: bblopts.cfg 2006/07/31 v1.0 MiKTeX 'babel' configuration
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\frenchb.ldf"
+Language: frenchb 2009/03/16 v2.3d French support from the babel system
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\babel.def"
+File: babel.def 2008/07/08 v3.8m Babel common definitions
+\babel@savecnt=\count89
+\U@D=\dimen110
+)
+Package babel Info: Making : an active character on input line 120.
+Package babel Info: Making ; an active character on input line 121.
+Package babel Info: Making ! an active character on input line 122.
+Package babel Info: Making ? an active character on input line 123.
+\FB@Mht=\dimen111
+\std@mcc=\count90
+\dec@mcc=\count91
+\parindentFFN=\dimen112
+
+*************************************
+* Local config file frenchb.cfg used
+*
+("C:\Program Files\MiKTeX 2.9\tex\generic\babel\frenchb.cfg")))
+("C:\Program Files\MiKTeX 2.9\tex\latex\carlisle\scalefnt.sty")
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\url.sty"
+\Urlmuskip=\muskip10
+Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\color.cfg"
+File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
+)
+Package xcolor Info: Driver file: pdftex.def on input line 225.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\pdftex-def\pdftex.def"
+File: pdftex.def 2011/05/27 v0.06d Graphics/color for pdfTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\infwarerr.sty"
+Package: infwarerr 2010/04/08 v1.3 Providing info/warning/message (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\ltxcmds.sty"
+Package: ltxcmds 2011/04/18 v1.20 LaTeX kernel commands for general use (HO)
+)
+\Gread@gobject=\count92
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1337.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1341.
+Package xcolor Info: Model `RGB' extended on input line 1353.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1355.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1356.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1357.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1358.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\comment\comment.sty
+\CommentStream=\write3
+
+Excluding comment 'comment')
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\lastpage\lastpage.sty
+Package: lastpage 2011/09/01 v1.2k Refers to last page's name (HMM; JPG)
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp.sty
+Package: fp 1995/04/02
+
+`Fixed Point Package', Version 0.8, April 2, 1995 (C) Michael Mehlich
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\defpattern.sty
+Package: defpattern 1994/10/12
+\actioncount=\count93
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-basic.sty
+Package: fp-basic 1996/05/13
+\FP@xs=\count94
+\FP@xia=\count95
+\FP@xib=\count96
+\FP@xfa=\count97
+\FP@xfb=\count98
+\FP@rega=\count99
+\FP@regb=\count100
+\FP@regs=\count101
+\FP@times=\count102
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-addons.sty
+Package: fp-addons 1995/03/15
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-snap.sty
+Package: fp-snap 1995/04/05
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-exp.sty
+Package: fp-exp 1995/04/03
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-trigo.sty
+Package: fp-trigo 1995/04/14
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-pas.sty
+Package: fp-pas 1994/08/29
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-random.sty
+Package: fp-random 1995/02/23
+\FPseed=\count103
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-eqn.sty
+Package: fp-eqn 1995/04/03
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-upn.sty
+Package: fp-upn 1996/10/21
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\fp\fp-eval.sty
+Package: fp-eval 1995/04/03
+))
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\graphics\trig.sty"
+Package: trig 1999/03/16 v1.09 sin cos tan (DPC)
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\graphics.cfg"
+File: graphics.cfg 2007/01/18 v1.5 graphics configuration of teTeX/TeXLive
+)
+Package graphics Info: Driver file: pdftex.def on input line 91.
+)
+\Gin@req@height=\dimen113
+\Gin@req@width=\dimen114
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty"
+Package: hyperref 2011/12/04 v6.82m Hypertext links for LaTeX
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-hyperref.sty"
+Package: hobsub-hyperref 2011/04/23 v1.4 Bundle oberdiek, subset hyperref (HO)
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\hobsub-generic.sty"
+Package: hobsub-generic 2011/04/23 v1.4 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2011/04/23 v1.4 Subsetting bundle oberdiek (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2010/03/01 v1.3 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX not detected.
+Package: ifvtex 2010/03/01 v1.5 Switches for detecting VTeX and its modes (HO)
+Package ifvtex Info: VTeX not detected.
+Package: intcalc 2007/09/27 v1.1 Expandable integer calculations (HO)
+Package: ifpdf 2011/01/30 v2.3 Provides the ifpdf switch (HO)
+Package ifpdf Info: pdfTeX in PDF mode is detected.
+Package: etexcmds 2011/02/16 v1.5 Prefix for e-TeX command names (HO)
+Package etexcmds Info: Could not find \expanded.
+(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
+(etexcmds)             that some package has redefined \expanded.
+(etexcmds)             In the latter case, load this package earlier.
+Package: kvsetkeys 2011/04/07 v1.13 Key value parser (HO)
+Package: kvdefinekeys 2011/04/07 v1.3 Defining keys (HO)
+Package: pdftexcmds 2011/04/22 v0.16 Utilities of pdfTeX for LuaTeX (HO)
+Package pdftexcmds Info: LuaTeX not detected.
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+Package: pdfescape 2011/04/04 v1.12 Provides string conversions (HO)
+Package: bigintcalc 2011/01/30 v1.2 Expandable big integer calculations (HO)
+Package: bitset 2011/01/30 v1.1 Data type bit set (HO)
+Package: uniquecounter 2011/01/30 v1.2 Provides unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2010/09/02 v1.4 Let assignment for LaTeX macros (HO)
+Package: hopatch 2011/01/30 v1.0 Wrapper for package hooks (HO)
+Package: xcolor-patch 2011/01/30 xcolor patch
+Package: atveryend 2011/04/23 v1.7 Hooks at very end of document (HO)
+Package: atbegshi 2011/01/30 v1.15 At begin shipout hook (HO)
+Package: refcount 2010/12/01 v3.2 Data extraction from references (HO)
+Package: hycolor 2011/01/30 v1.7 Color options of hyperref/bookmark (HO)
+)
+("C:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
+Package: kvoptions 2010/12/23 v3.10 Keyval support for LaTeX options (HO)
+)
+\@linkdim=\dimen115
+\Hy@linkcounter=\count104
+\Hy@pagecounter=\count105
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
+File: pd1enc.def 2011/12/04 v6.82m Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count106
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Hyper figures OFF on input line 4046.
+Package hyperref Info: Link nesting OFF on input line 4051.
+Package hyperref Info: Hyper index ON on input line 4054.
+Package hyperref Info: Plain pages OFF on input line 4061.
+Package hyperref Info: Backreferencing OFF on input line 4066.
+Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
+Package hyperref Info: Bookmarks ON on input line 4284.
+\c@Hy@tempcnt=\count107
+LaTeX Info: Redefining \url on input line 4637.
+\Fld@menulength=\count108
+\Field@Width=\dimen116
+\Fld@charsize=\dimen117
+Package hyperref Info: Hyper figures OFF on input line 5757.
+Package hyperref Info: Link nesting OFF on input line 5762.
+Package hyperref Info: Hyper index ON on input line 5765.
+Package hyperref Info: backreferencing OFF on input line 5772.
+Package hyperref Info: Link coloring OFF on input line 5777.
+Package hyperref Info: Link coloring with OCG OFF on input line 5782.
+Package hyperref Info: PDF/A mode OFF on input line 5787.
+LaTeX Info: Redefining \ref on input line 5827.
+LaTeX Info: Redefining \pageref on input line 5831.
+\Hy@abspage=\count109
+\c@Item=\count110
+\c@Hfootnote=\count111
+)
+
+Package hyperref Message: Driver (autodetected): hpdftex.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
+File: hpdftex.def 2011/12/04 v6.82m Hyperref driver for pdfTeX
+\Fld@listcount=\count112
+\c@bookmark@seq@number=\count113
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\rerunfilecheck.sty"
+Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
+)
+\Hy@SectionHShift=\skip54
+)
+Package hyperref Info: Option `colorlinks' set `true' on input line 118.
+Package hyperref Info: Option `breaklinks' set `true' on input line 118.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 118.
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 118.
+
+Package hyperref Info: Option `plainpages' set `false' on input line 118.
+Package hyperref Info: Option `pdfdisplaydoctitle' set `true' on input line 118
+.
+Package hyperref Info: Option `hypertexnames' set `false' on input line 118.
+\headersize=\skip55
+\EPUlogo=\box26
+
+
+pdfTeX warning: pdflatex (file D:/Documents/Cours Polytech/DI4/Projet collectif
+/bebete/cahier de specif/logos/Logo_Polytech_Tours.pdf): PDF inclusion: found P
+DF version <1.6>, but at most version <1.5> allowed
+<logos/Logo_Polytech_Tours.pdf, id=1, 306.18391pt x 95.1555pt>
+File: logos/Logo_Polytech_Tours.pdf Graphic file (type pdf)
+
+<use logos/Logo_Polytech_Tours.pdf>
+Package pdftex.def Info: logos/Logo_Polytech_Tours.pdf used on input line 515.
+(pdftex.def)             Requested size: 73.97733pt x 22.99023pt.
+)
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\incl
+ude.tex")
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.sty
+\lst@mode=\count114
+\lst@gtempboxa=\box27
+\lst@token=\toks17
+\lst@length=\count115
+\lst@currlwidth=\dimen118
+\lst@column=\count116
+\lst@pos=\count117
+\lst@lostspace=\dimen119
+\lst@width=\dimen120
+\lst@newlines=\count118
+\lst@lineno=\count119
+\lst@maxwidth=\dimen121
+
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\lstmisc.sty
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
+\c@lstnumber=\count120
+\lst@skipnumbers=\count121
+\lst@framebox=\box28
+)
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\latex\listings\listings.cfg
+File: listings.cfg 2007/02/22 1.4 listings configuration
+))
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
+
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\Cahi
+er_specification.aux"
+
+LaTeX Warning: Label `ecran creation piege' multiply defined.
+
+
+LaTeX Warning: Label `ecran creation piege' multiply defined.
+
+)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 59.
+LaTeX Font Info:    ... okay on input line 59.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 59.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Info: Redefining \degres on input line 59.
+LaTeX Info: Redefining \dots on input line 59.
+LaTeX Info: Redefining \up on input line 59.
+
+(C:\Users\Matthieu\AppData\Roaming\MiKTeX\2.9\tex\context\base\supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+\scratchcounter=\count122
+\scratchdimen=\dimen122
+\scratchbox=\box29
+\nofMPsegments=\count123
+\nofMParguments=\count124
+\everyMPshowfont=\toks18
+\MPscratchCnt=\count125
+\MPscratchDim=\dimen123
+\MPnumerator=\count126
+\makeMPintoPDFobject=\count127
+\everyMPtoPDFconversion=\toks19
+)
+Package lastpage Info: Please have a look at the pageslts package at
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             macros/latex/contrib/pageslts/ 
+(lastpage)             or
+(lastpage)             http://www.ctan.org/tex-archive/ 
+(lastpage)             install/macros/latex/contrib/pageslts.tds.zip
+(lastpage)             ! on input line 59.
+\AtBeginShipoutBox=\box30
+Package hyperref Info: Link coloring ON on input line 59.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
+Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
+
+("C:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count128
+)
+LaTeX Info: Redefining \ref on input line 59.
+LaTeX Info: Redefining \pageref on input line 59.
+LaTeX Info: Redefining \nameref on input line 59.
+
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\Cahi
+er_specification.out")
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\Cahi
+er_specification.out")
+\@outlinefile=\write4
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 59.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmss.fd"
+File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+File: logos/Logo_Polytech_Tours.pdf Graphic file (type pdf)
+
+<use logos/Logo_Polytech_Tours.pdf>
+Package pdftex.def Info: logos/Logo_Polytech_Tours.pdf used on input line 59.
+(pdftex.def)             Requested size: 227.62204pt x 70.74208pt.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 59.
+
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\ot1lmr.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omllmm.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omslmsy.fd")
+("C:\Program Files\MiKTeX 2.9\tex\latex\lm\omxlmex.fd") [1
+
+{C:/Users/Matthieu/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map} <D:/Docum
+ents/Cours Polytech/DI4/Projet collectif/bebete/cahier de specif/logos/Logo_Pol
+ytech_Tours.pdf>]
+[2]
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\Cahi
+er_specification.toc")
+\tf@toc=\write5
+ [3
+
+]
+\c@lstlisting=\count129
+ [4
+
+]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 67.
+
+[5]
+Underfull \hbox (badness 10000) in paragraph at lines 97--101
+
+ []
+
+[6]
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+
+ []
+
+<images/diag_CU_app_PC.png, id=198, 1041.8925pt x 474.77374pt>
+File: images/diag_CU_app_PC.png Graphic file (type png)
+
+<use images/diag_CU_app_PC.png>
+Package pdftex.def Info: images/diag_CU_app_PC.png used on input line 154.
+(pdftex.def)             Requested size: 483.69685pt x 220.41252pt.
+
+<images/diag_CU_app_mobile.png, id=201, 1001.7425pt x 540.0175pt>
+File: images/diag_CU_app_mobile.png Graphic file (type png)
+
+<use images/diag_CU_app_mobile.png>
+Package pdftex.def Info: images/diag_CU_app_mobile.png used on input line 161.
+(pdftex.def)             Requested size: 483.69685pt x 260.75456pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[7 <D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cahier de specif/im
+ages/diag_CU_app_PC.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 181--183
+
+ []
+
+[8 <D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cahier de specif/im
+ages/diag_CU_app_mobile.png>] <images/model.png, id=219, 925.056pt x 578.16pt>
+File: images/model.png Graphic file (type png)
+
+<use images/model.png>
+Package pdftex.def Info: images/model.png used on input line 211.
+(pdftex.def)             Requested size: 386.95895pt x 241.85512pt.
+ [9 <D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cahier de specif/i
+mages/model.png>]
+<images/menu.png, id=225, 145.2627pt x 578.16pt>
+File: images/menu.png Graphic file (type png)
+ <use images/menu.png>
+Package pdftex.def Info: images/menu.png used on input line 224.
+(pdftex.def)             Requested size: 386.95895pt x 1540.25941pt.
+
+
+LaTeX Warning: Float too large for page by 883.12233pt on input line 227.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/ariane.png, id=226, 779.7933pt x 72.9927pt>
+File: images/ariane.png Graphic file (type png)
+ <use images/ariane.png>
+Package pdftex.def Info: images/ariane.png used on input line 231.
+(pdftex.def)             Requested size: 386.95895pt x 36.22115pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/campagnes.png, id=227, 779.7933pt x 505.1673pt>
+File: images/campagnes.png Graphic file (type png)
+
+<use images/campagnes.png>
+Package pdftex.def Info: images/campagnes.png used on input line 238.
+(pdftex.def)             Requested size: 386.95895pt x 250.6791pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/creer_campagne.png, id=228, 779.7933pt x 346.1733pt>
+File: images/creer_campagne.png Graphic file (type png)
+
+<use images/creer_campagne.png>
+Package pdftex.def Info: images/creer_campagne.png used on input line 246.
+(pdftex.def)             Requested size: 386.95895pt x 171.78151pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/creer_piege.png, id=229, 779.7933pt x 346.1733pt>
+File: images/creer_piege.png Graphic file (type png)
+
+<use images/creer_piege.png>
+Package pdftex.def Info: images/creer_piege.png used on input line 253.
+(pdftex.def)             Requested size: 386.95895pt x 171.78151pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/select_campagne.png, id=230, 779.7933pt x 346.1733pt>
+File: images/select_campagne.png Graphic file (type png)
+
+<use images/select_campagne.png>
+Package pdftex.def Info: images/select_campagne.png used on input line 260.
+(pdftex.def)             Requested size: 386.95895pt x 171.78151pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+File: images/creer_piege.png Graphic file (type png)
+<use images/creer_piege.png>
+Package pdftex.def Info: images/creer_piege.png used on input line 268.
+(pdftex.def)             Requested size: 386.95895pt x 171.78151pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/question.png, id=231, 779.7933pt x 505.1673pt>
+File: images/question.png Graphic file (type png)
+
+<use images/question.png>
+Package pdftex.def Info: images/question.png used on input line 275.
+(pdftex.def)             Requested size: 386.95895pt x 250.6791pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/camera.png, id=232, 779.7933pt x 505.1673pt>
+File: images/camera.png Graphic file (type png)
+ <use images/camera.png>
+Package pdftex.def Info: images/camera.png used on input line 283.
+(pdftex.def)             Requested size: 386.95895pt x 250.6791pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Overfull \hbox (41.9074pt too wide) in paragraph at lines 300--301
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (28.76729pt too wide) in paragraph at lines 311--312
+[][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (94.46782pt too wide) in paragraph at lines 313--314
+[][][][][][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (9.05713pt too wide) in paragraph at lines 314--315
+[][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (114.17798pt too wide) in paragraph at lines 316--317
+[][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (94.46782pt too wide) in paragraph at lines 318--319
+[][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (376.9801pt too wide) in paragraph at lines 319--320
+[][][][][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (48.47745pt too wide) in paragraph at lines 321--322
+[][][][][][][][][][][][][][][][][][][][] 
+ []
+
+
+Overfull \hbox (2.48708pt too wide) in paragraph at lines 325--326
+[][][][][][][][][][][][][][][][][][][][][][] 
+ []
+
+[10]
+LaTeX Font Info:    Try loading font information for OMS+lmss on input line 346
+.
+LaTeX Font Info:    No file OMSlmss.fd. on input line 346.
+
+
+LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textasteriskcentered' on input line 346.
+
+<images/diag_composants.png, id=272, 955.57pt x 867.24pt>
+File: images/diag_composants.png Graphic file (type png)
+
+<use images/diag_composants.png>
+Package pdftex.def Info: images/diag_composants.png used on input line 374.
+(pdftex.def)             Requested size: 386.95895pt x 351.19058pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \vbox (badness 1215) has occurred while \output is active []
+
+ [11]
+Underfull \hbox (badness 10000) in paragraph at lines 411--414
+
+ []
+
+[12] [13] [14] [15 <D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cah
+ier de specif/images/menu.png>] [16 <D:/Documents/Cours Polytech/DI4/Projet col
+lectif/bebete/cahier de specif/images/ariane.png> <D:/Documents/Cours Polytech/
+DI4/Projet collectif/bebete/cahier de specif/images/campagnes.png> <D:/Document
+s/Cours Polytech/DI4/Projet collectif/bebete/cahier de specif/images/creer_camp
+agne.png>] [17 <D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cahier 
+de specif/images/creer_piege.png> <D:/Documents/Cours Polytech/DI4/Projet colle
+ctif/bebete/cahier de specif/images/select_campagne.png>] [18 <D:/Documents/Cou
+rs Polytech/DI4/Projet collectif/bebete/cahier de specif/images/question.png> <
+D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cahier de specif/images
+/camera.png>] [19 <D:/Documents/Cours Polytech/DI4/Projet collectif/bebete/cahi
+er de specif/images/diag_composants.png>] [20
+
+]
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 467.
+
+
+Package hyperref Warning: Difference (2) between bookmark levels is greater 
+(hyperref)                than one, level fixed on input line 469.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 484--485
+
+ []
+
+[21] 
+AED: lastpage setting LastPage
+[22]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 534.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 534.
+
+("D:\Documents\Cours Polytech\DI4\Projet collectif\bebete\cahier de specif\Cahi
+er_specification.aux")
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 534.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 534.
+Package rerunfilecheck Info: File `Cahier_specification.out' has not changed.
+(rerunfilecheck)             Checksum: 00B794180F2886E4E963D58D3B61CB00;2392.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: There were multiply-defined labels.
+
+ ) 
+Here is how much of TeX's memory you used:
+ 8798 strings out of 494045
+ 125825 string characters out of 3148379
+ 277477 words of memory out of 3000000
+ 11760 multiletter control sequences out of 15000+200000
+ 65739 words of font info for 45 fonts, out of 3000000 for 9000
+ 715 hyphenation exceptions out of 8191
+ 36i,14n,45p,595b,1646s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Program Fil
+es/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}<C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmcsc10.pfb><C:/Program Fil
+es/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/font
+s/type1/public/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm
+/lmssbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsy10.pfb><C:
+/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Cahier_specification.pdf (22 pages, 463780 bytes).
+PDF statistics:
+ 465 PDF objects out of 1000 (max. 8388607)
+ 167 named destinations out of 1000 (max. 500000)
+ 314 words of extra memory for PDF output out of 10000 (max. 10000000)
+
