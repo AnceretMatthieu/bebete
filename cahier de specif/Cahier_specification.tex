@@ -89,18 +89,18 @@
 			\item On considère que la reconnaissance d'image ne fait pas partie du projet. L'utilisateur se base sur une photo de l'insecte ou un "vrai" insecte pour répondre aux questions. 
 			\item La plateforme pour l'application mobile est fixée : Android. On considère que l'on ne change pas de plateforme en cours de projet. 
 			\item On considère que la tablette ne sera pas forcement connectée à internet, donc pas de synchronisation automatique entre la tablette et l'application PC. 
-			\item On considère que l'application PC sera utilisée sur un seul ordinateur simultanément (pas de gestion de plusieurs bases de données et 0de la cohérence de la base). 
+			\item On considère que l'application PC sera utilisée sur un seul ordinateur simultanément (pas de gestion de plusieurs bases de données et de la cohérence de la base). 
 			\item On considère que la base de données sera mise à jour manuellement par l'utilisateur, par simple copie standard par exemple (via support USB...). 
 		\end{itemize}
 		
 		\subsection{Bases méthodologiques}
 		Conformément aux "règles" du projet collectif, nous allons utiliser la méthodologie Agile "Scrum". Le principe de cette méthode est de se focaliser sur une partie limitée et maitrisable du projet (un "sprint"). A chaque fin de sprint, l'équipe doit être capable de fournir au client un livrable partiel mais fonctionnel. \\
-		Pour l'application PC, nous allons utiliser le langage C++ avec le framework QT. Nous avons choisi ce langage car nous l'avons déjà utilisé lors de TP-projet à Polytech'Tours. De plus, l'utilisation d'un langage comme le C++ (langage compilé) nous garantis des performances intéressantes pour l'application. \\
+		Pour l'application PC, nous allons utiliser le langage C++ avec le framework QT. Nous avons choisi ce langage car nous l'avons déjà utilisé lors de TP-projet à Polytech'Tours. De plus, l'utilisation d'un langage comme le C++ (langage compilé) nous garantis des performances intéressantes pour l'application et une compatibilité avec les principaux systèmes d'exploitation (Windows, Linux et Mac OS). \\
 		Pour l'application mobile, sachant que nous avons une plateforme Android, nous allons utiliser le langage Java (c'est le langage officiel pour le développement sous Android). \\ \\
 		Étant donné que c'est un travail de groupe, nous allons devoir utiliser des outils de travail collaboratif : 
 		\begin{itemize}
 			\item Pour gérer les tâches entre les différentes personnes, nous allons utiliser le site "Wunderkit". Il permet de créer des listes de tâche et de les affecter à une ou plusieurs personnes. Il est possible de classifier ces tâches selon leur avancement ("à faire", "en cours", "à valider", "terminée"...).
-			\item Pour la gestion des sources, nous allons utiliser un dépôt GIT. 
+			\item Pour la gestion des sources, nous allons utiliser un dépôt GIT sur Github. 
 		\end{itemize}
 		
 	\section{Description générale}
@@ -162,7 +162,7 @@ Sur le diagramme de cas d'utilisation de l'application PC (\ref{diagramme CU app
 	\caption{Diagramme de cas d'utilisation de l'application mobile}
 	\label{diagramme CU appli mobile}
 \end{figure}
-Sur le diagramme de cas d'utilisation de l'application mobile (\ref{diagramme CU appli mobile}), on remarque que l'on peut créer des campagnes et des pièges. Une campagne est composée de un ou plusieurs pièges. Une campagne est représentée par un nom, une date de début et éventuellement une date de fin. Un piège est représentée par un nom, une date et des coordonnées GPS. 
+Sur le diagramme de cas d'utilisation de l'application mobile (\ref{diagramme CU appli mobile}), on remarque que l'on peut créer des campagnes, des sessions et des pièges. Une campagne est composée de une ou plusieurs sessions et une session de un ou plusieurs pièges. Une campagne est représentée par un nom, une date de début et éventuellement une date de fin. Un piège est représentée par un nom, une date et des coordonnées GPS. 
 
 	\subsection{Contraintes de développement, d'exploitation et de maintenance}
 				
@@ -208,7 +208,7 @@ L'IHM de l'application mobile doit être la plus claire et la plus pratique possi
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/model.png}
+	\includegraphics[width=1\textwidth]{images/model.png}
 	\caption{Modèle de l'IHM de l'application mobile}
 	\label{modele IHM mobile}
 \end{figure}
@@ -221,72 +221,84 @@ Notre interface se décompose en 3 grandes parties :
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/menu.png}
+	\includegraphics[height=1\textwidth]{images/menu.png}
 	\caption{Menu latéral de l'application mobile}
 	\label{menu lateral}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/ariane.png}
+	\includegraphics[width=1\textwidth]{images/ariane.png}
 	\caption{Fil d'ariane de l'application mobile}
 	\label{fil ariane}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/campagnes.png}
+	\includegraphics[width=1\textwidth]{images/campagnes.png}
 	\caption{Ecran de gestion des campagnes}
 	\label{ecran gestion campagnes}
 \end{figure}
-Cette écran permet de créer/continuer/supprimer une campagne. Pour les pièges, l'écran est similaire. 
+
+\newpage
+Cette écran (figure \ref{ecran gestion campagnes}) permet de créer/continuer/supprimer une campagne. Pour les pièges, l'écran est similaire. 
 
  \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/creer_campagne.png}
+	\includegraphics[width=1\textwidth]{images/creer_campagne.png}
 	\caption{Ecran de création d'une nouvelle campagne}
 	\label{ecran creation campagne}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/creer_piege.png}
+	\includegraphics[width=1\textwidth]{images/creer_piege.png}
 	\caption{Ecran de création d'un nouveau piège}
 	\label{ecran creation piege}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/select_campagne.png}
+	\includegraphics[width=1\textwidth]{images/select_campagne.png}
 	\caption{Ecran d'ouverture d'une campagne existante}
-	\label{ecran creation piege}
+	\label{ecran ouverture campagne}
 \end{figure}
-Cet écran est similaire pour l'ouverture d'un piège existant. 
+
+\newpage
+Cet écran (figure \ref{ecran ouverture campagne}) est similaire pour l'ouverture d'un piège existant. 
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/creer_piege.png}
+	\includegraphics[width=1\textwidth]{images/creer_piege.png}
 	\caption{Ecran de création d'un nouveau piège}
 	\label{ecran creation piege}
 \end{figure}
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/question.png}
+	\includegraphics[width=1\textwidth]{images/question.png}
 	\caption{Ecran de question/réponse}
 	\label{ecran question reponse}
 \end{figure}
-Cet écran propose à l'utilisateur la question à laquelle il doit répondre ainsi que les réponses associées. Si une ressource externe (un média, comme une photo, une vidéo, une animation...) existe pour cette question, elle sera affichée à côté de la question. 
+
+\newpage
+Cet écran (figure \ref{ecran question reponse}) propose à l'utilisateur la question à laquelle il doit répondre ainsi que les réponses associées. Si une ressource externe (un média, comme une photo, une vidéo, une animation...) existe pour cette question, elle sera affichée à côté de la question. 
 
 \begin{figure}[!h]
 	\centering	
-	\includegraphics[width=0.8\textwidth]{images/camera.png}
+	\includegraphics[width=1\textwidth]{images/camera.png}
 	\caption{Ecran du mode caméra/photo}
 	\label{ecran camera}
 \end{figure}
-Cet écran permet d'utiliser les fonctionnalités multimédia de la tablette tactile. L'utilisateur peut soit prendre une photo de l'insecte en cours d'étude, soit le filmer et l'afficher en parallèle des questions qui lui sont posées. 
+
+\newpage
+Cet écran (figure \ref{ecran camera}) permet d'utiliser les fonctionnalités multimédia de la tablette tactile. L'utilisateur peut soit prendre une photo de l'insecte en cours d'étude, soit le filmer et l'afficher en parallèle des questions qui lui sont posées. 
+
+\newpage
 
 		\subsection{Interfaces logiciel/logiciel}
+		
+		\subsubsection{Format du fichier de données}
 Notre base de données est représentée sous la forme d'un fichier XML. Nous avons privilégié ce mode de représentation, par rapport à une base SQL/SQLite par exemple, en raison du fait que notre base n'est pas amenée à grandir démesurément (dans un futur plus ou moins proche en tous cas). De ce fait, l'utilisation d'une base SQL/SQLITE n'était pas pertinente. \\ 
 Nous allons voir la structure de notre fichier XML sur un exemple : 
 \begin{lstlisting}
@@ -295,40 +307,40 @@ Nous allons voir la structure de notre fichier XML sur un exemple :
 
 <arbre>
 <branche id="b1" type="accueil" date="jj/mm/yyy">
-	<question id="q1" texte="Que voyez vous ?">
-	<media>
-		<legende>Vous devez nous dire ce que vous avez vue !!!</legende>
-	</media>
-		<reponse id="r1" texte="6 pattes">
-		<media>
-			<img id="img1" src="toto6pattes.png" />
-			<legende>c'est toto avec 6 pattes</legende>
-		</media>
-			<branche id="b2">
-				<!-- ... -->
-			</branche>
-		</reponse>
-		<reponse id="r2" texte="8 pattes, ailes et antennes absentes">
-		  <branche id="b3" type="Arachnide">
-			<question id="q2" texte="Quelle est la taille de l'arachnide ?">
-				<reponse id="r3" texte="Supérieur à 5 mm" >
-				  <resultat id="res1">
-					<nom><!-- Nom de la morpho-espèce trouvée --></nom>
-					<type>MEL1</type>
-					<regimeAlimentaire>Prédateur</regimeAlimentaire>
-					<informations><!-- Des informations complementaires sur la morpho-espèce --></informations>
-					<media>
-						<img id"img2" src="coucou.jpg" />
-					</media>
-				  </resultat>
-				</reponse>
-				<reponse id="r4" texte="Inférieur à 5 mm">
-					<!-- ... -->
-				</reponse>
-			</question>
-		  </branche>
-		</reponse>
-	</question>
+ <question id="q1" texte="Que voyez vous ?" visible="true">
+  <media>
+   <legende>Vous devez nous dire ce que vous avez vue !!!</legende>
+  </media>
+   <reponse id="r1" texte="6 pattes" visible="true">
+    <media>
+     <img id="img1" src="toto6pattes.png" />
+     <legende>c'est toto avec 6 pattes</legende>
+    </media>
+    <branche id="b2">
+     <!-- ... -->
+    </branche>
+   </reponse>
+   <reponse id="r2" texte="8 pattes, ailes et antennes absentes">
+	<branche id="b3" type="Arachnide">
+     <question id="q2" texte="Quelle est la taille de l'arachnide ?">
+	  <reponse id="r3" texte="Supérieur à 5 mm" >
+		<resultat id="res1">
+		 <nom><!-- Nom de la morpho-espèce trouvée --></nom>
+         <type>MEL1</type>
+		 <regimeAlimentaire>Prédateur</regimeAlimentaire>
+		 <informations><!-- Infos complementaires sur la morpho-espèce --></informations>
+		 <media>
+		  <img id"img2" src="coucou.jpg" />
+		 </media>
+	    </resultat>
+      </reponse>
+	  <reponse id="r4" texte="Inférieur à 5 mm">
+	   <!-- ... -->
+      </reponse>
+     </question>
+   </branche>
+ </reponse>
+</question>
 </branche>
 </arbre>
 \end{lstlisting}
@@ -346,10 +358,12 @@ A ce fichier XML, nous avons associés une DTD. Une DTD est en quelque sorte le m
 <!ELEMENT question (reponse+, media*)>
 <!ATTLIST question id ID #REQUIRED>
 <!ATTLIST question texte NMTOKENS #REQUIRED>
+<!ATTLIST question visible NMTOKENS #IMPLIED>
 
 <!ELEMENT reponse ((branche|resultat), media*)>
 <!ATTLIST reponse id ID #REQUIRED>
 <!ATTLIST reponse texte NMTOKENS #REQUIRED>
+<!ATTLIST reponse visible NMTOKENS #IMPLIED>
 
 <!ELEMENT resultat (nom, type, regimeAlimentaire, media*)>
 <!ELEMENT nom (#PCDATA)>
@@ -364,9 +378,40 @@ A ce fichier XML, nous avons associés une DTD. Une DTD est en quelque sorte le m
 <!ELEMENT legende (#PCDATA)>
 \end{lstlisting}
 
+		\subsubsection{Format du fichier de résultat}
+Nous allons maintenant définir le format du fichier de sortie (le fichier de résultat). Ce fichier sera un fichier CSV, il pourra donc être ouvert et modifié facilement avec un tableur standard type Excel ou OpenOffice. \\
+Il sera composé des colonnes suivantes : 
+\begin{itemize}
+	\item \textbf{Date :} date courante de l'observation
+	\item \textbf{Campagne :} informations relatives à la campagne (nom, date de début...)
+	\item \textbf{Session :} informations relatives à la session
+	\item \textbf{Piège :} informations relatives au piège (coordonnées, nom...)
+	\item \textbf{1 colonne par morpho-espèce :} cette colonne contiendra une valeur dans la case correspondant au résultat de l'observation. 
+\end{itemize}
+
+		\subsubsection{Format du fichier des retours utilisateurs}
+Enfin, nous allons définir le format du fichier des retours utilisateurs. Ce fichier permet de centraliser tous les commentaires relevés par les utilisateurs de l'application mobile (questions incomplète, pas réponse correspondante, nouvelle morpho-espèce...). \\
+Il sera composé des colonnes suivantes : 
+\begin{itemize}
+	\item \textbf{Date :} date de la soumission du commentaire
+	\item \textbf{Historique questions/réponses :} historique complet des questions et des réponses auxquelles l'utilisateur a répondu
+	\item \textbf{Photo insecte :} dans le cas d'une nouvelle morpho-espèce ou si l'utilisateur pense qu'il peut proposer une photo de meilleur qualité que celle proposée
+	\item \textbf{Commentaire :} texte libre pour l'utilisateur 
+\end{itemize}
+
+\newpage
+
 	\section{Architecture générale du système}
 	\label{sec:archi}
-<!-- Insérer le diagramme de composant - à faire -->
+La figure \ref{diag composants} présente le diagramme de composant de notre système. 
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=0.8\textwidth]{images/diag_composants.png}
+	\caption{Diagramme de composants}
+	\label{diag composants}
+\end{figure}
+
+\newpage
 
 	\section{Description des fonctionnalités}
 	\label{sec:fonctions}
@@ -476,22 +521,31 @@ Pour le moment, pas de système d'authentification n'est a mettre en place. Les u
 			Réflexion au choix d'un mode de visualisation efficace et performant pour les données (arborescence type Windows, explorateur type MacOS, représentation sous forme de carte...). \\
 
 			\subsubsection{Développement de la classe de lecture/écriture de fichier XML}
+			Les modules sous-jacents sont donc "importer fichier XML" et "exporter fichier XML". 
 			
 			\subsubsection{Développement du module de visualisation de l'arbre}
+			2 types de visualisation : l'arborescence type "Windows" qui reprend les questions et les panneaux type "Mac OS" qui liste les réponses et les médias relatifs à l'élément cliqué dans la 1ère arborescence. 
 			
 			\subsubsection{Développement du module de modification de l'arbre XML}
-			Édition, ajout et suppression de noeud (question, réponse, média, morpho-espèce...).
+			Édition, ajout et suppression de noeud (question, réponse, morpho-espèce...).
 			\begin{itemize}
 				\item Ajouter balise
 				\item Supprimer balise
 				\item Modifier balise
 			\end{itemize}			 
 			
-			\subsubsection{Développement du module de déplacement d'un sous-arbre XML}
+			\subsubsection{Développement du module de déplacement d'éléments de l'arbre}
 			Un élément seul, un sous-arbre complet... Cette tâche n'est pas prioritaire, elle sera effectuée dans un 2ème temps. 
+			
+			\subsubsection{Développement du module d'ajout de média}
+			Ce module doit permettre à l'utilisateur d'ajouter des médias via un drag and drop du fichier contenu dans son ordinateur vers la fenêtre de notre application. 
 			
 			\subsubsection{Développement du module de visualisation des médias}
 			Permet d'afficher les différents médias associés à un élément (question/réponse/résultat). Ce module doit être adapté à plusieurs types de médias : photos, vidéos, éventuellement animation... Il faut prendre soin de gérer les différents formats possibles pour chaque type de média. 
+			
+			\subsubsection{Développement du module de recherche des informations manquantes}
+			Ce module permet à l'utilisateur de savoir quels sont les éléments où il manque de l'information.
+				
 			
 		\subsection{Application mobile}
 
@@ -505,12 +559,13 @@ Pour le moment, pas de système d'authentification n'est a mettre en place. Les u
 			\subsubsection{Développement de la logique de l'application}
 			\begin{itemize}
 				\item Gestion des campagnes (création/modification/suppression)
+				\item Gestion des sessions (création/modification/suppression)
 				\item Gestion des pièges (création/modification/suppression)
-				\item Parcours et affichage des questions/réponses 
+				\item Affichage et parcours des questions/réponses 
 			\end{itemize}
 			
 			\subsubsection{Développement du module de log}
-			Réfléchir aux informations qu'il faut enregistrer, comment les enregistrer et comment les stocker (fichier XML, fichier texte...). Il faudra ensuite voir comment remonter ces informations à l'équipe INNOPHYT pour qu'elle puisse améliorer la base de données ou l'application. 
+			Permet d'obtenir le fichier des retours utilisateurs comme défini dans "Interfaces logiciel/logiciel". 
 	
 
 		\section{Planning}
