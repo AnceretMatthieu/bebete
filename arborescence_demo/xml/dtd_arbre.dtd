@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!ELEMENT arbre (branche)>
+<!ATTLIST branche date CDATA #IMPLIED>
 
 <!ELEMENT branche (question)>
 <!ATTLIST branche id ID #REQUIRED>
 <!ATTLIST branche type CDATA #IMPLIED>
-<!ATTLIST branche date CDATA #IMPLIED>
 
 <!ELEMENT question (reponse+, media*)>
 <!ATTLIST question id ID #REQUIRED>
