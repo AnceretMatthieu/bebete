@@ -1,0 +1,168 @@
+<?xml version = '1.0' encoding="UTF8"?> 
+<!DOCTYPE arbre SYSTEM "arbre.dtd">
+
+<arbre>
+<branche id="b1" type="accueil" date="13/03/2012">
+	<question id="q1" texte="Que voyez vous ?">
+		<reponse id="r1" texte="6 pattes">
+			<branche id="b2">
+				<question id="q2" texte="Combien d'ailes voyez-vous ?">
+					<reponse id="r2" texte="4 ailes">
+						<branche id="b3">
+							<question id="r7" texte="Que voyez-vous plus précisément au niveau des ailes ?">
+								<reponse id="r8" texte="2 Ailes antérieures dont les 2/3 sont cornés, le dernier tier étant membraneux, présence d'un écusson. 2 Ailes postérieures menbraneuses">
+									<resultat id="res6">
+										<nom>Espèce 6</nom>
+										<type>MEN</type>
+										<regimeAlimentaire>Piqueurs suceurs</regimeAlimentaire>
+										<informations></informations>
+										<media>
+											<img id="men1" src="medias/images/mein.png" />
+										</media>
+									</resultat>
+								</reponse>
+								<reponse id="r9" texte="4 Ailes recouvertes d'écailles">
+									<resultat id="res7">
+										<nom>Espèce 7</nom>
+										<type>MEM</type>
+										<regimeAlimentaire>Phytophages</regimeAlimentaire>
+										<informations></informations>
+										<media>
+											<img id="mem1" src="medias/images/mem1.png" />
+										</media>
+									</resultat>
+								</reponse>
+								<reponse id="r10" texte="4 Ailes membraneuses en toit au repos. Corps de 1cm à 1,5cm de couleur verte avec antennes longues et filiformes">
+									<resultat id="res8">
+										<nom>Espèce 8</nom>
+										<type>MER</type>
+										<regimeAlimentaire>Prédateurs</regimeAlimentaire>
+										<informations></informations>
+										<media>
+											<img id="mer1" src="medias/images/mer1.png" />
+										</media>
+									</resultat>
+								</reponse>
+							</question>
+						</branche>
+					</reponse>
+					<reponse id="r3" texte="2 ailes antérieures membraneuses, les 2 ailes posterieures transformées en balanciers (+ ou - visibles)">
+						<branche id="b4" type="diptères">
+							<question="q3" texte="Quelle est la longueur des antennes ?">
+								<reponse id="r4" texte="Antennes courtes (3 articles max)">
+									<question id="q4" texte="Quelle est la couleur de l'insecte ?">
+										<reponse id="r6" texte="Ornementation de l'abdomen noire et jaune/orangée pouvant faire penser aux abeilles" visible="true">
+											<resultat id="res4">
+												<nom>Espèce 4</nom>
+												<type>MEI</type>
+												<regimeAlimentaire>Larves prédatrices de pucerons et adultes pollinisateurs</regimeAlimentaire>
+												<informations>"La faune de France illustrée VIII, Diptères Aphaniptères par E. Seguy, éd Delagrave déc 1998"; justifie la morphologie et le rôle écologique</informations>
+												<media>
+													<img id="mei1" src="medias/images/mei1.png" />
+												</media>
+											</resultat>
+										</reponse>
+										<reponse id="r7" texte="Pas de rayures jaunes et noires sur l'abdomen" visible="true">
+											<resultat id="res5">
+												<nom>Espèce 5</nom>
+												<type>MEJ</type>
+												<regimeAlimentaire>Certaines larves ravageuses, d'autres individus prédateurs</regimeAlimentaire>
+												<informations>"Initiation à la morphologie, la systématique et la biologie des insectes" Maurice ROTH ed ORSTOM 1980 p125 ; Justifie morphologie retenue pour brachycères et nématocères ainsi que leurs rôles écologiques</informations>
+												<media>
+													<img id="mej1" src="medias/images/mej1.png" />
+												</media>
+											</resultat>
+										</reponse>
+									</question>
+								</reponse>
+								<reponse id="r5" texte="Antennes longues">
+									<resultat id="res3">
+										<nom>Espèce 3</nom>
+										<type>MEK</type>
+										<regimeAlimentaire>Consommateurs de sucs végétaux ou hématophages</regimeAlimentaire>
+										<informations></informations>
+										<media>
+											<img id="mek1" src="medias/images/mek1.png" />
+										</media>
+									</resultat>
+								</reponse>
+							</question>							
+						</branche>
+					</reponse>
+					<reponse id="r3" texte="Pas d'ailes et taille de guêpe" visible="true">
+						<branche id="b4" type="hymeno">
+							<resultat id="res2">
+							<nom>Espèce 2</nom>
+							<type>MEH</type>
+							<regimeAlimentaire>Insectivores, nécrophages et omnivores</regimeAlimentaire>
+							<informations></informations>
+							<media>
+								<img id="meq1" src="medias/images/meh1.png" />
+							</media>
+						</resultat>
+						</branche>
+					</reponse>
+					<reponse id="r4" texte="2 pattes postérieures très développées conférant une aptitude au saut" visible="true">
+						<resultat id="res1">
+							<nom>Espèce 1</nom>
+							<type>MEQ</type>
+							<regimeAlimentaire>Phytophages</regimeAlimentaire>
+							<informations></informations>
+							<media>
+								<img id="meq1" src="medias/images/meq1.png" />
+								<img id="meq2" src="medias/images/meq2.png" />
+							</media>
+						</resultat>
+					</reponse>
+			</branche>
+		</reponse>
+		<reponse id="r2" texte="8 pattes, ailes et antennes absentes">
+			<branche id="b3" type="Arachnide">
+				<media>
+					<img id="arac1" src="medias/images/arac1.png" />
+					<img id="arac2" src="medias/images/arac2.png" />
+				</media>
+				<question id="q2" texte="Quelle est la taille de l'arachnide ?">
+					<reponse id="r11" texte="Supérieur à 5 mm" >
+						<question id="q9" texte="Que voyez-vous au niveau des couleurs de l'insectes ?">
+							<reponse id="r13" texte="Couleurs vives, vermiforme, aplati, globuleux">
+								<resultat id="res11">
+									<nom>Espèce 11</nom>
+									<type>MEL2</type>
+									<regimeAlimentaire>Phytophages</regimeAlimentaire>
+									<informations></informations>
+									<media>
+										<img id="mel2" src="medias/images/mel2.png" />
+									</media>
+								</resultat>
+							</reponse>
+							<reponse id="r14" texte="Blanchâtre à marron clair, couleur pale, pyriforme">
+								<resultat id="res12">
+									<nom>Espèce 12</nom>
+									<type>MEL3</type>
+									<regimeAlimentaire>Prédateur</regimeAlimentaire>
+									<informations>http://www.biocolor-tec.es/fr/</informations>
+									<media>
+										<img id="mel3" src="medias/images/mel3.png" />
+									</media>
+								</resultat>
+							</reponse>
+						</question>
+					</reponse>
+					<reponse id="r12" texte="Inférieur à 5 mm">
+						<resultat id="res10">
+							<nom>Espèce 10</nom>
+							<type>MEL1</type>
+							<regimeAlimentaire>Prédateur</regimeAlimentaire>
+							<informations></informations>
+							<media>
+								<img id="mel1" src="medias/images/mel1.png" />
+							</media>
+						</resultat>
+					</reponse>
+				</question>
+			</branche>
+		</reponse>
+	</question>
+</branche>
+</arbre>

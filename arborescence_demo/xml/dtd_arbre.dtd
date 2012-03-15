@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT arbre (branche)>
+
+<!ELEMENT branche (question)>
+<!ATTLIST branche id ID #REQUIRED>
+<!ATTLIST branche type CDATA #IMPLIED>
+<!ATTLIST branche date CDATA #IMPLIED>
+
+<!ELEMENT question (reponse+, media*)>
+<!ATTLIST question id ID #REQUIRED>
+<!ATTLIST question texte NMTOKENS #REQUIRED>
+<!ATTLIST question visible NMTOKENS #IMPLIED>
+
+<!ELEMENT reponse ((branche|resultat), media*)>
+<!ATTLIST reponse id ID #REQUIRED>
+<!ATTLIST reponse texte NMTOKENS #REQUIRED>
+<!ATTLIST reponse visible NMTOKENS #IMPLIED>
+
+<!ELEMENT resultat (nom, type, regimeAlimentaire, media*)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT regimeAlimentaire (#PCDATA)>
+<!ELEMENT informations (#PCDATA)>
+
+<!ELEMENT media (img+, legende+)>
+<!ELEMENT img EMPTY>
+<!ATTLIST img id ID #REQUIRED>
+<!ATTLIST img src ENTITY #REQUIRED>
+<!ELEMENT legende (#PCDATA)>
+
