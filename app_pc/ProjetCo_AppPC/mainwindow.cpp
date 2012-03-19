@@ -5,22 +5,25 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    QStandardItemModel * model = new QStandardItemModel;
 
-    QStringListModel * model = new QStringListModel;
-    QStringListModel * model2 = new QStringListModel;
+    QStandardItem * elem1 = new QStandardItem("Element 1");
+    model->appendRow(elem1);
+    elem1->appendRow(new QStandardItem("Sub-element 1.1"));
+    elem1->appendRow(new QStandardItem("Sub-element 1.2"));
 
-    QStringList liste, liste2;
+    QStandardItem * elem2 = new QStandardItem("Element 2");
+    model->appendRow(elem2);
 
-    liste  << "a" << "b" << "c";
-    liste2 << "h" << "t" << "o";
-
-    model->setStringList(liste);
-
-    model2->setStringList(liste2);
-    model2->setParent(model);
+    QStandardItem * elem3 = new QStandardItem("Element 3");
+    model->appendRow(elem3);
+    elem3->appendRow(new QStandardItem("Sub-element 3.1"));
+    elem3->appendRow(new QStandardItem("Sub-element 3.2"));
+    elem3->appendRow(new QStandardItem("Sub-element 3.3"));
 
     ui->setupUi(this);
 
+    ui->qlstArbo->header()->hide();
     ui->qlstArbo->setModel(model);
 }
 

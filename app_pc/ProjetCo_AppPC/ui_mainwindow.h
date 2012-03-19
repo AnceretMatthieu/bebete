@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Mar 19 11:56:07 2012
+** Created: Mon Mar 19 15:24:07 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -15,12 +15,15 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QFrame>
+#include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
 #include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QSpacerItem>
 #include <QtGui/QTreeView>
+#include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -33,13 +36,21 @@ public:
     QAction *actionImporter_XML;
     QAction *actionA_propos;
     QWidget *centralWidget;
+    QHBoxLayout *horizontalLayout;
+    QHBoxLayout *horizontalLayout_2;
     QTreeView *qlstArbo;
     QFrame *line;
-    QFrame *line_2;
+    QVBoxLayout *verticalLayout;
     QLabel *lblQuestion;
+    QSpacerItem *verticalSpacer;
+    QFrame *line_2;
+    QVBoxLayout *verticalLayout_2;
     QLabel *lblReponse;
+    QSpacerItem *verticalSpacer_2;
     QFrame *line_3;
+    QVBoxLayout *verticalLayout_3;
     QLabel *lblReponse_2;
+    QSpacerItem *verticalSpacer_3;
     QMenuBar *menuBar;
     QMenu *menuFichier;
     QMenu *menuEdition;
@@ -67,43 +78,107 @@ public:
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy);
+        centralWidget->setMinimumSize(QSize(0, 0));
+        horizontalLayout = new QHBoxLayout(centralWidget);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         qlstArbo = new QTreeView(centralWidget);
         qlstArbo->setObjectName(QString::fromUtf8("qlstArbo"));
-        qlstArbo->setGeometry(QRect(0, 10, 191, 511));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(100);
-        sizePolicy.setHeightForWidth(qlstArbo->sizePolicy().hasHeightForWidth());
-        qlstArbo->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(qlstArbo->sizePolicy().hasHeightForWidth());
+        qlstArbo->setSizePolicy(sizePolicy1);
+
+        horizontalLayout_2->addWidget(qlstArbo);
+
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
-        line->setGeometry(QRect(190, 0, 16, 521));
         line->setFrameShape(QFrame::VLine);
         line->setFrameShadow(QFrame::Sunken);
-        line_2 = new QFrame(centralWidget);
-        line_2->setObjectName(QString::fromUtf8("line_2"));
-        line_2->setGeometry(QRect(360, 10, 20, 501));
-        line_2->setFrameShape(QFrame::VLine);
-        line_2->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_2->addWidget(line);
+
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setSpacing(6);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         lblQuestion = new QLabel(centralWidget);
         lblQuestion->setObjectName(QString::fromUtf8("lblQuestion"));
-        lblQuestion->setGeometry(QRect(210, 10, 151, 16));
+        lblQuestion->setEnabled(true);
+        sizePolicy1.setHeightForWidth(lblQuestion->sizePolicy().hasHeightForWidth());
+        lblQuestion->setSizePolicy(sizePolicy1);
         QFont font1;
         font1.setPointSize(12);
         lblQuestion->setFont(font1);
+
+        verticalLayout->addWidget(lblQuestion);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout->addItem(verticalSpacer);
+
+
+        horizontalLayout_2->addLayout(verticalLayout);
+
+        line_2 = new QFrame(centralWidget);
+        line_2->setObjectName(QString::fromUtf8("line_2"));
+        line_2->setFrameShape(QFrame::VLine);
+        line_2->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_2->addWidget(line_2);
+
+        verticalLayout_2 = new QVBoxLayout();
+        verticalLayout_2->setSpacing(6);
+        verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
         lblReponse = new QLabel(centralWidget);
         lblReponse->setObjectName(QString::fromUtf8("lblReponse"));
-        lblReponse->setGeometry(QRect(380, 10, 141, 16));
         lblReponse->setFont(font1);
+
+        verticalLayout_2->addWidget(lblReponse);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer_2);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_2);
+
         line_3 = new QFrame(centralWidget);
         line_3->setObjectName(QString::fromUtf8("line_3"));
-        line_3->setGeometry(QRect(520, 10, 20, 501));
         line_3->setFrameShape(QFrame::VLine);
         line_3->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_2->addWidget(line_3);
+
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         lblReponse_2 = new QLabel(centralWidget);
         lblReponse_2->setObjectName(QString::fromUtf8("lblReponse_2"));
-        lblReponse_2->setGeometry(QRect(550, 10, 141, 16));
         lblReponse_2->setFont(font1);
+
+        verticalLayout_3->addWidget(lblReponse_2);
+
+        verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_3);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_3);
+
+
+        horizontalLayout->addLayout(horizontalLayout_2);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));

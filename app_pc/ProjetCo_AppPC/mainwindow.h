@@ -9,6 +9,8 @@
 #include <QCloseEvent>
 #include <QDrag>
 #include <QDropEvent>
+#include <QFileSystemModel>
+#include <QStandardItemModel>
 
 #include <iostream>
 
