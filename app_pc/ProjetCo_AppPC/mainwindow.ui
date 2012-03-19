@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>534</width>
-    <height>351</height>
+    <width>1024</width>
+    <height>768</height>
    </rect>
   </property>
   <property name="font">
@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Bebete</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -27,19 +27,25 @@
     <property name="geometry">
      <rect>
       <x>0</x>
-      <y>60</y>
+      <y>10</y>
       <width>191</width>
-      <height>291</height>
+      <height>511</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
    </widget>
    <widget class="Line" name="line">
     <property name="geometry">
      <rect>
       <x>190</x>
-      <y>60</y>
+      <y>0</y>
       <width>16</width>
-      <height>281</height>
+      <height>521</height>
      </rect>
     </property>
     <property name="orientation">
@@ -49,10 +55,10 @@
    <widget class="Line" name="line_2">
     <property name="geometry">
      <rect>
-      <x>370</x>
-      <y>80</y>
+      <x>360</x>
+      <y>10</y>
       <width>20</width>
-      <height>271</height>
+      <height>501</height>
      </rect>
     </property>
     <property name="orientation">
@@ -63,10 +69,15 @@
     <property name="geometry">
      <rect>
       <x>210</x>
-      <y>80</y>
-      <width>62</width>
+      <y>10</y>
+      <width>151</width>
       <height>16</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
     </property>
     <property name="text">
      <string>Question</string>
@@ -75,14 +86,50 @@
    <widget class="QLabel" name="lblReponse">
     <property name="geometry">
      <rect>
-      <x>400</x>
-      <y>80</y>
-      <width>62</width>
+      <x>380</x>
+      <y>10</y>
+      <width>141</width>
       <height>16</height>
      </rect>
     </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="text">
      <string>Réponse</string>
+    </property>
+   </widget>
+   <widget class="Line" name="line_3">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>10</y>
+      <width>20</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="lblReponse_2">
+    <property name="geometry">
+     <rect>
+      <x>550</x>
+      <y>10</y>
+      <width>141</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Média</string>
     </property>
    </widget>
   </widget>
@@ -91,9 +138,14 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>534</width>
-     <height>28</height>
+     <width>1024</width>
+     <height>21</height>
     </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <widget class="QMenu" name="menuFichier">
     <property name="title">
@@ -123,6 +175,7 @@
     <property name="title">
      <string>Aide</string>
     </property>
+    <addaction name="actionA_propos"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuEdition"/>
@@ -143,6 +196,11 @@
   <action name="actionImporter_XML">
    <property name="text">
     <string>Importer XML</string>
+   </property>
+  </action>
+  <action name="actionA_propos">
+   <property name="text">
+    <string>A propos</string>
    </property>
   </action>
  </widget>

@@ -7,6 +7,8 @@
 #include <QDir>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QDrag>
+#include <QDropEvent>
 
 #include <iostream>
 

@@ -9,8 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     QStringListModel * model = new QStringListModel;
     QStringListModel * model2 = new QStringListModel;
 
-
-
     QStringList liste, liste2;
 
     liste  << "a" << "b" << "c";
@@ -24,7 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     ui->qlstArbo->setModel(model);
-
 }
 
 MainWindow::~MainWindow()
