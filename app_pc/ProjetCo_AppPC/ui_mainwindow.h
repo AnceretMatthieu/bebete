@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Mar 19 15:24:07 2012
+** Created: Tue Mar 20 09:05:58 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -38,18 +38,24 @@ public:
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QHBoxLayout *horizontalLayout_2;
-    QTreeView *qlstArbo;
+    QTreeView *treeViewQuestion;
     QFrame *line;
     QVBoxLayout *verticalLayout;
     QLabel *lblQuestion;
+    QFrame *line_4;
+    QLabel *label;
+    QFrame *line_7;
     QSpacerItem *verticalSpacer;
     QFrame *line_2;
     QVBoxLayout *verticalLayout_2;
     QLabel *lblReponse;
+    QFrame *line_5;
+    QTreeView *treeViewReponse;
     QSpacerItem *verticalSpacer_2;
     QFrame *line_3;
     QVBoxLayout *verticalLayout_3;
     QLabel *lblReponse_2;
+    QFrame *line_6;
     QSpacerItem *verticalSpacer_3;
     QMenuBar *menuBar;
     QMenu *menuFichier;
@@ -92,20 +98,27 @@ public:
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
-        qlstArbo = new QTreeView(centralWidget);
-        qlstArbo->setObjectName(QString::fromUtf8("qlstArbo"));
+        treeViewQuestion = new QTreeView(centralWidget);
+        treeViewQuestion->setObjectName(QString::fromUtf8("treeViewQuestion"));
         QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(qlstArbo->sizePolicy().hasHeightForWidth());
-        qlstArbo->setSizePolicy(sizePolicy1);
+        sizePolicy1.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
+        treeViewQuestion->setSizePolicy(sizePolicy1);
+        QFont font1;
+        font1.setPointSize(12);
+        treeViewQuestion->setFont(font1);
 
-        horizontalLayout_2->addWidget(qlstArbo);
+        horizontalLayout_2->addWidget(treeViewQuestion);
 
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
-        line->setFrameShape(QFrame::VLine);
+        QFont font2;
+        font2.setBold(false);
+        font2.setWeight(50);
+        line->setFont(font2);
         line->setFrameShadow(QFrame::Sunken);
+        line->setFrameShape(QFrame::VLine);
 
         horizontalLayout_2->addWidget(line);
 
@@ -117,11 +130,31 @@ public:
         lblQuestion->setEnabled(true);
         sizePolicy1.setHeightForWidth(lblQuestion->sizePolicy().hasHeightForWidth());
         lblQuestion->setSizePolicy(sizePolicy1);
-        QFont font1;
-        font1.setPointSize(12);
         lblQuestion->setFont(font1);
 
         verticalLayout->addWidget(lblQuestion);
+
+        line_4 = new QFrame(centralWidget);
+        line_4->setObjectName(QString::fromUtf8("line_4"));
+        line_4->setFrameShape(QFrame::HLine);
+        line_4->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line_4);
+
+        label = new QLabel(centralWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        QFont font3;
+        font3.setPointSize(10);
+        label->setFont(font3);
+
+        verticalLayout->addWidget(label);
+
+        line_7 = new QFrame(centralWidget);
+        line_7->setObjectName(QString::fromUtf8("line_7"));
+        line_7->setFrameShape(QFrame::HLine);
+        line_7->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line_7);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -146,6 +179,21 @@ public:
 
         verticalLayout_2->addWidget(lblReponse);
 
+        line_5 = new QFrame(centralWidget);
+        line_5->setObjectName(QString::fromUtf8("line_5"));
+        line_5->setFrameShape(QFrame::HLine);
+        line_5->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_2->addWidget(line_5);
+
+        treeViewReponse = new QTreeView(centralWidget);
+        treeViewReponse->setObjectName(QString::fromUtf8("treeViewReponse"));
+        sizePolicy1.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
+        treeViewReponse->setSizePolicy(sizePolicy1);
+        treeViewReponse->setFont(font1);
+
+        verticalLayout_2->addWidget(treeViewReponse);
+
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_2->addItem(verticalSpacer_2);
@@ -169,6 +217,13 @@ public:
 
         verticalLayout_3->addWidget(lblReponse_2);
 
+        line_6 = new QFrame(centralWidget);
+        line_6->setObjectName(QString::fromUtf8("line_6"));
+        line_6->setFrameShape(QFrame::HLine);
+        line_6->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_3->addWidget(line_6);
+
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer_3);
@@ -183,9 +238,7 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1024, 21));
-        QFont font2;
-        font2.setPointSize(10);
-        menuBar->setFont(font2);
+        menuBar->setFont(font3);
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
         menuEdition = new QMenu(menuBar);
@@ -222,6 +275,7 @@ public:
         actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
         lblQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("MainWindow", "M\303\251dia", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponse", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia", 0, QApplication::UnicodeUTF8));
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0, QApplication::UnicodeUTF8));

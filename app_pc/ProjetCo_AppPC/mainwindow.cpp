@@ -5,26 +5,44 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    /** Remplissage TreeView des questions **/
     QStandardItemModel * model = new QStandardItemModel;
 
-    QStandardItem * elem1 = new QStandardItem("Element 1");
+    QStandardItem * elem1 = new QStandardItem("Question 1");
     model->appendRow(elem1);
-    elem1->appendRow(new QStandardItem("Sub-element 1.1"));
-    elem1->appendRow(new QStandardItem("Sub-element 1.2"));
+    elem1->appendRow(new QStandardItem("Question 1.1"));
+    elem1->appendRow(new QStandardItem("Question 1.2"));
 
-    QStandardItem * elem2 = new QStandardItem("Element 2");
+    QStandardItem * elem2 = new QStandardItem("Question 2");
     model->appendRow(elem2);
 
-    QStandardItem * elem3 = new QStandardItem("Element 3");
+    QStandardItem * elem3 = new QStandardItem("Question 3");
     model->appendRow(elem3);
-    elem3->appendRow(new QStandardItem("Sub-element 3.1"));
-    elem3->appendRow(new QStandardItem("Sub-element 3.2"));
-    elem3->appendRow(new QStandardItem("Sub-element 3.3"));
+    elem3->appendRow(new QStandardItem("Question 3.1"));
+    elem3->appendRow(new QStandardItem("Question 3.2"));
+    elem3->appendRow(new QStandardItem("Question 3.3"));
+
+    /** Remplissage TreeView des réponses **/
+    QStandardItemModel * model2 = new QStandardItemModel;
+
+    QStandardItem * elem4 = new QStandardItem("Reponse 1");
+    model2->appendRow(elem4);
+
+    QStandardItem * elem5 = new QStandardItem("Reponse 2");
+    model2->appendRow(elem5);
+
+    QStandardItem * elem6 = new QStandardItem("Reponse 3");
+    model2->appendRow(elem6);
+    elem6->appendRow(new QStandardItem("aide reponse 3"));
+    elem6->appendRow(new QStandardItem("media 1"));
 
     ui->setupUi(this);
 
-    ui->qlstArbo->header()->hide();
-    ui->qlstArbo->setModel(model);
+    ui->treeViewQuestion->header()->hide();
+    ui->treeViewQuestion->setModel(model);
+
+    ui->treeViewReponse->header()->hide();
+    ui->treeViewReponse->setModel(model2);
 }
 
 MainWindow::~MainWindow()
