@@ -1,4 +1,8 @@
 #include "Reponse.h"
+#include "ListeMedia.h"
+#include "Media.h"
+#include "Question.h"
+#include "Espece.h"
 
 int Reponse::getIdentifiant()   {
 }
@@ -6,7 +10,7 @@ int Reponse::getIdentifiant()   {
 char * Reponse::getReponse()    {
 }
 
-void Reponse::AjouterMedia(Media media) {
+void Reponse::AjouterMedia(Media * media) {
 }
 
 void Reponse::SupprimerMedia(int id)    {

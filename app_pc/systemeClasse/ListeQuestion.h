@@ -2,11 +2,11 @@
 #define ListeQuestion_h
 
 #include <vector>
-#include "Question.h"
 
+class Question;
 using namespace std;
-//template<class Question>;
-class ListeQuestion {//: public vector<Question*> {
+
+class ListeQuestion : public vector<Question*> {
 
  public:
     ListeQuestion();

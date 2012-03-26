@@ -3,10 +3,10 @@
 
 #include <vector>
 
-#include "ListeMedia.h"
-#include "Media.h"
-#include "Question.h"
-#include "Espece.h"
+class Media;
+class Question;
+class Espece;
+class ListeMedia;
 
 class Reponse {
  public:
@@ -14,7 +14,7 @@ class Reponse {
     int getIdentifiant();
     char * getReponse();
     void AjouterMedia(Media * media);
-    void SupprimerMedia(Integer id);
+    void SupprimerMedia(int id);
     Question * getQuestionSuiv();
     Question * getQuestionPrec();
     ListeMedia * getListeIllustration();

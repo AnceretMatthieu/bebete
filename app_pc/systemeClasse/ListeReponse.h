@@ -2,11 +2,11 @@
 #define ListeReponse_h
 
 #include <vector>
-#include "Reponse.h"
 
+class Reponse;
 using namespace std;
-//template<class Reponse>;
-class ListeReponse {//: public vector<Reponse*> {
+
+class ListeReponse : public vector<Reponse*> {
  public:
     ListeReponse();
     Reponse * getElementById(int id);

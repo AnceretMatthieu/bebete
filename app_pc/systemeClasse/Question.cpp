@@ -1,3 +1,8 @@
+#include "ListeMedia.h"
+#include "ListeReponse.h"
+#include "Media.h"
+#include "Reponse.h"
+#include "Categorie.h"
 #include "Question.h"
 
 int Question::getIdentifiant()  {

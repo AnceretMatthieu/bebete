@@ -1,9 +1,8 @@
 #ifndef Media_h
 #define Media_h
 
-#include "Reponse.h"
-#include "Media.h"
-#include "Question.h"
+class Reponse;
+class Question;
 
 class Media {
 
@@ -19,7 +18,6 @@ class Media {
     int Type;
     Reponse *myReponse;
     Question *myQuestion;
-    Reponse *myReponse;
 };
 
 #endif // Media_h

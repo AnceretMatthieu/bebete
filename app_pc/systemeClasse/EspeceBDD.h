@@ -3,7 +3,6 @@
 
 #include "BDD.h"
 
-
 class EspeceBDD : public BDD {
     EspeceBDD();
 };

@@ -1,7 +1,5 @@
 #include "ListeMedia.h"
-
-
-
+#include "Media.h"
 
 Media *ListeMedia::getElementById(int id)   {
 }

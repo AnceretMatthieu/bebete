@@ -2,9 +2,9 @@
 #define QuestionBDD_h
 
 #include "BDD.h"
-#include "ListeQuestion.h"
-#include "Question.h"
 
+class Question;
+class ListeQuestion;
 
 class QuestionBDD : public BDD {
 
