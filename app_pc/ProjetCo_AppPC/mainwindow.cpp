@@ -44,6 +44,23 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     /* Affectation des actions aux boutons du menu */
     connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
+
+
+    // Mettre une image dans un QLabel
+    ui->labelImage->setPixmap(QPixmap("../Medias_tests/cseptempunctata.jpg"));
+    ui->labelImage->adjustSize();
+    ui->labelImage->show();
+
+    // Mettre une vidéo dans un babel
+    Phonon::VideoPlayer * monLecteur = new Phonon::VideoPlayer(Phonon::VideoCategory);
+    QFormLayout * layout = new QFormLayout();
+    monLecteur->show();
+    monLecteur->play(Phonon::MediaSource("../Medias_tests/test_video.avi"));
+    layout->addWidget(monLecteur);
+    ui->widgetVideo->setLayout(layout);
+
+    // lecture d'un son
+    QSound::play("../Medias_tests/Klaas - Our Own Way (Official Video).wav");
 }
 
 MainWindow::~MainWindow()

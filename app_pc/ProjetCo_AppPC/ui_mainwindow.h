@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Mar 26 14:46:37 2012
-**      by: Qt User Interface Compiler version 4.7.4
+** Created: Mon 26. Mar 15:57:51 2012
+**      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -56,6 +56,8 @@ public:
     QVBoxLayout *verticalLayout_3;
     QLabel *lblReponse_2;
     QFrame *line_6;
+    QLabel *labelImage;
+    QWidget *widgetVideo;
     QSpacerItem *verticalSpacer_3;
     QMenuBar *menuBar;
     QMenu *menuFichier;
@@ -224,6 +226,16 @@ public:
 
         verticalLayout_3->addWidget(line_6);
 
+        labelImage = new QLabel(centralWidget);
+        labelImage->setObjectName(QString::fromUtf8("labelImage"));
+
+        verticalLayout_3->addWidget(labelImage);
+
+        widgetVideo = new QWidget(centralWidget);
+        widgetVideo->setObjectName(QString::fromUtf8("widgetVideo"));
+
+        verticalLayout_3->addWidget(widgetVideo);
+
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_3->addItem(verticalSpacer_3);
@@ -237,7 +249,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1024, 21));
+        menuBar->setGeometry(QRect(0, 0, 1024, 23));
         menuBar->setFont(font3);
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
@@ -278,6 +290,7 @@ public:
         label->setText(QApplication::translate("MainWindow", "M\303\251dia", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponse", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia", 0, QApplication::UnicodeUTF8));
+        labelImage->setText(QString());
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0, QApplication::UnicodeUTF8));
         menuEdition->setTitle(QApplication::translate("MainWindow", "Edition", 0, QApplication::UnicodeUTF8));
         menuAffichage->setTitle(QApplication::translate("MainWindow", "Affichage", 0, QApplication::UnicodeUTF8));

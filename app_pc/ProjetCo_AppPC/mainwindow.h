@@ -11,6 +11,9 @@
 #include <QDropEvent>
 #include <QFileSystemModel>
 #include <QStandardItemModel>
+#include <phonon/phonon>
+#include <QFormLayout>
+#include <QSound>
 
 #include <iostream>
 
