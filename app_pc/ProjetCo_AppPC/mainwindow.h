@@ -14,6 +14,8 @@
 
 #include <iostream>
 
+#include "aboutwindow.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -22,19 +24,20 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     
-public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    public:
+        explicit MainWindow(QWidget *parent = 0);
+        ~MainWindow();
 
-    void closeEvent(QCloseEvent *event);
-    
-private:
-    Ui::MainWindow *ui;
+        void closeEvent(QCloseEvent *event);
 
-private slots:
-    void on_actionQuitter_triggered();
-    void on_actionExporter_XML_triggered();
-    void on_actionImporter_XML_triggered();
+    private:
+        Ui::MainWindow *ui;
+
+    private slots:
+        void on_actionQuitter_triggered();
+        void on_actionExporter_XML_triggered();
+        void on_actionImporter_XML_triggered();
+        void on_actionApropos();
 };
 
 #endif // MAINWINDOW_H

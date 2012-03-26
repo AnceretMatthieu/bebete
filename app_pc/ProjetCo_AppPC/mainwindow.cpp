@@ -1,11 +1,9 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
-    /** Remplissage TreeView des questions **/
+    /* Remplissage TreeView des questions */
     QStandardItemModel * model = new QStandardItemModel;
 
     QStandardItem * elem1 = new QStandardItem("Question 1");
@@ -22,7 +20,7 @@ MainWindow::MainWindow(QWidget *parent) :
     elem3->appendRow(new QStandardItem("Question 3.2"));
     elem3->appendRow(new QStandardItem("Question 3.3"));
 
-    /** Remplissage TreeView des réponses **/
+    /* Remplissage TreeView des réponses */
     QStandardItemModel * model2 = new QStandardItemModel;
 
     QStandardItem * elem4 = new QStandardItem("Reponse 1");
@@ -43,6 +41,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->treeViewReponse->header()->hide();
     ui->treeViewReponse->setModel(model2);
+
+    /* Affectation des actions aux boutons du menu */
+    connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
 }
 
 MainWindow::~MainWindow()
@@ -64,15 +65,17 @@ void MainWindow::on_actionExporter_XML_triggered()
 
 void MainWindow::on_actionQuitter_triggered()
 {
-    /* On envoi l'évènement "fermer la fenêtre" qui sera traitée par la fonction "closeEvent()" */
-
     close();
+}
+
+void MainWindow::on_actionApropos()
+{
+    AboutWindow aboutWin;
+    aboutWin.exec();
 }
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    /* Traitement de l'évènement "fermer la fenêtre" */
-
     int reponse = QMessageBox::question(this, "Quitter", "Etes-vous sur(e) de vouloir quitter ?", QMessageBox::Yes | QMessageBox::No);
 
     if(reponse == QMessageBox::Yes) {

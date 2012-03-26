@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Mon Mar 19 15:42:49 2012
+** Created: Mon Mar 26 14:44:54 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,6 +34,7 @@ static const uint qt_meta_data_MainWindow[] = {
       12,   11,   11,   11, 0x08,
       41,   11,   11,   11, 0x08,
       75,   11,   11,   11, 0x08,
+     109,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -42,6 +43,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0on_actionQuitter_triggered()\0"
     "on_actionExporter_XML_triggered()\0"
     "on_actionImporter_XML_triggered()\0"
+    "on_actionApropos()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -76,9 +78,10 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 0: on_actionQuitter_triggered(); break;
         case 1: on_actionExporter_XML_triggered(); break;
         case 2: on_actionImporter_XML_triggered(); break;
+        case 3: on_actionApropos(); break;
         default: ;
         }
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }
