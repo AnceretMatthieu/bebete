@@ -2,11 +2,11 @@
 #define ListeMedia_h
 
 #include <vector>
-#include "Media.h"
 
+class Media;
 using namespace std;
-//template<class Media>;
-class ListeMedia {//: public std::vector<Media*> {
+
+class ListeMedia : public std::vector<Media*> {
 
  public:
     ListeMedia();

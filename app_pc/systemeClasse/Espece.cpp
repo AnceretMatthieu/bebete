@@ -1,3 +1,4 @@
+#include "Reponse.h"
 #include "Espece.h"
 
 int Espece::getIdentifiant()    {

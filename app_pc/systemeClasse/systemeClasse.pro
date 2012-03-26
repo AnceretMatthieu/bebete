@@ -9,8 +9,6 @@ QT       += core
 QT       -= gui
 
 TARGET = systemeClasse
-CONFIG   += console
-CONFIG   -= app_bundle
 
 TEMPLATE = app
 

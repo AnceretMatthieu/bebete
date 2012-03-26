@@ -3,7 +3,6 @@
 
 #include "Media.h"
 
-
 class Legende : public Media {
     Legende();
 };

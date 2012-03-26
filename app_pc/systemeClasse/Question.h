@@ -3,12 +3,11 @@
 
 #include <vector>
 
-#include "ListeMedia.h"
-#include "ListeReponse.h"
-#include "Media.h"
-#include "Reponse.h"
-#include "Question.h"
-#include "Categorie.h"
+class ListeReponse;
+class ListeMedia;
+class Media;
+class Reponse;
+class Categorie;
 
 class Question {
 

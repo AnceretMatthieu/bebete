@@ -1,3 +1,4 @@
+#include "Question.h"
 #include "Categorie.h"
 
 int Categorie::getIdentifiant() {

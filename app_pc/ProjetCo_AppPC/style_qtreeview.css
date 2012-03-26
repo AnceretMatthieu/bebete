@@ -1,0 +1,4 @@
+QTreeView {
+    display: list-item;
+    list-style-image: url("images/folder.png");
+}

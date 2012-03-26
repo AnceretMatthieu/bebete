@@ -42,6 +42,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->treeViewReponse->header()->hide();
     ui->treeViewReponse->setModel(model2);
 
+    /* On ouvre le fichier CSS et on l'applique sur le widget QTreeView */
+    QFile styleFile("style_qtreeview.css");
+    styleFile.open(QFile::ReadOnly);
+
+    QString style(styleFile.readAll());
+    ui->treeViewQuestion->setStyleSheet(style);
+
     /* Affectation des actions aux boutons du menu */
     connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
 

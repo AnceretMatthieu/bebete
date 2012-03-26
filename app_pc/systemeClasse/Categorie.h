@@ -2,9 +2,10 @@
 #define Categorie_h
 
 #include <vector>
-#include "Question.h"
 
+class Question;
 using namespace std;
+
 class Categorie {
 
  public:

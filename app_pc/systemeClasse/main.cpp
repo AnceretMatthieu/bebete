@@ -1,4 +1,5 @@
 #include <QtCore/QCoreApplication>
+#include <iostream>
 #include "ListeMedia.h"
 #include "ListeQuestion.h"
 #include "ListeReponse.h"

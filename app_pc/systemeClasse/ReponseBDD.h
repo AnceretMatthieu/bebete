@@ -2,8 +2,8 @@
 #define ReponseBDD_h
 
 #include "BDD.h"
-#include "Reponse.h"
 
+class Reponse;
 
 class ReponseBDD : public BDD {
 public:

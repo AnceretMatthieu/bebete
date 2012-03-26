@@ -1,7 +1,7 @@
 #ifndef Espece_h
 #define Espece_h
 
-#include "Reponse.h"
+class Reponse;
 
 class Espece {
 
