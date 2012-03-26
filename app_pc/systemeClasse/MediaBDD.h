@@ -4,6 +4,8 @@
 #include "BDD.h"
 
 
-class MediaBDD : public BDD {};
+class MediaBDD : public BDD {
+    MediaBDD();
+};
 
 #endif // MediaBDD_h

@@ -4,6 +4,8 @@
 #include "BDD.h"
 
 
-class EspeceBDD : public BDD {};
+class EspeceBDD : public BDD {
+    EspeceBDD();
+};
 
 #endif // EspeceBDD_h

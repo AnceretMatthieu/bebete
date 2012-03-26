@@ -5,6 +5,9 @@
 #include "Reponse.h"
 
 
-class ReponseBDD : public BDD {};
+class ReponseBDD : public BDD {
+public:
+    ReponseBDD();
+};
 
 #endif // ReponseBDD_h

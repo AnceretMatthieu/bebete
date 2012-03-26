@@ -4,6 +4,8 @@
 #include "Media.h"
 
 
-class Legende : public Media {};
+class Legende : public Media {
+    Legende();
+};
 
 #endif // Legende_h

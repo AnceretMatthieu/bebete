@@ -6,23 +6,13 @@
 class Espece {
 
  public:
-
     Espece(int identifiant);
-
-    ~Espece();
-
     int getIdentifiant();
-
     int getType();
-
     char * getRegimeAlimentaire();
-
     char * getInformation();
-
     void setType(int type);
-
     void setRegimeAlimentaire(char * ra);
-
     void setInformation(char * inf);
 
  private:
@@ -30,11 +20,7 @@ class Espece {
     int Type;
     char * regimeAlimentaire;
     char * Information;
-
-    /**
-     * @element-type Reponse
-     */
-    Reponse *myReponse;
+    Reponse * myReponse;
 };
 
 #endif // Espece_h

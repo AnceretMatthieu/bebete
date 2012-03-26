@@ -9,7 +9,8 @@
 class QuestionBDD : public BDD {
 
  public:
-    ListeQuestion CreerArbre();
+    QuestionBDD();
+    ListeQuestion * CreerArbre();
 };
 
 #endif // QuestionBDD_h

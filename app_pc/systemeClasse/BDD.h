@@ -5,11 +5,8 @@
 class BDD {
 
  public:
-
     virtual bool Insert();
-
     virtual bool Update();
-
     virtual bool Delete();
 };
 

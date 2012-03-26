@@ -2,30 +2,21 @@
 #define Categorie_h
 
 #include <vector>
+#include "Question.h"
 
-class Question;
-
+using namespace std;
 class Categorie {
 
  public:
-
     Categorie(int identifiant);
-    ~Categorie();
-
     int getIdentifiant();
-
     char * getLabel();
-
-    void setLabel(String lab);
+    void setLabel(char* lab);
 
 private:
-    integer id;
-    String Label;
-
-    /**
-     * @element-type Question
-     */
-    std::vector< Question* > myQuestion;
+    int id;
+    char * Label;
+    vector<Question*> myQuestion;
 };
 
 #endif // Categorie_h

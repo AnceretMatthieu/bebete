@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2012-03-19T12:03:46
+# Project created by QtCreator 2012-03-26T14:45:08
 #
 #-------------------------------------------------
 
@@ -8,7 +8,7 @@ QT       += core
 
 QT       -= gui
 
-TARGET = Système_de_Classe
+TARGET = systemeClasse
 CONFIG   += console
 CONFIG   -= app_bundle
 
