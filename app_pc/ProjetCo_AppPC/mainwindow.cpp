@@ -52,7 +52,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     /* Affectation des actions aux boutons du menu */
     connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
 
-
     // Mettre une image dans un QLabel
     ui->labelImage->setPixmap(QPixmap("../Medias_tests/cseptempunctata.jpg"));
     ui->labelImage->adjustSize();
