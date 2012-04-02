@@ -1,4 +1,5 @@
 QTreeView {
     display: list-item;
-    list-style-image: url("images/folder.png");
+    //list-style-image: url("images/folder.png");
+    background: url("images/folder.png");
 }
