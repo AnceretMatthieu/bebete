@@ -5,6 +5,7 @@
 #include "Espece.h"
 
 int Reponse::getIdentifiant()   {
+    return id;
 }
 
 QString Reponse::getReponse()    {

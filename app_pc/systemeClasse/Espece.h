@@ -13,8 +13,8 @@ class Espece {
     QString getRegimeAlimentaire();
     QString getInformation();
     void setType(int type);
-    void setRegimeAlimentaire(char * ra);
-    void setInformation(char * inf);
+    void setRegimeAlimentaire(QString ra);
+    void setInformation(QString inf);
 
  private:
     int id;

@@ -2,6 +2,7 @@
 #define ListeMedia_h
 
 #include <vector>
+#include <QString>
 
 class Media;
 using namespace std;

@@ -6,12 +6,15 @@
 #include "Question.h"
 
 int Question::getIdentifiant()  {
+    return id;
 }
 
 QString Question::getQuestion()  {
+
 }
 
 void Question::ajouterReponse(Reponse *rep) {
+
 }
 
 void Question::supprimerReponse(Reponse *rep)   {
