@@ -11,7 +11,7 @@ class ListeMedia : public std::vector<Media*> {
  public:
     ListeMedia();
     Media * getElementById(int id);
-    Media * getElementByPath(char * path);
+    Media * getElementByPath(QString path);
 };
 
 #endif // ListeMedia_h

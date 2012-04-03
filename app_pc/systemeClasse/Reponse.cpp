@@ -7,7 +7,7 @@
 int Reponse::getIdentifiant()   {
 }
 
-char * Reponse::getReponse()    {
+QString Reponse::getReponse()    {
 }
 
 void Reponse::AjouterMedia(Media * media) {
@@ -25,7 +25,7 @@ Question * Reponse::getQuestionPrec()   {
 ListeMedia * Reponse::getListeIllustration()    {
 }
 
-void Reponse::setReponse(char* rep) {
+void Reponse::setReponse(QString rep) {
 }
 
 void Reponse::setQuestionSuiv(Question *question)   {

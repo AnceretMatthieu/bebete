@@ -8,7 +8,7 @@
 int Question::getIdentifiant()  {
 }
 
-char * Question::getQuestion()  {
+QString Question::getQuestion()  {
 }
 
 void Question::ajouterReponse(Reponse *rep) {
@@ -23,5 +23,5 @@ void Question::ajouterMedia(Media * med)    {
 void Question::supprimerMedia(Media *med)   {
 }
 
-void Question::setQuestion(char * question) {
+void Question::setQuestion(QString question) {
 }

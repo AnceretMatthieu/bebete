@@ -7,17 +7,17 @@ int Espece::getIdentifiant()    {
 int Espece::getType()   {
 }
 
-char * Espece::getRegimeAlimentaire()   {
+QString Espece::getRegimeAlimentaire()   {
 
 }
-char * Espece::getInformation() {
+QString Espece::getInformation() {
 }
 
 void Espece::setType(int type)  {
-
+Type = type;
 }
 void Espece::setRegimeAlimentaire(char * ra)    {
-
+regimeAlimentaire = ra;
 }
 void Espece::setInformation(char * inf) {
 

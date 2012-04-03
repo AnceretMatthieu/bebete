@@ -4,8 +4,9 @@
 int Categorie::getIdentifiant() {
 }
 
-char * Categorie::getLabel()    {
+QString Categorie::getLabel()    {
 }
 
-void Categorie::setLabel(char *lab) {
+void Categorie::setLabel(QString lab) {
+    Label = lab;
 }
