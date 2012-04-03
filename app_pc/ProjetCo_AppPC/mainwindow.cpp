@@ -18,7 +18,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QStandardItem * elem2 = new QStandardItem("Elem 2");
     model->setItem(1, 0, elem2);
     model->setItem(1, 1, new QStandardItem(QIcon("images/icon_red.png"), ""));
-    elem2->appendRow(new QStandardItem("Sous-elem 3"));
+    //elem2->appendRow(new QStandardItem("Sous-elem 3"));
+    elem2->appendRow(new QStandardItem(QIcon("images/icon_green.ng"), "Sous-elem 3"));
+    elem2->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Sous-elem 31"));
+    elem2->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Sous-elem 32"));
 
     QStandardItem * elem3 = new QStandardItem("Elem 3");
     model->setItem(2, 0, elem3);
