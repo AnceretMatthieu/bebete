@@ -14,6 +14,7 @@
 #include <phonon/phonon>
 #include <QFormLayout>
 #include <QSound>
+#include <QIcon>
 
 #include <iostream>
 

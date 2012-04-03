@@ -1,39 +1,31 @@
-/*QTreeView {
-    display: list-item;
-    //list-style-image: url("images/folder.png");
-    background: url("images/folder.png");
-}*/
-
 QTreeView::branch {
 	background: palette(base);
 }
 
 QTreeView::branch:has-siblings:!adjoins-item {
-	background: cyan;
+
 }
 
 QTreeView::branch:has-siblings:adjoins-item {
-	background: gray;
+
 }
 
 QTreeView::branch:!has-children:!has-siblings:adjoins-item {
-	background: blue;
+  
 }
 
 QTreeView::branch:closed:has-children:has-siblings {
-	/*background: pink;*/
-	background: url("images/folder.png");
+	background: url("images/folder.png") no-repeat;
 }
 
 QTreeView::branch:has-children:!has-siblings:closed {
-	/*background: gray;*/
-	background: url("images/folder.png");
+	background: url("images/folder.png") no-repeat;
 }
 
 QTreeView::branch:open:has-children:has-siblings {
-	background: magenta;
+	background: url("images/folder.png") no-repeat;
 }
 
 QTreeView::branch:open:has-children:!has-siblings {
-	background: green;
+	background: url("images/folder.png") no-repeat;
 }
