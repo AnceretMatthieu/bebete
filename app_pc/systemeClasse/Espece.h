@@ -1,5 +1,6 @@
 #ifndef Espece_h
 #define Espece_h
+#include <QString>
 
 class Reponse;
 
@@ -9,17 +10,17 @@ class Espece {
     Espece(int identifiant);
     int getIdentifiant();
     int getType();
-    char * getRegimeAlimentaire();
-    char * getInformation();
+    QString getRegimeAlimentaire();
+    QString getInformation();
     void setType(int type);
-    void setRegimeAlimentaire(char * ra);
-    void setInformation(char * inf);
+    void setRegimeAlimentaire(QString ra);
+    void setInformation(QString inf);
 
  private:
     int id;
     int Type;
-    char * regimeAlimentaire;
-    char * Information;
+    QString regimeAlimentaire;
+    QString Information;
     Reponse * myReponse;
 };
 

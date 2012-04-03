@@ -4,5 +4,5 @@
 Media *ListeMedia::getElementById(int id)   {
 }
 
-Media * ListeMedia::getElementByPath(char * path)   {
+Media * ListeMedia::getElementByPath(QString path)   {
 }

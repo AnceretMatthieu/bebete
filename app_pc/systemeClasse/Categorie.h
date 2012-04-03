@@ -2,6 +2,7 @@
 #define Categorie_h
 
 #include <vector>
+#include <QString>
 
 class Question;
 using namespace std;
@@ -11,12 +12,12 @@ class Categorie {
  public:
     Categorie(int identifiant);
     int getIdentifiant();
-    char * getLabel();
-    void setLabel(char* lab);
+    QString getLabel();
+    void setLabel(QString lab);
 
 private:
     int id;
-    char * Label;
+    QString Label;
     vector<Question*> myQuestion;
 };
 

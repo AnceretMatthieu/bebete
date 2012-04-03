@@ -2,23 +2,26 @@
 #include "Espece.h"
 
 int Espece::getIdentifiant()    {
+    return id;
 }
 
 int Espece::getType()   {
+    return Type;
 }
 
-char * Espece::getRegimeAlimentaire()   {
-
+QString Espece::getRegimeAlimentaire()   {
+    return regimeAlimentaire;
 }
-char * Espece::getInformation() {
+QString Espece::getInformation() {
+    return Information;
 }
 
 void Espece::setType(int type)  {
-
+    Type = type;
 }
-void Espece::setRegimeAlimentaire(char * ra)    {
-
+void Espece::setRegimeAlimentaire(QString ra)    {
+    regimeAlimentaire = ra;
 }
-void Espece::setInformation(char * inf) {
-
+void Espece::setInformation(QString inf) {
+    Information = inf;
 }

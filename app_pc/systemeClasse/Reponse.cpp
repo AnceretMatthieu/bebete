@@ -5,9 +5,10 @@
 #include "Espece.h"
 
 int Reponse::getIdentifiant()   {
+    return id;
 }
 
-char * Reponse::getReponse()    {
+QString Reponse::getReponse()    {
 }
 
 void Reponse::AjouterMedia(Media * media) {
@@ -25,7 +26,7 @@ Question * Reponse::getQuestionPrec()   {
 ListeMedia * Reponse::getListeIllustration()    {
 }
 
-void Reponse::setReponse(char* rep) {
+void Reponse::setReponse(QString rep) {
 }
 
 void Reponse::setQuestionSuiv(Question *question)   {

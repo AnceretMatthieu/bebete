@@ -1,0 +1,16 @@
+INPUT(
+./release\main.o
+./release\ReponseBDD.o
+./release\Reponse.o
+./release\QuestionBDD.o
+./release\Question.o
+./release\MediaBDD.o
+./release\Media.o
+./release\ListeReponse.o
+./release\ListeQuestion.o
+./release\ListeMedia.o
+./release\Legende.o
+./release\EspeceBDD.o
+./release\Espece.o
+./release\Categorie.o
+);

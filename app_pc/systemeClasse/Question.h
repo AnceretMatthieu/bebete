@@ -2,6 +2,8 @@
 #define Question_h
 
 #include <vector>
+#include <QString>
+
 
 class ListeReponse;
 class ListeMedia;
@@ -14,16 +16,16 @@ class Question {
  public:
     Question();
     int getIdentifiant();
-    char * getQuestion();
+    QString getQuestion();
     void ajouterReponse(Reponse * rep);
     void supprimerReponse(Reponse * rep);
     void ajouterMedia(Media * med);
     void supprimerMedia(Media * med);
-    void setQuestion(char * question);
+    void setQuestion(QString question);
 
  private:
     int id;
-    char * texte;
+    QString texte;
     ListeReponse * listeReponse;
     ListeMedia * listeMedia;
     Categorie *myCategorie;

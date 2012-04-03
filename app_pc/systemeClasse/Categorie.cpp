@@ -2,10 +2,13 @@
 #include "Categorie.h"
 
 int Categorie::getIdentifiant() {
+    return id;
 }
 
-char * Categorie::getLabel()    {
+QString Categorie::getLabel()    {
+    return Label;
 }
 
-void Categorie::setLabel(char *lab) {
+void Categorie::setLabel(QString lab) {
+    Label = lab;
 }
