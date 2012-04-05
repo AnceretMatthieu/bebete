@@ -13,3 +13,7 @@ int Media::getType()    {
 void Media::setType(int t)  {
     Type = t;
 }
+
+void Media::setPath(const char * path)  {
+    this->path = strcpy(this->path, path);
+}
