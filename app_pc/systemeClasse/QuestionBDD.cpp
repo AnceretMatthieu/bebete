@@ -2,9 +2,9 @@
 #include "ListeQuestion.h"
 #include "Question.h"
 
-ListeQuestion *QuestionBDD::CreerArbre()   {
+ListeQuestion *QuestionBDD::CreerArbre()
+{
 
-<<<<<<< HEAD
 }
 
 ListeQuestion *QuestionBDD::parseXML(QByteArray oneQByteArray)
@@ -30,10 +30,10 @@ ListeQuestion *QuestionBDD::parseXML(QByteArray oneQByteArray)
 
             Question* uneQuestion = new Question(libelle.text(),);
             listeQuestion.append(uneQuestion);
-*/
+            */
+
       }
 
-        return listeQuestion;
-=======
->>>>>>> 3690010ba55341be2332fa8a84a223e0d5347f66
+       return listeQuestion;
+
 }
