@@ -3,7 +3,9 @@
 
 #include <string>
 #include "Media.h"
+#include "string.h"
 #define LEGENDE 4001
+
 
 class Legende : public Media {
 private:

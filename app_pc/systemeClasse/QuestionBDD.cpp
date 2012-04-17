@@ -32,7 +32,11 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
             listeQuestion.append(uneQuestion);
 
 
+<<<<<<< HEAD
       }
        return listeQuestion;*/
+=======
+
+>>>>>>> cb7579a9876a2f7ce952f15d30d750270b925fd3
 
 }
