@@ -34,6 +34,6 @@ ListeQuestion *QuestionBDD::parseXML(QByteArray oneQByteArray)
 
       }
 
-       return listeQuestion;
+
 
 }
