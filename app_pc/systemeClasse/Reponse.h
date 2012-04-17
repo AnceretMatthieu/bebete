@@ -1,7 +1,7 @@
 #ifndef Reponse_h
 #define Reponse_h
 
-#include <vector>
+#include <QVector>
 #include <QString>
 
 
@@ -11,28 +11,41 @@ class Espece;
 class ListeMedia;
 
 class Reponse {
- public:
-    Reponse();
-    int getIdentifiant();
-    QString getReponse();
-    void AjouterMedia(Media * media);
-    void SupprimerMedia(int id);
-    Question * getQuestionSuiv();
-    Question * getQuestionPrec();
-    ListeMedia * getListeIllustration();
-    void setReponse(QString rep);
-    void setQuestionSuiv(Question * question);
-    void setQuestionPrec(Question * question);
-    void ajouterMedia(Media * med);
-    void supprimerMedia(Media * med);
 
- private:
-    int id;
-    QString texte;
-    Question * QuestionEntree;
-    Question * QuestionSortie;
-    Espece * myEspece;
-    ListeMedia * illustrationMedia;
+    private:
+        int id;
+        QString texte;
+
+        Question * QuestionEntree;
+        Question * QuestionSortie;
+        Espece * myEspece;
+        ListeMedia * illustrationMedia;
+
+    public:
+        Reponse();
+
+        int getIdentifiant() {
+            return id;
+        }
+
+        QString getReponse() {
+            return texte;
+        }
+
+        Question * getQuestionSuiv();
+        Question * getQuestionPrec();
+
+        void setReponse(QString rep) {
+            texte = rep;
+        }
+
+        void setQuestionSuiv(Question * question);
+        void setQuestionPrec(Question * question);
+
+        ListeMedia * getListeIllustration();
+        void ajouterMedia(Media * med);
+        void supprimerMedia(Media * med);
+        void SupprimerMedia(int id);
 };
 
 #endif // Reponse_h

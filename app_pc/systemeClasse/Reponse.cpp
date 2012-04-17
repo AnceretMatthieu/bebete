@@ -4,15 +4,6 @@
 #include "Question.h"
 #include "Espece.h"
 
-int Reponse::getIdentifiant()   {
-    return id;
-}
-
-QString Reponse::getReponse()    {
-}
-
-void Reponse::AjouterMedia(Media * media) {
-}
 
 void Reponse::SupprimerMedia(int id)    {
 }
@@ -24,9 +15,6 @@ Question * Reponse::getQuestionPrec()   {
 }
 
 ListeMedia * Reponse::getListeIllustration()    {
-}
-
-void Reponse::setReponse(QString rep) {
 }
 
 void Reponse::setQuestionSuiv(Question *question)   {

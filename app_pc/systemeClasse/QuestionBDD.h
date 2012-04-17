@@ -2,6 +2,7 @@
 #define QuestionBDD_h
 
 #include "BDD.h"
+#include <QByteArray>
 
 class Question;
 class ListeQuestion;

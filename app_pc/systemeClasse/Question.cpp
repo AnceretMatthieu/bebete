@@ -5,11 +5,8 @@
 #include "Categorie.h"
 #include "Question.h"
 
-int Question::getIdentifiant()  {
-    return id;
-}
 
-QString Question::getQuestion()  {
+Question::Question() {
 
 }
 
@@ -17,14 +14,14 @@ void Question::ajouterReponse(Reponse *rep) {
 
 }
 
-void Question::supprimerReponse(Reponse *rep)   {
+void Question::supprimerReponse(Reponse *rep) {
+
 }
 
-void Question::ajouterMedia(Media * med)    {
+void Question::ajouterMedia(Media * med) {
+
 }
 
-void Question::supprimerMedia(Media *med)   {
-}
+void Question::supprimerMedia(Media *med) {
 
-void Question::setQuestion(QString question) {
 }

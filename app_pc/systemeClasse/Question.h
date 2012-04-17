@@ -1,7 +1,7 @@
 #ifndef Question_h
 #define Question_h
 
-#include <vector>
+#include <QVector>
 #include <QString>
 
 
@@ -13,22 +13,33 @@ class Categorie;
 
 class Question {
 
- public:
-    Question();
-    int getIdentifiant();
-    QString getQuestion();
-    void ajouterReponse(Reponse * rep);
-    void supprimerReponse(Reponse * rep);
-    void ajouterMedia(Media * med);
-    void supprimerMedia(Media * med);
-    void setQuestion(QString question);
+    private:
+       int id;
+       QString texte;
 
- private:
-    int id;
-    QString texte;
-    ListeReponse * listeReponse;
-    ListeMedia * listeMedia;
-    Categorie *myCategorie;
+       ListeReponse * listeReponse;
+       ListeMedia * listeMedia;
+       Categorie *myCategorie;
+
+    public:
+        Question();
+
+        int getIdentifiant() {
+            return id;
+        }
+
+        QString getQuestion() {
+            return texte;
+        }
+
+        void setQuestion(QString question) {
+            texte = question;
+        }
+
+        void ajouterReponse(Reponse * rep);
+        void supprimerReponse(Reponse * rep);
+        void ajouterMedia(Media * med);
+        void supprimerMedia(Media * med);
 };
 
 #endif // Question_h
