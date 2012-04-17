@@ -211,7 +211,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Média</string>
+           <string>Média 1</string>
           </property>
          </widget>
         </item>
@@ -257,7 +257,7 @@
      <x>0</x>
      <y>0</y>
      <width>1024</width>
-     <height>23</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="font">

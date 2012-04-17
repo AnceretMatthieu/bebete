@@ -4,31 +4,36 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     /* Remplissage TreeView des questions */
-    QStringList listeHeader;
-    QStandardItemModel * model = new QStandardItemModel(2, 2);
-    listeHeader << "Nom" << "Symbole couleur";
-    model->setHorizontalHeaderLabels(listeHeader);
+    //QStringList listeHeader;
+    QStandardItemModel * model = new QStandardItemModel(0, 0);
+    //listeHeader << "Nom" << "Symbole couleur";
+    //model->setHorizontalHeaderLabels(listeHeader);
 
-    QStandardItem * elem1 = new QStandardItem("Elem 1");
-    model->setItem(0, 0, elem1);
-    model->setItem(0, 1, new QStandardItem(QIcon("images/icon_green.png"), ""));
-    elem1->appendRow(new QStandardItem("Sous-elem 1"));
-    elem1->appendRow(new QStandardItem("Sous-elem 2"));
+    //QStandardItem * elem1 = new QStandardItem("Question 1");
+    //model->setItem(0, 0, elem1);
+    //model->setItem(0, 1, new QStandardItem(QIcon("images/icon_green.png"), ""));
+    QStandardItem * elem1 = new QStandardItem(QIcon("images/icon_green.png"), "Question 1");
+    elem1->appendRow(new QStandardItem(QIcon("images/icon_green.png"), "Question 1.1"));
+    elem1->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Question 1.2"));
+    model->appendRow(elem1);
 
-    QStandardItem * elem2 = new QStandardItem("Elem 2");
-    model->setItem(1, 0, elem2);
-    model->setItem(1, 1, new QStandardItem(QIcon("images/icon_red.png"), ""));
-    //elem2->appendRow(new QStandardItem("Sous-elem 3"));
-    elem2->appendRow(new QStandardItem(QIcon("images/icon_green.ng"), "Sous-elem 3"));
-    elem2->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Sous-elem 31"));
-    elem2->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Sous-elem 32"));
+    //QStandardItem * elem2 = new QStandardItem("Question 2");
+    //model->setItem(1, 0, elem2);
+    //model->setItem(1, 1, new QStandardItem(QIcon("images/icon_red.png"), ""));
+    QStandardItem * elem2 = new QStandardItem(QIcon("images/icon_red.png"), "Question 2");
+    elem2->appendRow(new QStandardItem(QIcon("images/icon_green.png"), "Question 2.1"));
+    elem2->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Question 2.2"));
+    elem2->appendRow(new QStandardItem(QIcon("images/icon_yellow.png"), "Question 2.3"));
+    model->appendRow(elem2);
 
-    QStandardItem * elem3 = new QStandardItem("Elem 3");
-    model->setItem(2, 0, elem3);
-    model->setItem(2, 1, new QStandardItem(QIcon("images/icon_yellow.png"), ""));
-    elem3->appendRow(new QStandardItem("Sous-elem 4"));
-    elem3->appendRow(new QStandardItem("Sous-elem 5"));
-    elem3->appendRow(new QStandardItem("Sous-elem 6"));
+    //QStandardItem * elem3 = new QStandardItem("Question 3");
+    //model->setItem(2, 0, elem3);
+    //model->setItem(2, 1, new QStandardItem(QIcon("images/icon_yellow.png"), ""));
+    QStandardItem * elem3 = new QStandardItem(QIcon("images/icon_yellow.png"), "Question 3");
+    elem3->appendRow(new QStandardItem(QIcon("images/icon_red.png"), "Question 3.1"));
+    elem3->appendRow(new QStandardItem(QIcon("images/icon_red.png"), "Question 3.2"));
+    elem3->appendRow(new QStandardItem(QIcon("images/icon_green.png"), "Question 3.3"));
+    model->appendRow(elem3);
 
 
     /* Remplissage TreeView des reponses */
@@ -45,11 +50,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     elem6->appendRow(new QStandardItem("aide reponse 3"));
     elem6->appendRow(new QStandardItem("media 1"));
 
+
     ui->setupUi(this);
 
-    //ui->treeViewQuestion->header()->hide();
+    ui->treeViewQuestion->header()->hide();
     ui->treeViewQuestion->setModel(model);
-    //ui->treeViewQuestion->header()->setMovable(false); // on empeche le deplacement des colonnes
     ui->treeViewQuestion->setEditTriggers(QAbstractItemView::NoEditTriggers); // on empeche la modification
 
     ui->treeViewReponse->header()->hide();
@@ -91,13 +96,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_actionImporter_XML_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de donnees"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
     std::cout << "Nom du fichier selectionne : " << qPrintable(fileName) << std::endl;
 }
 
 void MainWindow::on_actionExporter_XML_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de donnees"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
     std::cout << "Nom du fichier selectionne : " << qPrintable(fileName) << std::endl;
 }
 

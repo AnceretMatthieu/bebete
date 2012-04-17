@@ -27,6 +27,5 @@ QTreeView::branch:open:has-children:has-siblings {
 }
 
 QTreeView::branch:open:has-children:!has-siblings {
-
-  
+	background: url("images/folder.png") no-repeat;
 }
