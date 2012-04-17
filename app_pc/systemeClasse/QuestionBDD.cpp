@@ -23,8 +23,8 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
 
 
     for (int i = 0; i<listeDeQuestion.size();i++)
-    {/*
-        QDomElement libelle = listeDeQuestion.at(i).firstChildElement("texte");
+    {
+        /*QDomElement libelle = listeDeQuestion.at(i).firstChildElement("texte");
       //QDomElement media = listeDeQuestion.at(i).firstChildElement("media");
 
         //trouveru n moyen pour repartir que depuis la question et pas depuis le début du fichier
