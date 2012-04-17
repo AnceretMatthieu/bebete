@@ -3,8 +3,8 @@
 
 #include "BDD.h"
 
-
 class MediaBDD : public BDD {
+
     MediaBDD();
 };
 

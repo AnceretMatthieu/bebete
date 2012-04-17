@@ -5,6 +5,10 @@
 #include <QByteArray>
 #include <QDomDocument>
 #include <QFile>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7c8745ceafcad8875a60712c293a637a2afa7c12
 
 class Question;
 class ListeQuestion;

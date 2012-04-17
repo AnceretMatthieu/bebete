@@ -6,6 +6,7 @@
 class Reponse;
 
 class ReponseBDD : public BDD {
+
     public:
         ReponseBDD();
 };

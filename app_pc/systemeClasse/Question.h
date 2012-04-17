@@ -4,7 +4,6 @@
 #include <QVector>
 #include <QString>
 
-
 class ListeReponse;
 class ListeMedia;
 class Media;

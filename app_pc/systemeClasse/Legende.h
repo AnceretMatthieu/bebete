@@ -8,13 +8,24 @@
 
 
 class Legende : public Media {
-private:
-    char * content;
-public:
-    Legende();
-    void setContent(const char * content);
-    const char* getContent()    {return content;}
-    void setTypeLegende()   {this->Type = LEGENDE;}
+
+    private:
+        char * content;
+
+    public:
+        Legende();
+
+        const char* getContent() {
+            return content;
+        }
+
+        void setContent(char * unContent) {
+            content = unContent;
+        }
+
+        void setTypeLegende() {
+            this->type = LEGENDE;
+        }
 };
 
 #endif // Legende_h

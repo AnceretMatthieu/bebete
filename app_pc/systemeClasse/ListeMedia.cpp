@@ -1,7 +1,8 @@
 #include "ListeMedia.h"
 #include "Media.h"
 
-Media *ListeMedia::getElementById(int id)   {
+Media *ListeMedia::getElementById(int id)
+{
     Media * temp = NULL;
     unsigned int i = 0;
     while(i< (unsigned int) this->size())  {
@@ -16,7 +17,8 @@ Media *ListeMedia::getElementById(int id)   {
         return NULL;
 }
 
-Media * ListeMedia::getElementByPath(QString path)   {
+Media * ListeMedia::getElementByPath(QString path)
+{
     Media * temp;
     unsigned int i = 0;
     while(i< (unsigned int) this->size())  {

@@ -33,10 +33,9 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
         {
             QDomElement texte = listeDeReponse.at(i).firstChildElement("texte");
 
-            Question* uneQuestion = new Question(libelle.text(),);
+            //Question* uneQuestion = new Question(libelle.text(),);
             listeQuestion.append(uneQuestion);
     */
      }
-
-       return listeQuestion;
+    return listeQuestion;
 }

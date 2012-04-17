@@ -1,7 +1,8 @@
 #include "Reponse.h"
 #include "ListeReponse.h"
 
-Reponse *ListeReponse::getElementById(int id)   {
+Reponse *ListeReponse::getElementById(int id)
+{
     Reponse * temp = NULL;
     unsigned int i = 0;
     while(i< (unsigned int)this->size())  {

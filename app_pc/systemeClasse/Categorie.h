@@ -1,24 +1,34 @@
 #ifndef Categorie_h
 #define Categorie_h
 
-#include <vector>
+#include <QVector>
 #include <QString>
 
-class Question;
 using namespace std;
+
+class Question;
 
 class Categorie {
 
- public:
-    Categorie(int identifiant);
-    int getIdentifiant();
-    QString getLabel();
-    void setLabel(QString lab);
+    private:
+        int id;
+        QString label;
+        QVector<Question*> myQuestion;
 
-private:
-    int id;
-    QString Label;
-    vector<Question*> myQuestion;
+    public:
+        Categorie(int identifiant);
+
+        int getIdentifiant() {
+            return id;
+        }
+
+        QString getLabel() {
+            return label;
+        }
+
+        void setLabel(QString unLabel) {
+            label = unLabel;
+        }
 };
 
 #endif // Categorie_h
