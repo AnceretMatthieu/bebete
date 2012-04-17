@@ -6,8 +6,8 @@
 class Reponse;
 
 class ReponseBDD : public BDD {
-public:
-    ReponseBDD();
+    public:
+        ReponseBDD();
 };
 
 #endif // ReponseBDD_h
