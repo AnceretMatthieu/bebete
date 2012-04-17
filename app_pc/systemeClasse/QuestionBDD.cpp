@@ -28,15 +28,9 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
         {
             QDomElement texte = listeDeReponse.at(i).firstChildElement("texte");
 
-            Question* uneQuestion = new Question(libelle.text(),);
+            //Question* uneQuestion = new Question(libelle.text(),);
             listeQuestion.append(uneQuestion);
 
-
-<<<<<<< HEAD
-      }
-       return listeQuestion;*/
-=======
-
->>>>>>> cb7579a9876a2f7ce952f15d30d750270b925fd3
-
+    }
+    return listeQuestion;*/
 }

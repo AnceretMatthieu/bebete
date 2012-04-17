@@ -3,13 +3,14 @@
 
 #include <vector>
 
-class Reponse;
 using namespace std;
 
+class Reponse;
+
 class ListeReponse : public vector<Reponse*> {
- public:
-    ListeReponse();
-    Reponse * getElementById(int id);
+    public:
+        ListeReponse();
+        Reponse * getElementById(int id);
 };
 
 #endif // ListeReponse_h

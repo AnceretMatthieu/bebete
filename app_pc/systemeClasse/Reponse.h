@@ -4,7 +4,6 @@
 #include <QVector>
 #include <QString>
 
-
 class Media;
 class Question;
 class Espece;

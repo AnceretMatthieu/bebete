@@ -1,7 +1,8 @@
 #include "ListeQuestion.h"
 #include "Question.h"
 
-Question *ListeQuestion::getElementById(int id) {
+Question *ListeQuestion::getElementById(int id)
+{
     Question * temp = NULL;
     unsigned int i = 0;
     while(i< (unsigned int)this->size())  {

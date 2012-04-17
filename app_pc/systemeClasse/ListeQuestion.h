@@ -3,14 +3,15 @@
 
 #include <vector>
 
-class Question;
 using namespace std;
+
+class Question;
 
 class ListeQuestion : public vector<Question*> {
 
- public:
-    ListeQuestion();
-    Question * getElementById(int id);
+    public:
+        ListeQuestion();
+        Question * getElementById(int id);
 };
 
 #endif // ListeQuestion_h
