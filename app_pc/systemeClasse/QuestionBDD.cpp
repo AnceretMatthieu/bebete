@@ -4,7 +4,8 @@
 
 ListeQuestion *QuestionBDD::CreerArbre()
 {
-
+    ListeQuestion* listeQuestion;
+    return listeQuestion;
 }
 
 ListeQuestion *QuestionBDD::parseXML(QByteArray oneQByteArray)
@@ -15,6 +16,8 @@ ListeQuestion *QuestionBDD::parseXML(QByteArray oneQByteArray)
     document.setContent(fichier.readAll());
 
     QDomNodeList listeDeQuestion = document.elementsByTagName("arbre");
+
+    ListeQuestion* listeQuestion;
 
 
     for (int i = 0; i<listeDeQuestion.size();i++)
@@ -34,6 +37,6 @@ ListeQuestion *QuestionBDD::parseXML(QByteArray oneQByteArray)
 
       }
 
-
+    return listeQuestion;
 
 }
