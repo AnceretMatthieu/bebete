@@ -4,10 +4,8 @@
 
 ListeQuestion * QuestionBDD::CreerArbre()
 {
-
     ListeQuestion* listeQuestion;
     return listeQuestion;
-
 }
 
 ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
@@ -35,7 +33,7 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
 
             //Question* uneQuestion = new Question(libelle.text(),);
             listeQuestion.append(uneQuestion);
-    */
+     */
      }
     return listeQuestion;
 }

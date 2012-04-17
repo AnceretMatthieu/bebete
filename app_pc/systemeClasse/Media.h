@@ -1,7 +1,8 @@
 #ifndef Media_h
 #define Media_h
+
 #include <iostream>
-#include <string>
+#include <QString>
 
 class Reponse;
 class Question;
@@ -9,14 +10,14 @@ class Question;
 class Media {
 
     protected:
-       int id;
-       int type;
-       char * path;
+        int id;
+        int type;
+        QString path;
 
-       Reponse *myReponse;
-       Question *myQuestion;
+        Reponse *myReponse;
+        Question *myQuestion;
 
-     public:
+    public:
         Media();
 
         int getIdentifiant() {
@@ -27,7 +28,7 @@ class Media {
             return type;
         }
 
-        const char * getPath()  {
+        const QString getPath()  {
             return path;
         }
 
@@ -39,7 +40,7 @@ class Media {
             type = t;
         }
 
-        void setPath(char * unPath) {
+        void setPath(QString unPath) {
             path = unPath;
         }
 };

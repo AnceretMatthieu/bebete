@@ -1,14 +1,14 @@
 #ifndef ListeMedia_h
 #define ListeMedia_h
 
-#include <vector>
+#include <QVector>
 #include <QString>
 
 using namespace std;
 
 class Media;
 
-class ListeMedia : public std::vector<Media*> {
+class ListeMedia : public QVector<Media*> {
 
     public:
         ListeMedia();

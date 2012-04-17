@@ -42,9 +42,10 @@ class Reponse {
         void setQuestionPrec(Question * question);
 
         ListeMedia * getListeIllustration();
+
         void ajouterMedia(Media * med);
         void supprimerMedia(Media * med);
-        void SupprimerMedia(int id);
+        void supprimerMedia(int id);
 };
 
 #endif // Reponse_h
