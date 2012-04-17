@@ -4,21 +4,26 @@
 
 ListeQuestion * QuestionBDD::CreerArbre()
 {
-    return NULL;
+
+    ListeQuestion* listeQuestion;
+    return listeQuestion;
+
 }
 
 ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
 {
-    /*QDomDocument document;
+    QDomDocument document;
 
     QFile fichier("donnees_insectes.xml");
     document.setContent(fichier.readAll());
 
     QDomNodeList listeDeQuestion = document.elementsByTagName("arbre");
 
+    ListeQuestion* listeQuestion;
+
 
     for (int i = 0; i<listeDeQuestion.size();i++)
-    {
+    {/*
         QDomElement libelle = listeDeQuestion.at(i).firstChildElement("texte");
       //QDomElement media = listeDeQuestion.at(i).firstChildElement("media");
 
@@ -30,7 +35,7 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
 
             //Question* uneQuestion = new Question(libelle.text(),);
             listeQuestion.append(uneQuestion);
-
-    }
-    return listeQuestion;*/
+    */
+     }
+    return listeQuestion;
 }

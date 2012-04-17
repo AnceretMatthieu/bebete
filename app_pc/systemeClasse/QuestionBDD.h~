@@ -1,0 +1,25 @@
+#ifndef QuestionBDD_h
+#define QuestionBDD_h
+
+#include "BDD.h"
+#include <QByteArray>
+#include <QDomDocument>
+#include <QFile>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7c8745ceafcad8875a60712c293a637a2afa7c12
+
+class Question;
+class ListeQuestion;
+
+class QuestionBDD : public BDD {
+
+    public:
+        QuestionBDD();
+
+        ListeQuestion * CreerArbre();
+        ListeQuestion * parseXML(QByteArray oneQByteArray);
+};
+
+#endif // QuestionBDD_h
