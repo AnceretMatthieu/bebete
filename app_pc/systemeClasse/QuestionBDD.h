@@ -15,7 +15,7 @@ class QuestionBDD : public BDD {
         QuestionBDD();
 
         ListeQuestion * CreerArbre();
-        ListeQuestion * parseXML();
+        static ListeQuestion * parseXML();
 };
 
 #endif // QuestionBDD_h
