@@ -1,25 +1,30 @@
 #include "QuestionBDD.h"
 #include "ListeQuestion.h"
 #include "Question.h"
+#include <QDebug>
+#include <QDir>
 
 ListeQuestion * QuestionBDD::CreerArbre()
 {
-
     ListeQuestion* listeQuestion;
     return listeQuestion;
-
 }
 
-ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
+ListeQuestion * QuestionBDD::parseXML()
 {
     QDomDocument document;
+    ListeQuestion* listeQuestion;
 
-    QFile fichier("donnees_insectes.xml");
+    QFile fichier(QDir::currentPath() + "donnees_insectes.xml");
     document.setContent(fichier.readAll());
 
-    QDomNodeList listeDeQuestion = document.elementsByTagName("arbre");
+    QDomNode arbre = document.elementsByTagName("arbre").at(0);
+    QDomNode branche = arbre.toDocument().elementsByTagName("branche").at(0);
+    qDebug() << arbre.toDocument().elementsByTagName("branche").size();
 
-    ListeQuestion* listeQuestion;
+    //QDomNodeList question = branche.toDocument().elementsByTagName("question");
+
+    //for (int i=0)
 
 /*
     for (int i = 0; i<listeDeQuestion.size();i++)
@@ -36,10 +41,12 @@ ListeQuestion * QuestionBDD::parseXML(QByteArray oneQByteArray)
             //Question* uneQuestion = new Question(libelle.text(),);
             listeQuestion.append(uneQuestion);
 
-     }
-    return listeQuestion;*/
 
-    /*QVector<POI> ReadXML::lire() {
+     */
+
+    return listeQuestion;
+
+    /*{
         unsigned int i = 0;
         QString strIdPlacemark;
         QString strCategorie;

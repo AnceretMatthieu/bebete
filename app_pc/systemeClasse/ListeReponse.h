@@ -1,15 +1,17 @@
 #ifndef ListeReponse_h
 #define ListeReponse_h
 
-#include <vector>
+#include <QVector>
 
 using namespace std;
 
 class Reponse;
 
-class ListeReponse : public vector<Reponse*> {
+class ListeReponse : public QVector<Reponse*> {
+
     public:
         ListeReponse();
+
         Reponse * getElementById(int id);
 };
 

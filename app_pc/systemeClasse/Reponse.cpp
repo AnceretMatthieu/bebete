@@ -5,26 +5,34 @@
 #include "Espece.h"
 
 
-void Reponse::SupprimerMedia(int id)    {
+Question * Reponse::getQuestionSuiv() {
+
 }
 
-Question * Reponse::getQuestionSuiv()   {
+Question * Reponse::getQuestionPrec() {
+
 }
 
-Question * Reponse::getQuestionPrec()   {
+ListeMedia * Reponse::getListeIllustration() {
+
 }
 
-ListeMedia * Reponse::getListeIllustration()    {
+void Reponse::setQuestionSuiv(Question *question) {
+
 }
 
-void Reponse::setQuestionSuiv(Question *question)   {
+void Reponse::setQuestionPrec(Question *question) {
+
 }
 
-void Reponse::setQuestionPrec(Question *question)   {
+void Reponse::ajouterMedia(Media *med) {
+
 }
 
-void Reponse::ajouterMedia(Media *med)  {
+void Reponse::supprimerMedia(Media *med) {
+
 }
 
-void Reponse::supprimerMedia(Media *med)    {
+void Reponse::supprimerMedia(int id) {
+
 }
