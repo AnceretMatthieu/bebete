@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, BebeteActivity!</string>
+    <string name="app_name">Bebete</string>
+    <string name="stringBouton">Cliquez moi !</string>
+    <string name="stringBouton1">Etude</string>
+    <string name="stringBouton2">Parcelle</string>
+    <string name="stringBouton3">Piège</string>
+    <string name="boutonCampagne">Gestion des campagnes</string>
+    <string name="boutonPiege">Gestion des pièges</string>
+    <string name="boutonIdentification">Identifier un insecte</string>
+    <string name="boutonParametreRecherche">Paramètre de la recherche d\'insecte</string>
+    <string name="boutonParametreApplication">Paramètre de l\'application</string>
+    <string name="boutonQuitter">Quitter</string>
+    <string name="arianeDefault"></string>
+    <string name="nouvelleCampagne">Nouvelle Campagne</string>
+    <string name="question">Combien de pattes possède l\'insecte observé ?</string>
+    <string name="textaide">Haec dum oriens diu perferret, caeli reserato tepore Constantius consulatu suo septies et Caesaris ter egressus Arelate Valentiam petit, in Gundomadum et Vadomarium fratres Alamannorum reges arma moturus, quorum crebris excursibus vastabantur confines limitibus terrae Gallorum.</string>
+    <string name="Retour">Retour</string>
+<string name="selectionnerCampagne">Sélectionnez une campagne :</string>
+    <string name="gestionCampagne">Gestionaire de campagne</string>
+    <string name="nomCampagne">Nom de la campagne :</string>
+    <string name="descriptionCampagne">Description de la campagne :</string>
+    <string name="debutCampagne">Date de debut :</string>
+    <string name="finCampagne">Date de fin :</string>
+    <string name="selectionnerPiege">Sélectionnez un piège :</string>
+    <string name="nomPiege">Nom du piège :</string>
+    <string name="descriptionPiege">Déscription du piège :</string>
+    <string name="adresseCampagne">Adresse de la campagne :</string>
+    <string name="debutPiege">Date de début :</string>
+    <string name="finPiege">Date de fin :</string>
+    <string name="adressePiege">Lieu du piège :</string>
+    <string name="adresseGPSPiege">Localisation PGS du piège :</string>
+    <string name="selectionner">Sélectionner</string>
+    <string name="modifier">Modifier</string>
+    <string name="supprimer">Supprimer</string>
+    <string name="localiser">Localiser</string>
+    <string name="supprimerCampagne">Voulez-vous supprimer cette campagne ?</string>
+    <string name="attention">Attention !</string>
+    <string name="selectionCampagne">Sélectionner une campagne avant de continuer.</string>
+</resources>

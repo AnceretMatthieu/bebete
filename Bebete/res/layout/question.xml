@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/question"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:editable="false"
+                android:singleLine="false"
+                android:text="@string/question"
+                android:textColor="@color/color_blue"
+                android:textSize="28sp" >
+
+            </EditText>
+
+            <LinearLayout
+                android:id="@+id/linearLayout4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageQuestion"
+                    android:layout_width="263dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/menu" />
+
+                <EditText
+                    android:id="@+id/aide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:editable="false"
+                    android:text="@string/textaide" />
+
+            </LinearLayout>
+
+			<FrameLayout
+			    android:id="@+id/camera_preview"
+			    android:layout_width="fill_parent"
+			    android:layout_height="fill_parent"
+			    android:layout_marginBottom="5dp"
+			    android:layout_marginLeft="8dp"
+			    android:layout_marginRight="10dp"
+			    android:layout_marginTop="10dp"
+			    android:layout_weight="1" />
+
+        </LinearLayout>
+
+        <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+			
+       		 <LinearLayout
+	            android:id="@+id/linearLayout3"
+	            android:layout_width="417dp"
+	            android:layout_height="match_parent"
+	            android:orientation="vertical" >
+	
+	        </LinearLayout>
+        
+        </ScrollView>
+
+    </LinearLayout>
+
+</LinearLayout>
