@@ -6,46 +6,51 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Vector;
 
+
 import android.app.Activity;
 import android.app.Fragment;
-import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
+import android.os.Environment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 
-public class QuestionFragment extends Fragment implements OnClickListener, OnCheckedChangeListener
+public class QuestionFragment extends Fragment implements OnClickListener 
 {
 	private Camera mCamera;
 	private CameraPreview mPreview;
 	private FrameLayout preview;
 	private BebeteActivity activity;
 	private static boolean aquis = false;
-	private int nbReponse;
+	private ReacherQR reacher;
 	
-	private Question currentQuestion;
-	private Vector<Question> listQuestion = new Vector<Question>();
+	private static Question currentQuestion;
+	private static Vector<Question> listQuestion = new Vector<Question>();
+	private static Vector<Reponse> listReponseChoisi = new Vector<Reponse>();
+	private static Vector<ReponseFragment> listReponseFragment = new Vector<ReponseFragment>();
+	private static int navigation;
+	private ImageButton retour;
+	private ImageButton suivant;
 	
-	
-	public QuestionFragment( Question question )
+	public QuestionFragment()
 	{
+		reacher = new ReacherQR();
+		Question question = reacher.getQuestionRoot();
 		currentQuestion = question;
 		listQuestion.add(question);
+		navigation = 0;
 	}
 	
 	//*************************************************************************************************************
@@ -53,12 +58,12 @@ public class QuestionFragment extends Fragment implements OnClickListener, OnChe
 											{
 												public void onPictureTaken(byte[] data, Camera camera)
 												{
-													Uri uri = MediaFile.getOutputMediaFileUri( MediaFile.MEDIA_TYPE_IMAGE );
+													/*Uri uri = MediaFile.getOutputMediaFileUri( MediaFile.MEDIA_TYPE_IMAGE );
 													Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 													mIntent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
-													startActivityForResult(mIntent, 1);
+													startActivityForResult(mIntent, 1);*/
 													
-											        /*File pictureFile = MediaFile.getOutputMediaFile( MediaFile.MEDIA_TYPE_IMAGE);
+											        File pictureFile = MediaFile.getOutputMediaFile( MediaFile.MEDIA_TYPE_IMAGE);
 													
 											        if (pictureFile == null)
 											        {
@@ -76,7 +81,7 @@ public class QuestionFragment extends Fragment implements OnClickListener, OnChe
 											            Log.d("tag", "File not found: " + e.getMessage());
 											        } catch (IOException e) {
 											            Log.d("tag", "Error accessing file: " + e.getMessage());
-											        }*/
+											        }
 												}	
 											};
 	
@@ -91,7 +96,6 @@ public class QuestionFragment extends Fragment implements OnClickListener, OnChe
         Log.d("QuestionFragment", "Fragment Attach" );
         aquis = false;
         this.activity = (BebeteActivity)activity;
-        nbReponse = 6;
 	}
     
     @Override
@@ -117,6 +121,11 @@ public class QuestionFragment extends Fragment implements OnClickListener, OnChe
 		 Log.d("QuestionFragment", "Fragment activityCreated" );
 		 
 		 //Setup UI here
+		 retour = (ImageButton)activity.findViewById(R.id.histo_gauche);
+		 retour.setOnClickListener( this );
+		 suivant = (ImageButton)activity.findViewById(R.id.histo_droite);
+		 suivant.setOnClickListener( this );
+			
 		 changeUI();
 		 
 		 mPreview = new CameraPreview(activity.getApplicationContext(), mCamera);
@@ -241,24 +250,80 @@ public class QuestionFragment extends Fragment implements OnClickListener, OnChe
 
 	public void onClick(View arg0) 
 	{
-		if( aquis )
+		boolean checkBox = false;
+		
+		for( int i = 0; i < listReponseFragment.size(); i++ )
 		{
-			mCamera.takePicture(null, null, mPicture);
-			mCamera.startPreview();	
+			if( arg0.getId() == listReponseFragment.get(i).getCheckboxId() )
+			{
+				checkBox = true;
+				Reponse reponse = listReponseFragment.get(i).getReponse();
+				
+				if( !reponse.getIdQuestionSuivante().equalsIgnoreCase("") )
+				{
+					listReponseChoisi.add( reponse );
+					currentQuestion = reacher.findQuestionById( reponse.getIdQuestionSuivante() );
+					listQuestion.add( currentQuestion );  //Rajout dans l'historique de la question 
+					
+					navigation++;
+					
+					Log.d("Navigation", "nav = " + navigation );
+					if( navigation > 0 )
+					{
+						retour.setEnabled(true);
+					}
+					if( navigation < listQuestion.size()-1 )
+					{
+						suivant.setEnabled(true);
+					}
+					
+					changeUI();
+				}
+				else
+				{
+					//Afficher la morphoo espece trouvé
+				}
+			}
+		}
+		
+		if( !checkBox )
+		{
+			if( arg0.getId() == retour.getId() ) //Retour cliqué dans l'historique
+			{
+				navigation--;
+				
+				if( navigation == 0 )
+				{
+					retour.setEnabled(false);
+				}
+				if( navigation < listQuestion.size()-1 )
+				{
+					suivant.setEnabled(true);
+				}
+				changeUIviaHisto();
+			}
+			else if( arg0.getId() == suivant.getId() )
+			{
+				navigation++;
+				
+				if( navigation == listQuestion.size()-1 )
+				{
+					suivant.setEnabled(false);
+				}
+				if( navigation > 0 )
+				{
+					retour.setEnabled(true);
+				}
+				changeUIviaHisto();
+			}
+			else if( aquis )
+			{
+				mCamera.takePicture(null, null, mPicture);
+				mCamera.startPreview();	
+			}
 		}
 	}
 
-	public void onCheckedChanged(CompoundButton arg0, boolean arg1) 
-	{
-		if( arg1 == true )
-		{
-			//arg0.getText() <- boucler sur la liste des reponses pour retouver la selectionner
-			Log.d( "CheckBox", "Check " + arg0.getText() );
-			
-		}
-		
-	}
-	
 	private void changeUI( )
 	{	
 		EditText texteQuestion = (EditText)activity.findViewById(R.id.question);
@@ -266,26 +331,65 @@ public class QuestionFragment extends Fragment implements OnClickListener, OnChe
 		
 		EditText texteAide = (EditText)activity.findViewById(R.id.aide);
 		texteAide.setText( currentQuestion.getAide() );
+		if( currentQuestion.getAide() == "" )
+		{
+			texteAide.setVisibility(EditText.INVISIBLE);
+		}
+		else
+		{
+			texteAide.setVisibility(EditText.VISIBLE);
+		}
 		
 		ImageView image = (ImageView)activity.findViewById(R.id.imageQuestion );
-		image.setImageResource( R.drawable.menu );
+		image.setImageBitmap( BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
+					Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + currentQuestion.getCheminImage() )  );
 		
+		if( currentQuestion.getCheminImage() == "" )
+		{
+			image.setVisibility(ImageView.INVISIBLE);
+		}
+		else
+		{
+			image.setVisibility(ImageView.VISIBLE);
+		}
+		
+		//Ajout des reponses dynamiquement
 		Vector<Reponse> listRep = currentQuestion.getListReponse();
 		
 		LinearLayout layout = (LinearLayout)activity.findViewById( R.id.linearLayout3 );
+		layout.removeAllViews();
 				 
 		for( int i = 0; i < listRep.size(); i++ )
 		{
 			LinearLayout innerLayout1 = new LinearLayout( activity );  // 1 Layout par Fragment !!!!!
-			    innerLayout1.setLayoutParams(new LinearLayout.LayoutParams( ViewGroup.LayoutParams.FILL_PARENT, 180 ) );
+			    innerLayout1.setLayoutParams(new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ) );
 			    innerLayout1.setId(0x116+i);
-				 
+				
+			 boolean select = false;
+			 
+			 if( navigation != listQuestion.size()-1 )
+			 {
+				 Reponse repSelectionner = listReponseChoisi.get(navigation);
+				 if( repSelectionner == listRep.get(i) )
+				 {
+					 select = true;
+				 }
+			 }
+			    
 			 FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
 				transaction.setTransition(4097);
-				transaction.add( 0x116+i, new ReponseFragment(this, listRep.get(i) ), "rep"+i );
+				ReponseFragment rep = new ReponseFragment(this, listRep.get(i), select );
+				listReponseFragment.add( rep );
+				transaction.add( 0x116+i, rep, "rep"+i );
 			 transaction.commit();
 			 
 			 layout.addView(innerLayout1);
 		}
+	}
+	
+	private void changeUIviaHisto()
+	{
+		currentQuestion = listQuestion.get(navigation);
+		changeUI();
 	}
 }

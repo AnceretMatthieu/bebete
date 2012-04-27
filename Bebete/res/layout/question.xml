@@ -34,11 +34,12 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" >
-
+
                 <ImageView
                     android:id="@+id/imageQuestion"
-                    android:layout_width="263dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="130dp"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/menu" />
 
                 <EditText
@@ -66,12 +67,12 @@
         android:id="@+id/scrollView1"
         android:layout_width="wrap_content"
         android:layout_height="match_parent" >
-			
+			
        		 <LinearLayout
-	            android:id="@+id/linearLayout3"
-	            android:layout_width="417dp"
-	            android:layout_height="match_parent"
-	            android:orientation="vertical" >
+       		     android:id="@+id/linearLayout3"
+       		     android:layout_width="417dp"
+       		     android:layout_height="wrap_content"
+       		     android:orientation="vertical" >
 	
 	        </LinearLayout>
         

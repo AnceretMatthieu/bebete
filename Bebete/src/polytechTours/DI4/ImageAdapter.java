@@ -2,6 +2,7 @@ package polytechTours.DI4;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -12,18 +13,11 @@ public class ImageAdapter extends BaseAdapter
 {
 	  int mGalleryItemBackground;
 	  private Context mContext;
+	  private Bitmap[] bitmaps;
 
-	    private Integer[] mImageIds = 
+	    public Bitmap[] getListImage()
 	    {
-	            R.drawable.image1,
-	            R.drawable.image2,
-	            R.drawable.image3,
-	            R.drawable.image4
-	    };
-
-	    public Integer[] getListImage()
-	    {
-	    	return mImageIds;
+	    	return bitmaps;
 	    }
 	    
 	    public ImageAdapter(Context c) 
@@ -35,11 +29,11 @@ public class ImageAdapter extends BaseAdapter
 	    }
 
 	    public int getCount() {
-	        return mImageIds.length;
+	        return bitmaps.length;
 	    }
 	    
-	    public void setmImageIds(Integer[] mImageIds) {
-			this.mImageIds = mImageIds;
+	    public void setmImageIds(Bitmap[] mImageIds) {
+			this.bitmaps = mImageIds;
 		}
 	    
 	    public Object getItem(int position) {
@@ -54,7 +48,7 @@ public class ImageAdapter extends BaseAdapter
 	    {
 	        ImageView imageView = new ImageView(mContext);
 	       
-	        imageView.setImageResource(mImageIds[position]);
+	        imageView.setImageBitmap(bitmaps[position] );
 	        imageView.setLayoutParams(new Gallery.LayoutParams(280, 180));
 	        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
 	        imageView.setBackgroundResource(mGalleryItemBackground);

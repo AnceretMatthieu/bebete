@@ -74,8 +74,7 @@ public class BebeteActivity extends Activity
     	}
     	else if( item.getItemId() == R.id.menu_identifier )
     	{
-    		Question question = new Question ("Coucou je suis Dynamique", "Je peux même afficher un texte d'aide", "" );
-    		QuestionFragment questionView = new QuestionFragment( question );
+    		QuestionFragment questionView = new QuestionFragment();
     		idFragmentQuestion = questionView.getId();
 			
     		miseAjourAffichage();

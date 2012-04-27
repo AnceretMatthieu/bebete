@@ -7,22 +7,18 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Matrix;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemLongClickListener;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.Gallery;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ReponseFragment extends Fragment implements OnItemLongClickListener, OnClickListener 
 {	
@@ -30,16 +26,22 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 	private Dialog dialog;
 	private QuestionFragment frag;
 	private Reponse reponse;
-	
-	public ReponseFragment()
-	{	
-	}
+	private boolean select;
+	private int checkboxId;
 	
 	public ReponseFragment( QuestionFragment frag, Reponse rep )
 	{
 		this.frag = frag;
 		reponse = rep;
 	}
+	
+	public ReponseFragment( QuestionFragment frag, Reponse rep, boolean select )
+	{
+		this.frag = frag;
+		reponse = rep;
+		this.select = select;
+	}
+	
 	
 	@Override
     public void onAttach(Activity activity)  
@@ -52,6 +54,16 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+		//Setup UI here
+		
+		Bitmap[] bitmaps = new Bitmap[reponse.getListeImage().size()];
+		
+		for( int i = 0; i < reponse.getListeImage().size(); i++ )
+		{
+			bitmaps[i] = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
+					Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + reponse.getListeImage().get(i) );
+		}
+		reponse.setmImageIds(bitmaps);
 		
 		Gallery gallery = (Gallery)this.getView().findViewById(R.id.gallery1); // pour obtenir la gallerie relative a la question et pas toujours la memem commune connue de activity
 		gallery.setOnItemLongClickListener(this);
@@ -60,11 +72,34 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		adapter.setmImageIds(reponse.getmImageIds() );
 		gallery.setAdapter( adapter );
 		
-		//Setup UI here
 		CheckBox box = (CheckBox)this.getView().findViewById( R.id.checkBox1 );
-        box.setOnCheckedChangeListener(frag);
+		box.setOnClickListener(frag);
+        box.setText( reponse.getReponse() );
+        checkboxId = box.getId();
+        
+        if( select )
+        {
+        	//box.setHighlightColor(R.color.color_blue );
+        	box.setChecked(true);
+        }
+        
+        TextView legende = (TextView)this.getView().findViewById( R.id.textView1 );
+        legende.setText( reponse.getLegende() );
 	}
 	
+	public int getCheckboxId()
+	{
+		return checkboxId;
+	}
+	
+	public Reponse getReponse() {
+		return reponse;
+	}
+
+	public void setReponse(Reponse reponse) {
+		this.reponse = reponse;
+	}
+
 	@Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
     {		
@@ -90,22 +125,7 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		
 		Bitmap screenCap = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
 				Environment.DIRECTORY_PICTURES) + File.separator + "Inno/temp.jpg" );
-		
-		int width = screenCap.getWidth();
-		int height = screenCap.getHeight();
-		float scaleWidth = ((float) 550) / width;
-		float scaleHeight = ((float) 550) / height;
-
-		// CREATE A MATRIX FOR THE MANIPULATION
-
-		Matrix matrix = new Matrix();
-
-		// RESIZE THE BIT MAP
-
-		matrix.postScale(scaleWidth, scaleHeight);
-
-		// RECREATE THE NEW BITMAP
-		Bitmap resizedBitmap = Bitmap.createBitmap(screenCap, 0, 0, width, height, matrix, false);
+		Bitmap resizedBitmap = Bitmap.createScaledBitmap(screenCap, 600, 375, false );
 		screenCap.recycle();
 		
 		ImageView image = (ImageView) dialog.findViewById(R.id.image44);
@@ -114,7 +134,7 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		
 		ImageView image2 = (ImageView) dialog.findViewById(R.id.image45);
 		ImageAdapter imA = (ImageAdapter)arg0.getAdapter();
-		image2.setImageResource( imA.getListImage()[(int)id] );
+		image2.setImageBitmap( imA.getListImage()[(int)id] );
 		image2.setOnClickListener(this);
 		
 		dialog.show();

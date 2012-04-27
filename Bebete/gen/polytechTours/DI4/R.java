@@ -75,6 +75,7 @@ public final class R {
         public static final int scrollView1=0x7f06002e;
         public static final int selectionner=0x7f06001b;
         public static final int supprimer=0x7f06001d;
+        public static final int textView1=0x7f060031;
     }
     public static final class layout {
         public static final int action_bar_custom=0x7f030000;

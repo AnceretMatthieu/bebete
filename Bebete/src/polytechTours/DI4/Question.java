@@ -4,6 +4,7 @@ import java.util.Vector;
 
 public class Question 
 {
+	private String id;
 	private String question;
 	private String aide;
 	private String cheminImage;
@@ -11,6 +12,7 @@ public class Question
 	
 	public Question()
 	{
+		id = "";
 		question = "";
 		aide = "";
 		cheminImage= "";
@@ -20,31 +22,21 @@ public class Question
 	{
 		question = ques;
 		aide = help;
-		path = cheminImage;
-		remplirListeReponse();
+		cheminImage = path;
 	}
 		
 	//******************************************
-	private void remplirListeReponse()
-	{
-		//parse XML pour retrouver ces reponses
-		Reponse rep1 = new Reponse();
-		listReponse.add(rep1);
-		Reponse rep2 = new Reponse();
-		listReponse.add(rep2);
-		/*Reponse rep3 = new Reponse();
-		listReponse.add(rep3);
-		Reponse rep4 = new Reponse();
-		listReponse.add(rep4);
-		Reponse rep5 = new Reponse();
-		listReponse.add(rep5);
-		Reponse rep6 = new Reponse();
-		listReponse.add(rep6);*/
-	}
 	
-	//******************************************
 	public String getQuestion() {
 		return question;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public void setQuestion(String question) {

@@ -3,10 +3,6 @@ package polytechTours.DI4;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;

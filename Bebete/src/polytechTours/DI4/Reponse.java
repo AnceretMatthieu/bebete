@@ -1,29 +1,78 @@
 package polytechTours.DI4;
 
+import java.util.Vector;
+
+import android.graphics.Bitmap;
+
 public class Reponse 
 {
+	private String id;
 	private String reponse;
-	private Integer[] mImageIds = { R.drawable.image1, R.drawable.image2, R.drawable.image3, R.drawable.image4 };
+	private String legende;
+	private String idQuestionSuivante;
+	private Vector<String> listeImage = new Vector<String>();
+	private Bitmap[] bitmaps;
 	
 	public Reponse()
 	{
-		reponse = "Ah coucou";
+		reponse = "";
+		legende = "";
+		idQuestionSuivante="";
+	}
+	
+	public Reponse(String rep )
+	{
+		reponse = rep;
+		legende = "";
 	}
 	
 	//**************************************
+	
 	public String getReponse() {
 		return reponse;
+	}
+
+	public Vector<String> getListeImage() {
+		return listeImage;
+	}
+
+	public void setListeImage(Vector<String> listeImage) {
+		this.listeImage = listeImage;
+	}
+
+	public String getLegende() {
+		return legende;
+	}
+
+	public void setLegende(String legende) {
+		this.legende = legende;
 	}
 
 	public void setReponse(String reponse) {
 		this.reponse = reponse;
 	}
 
-	public Integer[] getmImageIds() {
-		return mImageIds;
+	public Bitmap[] getmImageIds() {
+		return bitmaps;
 	}
 
-	public void setmImageIds(Integer[] mImageIds) {
-		this.mImageIds = mImageIds;
+	public void setmImageIds(Bitmap[] mImageIds) {
+		this.bitmaps = mImageIds;
+	}
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getIdQuestionSuivante() {
+		return idQuestionSuivante;
+	}
+
+	public void setIdQuestionSuivante(String idQuestionSuivante) {
+		this.idQuestionSuivante = idQuestionSuivante;
 	}
 }
