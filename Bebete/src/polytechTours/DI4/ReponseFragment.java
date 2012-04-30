@@ -79,7 +79,6 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
         
         if( select )
         {
-        	//box.setHighlightColor(R.color.color_blue );
         	box.setChecked(true);
         }
         

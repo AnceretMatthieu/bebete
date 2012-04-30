@@ -14,6 +14,8 @@
 					<legende>Exemple d'insecte à 6 pattes</legende>
 				</media>
 				<branche id="b2">
+					<question id="q3" texte="Plus de question pour cet exemple test">
+					</question>
 				</branche>
 			</reponse>
 			<reponse id="r2" texte="8 pattes, ailes et antennes absentes">

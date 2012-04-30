@@ -20,6 +20,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
@@ -254,34 +255,79 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		for( int i = 0; i < listReponseFragment.size(); i++ )
 		{
+			Log.d("ID", "arg0 : " + arg0.getId() + " listRep : " + listReponseFragment.get(i).getCheckboxId()  );
 			if( arg0.getId() == listReponseFragment.get(i).getCheckboxId() )
 			{
-				checkBox = true;
-				Reponse reponse = listReponseFragment.get(i).getReponse();
+				CheckBox ch = (CheckBox)arg0;
 				
-				if( !reponse.getIdQuestionSuivante().equalsIgnoreCase("") )
+				if( ch.getText() == listReponseFragment.get(i).getReponse().getReponse() )
 				{
-					listReponseChoisi.add( reponse );
-					currentQuestion = reacher.findQuestionById( reponse.getIdQuestionSuivante() );
-					listQuestion.add( currentQuestion );  //Rajout dans l'historique de la question 
+					checkBox = true;
+					Reponse reponse = listReponseFragment.get(i).getReponse();
 					
-					navigation++;
-					
-					Log.d("Navigation", "nav = " + navigation );
-					if( navigation > 0 )
+					if( !reponse.getIdQuestionSuivante().equalsIgnoreCase("") )
 					{
-						retour.setEnabled(true);
+						if( navigation == listQuestion.size()-1 ) //Si c'est une nouvelle question
+						{
+							Log.d("Historique", "Nouvelle question créer");
+							listReponseChoisi.add( reponse );
+							currentQuestion = reacher.findQuestionById( reponse.getIdQuestionSuivante() );
+							listQuestion.add( currentQuestion );  //Rajout dans l'historique de la question 
+						}
+						else 
+						{
+							if( reponse.getId() == listReponseChoisi.get( navigation ).getId() )//Si on a choisie la meme reponse
+							{
+								Log.d("Historique", "Même réponse selectionner id = " +  reponse.getId() );
+								currentQuestion = listQuestion.get(navigation+1);
+							}
+							else
+							{
+								Log.d("Historique", "Question différente selectionné");
+								
+								for( int k = navigation; k < listReponseChoisi.size(); k++ )//nettoie la liste des reponses depuis la question changé
+								{
+									listReponseChoisi.remove(k);
+								}
+								
+								listReponseChoisi.add(reponse);
+								
+								for( int k = navigation+1; k < listQuestion.size(); k++ )
+								{
+									listQuestion.remove(k);
+								}
+	
+								currentQuestion = reacher.findQuestionById( reponse.getIdQuestionSuivante() );
+								listQuestion.add( currentQuestion );
+							}
+						}
+						
+						navigation++;
+						
+						Log.d("Navigation", "nav = " + navigation );
+						if( navigation > 0 )
+						{
+							retour.setEnabled(true);
+						}
+						else
+						{
+							retour.setEnabled(false);
+						}
+						if( navigation < listQuestion.size()-1 )
+						{
+							suivant.setEnabled(true);
+						}
+						else
+						{
+							suivant.setEnabled(false);
+						}
+						
+						changeUI();
 					}
-					if( navigation < listQuestion.size()-1 )
+					else
 					{
-						suivant.setEnabled(true);
+						//Afficher la morphoo espece trouvé
 					}
-					
-					changeUI();
-				}
-				else
-				{
-					//Afficher la morphoo espece trouvé
 				}
 			}
 		}
@@ -358,7 +404,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		LinearLayout layout = (LinearLayout)activity.findViewById( R.id.linearLayout3 );
 		layout.removeAllViews();
-				 
+		listReponseFragment.clear();
+		
 		for( int i = 0; i < listRep.size(); i++ )
 		{
 			LinearLayout innerLayout1 = new LinearLayout( activity );  // 1 Layout par Fragment !!!!!

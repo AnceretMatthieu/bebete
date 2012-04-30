@@ -101,6 +101,7 @@ public class ReacherQR
 							{
 								if( attrs2.item(p).getNodeName().equals("id") )
 								{
+									Log.d("XML parsing", "Id reponse : " + attrs2.item(p).getTextContent() );
 									reponse.setId( attrs2.item(p).getTextContent() );
 								}
 								else if( attrs2.item(p).getNodeName().equalsIgnoreCase( "texte" ) )
