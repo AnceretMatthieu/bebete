@@ -3,7 +3,7 @@
 
 Media *ListeMedia::getElementById(int id)
 {
-    /*Media * temp = NULL;
+    Media * temp = NULL;
     unsigned int i = 0;
 
     while(i < (unsigned int) this->size())  {
@@ -16,14 +16,12 @@ Media *ListeMedia::getElementById(int id)
     if(i == (unsigned int)this->size())
         return temp;
     else
-        return NULL;*/
-
-    return this->at(id);
+        return NULL;
 }
 
 Media * ListeMedia::getElementByPath(QString path)
 {
-    /*Media * temp;
+    Media * temp;
     unsigned int i = 0;
 
     while(i < (unsigned int) this->size())  {
@@ -36,5 +34,5 @@ Media * ListeMedia::getElementByPath(QString path)
     if(i == (unsigned int)this->size())
         return temp;
     else
-        return NULL;*/
+        return NULL;
 }

@@ -3,7 +3,7 @@
 
 Question *ListeQuestion::getElementById(int id)
 {
-    /*Question * temp = NULL;
+    Question * temp = NULL;
     unsigned int i = 0;
 
     while(i < (unsigned int)this->size()) {
@@ -16,7 +16,5 @@ Question *ListeQuestion::getElementById(int id)
     if(i == (unsigned int)this->size())
         return temp;
     else
-        return NULL;*/
-
-    return this->at(id);
+        return NULL;
 }

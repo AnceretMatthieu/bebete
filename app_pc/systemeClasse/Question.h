@@ -21,7 +21,7 @@ class Question {
        Categorie *myCategorie;
 
     public:
-        Question();
+        Question(int id);
 
         int getIdentifiant() {
             return id;
