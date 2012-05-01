@@ -8,8 +8,10 @@ import java.util.Vector;
 
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
@@ -23,9 +25,11 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.Gallery;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class QuestionFragment extends Fragment implements OnClickListener 
@@ -36,6 +40,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private BebeteActivity activity;
 	private static boolean aquis = false;
 	private ReacherQR reacher;
+	private Dialog dialog;
 	
 	private static Question currentQuestion;
 	private static Vector<Question> listQuestion = new Vector<Question>();
@@ -326,7 +331,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 					}
 					else
 					{
-						//Afficher la morphoo espece trouvé
+						Log.d("Affichage Resultat", "Le resultat doit s'afficher");
+						afficherResultat( reponse.getResultat() );
 					}
 				}
 			}
@@ -438,5 +444,41 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	{
 		currentQuestion = listQuestion.get(navigation);
 		changeUI();
+	}
+	
+	private void afficherResultat( Resultat resultat )
+	{
+		dialog = new Dialog( activity );
+		dialog.setOwnerActivity(activity);
+	       
+		dialog.setContentView(R.layout.resultat);
+		dialog.setTitle("Résultat");
+		dialog.setCancelable(true);
+		dialog.setCanceledOnTouchOutside(true);
+		
+		TextView nom = (TextView)dialog.findViewById(R.id.nom );
+		nom.setText( resultat.getNom() );
+		
+		TextView type = (TextView)dialog.findViewById(R.id.type );
+		type.setText( resultat.getType() );
+		
+		TextView regimeAlimentaire = (TextView)dialog.findViewById(R.id.regimeAlimentaire );
+		regimeAlimentaire.setText( resultat.getRegimeAlimentaire() );
+		
+		Bitmap[] bitmaps = new Bitmap[resultat.getListeImage().size()];
+		
+		for( int i = 0; i < resultat.getListeImage().size(); i++ )
+		{
+			bitmaps[i] = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
+					Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + resultat.getListeImage().get(i) );
+		}
+		
+		Gallery gallery = (Gallery)dialog.findViewById(R.id.gallery1); 
+		
+		ImageAdapter adapter = new ImageAdapter( activity );
+		adapter.setmImageIds(bitmaps );
+		gallery.setAdapter( adapter );
+		
+		dialog.show();
 	}
 }

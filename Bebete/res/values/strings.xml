@@ -39,4 +39,6 @@
     <string name="supprimerCampagne">Voulez-vous supprimer cette campagne ?</string>
     <string name="attention">Attention !</string>
     <string name="selectionCampagne">Sélectionner une campagne avant de continuer.</string>
+    <string name="bouton44">Enregistrer le résultat</string>
+    <string name="bouton45">Annuler</string>
 </resources>

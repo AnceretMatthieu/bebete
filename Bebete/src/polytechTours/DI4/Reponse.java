@@ -12,6 +12,7 @@ public class Reponse
 	private String idQuestionSuivante;
 	private Vector<String> listeImage = new Vector<String>();
 	private Bitmap[] bitmaps;
+	private Resultat resultat;
 	
 	public Reponse()
 	{
@@ -30,6 +31,14 @@ public class Reponse
 	
 	public String getReponse() {
 		return reponse;
+	}
+
+	public Resultat getResultat() {
+		return resultat;
+	}
+
+	public void setResultat(Resultat resultat) {
+		this.resultat = resultat;
 	}
 
 	public Vector<String> getListeImage() {

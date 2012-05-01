@@ -177,6 +177,62 @@ public class ReacherQR
 										}
 									}
 								}
+								else if( nodes.item(p).getNodeName().equalsIgnoreCase( "resultat" ) )
+								{
+									Resultat resultat = new Resultat();
+									NamedNodeMap attr3 = nodes.item(p).getAttributes();
+									
+									for( int o = 0; o < attr3.getLength(); o++ )
+									{
+										if( attr3.item(o).getNodeName().equalsIgnoreCase("id") )
+										{
+											resultat.setId( attr3.item(o).getTextContent() );
+										}
+									}
+									
+									NodeList nodesResultat = nodes.item(p).getChildNodes();
+									
+									for( int o = 0; o < nodesResultat.getLength(); o++ )
+									{
+										if( nodesResultat.item(o).getNodeName().equalsIgnoreCase("nom") )
+										{
+											resultat.setNom( nodesResultat.item(o).getTextContent() );
+										}
+										else if( nodesResultat.item(o).getNodeName().equalsIgnoreCase("type") )
+										{
+											resultat.setType(nodesResultat.item(o).getTextContent());
+										}
+										else if( nodesResultat.item(o).getNodeName().equalsIgnoreCase("regimeAlimentaire") )
+										{
+											resultat.setRegimeAlimentaire(nodesResultat.item(o).getTextContent());
+										}
+										else if( nodesResultat.item(o).getNodeName().equalsIgnoreCase("informations") )
+										{
+											resultat.setInformation(nodesResultat.item(o).getTextContent());
+										}
+										else if( nodesResultat.item(o).getNodeName().equalsIgnoreCase("media") )
+										{
+											NodeList nodeImage = nodesResultat.item(o).getChildNodes();
+											
+											for( int u = 0; u < nodeImage.getLength(); u++ )
+											{
+												if( nodeImage.item(u).getNodeName().equalsIgnoreCase("img") )
+												{
+													NamedNodeMap attrs3 = nodeImage.item(u).getAttributes();
+													for( int k = 0; k < attrs3.getLength(); k++ )
+													{
+														if( attrs3.item(k).getNodeName().equals("src") &&  attrs3.item(k).getTextContent() != null )
+														{
+															Log.d("XML parsing", "Img rep :" + attrs3.item(k).getTextContent() );
+															resultat.getListeImage().add(attrs3.item(k).getTextContent() );
+														}
+													}
+												}
+											}
+										}
+									}
+									reponse.setResultat(resultat);
+								}
 							}
 							question.getListReponse().add(reponse);
 						}

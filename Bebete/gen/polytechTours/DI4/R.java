@@ -12,6 +12,7 @@ public final class R {
     }
     public static final class color {
         public static final int color_blue=0x7f040000;
+        public static final int color_red=0x7f040001;
     }
     public static final class drawable {
         public static final int arrow=0x7f020000;
@@ -30,6 +31,8 @@ public final class R {
         public static final int adresseGPSPiege=0x7f060027;
         public static final int adressePiege=0x7f060026;
         public static final int aide=0x7f06002c;
+        public static final int button1=0x7f060035;
+        public static final int button2=0x7f060036;
         public static final int camera_preview=0x7f06002d;
         public static final int checkBox1=0x7f06002f;
         public static final int debutCampagne=0x7f060016;
@@ -69,13 +72,16 @@ public final class R {
         public static final int menu_piege=0x7f060004;
         public static final int menu_quitter=0x7f060007;
         public static final int modifier=0x7f06001c;
+        public static final int nom=0x7f060032;
         public static final int nomCampagne=0x7f060012;
         public static final int nomPiege=0x7f06001f;
         public static final int question=0x7f06002a;
+        public static final int regimeAlimentaire=0x7f060034;
         public static final int scrollView1=0x7f06002e;
         public static final int selectionner=0x7f06001b;
         public static final int supprimer=0x7f06001d;
         public static final int textView1=0x7f060031;
+        public static final int type=0x7f060033;
     }
     public static final class layout {
         public static final int action_bar_custom=0x7f030000;
@@ -86,6 +92,7 @@ public final class R {
         public static final int main=0x7f030005;
         public static final int question=0x7f030006;
         public static final int reponse=0x7f030007;
+        public static final int resultat=0x7f030008;
     }
     public static final class string {
         public static final int Retour=0x7f050010;
@@ -95,6 +102,8 @@ public final class R {
         public static final int app_name=0x7f050001;
         public static final int arianeDefault=0x7f05000c;
         public static final int attention=0x7f050024;
+        public static final int bouton44=0x7f050026;
+        public static final int bouton45=0x7f050027;
         public static final int boutonCampagne=0x7f050006;
         public static final int boutonIdentification=0x7f050008;
         public static final int boutonParametreApplication=0x7f05000a;
