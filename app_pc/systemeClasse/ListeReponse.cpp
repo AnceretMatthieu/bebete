@@ -1,6 +1,10 @@
 #include "Reponse.h"
 #include "ListeReponse.h"
 
+ListeReponse::ListeReponse()
+{
+}
+
 Reponse *ListeReponse::getElementById(int id)
 {
     Reponse * temp = NULL;

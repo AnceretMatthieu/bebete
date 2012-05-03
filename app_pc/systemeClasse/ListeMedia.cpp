@@ -1,6 +1,10 @@
 #include "ListeMedia.h"
 #include "Media.h"
 
+ListeMedia::ListeMedia()
+{
+}
+
 Media *ListeMedia::getElementById(int id)
 {
     Media * temp = NULL;
