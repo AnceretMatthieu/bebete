@@ -29,6 +29,11 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 	private boolean select;
 	private int checkboxId;
 	
+	public ReponseFragment()
+	{
+		
+	}
+	
 	public ReponseFragment( QuestionFragment frag, Reponse rep )
 	{
 		this.frag = frag;
@@ -56,34 +61,37 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		super.onActivityCreated(savedInstanceState);
 		//Setup UI here
 		
-		Bitmap[] bitmaps = new Bitmap[reponse.getListeImage().size()];
-		
-		for( int i = 0; i < reponse.getListeImage().size(); i++ )
+		if( reponse != null )
 		{
-			bitmaps[i] = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
-					Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + reponse.getListeImage().get(i) );
+			Bitmap[] bitmaps = new Bitmap[reponse.getListeImage().size()];
+			
+			for( int i = 0; i < reponse.getListeImage().size(); i++ )
+			{
+				bitmaps[i] = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
+						Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + reponse.getListeImage().get(i) );
+			}
+			reponse.setmImageIds(bitmaps);
+			
+			Gallery gallery = (Gallery)this.getView().findViewById(R.id.gallery1); // pour obtenir la gallerie relative a la question et pas toujours la memem commune connue de activity
+			gallery.setOnItemLongClickListener(this);
+			
+			ImageAdapter adapter = new ImageAdapter( activity );
+			adapter.setmImageIds(reponse.getmImageIds() );
+			gallery.setAdapter( adapter );
+			
+			CheckBox box = (CheckBox)this.getView().findViewById( R.id.checkBox1 );
+			box.setOnClickListener(frag);
+	        box.setText( reponse.getReponse() );
+	        checkboxId = box.getId();
+	        
+	        if( select )
+	        {
+	        	box.setChecked(true);
+	        }
+	        
+	        TextView legende = (TextView)this.getView().findViewById( R.id.textView1 );
+	        legende.setText( reponse.getLegende() );
 		}
-		reponse.setmImageIds(bitmaps);
-		
-		Gallery gallery = (Gallery)this.getView().findViewById(R.id.gallery1); // pour obtenir la gallerie relative a la question et pas toujours la memem commune connue de activity
-		gallery.setOnItemLongClickListener(this);
-		
-		ImageAdapter adapter = new ImageAdapter( activity );
-		adapter.setmImageIds(reponse.getmImageIds() );
-		gallery.setAdapter( adapter );
-		
-		CheckBox box = (CheckBox)this.getView().findViewById( R.id.checkBox1 );
-		box.setOnClickListener(frag);
-        box.setText( reponse.getReponse() );
-        checkboxId = box.getId();
-        
-        if( select )
-        {
-        	box.setChecked(true);
-        }
-        
-        TextView legende = (TextView)this.getView().findViewById( R.id.textView1 );
-        legende.setText( reponse.getLegende() );
 	}
 	
 	public int getCheckboxId()

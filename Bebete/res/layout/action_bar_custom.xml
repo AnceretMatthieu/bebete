@@ -5,18 +5,29 @@
     android:baselineAligned="true"
     android:orientation="horizontal"
     android:padding="5px" >
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="vi"
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/histo_gauche"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/arrowl" />
-
-    <ImageButton
-        android:id="@+id/home"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/home" />
 
     <ImageButton
         android:id="@+id/histo_droite"

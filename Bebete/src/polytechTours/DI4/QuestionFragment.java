@@ -31,7 +31,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
 public class QuestionFragment extends Fragment implements OnClickListener 
 {
 	private Camera mCamera;
@@ -43,10 +42,10 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private Dialog dialog;
 	
 	private static Question currentQuestion;
-	private static Vector<Question> listQuestion = new Vector<Question>();
-	private static Vector<Reponse> listReponseChoisi = new Vector<Reponse>();
-	private static Vector<ReponseFragment> listReponseFragment = new Vector<ReponseFragment>();
-	private static int navigation;
+	private Vector<Question> listQuestion = new Vector<Question>();
+	private Vector<Reponse> listReponseChoisi = new Vector<Reponse>();
+	private Vector<ReponseFragment> listReponseFragment = new Vector<ReponseFragment>();
+	private int navigation;
 	private ImageButton retour;
 	private ImageButton suivant;
 	
@@ -129,10 +128,14 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		 //Setup UI here
 		 retour = (ImageButton)activity.findViewById(R.id.histo_gauche);
 		 retour.setOnClickListener( this );
+		 retour.setVisibility(ImageButton.VISIBLE);
+		 retour.setEnabled(false);
 		 suivant = (ImageButton)activity.findViewById(R.id.histo_droite);
 		 suivant.setOnClickListener( this );
-			
-		 changeUI();
+		 suivant.setVisibility(ImageButton.VISIBLE);
+		 suivant.setEnabled(false);
+		 
+		 //changeUI();
 		 
 		 mPreview = new CameraPreview(activity.getApplicationContext(), mCamera);
 		 preview = (FrameLayout) activity.findViewById( R.id.camera_preview);
@@ -162,8 +165,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
     public void onResume() 
     {
         super.onResume();
-        Log.d("QuestionFragment", "Start QuestionFragent" );
+        Log.d("QuestionFragment", "Resume QuestionFragent" );
         mCamera = getCameraInstance();
+        changeUI();
     }
 
     /*
@@ -176,6 +180,13 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	    super.onPause();
 	    Log.d("QuestionFragment", "Pause QuestionFragment" );
 	    releaseCamera();
+	    
+	    FragmentTransaction transaction = activity.getFragmentManager().beginTransaction();
+			for( int i = 0; i < listReponseFragment.size(); i++ )
+			{
+				transaction.remove( listReponseFragment.get(i) );
+			}
+		transaction.commit();
 	}
 	
 	 @Override
@@ -208,6 +219,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		super.onDetach();
 		Log.d( "QuestionFragment", "Fragment Detach" );
     	releaseCamera();
+    	retour.setVisibility(ImageButton.INVISIBLE);
+    	suivant.setVisibility(ImageButton.INVISIBLE);
+    	
 	}
 	 
     //********************************* Méthodes pratiques hors du cycle de vie du fragment *******************************************
@@ -420,7 +434,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				
 			 boolean select = false;
 			 
-			 if( navigation != listQuestion.size()-1 )
+			 if( navigation != listQuestion.size()-1  )
 			 {
 				 Reponse repSelectionner = listReponseChoisi.get(navigation);
 				 if( repSelectionner == listRep.get(i) )

@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -34,6 +35,7 @@ public class BebeteActivity extends Activity
     @Override 
     public void onCreate(Bundle savedInstanceState) 
     {
+    	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
@@ -44,9 +46,11 @@ public class BebeteActivity extends Activity
         actionBar.setCustomView(mActionBarView);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         ImageButton gauche = (ImageButton)this.findViewById( R.id.histo_gauche );
-        gauche.setEnabled(false);
+        //gauche.setEnabled(false);
+        gauche.setVisibility(ImageButton.INVISIBLE);
         ImageButton droite = (ImageButton)this.findViewById( R.id.histo_droite );
-        droite.setEnabled(false);
+        //droite.setEnabled(false);
+        droite.setVisibility(ImageButton.INVISIBLE);
     }
     
     @Override
