@@ -15,13 +15,12 @@ ListeQuestion * QuestionBDD::parseXML()
     QDomDocument document;
     ListeQuestion* listeQuestion;
 
-    QFile fichier(QDir::currentPath() + "donnes_insectes.xml");
-    qDebug() << QDir::currentPath();
+    QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
     document.setContent(fichier.readAll());
 
     QDomNode arbre = document.elementsByTagName("arbre").at(0);
     QDomNode branche = arbre.toDocument().elementsByTagName("branche").at(0);
-    qDebug() << arbre.toDocument().elementsByTagName("branche").size();
+    qDebug() << document.toDocument().elementsByTagName("arbre").size();
 
     //QDomNodeList question = branche.toDocument().elementsByTagName("question");
 
