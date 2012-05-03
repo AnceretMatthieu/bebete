@@ -15,7 +15,8 @@ ListeQuestion * QuestionBDD::parseXML()
     QDomDocument document;
     ListeQuestion* listeQuestion;
 
-    QFile fichier(QDir::currentPath() + "donnees_insectes.xml");
+    QFile fichier(QDir::currentPath() + "donnes_insectes.xml");
+    qDebug() << QDir::currentPath();
     document.setContent(fichier.readAll());
 
     QDomNode arbre = document.elementsByTagName("arbre").at(0);
