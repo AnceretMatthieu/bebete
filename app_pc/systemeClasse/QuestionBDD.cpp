@@ -18,34 +18,27 @@ ListeQuestion * QuestionBDD::parseXML()
     QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
     document.setContent(fichier.readAll());
 
-    QDomNode arbre = document.elementsByTagName("arbre").at(0);
-    QDomNode branche = arbre.toDocument().elementsByTagName("branche").at(0);
-    qDebug() << document.toDocument().elementsByTagName("arbre").size();
+    QDomElement rootArbre = document.documentElement(); //renvoie la balise racine arbre
+    QDomNode branche = rootArbre.firstChild(); //renvoie la balise branche
+    branche = branche.firstChild(); //renvoie la balise question
+    QDomElement question;
+    QString strIdQuestion;
+    QDomNodeList tab;
 
+  //Lecture du fichier XML
+    while(!branche.isNull())
+    {
+        question = branche.toElement();
+        if (question.tagName() == "question")
+
+            strIdQuestion = question.attribute("id");
+
+    //QDomNode arbre = document.elementsByTagName("arbre").at(0);
+    //QDomNode branche = arbre.toDocument().elementsByTagName("branche").at(0);
     //QDomNodeList question = branche.toDocument().elementsByTagName("question");
 
-    //for (int i=0)
-
-/*
-    for (int i = 0; i<listeDeQuestion.size();i++)
-    {
-        QDomElement libelle = listeDeQuestion.at(i).firstChildElement("texte");
-      //QDomElement media = listeDeQuestion.at(i).firstChildElement("media");
-
-        //trouveru n moyen pour repartir que depuis la question et pas depuis le début du fichier
-        QDomNodeList listeDeReponse = document.elementsByTagName("reponse");
-        for (int j = 0; i<listeDeReponse.size();j++)
-        {
-            QDomElement texte = listeDeReponse.at(i).firstChildElement("texte");
-
-            //Question* uneQuestion = new Question(libelle.text(),);
-            listeQuestion.append(uneQuestion);
-
-
-     */
 
     return listeQuestion;
-
     /*{
         unsigned int i = 0;
         QString strIdPlacemark;
