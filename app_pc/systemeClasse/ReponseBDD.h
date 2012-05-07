@@ -4,11 +4,13 @@
 #include "BDD.h"
 
 class Reponse;
+class ListeReponse;
 
 class ReponseBDD : public BDD {
 
     public:
         ReponseBDD();
+        static void listeReponseFromQuestion(Question * quest, bool recursif);
 };
 
 #endif // ReponseBDD_h

@@ -1,13 +1,43 @@
 #include "QuestionBDD.h"
 #include "ListeQuestion.h"
+#include "ListeReponse.h"
 #include "Question.h"
-#include <QDebug>
-#include <QDir>
+#include "ReponseBDD.h"
+#include "MediaBDD.h"
+#include "Categorie.h"
 
 ListeQuestion * QuestionBDD::CreerArbre()
 {
-    ListeQuestion* listeQuestion;
-    return listeQuestion;
+    QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
+    currentNode.setContent(fichier.readAll());
+
+    Categorie * cat = new Categorie(0);
+
+    listeQuestionWithCat(cat);
+
+    return cat->getListeQuestion();
+}
+
+void QuestionBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = true)   {
+
+    //Récuppèration de la liste de toutes les questions
+    QDomNodeList lstBaliseQuestion = currentNode->toElement().elementsByTagName("question");
+    int i;
+    Question * temp;
+    for(i=0; i<lstBaliseQuestion.size(); i++)  {
+        //découpage du q devant l'id
+        temp = new Question(lstBaliseQuestion.at(i).toElement().attribute("id").left(1).toInt());
+        temp->setQuestion(lstBaliseQuestion.at(i).toElement().attribute("texte"));
+        listeQuestion.append(temp);
+        if(i > 0)   {
+            listeQuestion.at(i-1)->setIdRight(temp->getIdentifiant());
+            temp->setIdLeft(listeQuestion.at(i-1)->getIdentifiant());
+        }
+        currentNode = lstBaliseQuestion.at(i).toDocument();
+        if(recursif)
+            ReponseBDD::listeReponseFromQuestion(temp);
+        cat->ajouterQuestion(temp);
+    }
 }
 
 ListeQuestion * QuestionBDD::parseXML()
@@ -20,7 +50,25 @@ ListeQuestion * QuestionBDD::parseXML()
 
     QDomElement rootArbre = document.documentElement(); //renvoie la balise racine arbre
     QDomNode branche = rootArbre.firstChild(); //renvoie la balise branche
-    branche = branche.firstChild(); //renvoie la balise question
+
+    //Récuppèration de la liste de toutes les questions
+    QDomNodeList lstBaliseQuestion = branche.toDocument().elementsByTagName("question");
+    int i;
+    Question * temp;
+    for(i=0; i<lstBaliseQuestion.size(); i++)  {
+        //découpage du q devant l'id
+        qDebug() << lstBaliseQuestion.at(i).toElement().attribute("id").left(1);
+        temp = new Question(lstBaliseQuestion.at(i).toElement().attribute("id").left(1).toInt());
+        temp->setQuestion(lstBaliseQuestion.at(i).toElement().attribute("text"));
+        listeQuestion->append(temp);
+        if(i > 0)   {
+            listeQuestion->at(i-1)->setIdRight(temp->getIdentifiant());
+            temp->setIdLeft(listeQuestion->at(i-1)->getIdentifiant());
+        }
+    }
+
+
+    /*branche = branche.firstChild(); //renvoie la balise question
     QDomElement question;
     QString strIdQuestion;
     QDomNodeList tab;

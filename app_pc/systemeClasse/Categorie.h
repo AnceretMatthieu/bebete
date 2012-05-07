@@ -7,13 +7,14 @@
 using namespace std;
 
 class Question;
+class ListeQuestion;
 
 class Categorie {
 
     private:
         int id;
         QString label;
-        QVector<Question*> myQuestion;
+        ListeQuestion * myQuestion;
 
     public:
         Categorie(int identifiant);
@@ -29,6 +30,10 @@ class Categorie {
         void setLabel(QString unLabel) {
             label = unLabel;
         }
+
+        void ajouterQuestion(Reponse * rep);
+        void supprimerQuestion(Reponse * rep);
+        ListeQuestion * getListeQuestion()  {return myQuestion;}
 };
 
 #endif // Categorie_h

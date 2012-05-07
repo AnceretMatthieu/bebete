@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QString>
+#define MEDIA_NOT_IN_LIST_EXCEPTION 404
 
 class Media;
 class Question;
@@ -13,6 +14,8 @@ class Reponse {
 
     private:
         int id;
+        int idleft;
+        int idright;
         QString texte;
 
         Question * QuestionEntree;
@@ -21,7 +24,7 @@ class Reponse {
         ListeMedia * illustrationMedia;
 
     public:
-        Reponse();
+        Reponse(int id);
 
         int getIdentifiant() {
             return id;
@@ -31,17 +34,22 @@ class Reponse {
             return texte;
         }
 
-        Question * getQuestionSuiv();
-        Question * getQuestionPrec();
+        void setIdLeft(int id)  {idleft = id;}
+        void setIdRight(int id)  {idright = id;}
+        int getIdLeft()  {return idleft;}
+        int getIdRight()  {return idright;}
+
+        Question * getQuestionSuiv()    {return QuestionSortie;}
+        Question * getQuestionPrec()    {return QuestionEntree;}
 
         void setReponse(QString rep) {
             texte = rep;
         }
 
-        void setQuestionSuiv(Question * question);
-        void setQuestionPrec(Question * question);
+        void setQuestionSuiv(Question * question)   {QuestionSortie = question;}
+        void setQuestionPrec(Question * question)   {QuestionEntree = question;}
 
-        ListeMedia * getListeIllustration();
+        ListeMedia * getListeIllustration() {return illustrationMedia;}
 
         void ajouterMedia(Media * med);
         void supprimerMedia(Media * med);

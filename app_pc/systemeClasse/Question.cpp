@@ -8,6 +8,8 @@
 
 Question::Question(int id) {
     this->id = id;
+    this->idleft = 0;
+    this->idright = 0;
     listeReponse = new ListeReponse();
     listeMedia = new ListeMedia();
     this->texte = QString();
