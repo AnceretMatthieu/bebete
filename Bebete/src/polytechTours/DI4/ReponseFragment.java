@@ -28,6 +28,8 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 	private Reponse reponse;
 	private boolean select;
 	private int checkboxId;
+	private Bitmap resizedBitmap;
+	private Bitmap resizedBitmap2;
 	
 	public ReponseFragment()
 	{
@@ -115,8 +117,10 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 
 	public void onClick(View arg0) 
 	{
-		ImageView image = (ImageView) dialog.findViewById(R.id.image44);
-		image.destroyDrawingCache();
+		//ImageView image = (ImageView) dialog.findViewById(R.id.image44);
+		//image.destroyDrawingCache();
+		resizedBitmap.recycle();
+		resizedBitmap2.recycle();
 		dialog.dismiss();
 	}
 
@@ -130,9 +134,12 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		dialog.setCancelable(true);
 		dialog.setCanceledOnTouchOutside(true);
 		
+		BitmapFactory.Options options = new BitmapFactory.Options();
+		options.inSampleSize = 8;
+		
 		Bitmap screenCap = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
-				Environment.DIRECTORY_PICTURES) + File.separator + "Inno/temp.jpg" );
-		Bitmap resizedBitmap = Bitmap.createScaledBitmap(screenCap, 600, 375, false );
+				Environment.DIRECTORY_PICTURES) + File.separator + "Inno/temp.jpg", options );
+		resizedBitmap = Bitmap.createScaledBitmap(screenCap, 600, 375, false );
 		screenCap.recycle();
 		
 		ImageView image = (ImageView) dialog.findViewById(R.id.image44);
@@ -141,7 +148,8 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		
 		ImageView image2 = (ImageView) dialog.findViewById(R.id.image45);
 		ImageAdapter imA = (ImageAdapter)arg0.getAdapter();
-		image2.setImageBitmap( imA.getListImage()[(int)id] );
+		resizedBitmap2 = imA.getListImage()[(int)id];
+		image2.setImageBitmap( resizedBitmap2 );
 		image2.setOnClickListener(this);
 		
 		dialog.show();

@@ -15,17 +15,26 @@ public class ImageAdapter extends BaseAdapter
 	  private Context mContext;
 	  private Bitmap[] bitmaps;
 
-	    public Bitmap[] getListImage()
-	    {
-	    	return bitmaps;
-	    }
-	    
+	   
+	  public void finalize()
+	  {
+		  for( int i = 0; i < bitmaps.length; i++ )
+		  {
+			  bitmaps[i].recycle();
+		  }
+	  }
+	  
 	    public ImageAdapter(Context c) 
 	    {
 	        mContext = c;
 	        TypedArray attr = mContext.obtainStyledAttributes(R.styleable.HelloGallery);
 	        mGalleryItemBackground = attr.getResourceId(R.styleable.HelloGallery_android_galleryItemBackground, 0);
 	        attr.recycle();
+	    }
+	    
+	    public Bitmap[] getListImage()
+	    {
+	    	return bitmaps;
 	    }
 
 	    public int getCount() {
