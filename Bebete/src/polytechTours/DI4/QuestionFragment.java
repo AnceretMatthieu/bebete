@@ -161,8 +161,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
     {
         super.onStart();
         Log.d("QuestionFragment", "Start QuestionFragent" );
-        mCamera = getCameraInstance();
-        mPreview = new CameraPreview(activity, mCamera); 
     }
     
     @Override
@@ -171,6 +169,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
         super.onResume();
         Log.d("QuestionFragment", "Resume QuestionFragent" );
         mCamera = getCameraInstance();
+        mPreview.update(mCamera);
         changeUI();
     }
 
@@ -193,7 +192,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		transaction.commit();
 	}
 	
-	 @Override
+	/* @Override
     public void onStop()
     {
     	super.onStop();
@@ -215,17 +214,17 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		super.onDestroy();
 		Log.d( "QuestionFragment", "Fragment Destroy" );
     	releaseCamera();
-	}
+	}*/
 	
 	@Override
 	public void onDetach()
 	{
 		super.onDetach();
 		Log.d( "QuestionFragment", "Fragment Detach" );
-    	releaseCamera();
+    	//releaseCamera();
     	retour.setVisibility(ImageButton.INVISIBLE);
     	suivant.setVisibility(ImageButton.INVISIBLE);
-    	
+    	alerte.setVisibility(ImageButton.INVISIBLE);
 	}
 	 
     //********************************* Méthodes pratiques hors du cycle de vie du fragment *******************************************
@@ -244,6 +243,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	    		params.setAntibanding( Camera.Parameters.ANTIBANDING_AUTO );
 	    		c.setParameters(params);
 	    		aquis = true;
+	    		mCamera.startPreview();
 	        }
 	        catch (Exception e){
 	            // Camera is not available (in use or does not exist)
