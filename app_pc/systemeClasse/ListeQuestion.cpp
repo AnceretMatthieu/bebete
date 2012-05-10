@@ -1,6 +1,10 @@
 #include "ListeQuestion.h"
 #include "Question.h"
 
+ListeQuestion::ListeQuestion()
+{
+}
+
 Question *ListeQuestion::getElementById(int id)
 {
     Question * temp = NULL;

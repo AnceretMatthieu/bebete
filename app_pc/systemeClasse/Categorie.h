@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QString>
+#include "ListeQuestion.h"
 
 using namespace std;
 

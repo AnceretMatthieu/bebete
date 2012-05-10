@@ -12,8 +12,9 @@ class BDD {
         virtual bool insert();
         virtual bool update();
         //virtual bool delete();
+    BDD();
     protected:
-        static QDomDocument * currentNode;
+         static QDomDocument * currentNode;
 };
 
 #endif // BDD_h
