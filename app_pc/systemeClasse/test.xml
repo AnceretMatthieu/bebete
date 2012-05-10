@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF8"?> 
+<!DOCTYPE arbre SYSTEM "arbre.dtd">
+
+<arbre>
+  <branche>
+    <question>
+      <reponse>Reponse 1</reponse>
+      <reponse>Reponse 2</reponse>
+      <reponse>Reponse 3</reponse>
+    </question>
+    <question>
+      <reponse>Reponse 4</reponse>
+      <reponse>Reponse 5</reponse>
+    </question>
+  </branche>
+  <branche>
+    <question>
+      <reponse>Reponse 6</reponse>
+    </question>
+    <question>
+      <reponse>Reponse 7</reponse>
+      <reponse>Reponse 8</reponse>
+    </question>
+    <question>
+      <reponse>Reponse 9</reponse>
+      <reponse>Reponse 10</reponse>
+    </question>
+  </branche>
+</arbre>
