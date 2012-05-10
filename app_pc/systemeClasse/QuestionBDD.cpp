@@ -8,6 +8,8 @@ ListeQuestion * QuestionBDD::CreerArbre()
 {
     QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
     //QFile fichier(QDir::currentPath() + "/test.xml");
+    //QFile fichier(QDir::currentPath() + "/accueil.xml");
+
 
     currentNode.setContent(&fichier);
 
