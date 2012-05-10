@@ -5,7 +5,11 @@
   <branche>
     <question>
       <reponse>Reponse 1</reponse>
+		<test>
+		</test>
       <reponse>Reponse 2</reponse>
+	  	<test>
+		</test>
       <reponse>Reponse 3</reponse>
     </question>
     <question>

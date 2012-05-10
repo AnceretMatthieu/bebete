@@ -42,17 +42,18 @@ void QuestionBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = tr
         reponse = reponse.nextSibling();
     }
 
-    question = question.nextSibling();
-    qDebug() << question.toElement().tagName();
-    reponse = question.firstChild();
+    //question = question.nextSibling();
+    //qDebug() << question.toElement().tagName();
+    //reponse = question.firstChild();
 
-    while(!reponse.isNull()) {
+   /* while(!reponse.isNull()) {
         QDomElement e = reponse.toElement();
         if(!e.isNull()) {
             qDebug() << e.tagName();
         }
         reponse = reponse.nextSibling();
     }
+    */
 
 
     QDomNodeList lstBaliseQuestion = currentNode.toElement().elementsByTagName("arbre");
