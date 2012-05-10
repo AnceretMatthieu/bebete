@@ -2,6 +2,10 @@
 #define ReponseBDD_h
 
 #include "BDD.h"
+#include "Reponse.h"
+#include "ListeReponse.h"
+#include "Question.h"
+
 
 class Reponse;
 class ListeReponse;

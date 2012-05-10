@@ -1,10 +1,4 @@
 #include "QuestionBDD.h"
-#include "ListeQuestion.h"
-#include "ListeReponse.h"
-#include "Question.h"
-#include "ReponseBDD.h"
-#include "MediaBDD.h"
-#include "Categorie.h"
 
 ListeQuestion * QuestionBDD::CreerArbre()
 {

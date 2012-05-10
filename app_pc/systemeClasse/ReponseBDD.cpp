@@ -1,9 +1,4 @@
 #include "ReponseBDD.h"
-#include "Reponse.h"
-#include "ListeReponse.h"
-#include "Question.h"
-
-
 
 void ReponseBDD::listeReponseFromQuestion(Question * quest, bool recursif = true)   {
 
