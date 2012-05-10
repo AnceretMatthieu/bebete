@@ -5,7 +5,8 @@
 <branche id="b1" type="accueil">
 	<question id="q1" texte="Que voyez vous ?">
 		<reponse id="r1" texte="6 pattes">
-			<question id="q2" texte="Combien d'ailes voyez-vous ?">
+			<branche id="b2" texte="">
+				<question id="q2" texte="Combien d'ailes voyez-vous ?">
 				<reponse id="r2" texte="4 ailes">
 					<branche id="b3">
 						<question id="r7" texte="Que voyez-vous plus précisément au niveau des ailes ?">
@@ -114,6 +115,7 @@
 					</resultat>
 				</reponse>
 			</question>
+			<branche id="b2" texte="">
 		</reponse>
 		<reponse id="r2" texte="8 pattes, ailes et antennes absentes">
 			<branche id="b3" type="Arachnide">

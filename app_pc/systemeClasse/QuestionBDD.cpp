@@ -9,11 +9,11 @@
 ListeQuestion * QuestionBDD::CreerArbre()
 {
     QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
-    currentNode.setContent(fichier.readAll());
+    currentNode->setContent(fichier.readAll());
 
     Categorie * cat = new Categorie(0);
 
-    listeQuestionWithCat(cat);
+    listeQuestionWithCategorie(cat, true);
 
     return cat->getListeQuestion();
 }
@@ -22,20 +22,21 @@ void QuestionBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = tr
 
     //Récuppèration de la liste de toutes les questions
     QDomNodeList lstBaliseQuestion = currentNode->toElement().elementsByTagName("question");
+    qDebug() << lstBaliseQuestion.size();
     int i;
     Question * temp;
     for(i=0; i<lstBaliseQuestion.size(); i++)  {
         //découpage du q devant l'id
         temp = new Question(lstBaliseQuestion.at(i).toElement().attribute("id").left(1).toInt());
         temp->setQuestion(lstBaliseQuestion.at(i).toElement().attribute("texte"));
-        listeQuestion.append(temp);
+
         if(i > 0)   {
-            listeQuestion.at(i-1)->setIdRight(temp->getIdentifiant());
-            temp->setIdLeft(listeQuestion.at(i-1)->getIdentifiant());
+             cat->getListeQuestion()->at(i-1)->setIdRight(temp->getIdentifiant());
+            temp->setIdLeft( cat->getListeQuestion()->at(i-1)->getIdentifiant());
         }
-        currentNode = lstBaliseQuestion.at(i).toDocument();
+        *currentNode = lstBaliseQuestion.at(i).toDocument();
         if(recursif)
-            ReponseBDD::listeReponseFromQuestion(temp);
+            ReponseBDD::listeReponseFromQuestion(temp, recursif);
         cat->ajouterQuestion(temp);
     }
 }

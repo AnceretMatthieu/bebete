@@ -36,6 +36,7 @@ class Question {
 
         void ajouterReponse(Reponse * rep);
         void supprimerReponse(Reponse * rep);
+        ListeReponse* getListeReponse()  {return listeReponse;}
 
         void ajouterMedia(Media * med);
         void supprimerMedia(Media * med);

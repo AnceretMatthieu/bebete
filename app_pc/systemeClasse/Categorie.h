@@ -31,8 +31,8 @@ class Categorie {
             label = unLabel;
         }
 
-        void ajouterQuestion(Reponse * rep);
-        void supprimerQuestion(Reponse * rep);
+        void ajouterQuestion(Question * rep);
+        void supprimerQuestion(Question * rep);
         ListeQuestion * getListeQuestion()  {return myQuestion;}
 };
 

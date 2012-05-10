@@ -5,6 +5,7 @@
 
 class Reponse;
 class ListeReponse;
+class Question;
 
 class ReponseBDD : public BDD {
 
