@@ -51,6 +51,7 @@ public class BebeteActivity extends Activity
         ImageButton droite = (ImageButton)this.findViewById( R.id.histo_droite );
         //droite.setEnabled(false);
         droite.setVisibility(ImageButton.INVISIBLE);
+        mActionBarView.setKeepScreenOn(true);
     }
     
     @Override
@@ -102,36 +103,4 @@ public class BebeteActivity extends Activity
 			transaction.commit();
 		}
     }
-    
-   /* @Override 
-    public void onPause()
-    {
-    	super.onPause();
-    	
-    	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
-    	
-    	Log.d("Activity", "onPause Fragment Question" );
-    	
-    	if( fragmentEnCours != null && fragmentEnCours.getId() == idFragmentQuestion )
-    	{
-    		Log.d("Activity", "onPause Fragment Question" );
-    		QuestionFragment fragment = (QuestionFragment)fragmentEnCours;
-    		fragment.onPause(); 
-    	}
-    }
-    
-    @Override
-    public void onDestroy ()
-    {
-    	super.onDestroy();
-    	
-    	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
-    	
-    	if( fragmentEnCours != null && fragmentEnCours.getId() == idFragmentQuestion )
-    	{
-    		Log.d("Activity", "onDestroy" );
-    		QuestionFragment fragment = (QuestionFragment)fragmentEnCours;
-    		fragment.onDestroy(); 
-    	}
-    }*/
 }

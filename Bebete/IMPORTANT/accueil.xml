@@ -37,6 +37,10 @@
 					  </resultat>
 					</reponse>
 					<reponse id="r4" texte="Inférieur à 5 mm">
+						<branche id="b2">
+							<question id="q6" texte="Plus de question pour cet exemple test">
+							</question>
+						</branche>
 					</reponse>
 				</question>
 			  </branche>

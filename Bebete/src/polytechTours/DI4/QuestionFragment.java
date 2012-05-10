@@ -22,6 +22,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -48,6 +49,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private int navigation;
 	private ImageButton retour;
 	private ImageButton suivant;
+	private ImageButton alerte;
 	
 	public QuestionFragment()
 	{
@@ -134,6 +136,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		 suivant.setOnClickListener( this );
 		 suivant.setVisibility(ImageButton.VISIBLE);
 		 suivant.setEnabled(false);
+		 alerte = (ImageButton)activity.findViewById(R.id.imageAlerte );
+		 alerte.setVisibility(ImageView.VISIBLE);
 		 
 		 //changeUI();
 		 
@@ -142,14 +146,14 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		 
 		 try
 		 {
-			 preview.addView(mPreview);	
+			  preview.addView(mPreview);	
 		 }
 		 catch (Exception e)
 		 {
 	        // Camera is not available (in use or does not exist)
 	     }
 		 
-		 preview.setOnClickListener( this );	 
+		 preview.setOnClickListener( this );
 	}
 	
 	@Override
@@ -250,7 +254,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
     	{
     		Log.d("Camera", "getCameraInstance camera non relaché" );
     		//Trouver pourquoi la veille fige l'image
+	 
     		mCamera.startPreview();
+    		
     		return mCamera;
     	}
     }
@@ -263,7 +269,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
         	
         	mCamera.stopPreview();
             mCamera.release();        // release the camera for other applications
-
             aquis = false;
         }
     }
@@ -399,11 +404,33 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		texteAide.setText( currentQuestion.getAide() );
 		if( currentQuestion.getAide() == "" )
 		{
-			texteAide.setVisibility(EditText.INVISIBLE);
+			texteAide.setVisibility(EditText.GONE);
 		}
 		else
 		{
 			texteAide.setVisibility(EditText.VISIBLE);
+		}
+		
+		if( currentQuestion.getVignette() == Question.OEIL )
+		{
+			ImageView image = (ImageView)activity.findViewById(R.id.imageOeil );
+			image.setVisibility( ImageView.VISIBLE );
+			ImageView image1 = (ImageView)activity.findViewById(R.id.imageLoupe );
+			image1.setVisibility( ImageView.GONE );
+		}
+		else if( currentQuestion.getVignette() == Question.LOUPE )
+		{
+			ImageView image = (ImageView)activity.findViewById(R.id.imageLoupe );
+			image.setVisibility( ImageView.VISIBLE );
+			ImageView image1 = (ImageView)activity.findViewById(R.id.imageOeil );
+			image1.setVisibility( ImageView.GONE );
+		}
+		else if( currentQuestion.getVignette() == Question.BOTH )
+		{
+			ImageView image = (ImageView)activity.findViewById(R.id.imageLoupe );
+			image.setVisibility( ImageView.VISIBLE );
+			ImageView image1 = (ImageView)activity.findViewById(R.id.imageOeil );
+			image1.setVisibility( ImageView.VISIBLE );
 		}
 		
 		ImageView image = (ImageView)activity.findViewById(R.id.imageQuestion );
@@ -412,7 +439,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		if( currentQuestion.getCheminImage() == "" )
 		{
-			image.setVisibility(ImageView.INVISIBLE);
+			image.setVisibility(ImageView.GONE);
 		}
 		else
 		{

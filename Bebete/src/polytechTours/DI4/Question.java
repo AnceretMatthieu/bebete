@@ -4,12 +4,17 @@ import java.util.Vector;
 
 public class Question 
 {
+	public static final int OEIL = 1;
+	public static final int LOUPE = 2;
+	public static final int BOTH = 3;
+	
 	private String id;
 	private String question;
 	private String aide;
 	private String cheminImage;
 	private Vector<Reponse> listReponse = new Vector<Reponse>();
-	
+	private int vignette;
+
 	public Question()
 	{
 		id = "";
@@ -65,5 +70,13 @@ public class Question
 
 	public void setListReponse(Vector<Reponse> listReponse) {
 		this.listReponse = listReponse;
+	}
+	
+	public int getVignette() {
+		return vignette;
+	}
+
+	public void setVignette(int vignette) {
+		this.vignette = vignette;
 	}
 }

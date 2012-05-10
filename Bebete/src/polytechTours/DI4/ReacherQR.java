@@ -60,6 +60,21 @@ public class ReacherQR
 						{
 							question.setQuestion( node1.getTextContent() );
 						}
+						else if( node1.getNodeName().equalsIgnoreCase("observation") )
+						{
+							if( node1.getTextContent().equalsIgnoreCase("oeil") )
+							{
+								question.setVignette( Question.OEIL );
+							}
+							else if( node1.getTextContent().equalsIgnoreCase("loupe") )
+							{
+								question.setVignette( Question.LOUPE );
+							}
+							else if( node1.getTextContent().equalsIgnoreCase("both") )
+							{
+								question.setVignette( Question.BOTH );
+							}
+						}
 					}
 				
 					NodeList list = items.item(i).getChildNodes();
