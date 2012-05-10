@@ -1,6 +1,5 @@
 #include "ReponseBDD.h"
-<<<<<<< HEAD
-=======
+
 #include "Reponse.h"
 #include "ListeReponse.h"
 #include "Question.h"
@@ -8,7 +7,7 @@
 ReponseBDD::ReponseBDD() {
 
 }
->>>>>>> 7f1b825f78b331c8508bf15f853ef6dee707e278
+
 
 void ReponseBDD::listeReponseFromQuestion(Question * quest, bool recursif = true)   {
 

@@ -13,4 +13,5 @@ INPUT(
 ./debug\EspeceBDD.o
 ./debug\Espece.o
 ./debug\Categorie.o
+./debug\BDD.o
 );
