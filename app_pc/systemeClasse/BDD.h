@@ -1,5 +1,6 @@
 #ifndef BDD_h
 #define BDD_h
+
 #include <QByteArray>
 #include <QDomDocument>
 #include <QFile>
@@ -9,12 +10,16 @@
 class BDD {
 
     public:
-        virtual bool insert();
+        BDD();
+
+        /*virtual bool insert();
         virtual bool update();
-        //virtual bool delete();
-    BDD();
-    protected:
-         static QDomDocument * currentNode;
+        virtual bool delete();*/
+
+        QDomDocument currentNode;
+
+    /*protected:
+         static QDomDocument * currentNode;*/
 };
 
 #endif // BDD_h

@@ -1,18 +1,11 @@
-#-------------------------------------------------
-#
+# -------------------------------------------------
 # Project created by QtCreator 2012-03-26T14:45:08
-#
-#-------------------------------------------------
-
-QT       += core xml
-
-QT       -= gui
-
+# -------------------------------------------------
+QT += core \
+    xml
+QT -= gui
 TARGET = systemeClasse
-
 TEMPLATE = app
-
-
 SOURCES += main.cpp \
     ReponseBDD.cpp \
     Reponse.cpp \
@@ -26,10 +19,9 @@ SOURCES += main.cpp \
     Legende.cpp \
     EspeceBDD.cpp \
     Espece.cpp \
-    Categorie.cpp
-
-HEADERS += \
-    ReponseBDD.h \
+    Categorie.cpp \
+    BDD.cpp
+HEADERS += ReponseBDD.h \
     Reponse.h \
     QuestionBDD.h \
     Question.h \

@@ -6,10 +6,16 @@
 #include "MediaBDD.h"
 #include "Categorie.h"
 
+QuestionBDD::QuestionBDD() {
+
+}
+
 ListeQuestion * QuestionBDD::CreerArbre()
 {
     QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
-    currentNode->setContent(fichier.readAll());
+    //QFile fichier(QDir::currentPath() + "/test.xml");
+
+    currentNode.setContent(&fichier);
 
     Categorie * cat = new Categorie(0);
 
@@ -20,9 +26,44 @@ ListeQuestion * QuestionBDD::CreerArbre()
 
 void QuestionBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = true)   {
 
-    //Récuppèration de la liste de toutes les questions
-    QDomNodeList lstBaliseQuestion = currentNode->toElement().elementsByTagName("question");
+    // récupération de la liste de toutes les questions
+    ReponseBDD * repBDD = new ReponseBDD();
+
+    QDomElement root = currentNode.documentElement();
+    qDebug() << root.toElement().tagName(); // ==> renvoi "arbre" soit la racine de l'arbre XML
+
+    QDomNode child = root.firstChild();
+    qDebug() << child.toElement().tagName(); // ==> renvoi "branche" soit le 1er fils de "arbre"
+
+    QDomNode question = child.firstChild(); // ==> renvoi "question"
+    qDebug() << question.toElement().tagName();
+
+    QDomNode reponse = question.firstChild(); // ==> renvoi "reponse"
+
+    while(!reponse.isNull()) {
+        QDomElement e = reponse.toElement();
+        if(!e.isNull()) {
+            qDebug() << e.tagName();
+        }
+        reponse = reponse.nextSibling();
+    }
+
+    question = question.nextSibling();
+    qDebug() << question.toElement().tagName();
+    reponse = question.firstChild();
+
+    while(!reponse.isNull()) {
+        QDomElement e = reponse.toElement();
+        if(!e.isNull()) {
+            qDebug() << e.tagName();
+        }
+        reponse = reponse.nextSibling();
+    }
+
+
+    QDomNodeList lstBaliseQuestion = currentNode.toElement().elementsByTagName("arbre");
     qDebug() << lstBaliseQuestion.size();
+
     int i;
     Question * temp;
     for(i=0; i<lstBaliseQuestion.size(); i++)  {
@@ -34,9 +75,9 @@ void QuestionBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = tr
              cat->getListeQuestion()->at(i-1)->setIdRight(temp->getIdentifiant());
             temp->setIdLeft( cat->getListeQuestion()->at(i-1)->getIdentifiant());
         }
-        *currentNode = lstBaliseQuestion.at(i).toDocument();
+        currentNode = lstBaliseQuestion.at(i).toDocument();
         if(recursif)
-            ReponseBDD::listeReponseFromQuestion(temp, recursif);
+            repBDD->listeReponseFromQuestion(temp, recursif);
         cat->ajouterQuestion(temp);
     }
 }

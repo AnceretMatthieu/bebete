@@ -8,7 +8,9 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication a(argc, argv);
-    QuestionBDD::parseXML();
+
+    QuestionBDD * o = new QuestionBDD();
+    o->CreerArbre();
     
     return a.exec();
 }
