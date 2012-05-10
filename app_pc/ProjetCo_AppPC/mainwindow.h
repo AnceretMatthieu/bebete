@@ -36,6 +36,14 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow *ui;
+        QStandardItemModel * model;
+        QStandardItemModel * model2;
+        QIcon greenIcon;
+        QIcon yellowIcon;
+        QIcon redIcon;
+
+        void peuplerListeQuestions();
+        void peuplerListeReponses();
 
     private slots:
         void on_actionQuitter_triggered();

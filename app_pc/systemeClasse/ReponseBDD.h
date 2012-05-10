@@ -15,7 +15,7 @@ class ReponseBDD : public BDD {
 
     public:
         ReponseBDD();
-        static void listeReponseFromQuestion(Question * quest, bool recursif);
+        void listeReponseFromQuestion(Question * quest, bool recursif);
 };
 
 #endif // ReponseBDD_h
