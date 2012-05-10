@@ -14,6 +14,8 @@ class Question {
 
     private:
        int id;
+       int idleft;
+       int idright;
        QString texte;
 
        ListeReponse * listeReponse;
@@ -22,21 +24,19 @@ class Question {
 
     public:
         Question(int id);
+        int getIdentifiant() {return id;}
+        QString getQuestion() {return texte;}
 
-        int getIdentifiant() {
-            return id;
-        }
+        void setIdLeft(int id)  {idleft = id;}
+        void setIdRight(int id)  {idright = id;}
+        int getIdLeft()  {return idleft;}
+        int getIdRight()  {return idright;}
 
-        QString getQuestion() {
-            return texte;
-        }
-
-        void setQuestion(QString question) {
-            texte = question;
-        }
+        void setQuestion(QString question) {texte = question;}
 
         void ajouterReponse(Reponse * rep);
         void supprimerReponse(Reponse * rep);
+
         void ajouterMedia(Media * med);
         void supprimerMedia(Media * med);
 };

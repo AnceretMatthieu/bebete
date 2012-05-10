@@ -2,20 +2,20 @@
 #define QuestionBDD_h
 
 #include "BDD.h"
-#include <QByteArray>
-#include <QDomDocument>
-#include <QFile>
 
 class Question;
 class ListeQuestion;
+class ReponseBDD;
+class Categorie;
 
 class QuestionBDD : public BDD {
 
     public:
         QuestionBDD();
 
-        ListeQuestion * CreerArbre();
+        static ListeQuestion * CreerArbre();
         static ListeQuestion * parseXML();
+        static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
 };
 
 #endif // QuestionBDD_h
