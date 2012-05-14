@@ -19,6 +19,7 @@
 #include <iostream>
 
 #include "aboutwindow.h"
+#include "modifquestionwindow.h"
 
 namespace Ui {
 class MainWindow;
@@ -41,15 +42,24 @@ class MainWindow : public QMainWindow
         QIcon greenIcon;
         QIcon yellowIcon;
         QIcon redIcon;
+        QAction * addQuestion;
+        QAction * modifQuestion;
+        QAction * delQuestion;
 
         void peuplerListeQuestions();
         void peuplerListeReponses();
+        void createAction();
 
     private slots:
         void on_actionQuitter_triggered();
         void on_actionExporter_XML_triggered();
         void on_actionImporter_XML_triggered();
         void on_actionApropos();
+        void on_clickTreeViewQuestions(const QModelIndex &index);
+        void treeQuestionsContextMenu(const QPoint&);
+        void newQuestion();
+        void modifierQuestion();
+        void supprimerQuestion();
 };
 
 #endif // MAINWINDOW_H

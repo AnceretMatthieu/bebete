@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Fri May 4 10:13:59 2012
+** Created: Mon May 14 10:09:57 2012
 **      by: The Qt Meta Object Compiler version 62 (Qt 4.7.4)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        5,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -35,6 +35,11 @@ static const uint qt_meta_data_MainWindow[] = {
       41,   11,   11,   11, 0x08,
       75,   11,   11,   11, 0x08,
      109,   11,   11,   11, 0x08,
+     134,  128,   11,   11, 0x08,
+     173,   11,   11,   11, 0x08,
+     206,   11,   11,   11, 0x08,
+     220,   11,   11,   11, 0x08,
+     239,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -43,7 +48,11 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0on_actionQuitter_triggered()\0"
     "on_actionExporter_XML_triggered()\0"
     "on_actionImporter_XML_triggered()\0"
-    "on_actionApropos()\0"
+    "on_actionApropos()\0index\0"
+    "on_clickTreeViewQuestions(QModelIndex)\0"
+    "treeQuestionsContextMenu(QPoint)\0"
+    "newQuestion()\0modifierQuestion()\0"
+    "supprimerQuestion()\0"
 };
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -79,9 +88,14 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
         case 1: on_actionExporter_XML_triggered(); break;
         case 2: on_actionImporter_XML_triggered(); break;
         case 3: on_actionApropos(); break;
+        case 4: on_clickTreeViewQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 5: treeQuestionsContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 6: newQuestion(); break;
+        case 7: modifierQuestion(); break;
+        case 8: supprimerQuestion(); break;
         default: ;
         }
-        _id -= 4;
+        _id -= 9;
     }
     return _id;
 }

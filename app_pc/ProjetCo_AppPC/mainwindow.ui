@@ -54,6 +54,9 @@
           <pointsize>12</pointsize>
          </font>
         </property>
+        <property name="contextMenuPolicy">
+         <enum>Qt::CustomContextMenu</enum>
+        </property>
        </widget>
       </item>
       <item>
@@ -75,7 +78,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QLabel" name="lblQuestion">
+         <widget class="QLabel" name="labelQuestion">
           <property name="enabled">
            <bool>true</bool>
           </property>

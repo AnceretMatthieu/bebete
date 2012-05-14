@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu Apr 5 08:53:31 2012
+** Created: Mon May 14 09:52:27 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -41,7 +41,7 @@ public:
     QTreeView *treeViewQuestion;
     QFrame *line;
     QVBoxLayout *verticalLayout;
-    QLabel *lblQuestion;
+    QLabel *labelQuestion;
     QFrame *line_4;
     QLabel *label;
     QFrame *line_7;
@@ -110,6 +110,7 @@ public:
         QFont font1;
         font1.setPointSize(12);
         treeViewQuestion->setFont(font1);
+        treeViewQuestion->setContextMenuPolicy(Qt::CustomContextMenu);
 
         horizontalLayout_2->addWidget(treeViewQuestion);
 
@@ -127,14 +128,14 @@ public:
         verticalLayout = new QVBoxLayout();
         verticalLayout->setSpacing(6);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
-        lblQuestion = new QLabel(centralWidget);
-        lblQuestion->setObjectName(QString::fromUtf8("lblQuestion"));
-        lblQuestion->setEnabled(true);
-        sizePolicy1.setHeightForWidth(lblQuestion->sizePolicy().hasHeightForWidth());
-        lblQuestion->setSizePolicy(sizePolicy1);
-        lblQuestion->setFont(font1);
+        labelQuestion = new QLabel(centralWidget);
+        labelQuestion->setObjectName(QString::fromUtf8("labelQuestion"));
+        labelQuestion->setEnabled(true);
+        sizePolicy1.setHeightForWidth(labelQuestion->sizePolicy().hasHeightForWidth());
+        labelQuestion->setSizePolicy(sizePolicy1);
+        labelQuestion->setFont(font1);
 
-        verticalLayout->addWidget(lblQuestion);
+        verticalLayout->addWidget(labelQuestion);
 
         line_4 = new QFrame(centralWidget);
         line_4->setObjectName(QString::fromUtf8("line_4"));
@@ -286,7 +287,7 @@ public:
         actionQuitter->setText(QApplication::translate("MainWindow", "Quitter", 0, QApplication::UnicodeUTF8));
         actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
-        lblQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
+        labelQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "M\303\251dia", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponse", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
