@@ -3,7 +3,7 @@
 #include "ListeMedia.h"
 #include "ListeQuestion.h"
 #include "ListeReponse.h"
-#include "QuestionBDD.h"
+#include "categoriebdd.h"
 #include "BDD.h"
 
 int main(int argc, char *argv[])
@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
 
     //QuestionBDD * o = new QuestionBDD();
-    QuestionBDD::CreerArbre();
+    CategorieBDD::CreerArbre();
     //o->CreerArbre();
     
 

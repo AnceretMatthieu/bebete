@@ -14,4 +14,5 @@ INPUT(
 ./release\Espece.o
 ./release\Categorie.o
 ./release\BDD.o
+./release\categoriebdd.o
 );

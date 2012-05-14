@@ -22,7 +22,7 @@
 			<media>
 					<img id="img1" src="8pattes1.jpg" />
 					<legende>Exemple d'insecte à 8 pattes</legende>
-				</media>
+			</media>
 			  <branche id="b3" type="Arachnide">
 				<question id="q2" texte="Quelle est la taille de l'arachnide ?">
 					<reponse id="r3" texte="Supérieur à 5 mm" >

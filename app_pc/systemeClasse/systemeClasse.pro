@@ -20,7 +20,8 @@ SOURCES += main.cpp \
     EspeceBDD.cpp \
     Espece.cpp \
     Categorie.cpp \
-    BDD.cpp
+    BDD.cpp \
+    categoriebdd.cpp
 HEADERS += ReponseBDD.h \
     Reponse.h \
     QuestionBDD.h \
@@ -34,4 +35,5 @@ HEADERS += ReponseBDD.h \
     EspeceBDD.h \
     Espece.h \
     Categorie.h \
-    BDD.h
+    BDD.h \
+    categoriebdd.h

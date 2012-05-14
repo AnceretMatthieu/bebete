@@ -18,11 +18,7 @@ class Categorie;
 class QuestionBDD : public BDD {
 
     public:
-        QuestionBDD();
-
-        static ListeQuestion * CreerArbre();
-        ListeQuestion * parseXML();
-        static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
+        static void listeReponseFromQuestion(Question * quest, bool recursif);
 };
 
 #endif // QuestionBDD_h
