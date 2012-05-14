@@ -4,6 +4,10 @@
 #include <iostream>
 #include <QString>
 
+#define MEDIA_TYPE_VIDEO    0
+#define MEDIA_TYPE_IMAGE    1
+#define MEDIA_TYPE_TEXT     2
+
 class Reponse;
 class Question;
 
@@ -18,7 +22,7 @@ class Media {
         Question *myQuestion;
 
     public:
-        Media();
+        Media(int identifiant);
 
         int getIdentifiant() {
             return id;

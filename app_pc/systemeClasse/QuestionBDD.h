@@ -20,9 +20,9 @@ class QuestionBDD : public BDD {
     public:
         QuestionBDD();
 
-        ListeQuestion * CreerArbre();
+        static ListeQuestion * CreerArbre();
         ListeQuestion * parseXML();
-        void listeQuestionWithCategorie(Categorie * cat, bool recursif);
+        static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
 };
 
 #endif // QuestionBDD_h
