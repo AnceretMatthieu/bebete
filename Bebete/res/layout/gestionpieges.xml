@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:singleLine="false"
+                android:editable="false"
                 android:text="@string/selectionnerPiege"
                 android:textColor="@color/color_blue"
                 android:textSize="28sp" >
@@ -75,7 +75,7 @@
 	                    android:text="@string/descriptionPiege" />
 
 	                <EditText
-	                    android:id="@+id/descriptionCamapgne"
+	                    android:id="@+id/descriptionPiege"
 	                    android:layout_width="match_parent"
 	                    android:layout_height="wrap_content"
 	                    android:ems="10"
@@ -166,6 +166,12 @@
 		                    android:layout_width="wrap_content"
 		                    android:layout_height="wrap_content"
 		                    android:text="@string/selectionner" />
+
+		                <Button
+		                    android:id="@+id/creer"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/creer" />
 	
 		                <Button
 		                    android:id="@+id/modifier"

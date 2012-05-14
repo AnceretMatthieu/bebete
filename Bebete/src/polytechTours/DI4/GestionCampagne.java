@@ -24,47 +24,31 @@ public class GestionCampagne extends Fragment
 
 package polytechTours.DI4;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.sql.Struct;
-import java.text.BreakIterator;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import java.util.TimeZone;
 import java.util.Vector;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.DatePickerDialog.OnDateSetListener;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.location.LocationListener;
 import android.location.LocationManager;
-import android.net.ParseException;
 import android.os.Bundle;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
@@ -72,17 +56,113 @@ import android.widget.EditText;
 
 public class GestionCampagne extends Fragment
 {
-
+	private CampagnesButton campagnes;
 	private Activity activity;
-	private File path_campagne; //chemin du dossier application/campagnes
-	private String [] liste_campagnes; //liste des fichiers dans application/campagnes
-	private String active_campagne; //campagne selectionne
-	private Vector<buttom_campagne> liste_buttom_campagne; //vecteur de buttom_campagne
+	private CampagneBDD bdd;
+	private int utilisateur_id;
+	private RadioGroup radiogroup;
+	
+    // On déclare les variables nécessaires pour le GPS
+	private LocationManager locationMgr = null;
+	Location curent_location = null;
+	
+	//Listener pour GPS
+    private LocationListener onLocationChange = new LocationListener() {
+    	 public void onStatusChanged(String provider, int status, Bundle extras) { }
+    	 public void onProviderEnabled(String provider) { }
+    	 public void onProviderDisabled(String provider) { }
+    	 public void onLocationChanged(Location location)
+    	 {
+	    	 curent_location = location;
+    	 }
+    };
     
-	/*fait lien entre le nom de la campagne et l instance du bouton*/
-	private class buttom_campagne{
-		String campagne;
-		RadioButton radiobutton;
+	private class CampagnesButton{
+		private Vector<Campagne> vect_campagnes = null;
+		private Vector<RadioButton> vect_radioButton = null;
+		private int active_campagne = 0;
+		
+		public CampagnesButton(Vector<Campagne> vect_campagnes){
+			this.vect_campagnes = vect_campagnes;
+
+			vect_radioButton = new Vector<RadioButton> ();
+			if(this.vect_campagnes == null)
+				this.vect_campagnes = new  Vector<Campagne>();
+			else{
+				for (Campagne campagne : vect_campagnes) {
+					RadioButton radiobt = new RadioButton(activity); //creation d un radiobouton
+					radiobt.setText(campagne.getNom()); //texte du bouton
+					vect_radioButton.add(radiobt);
+					radiogroup.addView(radiobt);
+				}
+			}
+		}
+
+		public void insertCampagne(Campagne campagne){
+			String name = campagne.getNom();
+			boolean trouve = false;
+			
+			for ( RadioButton radiobt : vect_radioButton) {
+				String btname = radiobt.getText().toString();
+				if(btname.equalsIgnoreCase(name)){
+					alertbox("Attention !", "La campagne existe déja.");
+					trouve = true;
+					break;
+				}
+			}
+			if(trouve == false){
+				bdd.insertCampagne(campagne);
+				vect_campagnes.add(campagne);
+				RadioButton radiobt = new RadioButton(activity); //creation d un radiobouton
+				radiobt.setText(campagne.getNom()); //texte du bouton
+				vect_radioButton.add(radiobt);
+				radiogroup.addView(radiobt);
+				radiobt.setChecked(true);
+			}
+		}
+		
+		public void removeCampagne(Campagne campagne){
+			int i = 0;
+			for (Campagne eachcampagne : vect_campagnes) {
+				if(eachcampagne.getId() == campagne.getId()){
+					bdd.removeCampagneWithID(campagne.getId());
+					vect_radioButton.remove(i);
+					vect_campagnes.remove(i);
+					radiogroup.removeViewAt(i);
+				}
+				else
+					i++;
+			}
+		}
+		
+		public void updateCampagne(Campagne campagne){
+			int i = 0;
+			for (Campagne eachcampagne : vect_campagnes) {
+				if(eachcampagne.getId() == campagne.getId()){
+					bdd.updateCamapagne(campagne);
+					vect_campagnes.set(i, campagne);
+					vect_radioButton.elementAt(i).setText(campagne.getNom());
+				}
+				else
+					i++;
+			}
+		}
+		
+		public void setActive_campagne(int active_campagne) {
+			this.active_campagne = active_campagne;
+		}
+		
+		public Campagne getCurent_campagne(){
+			return vect_campagnes.elementAt(active_campagne);
+		}
+		
+		public int count() {
+			return vect_campagnes.size();
+		}
+		
+		public void setCheck(int i){
+			vect_radioButton.elementAt(i).setChecked(true);
+		}
 	}
     
 	/*affiche un date picker et retourne la date dans le champ passe en parametre*/
@@ -121,56 +201,18 @@ public class GestionCampagne extends Fragment
         DatePickerDialog datePickDiag=new DatePickerDialog(activity,odsl,year,month-1,day);
 	    datePickDiag.show();
 	}
+    
 	/*message d alert, seul cancel est disponible*/
 	protected void alertbox(String title, String mymessage){
 	   new AlertDialog.Builder(activity)
 	      .setMessage(mymessage)
 	      .setTitle(title)
 	      .setCancelable(true)
-	      .setNeutralButton(android.R.string.cancel,
+	      .setNeutralButton(android.R.string.ok,
 	         new DialogInterface.OnClickListener() {
 	         public void onClick(DialogInterface dialog, int whichButton){}
 	         })
 	      .show();
-	}
-	
-	/* ouvre ou ceer un fichier dans le repertoire de l'application
-	 * celui-ci contient les donnees sur une campagne.
-	 * Le nom de ce fichier (passé en parametre) est celui de la campagne.
-	 * renvoie un flux en ecriture
-	 */
-	private BufferedWriter open_campagne(String name){
-		BufferedWriter output;
-		FileWriter fw = null;
-		File file;
-		try {
-			file = new File(path_campagne + "/" +name + ".xml");
-    	    
-			if(!file.exists()){
-				file.createNewFile();
-    	    }
-    	    
-			fw = new FileWriter(file, true);
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			Log.d("erreur", e.toString());
-		}
-		
-		liste_campagnes = path_campagne.list();
-		
-		output = new BufferedWriter(fw);	
-		return output;
-	}
-	
-	/*ferme un flux ouvert par open_campagne*/
-	private void close_campagne(BufferedWriter flux){
-		try {
-			flux.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			Log.d("erreur", e.toString());
-		}
 	}
 	
 	/****************************************************
@@ -196,72 +238,68 @@ public class GestionCampagne extends Fragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+		/**gestion du gps **/   
+		//festion des réseau et du temps de pull
+		locationMgr = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+		locationMgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 0, onLocationChange);
+		locationMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0,onLocationChange);
 		
 		/** init variables**/
-        path_campagne = this.activity.getDir("bebete", Context.MODE_PRIVATE);
-        liste_campagnes = path_campagne.list();       
-        path_campagne = new File(path_campagne.toString() + "/campagne/");
-        path_campagne.mkdir();
-        liste_campagnes = path_campagne.list();
-        liste_buttom_campagne = new Vector<GestionCampagne.buttom_campagne>();
-        active_campagne = null;
+		bdd = new CampagneBDD(activity);
+        bdd.open();
+        
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
+        utilisateur_id = (int)preferences.getLong("UTILISATEUR_ID", -1);
+        if(utilisateur_id == -1)
+        	alertbox("Attention !", "Sélectionner un utilisateur");
+        
+		radiogroup = new RadioGroup(activity); //groupe d'affichage pour la liste de radiobouton
+		
+		//affichage des parametres d'un bouton
+		radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+			public void onCheckedChanged(RadioGroup rg, int checkedId){
+				for(int i=0; i<rg.getChildCount(); i++) {
+	                   if(rg.getChildAt(i).getId() == checkedId) {
+	                	   campagnes.setActive_campagne(i);
+	                	   Campagne campagne = campagnes.getCurent_campagne();
+	                	   
+					    	/*affichage des elements dans leurs champs respectif*/
+					    	EditText nomCampagne = (EditText)activity.findViewById( R.id.nomCampagne );
+							nomCampagne.setText(campagne.getNom());
+							
+							EditText descriptionCamapgne = (EditText)activity.findViewById( R.id.descriptionCamapgne );
+							descriptionCamapgne.setText(campagne.getDescription());
+							
+							EditText debutCampagne = (EditText)activity.findViewById( R.id.debutCampagne );
+							debutCampagne.setText(campagne.getDate_debut());
+							
+							EditText finCampagne = (EditText)activity.findViewById( R.id.finCampagne );
+							finCampagne.setText(campagne.getDate_fin());
+							
+							EditText gpsCampagne = (EditText)activity.findViewById( R.id.gpsCampagne);
+				    		gpsCampagne.setText(campagne.getLatitude() + ";" + campagne.getLongitude());
+				    		
+							EditText adresseCampagne = (EditText)activity.findViewById( R.id.adresseCampagne );
+							adresseCampagne.setText(campagne.getAdresse());	
+							
+							break;
+	                   }
+				}
+	        }
+		});
+		
+        campagnes = new CampagnesButton(bdd.getCampagnes(utilisateur_id));
+        if(campagnes.count() != 0)
+        	campagnes.setCheck(0);
         
         /** phrase de selection de campagne **/
 		LinearLayout layout_liste = (LinearLayout)activity.findViewById( R.id.linearLayout4 );
         TextView tv = new TextView(activity);
 		tv.setText(R.string.selectionnerCampagne);
 		layout_liste.addView(tv);
-
-		//close_campagne(open_campagne("campagne" + liste_campagnes.length));
 		
-		/** affichage de la liste de bouton **/
-		final RadioGroup radiogroup = new RadioGroup(activity); //groupe d'affichage pour la liste de radiobouton
-		
-		if( liste_campagnes != null)
-			for(int i = 0; i < liste_campagnes.length; i++) { //pour chaque campagnes trouvee
-				/** gestion des boutons **/
-				RadioButton radiobt = new RadioButton(activity); //creation d un radiobouton
-				radiobt.setText(liste_campagnes[i].split("\\.")[0]); //texte du bouton
-				radiobt.setOnCheckedChangeListener(new OnCheckedChangeListener() //evenement
-				{
-				    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked)
-				    {
-				        if ( isChecked )
-				        {
-				        	/*lien entre le bouton et la liste de campagne **/
-				        	for (buttom_campagne liste_bc : liste_buttom_campagne) {
-								if(liste_bc.radiobutton == buttonView){
-									active_campagne = liste_bc.campagne;
-								}
-							}
-				        	/*affichage des elements dans leurs champs respectif*/
-				        	EditText nomCampagne = (EditText)activity.findViewById( R.id.nomCampagne );
-				    		nomCampagne.setText("Campagne n° " + buttonView.getText());
-				    		
-				    		EditText descriptionCamapgne = (EditText)activity.findViewById( R.id.descriptionCamapgne );
-				    		descriptionCamapgne.setText("Campagne n° NAN");
-				    		
-				    		EditText debutCampagne = (EditText)activity.findViewById( R.id.debutCampagne );
-				    		debutCampagne.setText("Campagne n° NAN");
-				    		
-				    		EditText finCampagne = (EditText)activity.findViewById( R.id.finCampagne );
-				    		finCampagne.setText("Campagne n° NAN");
-				    		
-				    		EditText adresseCampagne = (EditText)activity.findViewById( R.id.adresseCampagne );
-				    		adresseCampagne.setText("Campagne n° NAN");			    		
-				        }
-				    }
-				});
-				/* affichage des bouton */
-				radiogroup.addView(radiobt);
-				
-				/**gestion de la liste de campagne**/
-				buttom_campagne bc = new buttom_campagne(); //instanci une class
-				bc.campagne = liste_campagnes[i]; //donne la nom de la campgne
-				bc.radiobutton = radiobt; //affecte le radiobouton corespondant (celui qui vien d'etre crer)
-				liste_buttom_campagne.add(bc); //ajoute cette instace a la liste
-			}
-		
+		/**date picker**/
+		//date de debut
 		final EditText editTextdebutCampagne = (EditText) activity.findViewById(R.id.debutCampagne);
 		editTextdebutCampagne.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View v) {
@@ -275,6 +313,7 @@ public class GestionCampagne extends Fragment
 			}
 	    );
 		
+		//date de fin
 		final EditText editTextfinCampagne = (EditText) activity.findViewById(R.id.finCampagne);
 		editTextfinCampagne.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View v) {
@@ -287,36 +326,53 @@ public class GestionCampagne extends Fragment
 				}
 			}
 	    );
+		
+		/**GPS**/
+		//recuperation de la position & stocage dans le champ curent_location
+		final Button localiserGPS = (Button) activity.findViewById(R.id.localiserGPS);
+		localiserGPS.setOnClickListener(new View.OnClickListener() {
+		    public void onClick(View v) {
+		        if(curent_location != null){
+		        	EditText gpsCampagne = (EditText)activity.findViewById( R.id.gpsCampagne);
+		        	gpsCampagne.setText(curent_location.getLatitude() + " ; " + curent_location.getLongitude());
+		        }
+		        else
+		        	alertbox("Attention !", "Pas de signale GPS");
+		    }
+
+		});
 		/**gestion du bouton selectionner**/
 		final Button buttonselectionner = (Button) activity.findViewById(R.id.selectionner);
 		buttonselectionner.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
-    			if(active_campagne != null){
-    				//fonctionelle mais non acheve
-    				SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
+            	if(campagnes.count() != 0){
+					SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
 	
-    				// stock l'addresse complete de la camapgne.xml dans un setings nomé "path_active_campagne"
-    				// le bute est de pouvoir le recuperer dans GestionParcel.java
+					// stock l identifiant de la campagne
 		    		SharedPreferences.Editor editor = preferences.edit();
-		    		editor.putString("path_active_campagne", path_campagne + active_campagne); 
+		    		editor.putLong("CAMPAGNE_ID", campagnes.getCurent_campagne().getId()); 
 		    		editor.commit();
 		    		
-		    		//cette partie n'a rien a faire là !!!
-		    		//cela veriefie que la campagne selectionné est bien dans "path_active_campagne"
-		    		//en l'affichant dans le champ "adresseCampagne"
-	            	String storedPreference = preferences.getString("path_active_campagne", "");
-	            	
-	            	EditText adresseCampagne = (EditText)activity.findViewById( R.id.adresseCampagne );
-	            	Log.d("debug", "the campagne_id is = " + storedPreference); 
-		    		adresseCampagne.setText(storedPreference);
-    			}else
-    			{
-            		//Si aucune campagne n est selectionne
-    				//alertbox(R.string.attention, R.string.selectionCampagne);
-            		alertbox("Attention", "Sélectionner une campagne avant de continuer");	//On ne met pas le texte ainsi, mais la forme precedante rencontre un probleme de type qui n est pas encore resolue
-    			}
-	    		    		
+		    		FragmentManager manager = activity.getFragmentManager();  
+		    		
+		        	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
+		    		
+		    		if( fragmentEnCours != null )
+		    		{
+		    			FragmentTransaction transaction = manager.beginTransaction();
+		    				transaction.remove( fragmentEnCours );
+		    			transaction.commit();
+		    		}
+		    		
+		    		GestionParcelle gestionParcelle = new GestionParcelle();
+		    		FragmentTransaction transaction = manager.beginTransaction();
+						transaction.add( R.id.linearLayout2, gestionParcelle, "enCours" );
+					transaction.commit();
+					
+            	}else
+            		alertbox("Attention !", "Créez une campagne pour pouvoir la sélectionner");
+
             }
         });
 		
@@ -324,14 +380,78 @@ public class GestionCampagne extends Fragment
 		final Button buttonmodifier = (Button) activity.findViewById(R.id.modifier);
 		buttonmodifier.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            	if(campagnes.count() != 0){
+	            	Campagne campagne = campagnes.getCurent_campagne();
+	            	
+		        	EditText nomCampagne = (EditText)activity.findViewById( R.id.nomCampagne );
+		        	campagne.setNom(nomCampagne.getText().toString());
+		    		
+		    		EditText descriptionCamapgne = (EditText)activity.findViewById( R.id.descriptionCamapgne );
+		    		campagne.setDescription(descriptionCamapgne.getText().toString());
+		    		
+		    		EditText debutCampagne = (EditText)activity.findViewById( R.id.debutCampagne );
+		    		campagne.setDate_debut(debutCampagne.getText().toString());
+		    		
+		    		EditText finCampagne = (EditText)activity.findViewById( R.id.finCampagne );
+		    		campagne.setDate_fin(finCampagne.getText().toString());
+		    		
+		    		EditText gpsCampagne = (EditText)activity.findViewById( R.id.gpsCampagne);
+		    		String str[] = gpsCampagne.getText().toString().trim().split(";");
+		    		if(str.length == 2){
+			    		campagne.setLatitude(str[0]);
+			    		campagne.setLongitude(str[1]);
+		    		}else{
+			    		campagne.setLatitude("pas de valeur");
+			    		campagne.setLongitude("pas de valeur");
+		    		}
+		    		System.out.print(campagne.getLatitude() + "|" + campagne.getLongitude() + "|");
+		    		
+		    		EditText adresseCampagne = (EditText)activity.findViewById( R.id.adresseCampagne );
+		    		campagne.setAdresse(adresseCampagne.getText().toString());	
+		    		
+		    		campagnes.updateCampagne(campagne);
+            	}
+            	else
+                	alertbox("Attention !", "Créez une campagne pour pouvoir la modifier");
+            }
+        });
+		
+		/**gestion du bouton creer**/
+		final Button buttoncreer = (Button) activity.findViewById(R.id.creer);
+		buttoncreer.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+	            	
+            	Campagne campagne = new Campagne();
             	
-    			if(active_campagne != null){
-    				
-    			}else
-    			{
-            		//alertbox(R.string.attention, R.string.selectionCampagne);
-            		alertbox("Attention", "Sélectionner une campagne avant de continuer");	//On ne met pas le texte ainsi, mais la forme precedante rencontre un probleme de type qui n est pas encore resolue
-    			}
+	        	EditText nomCampagne = (EditText)activity.findViewById( R.id.nomCampagne );
+	        	campagne.setNom(nomCampagne.getText().toString());
+	    		
+	    		EditText descriptionCamapgne = (EditText)activity.findViewById( R.id.descriptionCamapgne );
+	    		campagne.setDescription(descriptionCamapgne.getText().toString());
+	    		
+	    		EditText debutCampagne = (EditText)activity.findViewById( R.id.debutCampagne );
+	    		campagne.setDate_debut(debutCampagne.getText().toString());
+	    		
+	    		EditText finCampagne = (EditText)activity.findViewById( R.id.finCampagne );
+	    		campagne.setDate_fin(finCampagne.getText().toString());
+	    		
+	    		EditText adresseCampagne = (EditText)activity.findViewById( R.id.adresseCampagne );
+	    		campagne.setAdresse(adresseCampagne.getText().toString());	
+	    		
+	    		EditText gpsCampagne = (EditText)activity.findViewById( R.id.gpsCampagne);
+	    		String str[] = gpsCampagne.getText().toString().trim().split(";");
+	    		if(str.length == 2){
+		    		campagne.setLatitude(str[0]);
+		    		campagne.setLongitude(str[1]);
+	    		}
+	    		else{
+		    		campagne.setLatitude("pas de valeur");
+		    		campagne.setLongitude("pas de valeur");
+	    		}
+	    			    	    		
+	    		campagne.setUtilisateur_id(utilisateur_id);
+	    		
+	    		campagnes.insertCampagne(campagne);
             }
         });
 		
@@ -339,37 +459,21 @@ public class GestionCampagne extends Fragment
 		final Button buttonsupprimer= (Button) activity.findViewById(R.id.supprimer);
 		buttonsupprimer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-            	
-            	if(active_campagne != null){
-            		/** creation d une alerte boxe avant la suppression*/
-	        		AlertDialog deleteAlert = new AlertDialog.Builder(activity).create();
-	        		deleteAlert.setTitle(R.string.attention);
-	        		//deleteAlert.setMessage(R.string.supprimerCampagne);
-	        		deleteAlert.setMessage("Voulez-vous supprimer cette campagne ?"); //On ne met pas le texte ainsi, mais la forme precedante rencontre un probleme de type qui n est pas encore resolue
-	        		/**si oui**/
-	        		deleteAlert.setButton(DialogInterface.BUTTON_POSITIVE,"Oui", new DialogInterface.OnClickListener(){
-	
-	        			public void onClick(DialogInterface dialog, int which) {               
-				        	/*lien entre le bouton et la liste de campagne **/
-	        				int j = 0;
-	        				
-	        				/*recherche de la campgne dans la liste de type buttom_campagne*/
-	        				buttom_campagne liste_bc;
-	        				for(j =0; j < liste_buttom_campagne.size(); ++j){
-				        		liste_bc = liste_buttom_campagne.elementAt(j);
-								if(liste_bc.campagne == active_campagne){
-									liste_buttom_campagne.remove(liste_bc); //delete
-									radiogroup.removeViewAt(j); //suppression de la liste
-									break;
-								}
-	        				}
-	        				//suppression du campagne.xml
-	        				new File(path_campagne +"/"+ active_campagne).delete();
-	        				liste_campagnes = path_campagne.list();
-	        				active_campagne = null; //il n'y a plus de campagne selectionne
-	        			}
-	        		});
-	        		
+            	if(campagnes.count() != 0){
+               	
+		    		/** creation d une alerte boxe avant la suppression*/
+		    		AlertDialog deleteAlert = new AlertDialog.Builder(activity).create();
+		    		deleteAlert.setTitle(R.string.attention);
+		    		//deleteAlert.setMessage(R.string.supprimerCampagne);
+		    		deleteAlert.setMessage("Voulez-vous supprimer cette campagne ?"); //On ne met pas le texte ainsi, mais la forme precedante rencontre un probleme de type qui n est pas encore resolue
+		    		/**si oui**/
+		    		deleteAlert.setButton(DialogInterface.BUTTON_POSITIVE,"Oui", new DialogInterface.OnClickListener(){
+		
+		    			public void onClick(DialogInterface dialog, int which) {  
+		                	campagnes.removeCampagne(campagnes.getCurent_campagne());	    				
+		    			}
+		    		});
+		    		
 	        		deleteAlert.setButton(DialogInterface.BUTTON_NEGATIVE,"Non", new DialogInterface.OnClickListener(){
 	        			public void onClick(DialogInterface dialog, int which) { 
 	        				//rien a faire
@@ -377,12 +481,10 @@ public class GestionCampagne extends Fragment
 	        		});
 	        		
 	        		deleteAlert.show();
-            	} 
-            	else
-            	{
-            		//alertbox(R.string.attention, R.string.selectionCampagne);
-            		alertbox("Attention", "Sélectionner une campagne avant de continuer"); //On ne met pas le texte ainsi, mais la forme precedante rencontre un probleme de type qui n est pas encore resolue
             	}
+            	else
+                	alertbox("Attention !", "Créez une campagne pour pouvoir la supprimer");
+            	
             }
         });
 		
@@ -405,5 +507,6 @@ public class GestionCampagne extends Fragment
     public void onDestroy ()
     {
     	super.onDestroy();
+    	bdd.close();
     }
 }

@@ -21,7 +21,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:singleLine="false"
+                android:editable="false"
                 android:text="@string/selectionnerCampagne"
                 android:textColor="@color/color_blue"
                 android:textSize="28sp" >
@@ -128,6 +128,32 @@
 	                    android:ems="10"
 	                    android:inputType="textMultiLine" />
 
+	                	                <LinearLayout
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:orientation="horizontal" >
+
+	                    <TextView
+	                        android:id="@+id/adresseGPSCampagne"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:text="@string/adresseGPSCampagne" />
+
+	                    <EditText
+	                        android:id="@+id/gpsCampagne"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_weight="0.21"
+	                        android:ems="10"
+	                        android:inputType="text" />
+
+	                    <Button
+	                        android:id="@+id/localiserGPS"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:text="@string/localiser" />
+	                </LinearLayout>
+	                
 	                <LinearLayout
 	                    android:layout_width="match_parent"
 	                    android:layout_height="wrap_content"
@@ -138,6 +164,12 @@
 		                    android:layout_width="wrap_content"
 		                    android:layout_height="wrap_content"
 		                    android:text="@string/selectionner" />
+
+		                <Button
+		                    android:id="@+id/creer"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/creer" />
 	
 		                <Button
 		                    android:id="@+id/modifier"

@@ -16,7 +16,11 @@
             android:layout_marginRight="10dp"
             android:layout_weight="5"
             android:orientation="vertical" >
-
+
+
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
@@ -61,7 +65,9 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="800dp"
                 android:layout_height="wrap_content" >
-
+
+
+
                 <ImageView
                     android:id="@+id/imageQuestion"
                     android:layout_width="wrap_content"

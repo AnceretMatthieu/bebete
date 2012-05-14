@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-   		  <item android:id="@+id/menu_campagne"
+   		  <item android:id="@+id/menu_utilisateurs"
+          android:title="Utilisateurs"
+          android:showAsAction="ifRoom|withText" />
+          <item android:id="@+id/menu_campagne"
           android:title="Campagnes"
+          android:showAsAction="ifRoom|withText" />
+   		  <item android:id="@+id/menu_parcelle"
+          android:title="Parcelles"
           android:showAsAction="ifRoom|withText" />
 		  <item android:id="@+id/menu_piege"
           android:title="Pièges"

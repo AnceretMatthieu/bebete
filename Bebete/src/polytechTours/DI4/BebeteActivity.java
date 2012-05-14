@@ -2,28 +2,21 @@ package polytechTours.DI4;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 
 public class BebeteActivity extends Activity 
 {
 	private FragmentManager manager;
-	private int idFragmentQuestion;
-	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -35,8 +28,8 @@ public class BebeteActivity extends Activity
     @Override 
     public void onCreate(Bundle savedInstanceState) 
     {
-    	setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        super.onCreate(savedInstanceState);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+    	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
         manager = this.getFragmentManager();  
@@ -46,18 +39,33 @@ public class BebeteActivity extends Activity
         actionBar.setCustomView(mActionBarView);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         ImageButton gauche = (ImageButton)this.findViewById( R.id.histo_gauche );
-        //gauche.setEnabled(false);
-        gauche.setVisibility(ImageButton.INVISIBLE);
+        gauche.setEnabled(false);
         ImageButton droite = (ImageButton)this.findViewById( R.id.histo_droite );
-        //droite.setEnabled(false);
-        droite.setVisibility(ImageButton.INVISIBLE);
-        mActionBarView.setKeepScreenOn(true);
+        droite.setEnabled(false);
+        
+        GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
+		
+		miseAjourAffichage();
+		
+		FragmentTransaction transaction = manager.beginTransaction();
+			transaction.add( R.id.linearLayout2, gestionutilisateur, "enCours" );
+		transaction.commit();
     }
     
     @Override
     public boolean onOptionsItemSelected(MenuItem item) 
     {
-    	if( item.getItemId() == R.id.menu_campagne )
+    	if( item.getItemId() == R.id.menu_utilisateurs )
+    	{
+    		GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
+    		
+    		miseAjourAffichage();
+    		
+    		FragmentTransaction transaction = manager.beginTransaction();
+    			transaction.add( R.id.linearLayout2, gestionutilisateur, "enCours" );
+    		transaction.commit();
+    	}
+    	else if( item.getItemId() == R.id.menu_campagne )
     	{
     		GestionCampagne gestionCampagne = new GestionCampagne();
 			
@@ -77,10 +85,21 @@ public class BebeteActivity extends Activity
 				transaction.add( R.id.linearLayout2, gestionPiege, "enCours" );
 			transaction.commit();
     	}
+    	else if( item.getItemId() == R.id.menu_parcelle )
+    	{
+			GestionParcelle gestionParcelle = new GestionParcelle();
+			
+			miseAjourAffichage();
+
+			FragmentTransaction transaction = manager.beginTransaction();
+				transaction.add( R.id.linearLayout2, gestionParcelle, "enCours" );
+			transaction.commit();
+    	}
     	else if( item.getItemId() == R.id.menu_identifier )
     	{
+    		//Question question = new Question ("Coucou je suis Dynamique", "Je peux m�me afficher un texte d'aide", "" );
     		QuestionFragment questionView = new QuestionFragment();
-    		idFragmentQuestion = questionView.getId();
+    		questionView.getId();
 			
     		miseAjourAffichage();
 			
@@ -103,4 +122,36 @@ public class BebeteActivity extends Activity
 			transaction.commit();
 		}
     }
+    
+   /* @Override 
+    public void onPause()
+    {
+    	super.onPause();
+    	
+    	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
+    	
+    	Log.d("Activity", "onPause Fragment Question" );
+    	
+    	if( fragmentEnCours != null && fragmentEnCours.getId() == idFragmentQuestion )
+    	{
+    		Log.d("Activity", "onPause Fragment Question" );
+    		QuestionFragment fragment = (QuestionFragment)fragmentEnCours;
+    		fragment.onPause(); 
+    	}
+    }
+    
+    @Override
+    public void onDestroy ()
+    {
+    	super.onDestroy();
+    	
+    	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
+    	
+    	if( fragmentEnCours != null && fragmentEnCours.getId() == idFragmentQuestion )
+    	{
+    		Log.d("Activity", "onDestroy" );
+    		QuestionFragment fragment = (QuestionFragment)fragmentEnCours;
+    		fragment.onDestroy(); 
+    	}
+    }*/
 }
