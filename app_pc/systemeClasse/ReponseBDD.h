@@ -5,6 +5,7 @@
 #include "Reponse.h"
 #include "ListeReponse.h"
 #include "Question.h"
+#include "Media.h"
 
 
 class Reponse;
@@ -15,7 +16,7 @@ class ReponseBDD : public BDD {
 
     public:
         ReponseBDD();
-        void listeReponseFromQuestion(Question * quest, bool recursif);
+        static void listeReponseFromQuestion(Question * quest, bool recursif);
 };
 
 #endif // ReponseBDD_h
