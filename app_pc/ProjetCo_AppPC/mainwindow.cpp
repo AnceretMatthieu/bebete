@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     peuplerListeQuestions();
     peuplerListeReponses();
 
+    /* Création des actions */
+    createAction();
 
     ui->setupUi(this);
 
@@ -32,23 +34,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     /* Affectation des actions aux boutons du menu */
     connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
 
-    /*
-    // Mettre une image dans un QLabel
-    ui->labelImage->setPixmap(QPixmap("../Medias_tests/cseptempunctata.jpg"));
-    ui->labelImage->adjustSize();
-    ui->labelImage->show();
+    /* On gère le click sur le TreeView des questions */
+    connect(ui->treeViewQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewQuestions(QModelIndex)));
 
-    // Mettre une vidéo dans un babel
-    Phonon::VideoPlayer * monLecteur = new Phonon::VideoPlayer(Phonon::VideoCategory);
-    QFormLayout * layout = new QFormLayout();
-    monLecteur->show();
-    monLecteur->play(Phonon::MediaSource("../Medias_tests/test_video.avi"));
-    layout->addWidget(monLecteur);
-    ui->widgetVideo->setLayout(layout);
-
-    // lecture d'un son
-    QSound::play("../Medias_tests/Klaas - Our Own Way (Official Video).wav");
-    */
+    /* Clic droit sur le TreeView des questions */
+    connect(ui->treeViewQuestion, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeQuestionsContextMenu(const QPoint&)));
 }
 
 MainWindow::~MainWindow()
@@ -70,7 +60,6 @@ void MainWindow::peuplerListeQuestions()
 
     QStandardItem * elem2 = new QStandardItem(redIcon, "Question 2");
     elem2->appendRow(new QStandardItem(greenIcon, "Question 2.1"));
-    //elem2->appendRow(new QStandardItem(yellowIcon, "Question 2.2"));
     QStandardItem * elem22 = new QStandardItem(greenIcon, "Question 2.2");
     elem22->appendRow(new QStandardItem(greenIcon, "Question 2.2.1"));
     elem22->appendRow(new QStandardItem(greenIcon, "Question 2.2.2"));
@@ -100,6 +89,18 @@ void MainWindow::peuplerListeReponses()
     model2->appendRow(elem6);
     elem6->appendRow(new QStandardItem("aide reponse 3"));
     elem6->appendRow(new QStandardItem("media 1"));
+}
+
+void MainWindow::createAction()
+{
+    addQuestion = new QAction(tr("Ajouter une question"), this);
+    connect(addQuestion, SIGNAL(triggered()), this, SLOT(newQuestion()));
+
+    modifQuestion = new QAction(tr("Modifier"), this);
+    connect(modifQuestion, SIGNAL(triggered()), this, SLOT(modifierQuestion()));
+
+    delQuestion = new QAction(tr("Supprimer"), this);
+    connect(delQuestion, SIGNAL(triggered()), this, SLOT(supprimerQuestion()));
 }
 
 void MainWindow::on_actionImporter_XML_triggered()
@@ -139,4 +140,46 @@ void MainWindow::closeEvent(QCloseEvent *event)
     else if (reponse == QMessageBox::No) {
         event->ignore();
     }
+}
+
+void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
+{
+    QString texte = model->itemFromIndex(index)->text();
+    ui->labelQuestion->setText(texte);
+}
+
+void MainWindow::treeQuestionsContextMenu(const QPoint &pos)
+{
+    QMenu menu(this);
+    menu.addAction(addQuestion);
+    menu.addAction(modifQuestion);
+    menu.addAction(delQuestion);
+    menu.exec(pos);
+}
+
+void MainWindow::newQuestion()
+{
+    // Ouvrir une fenêtre qui demande le nom de la question à insérer
+
+    QStandardItem * elem = new QStandardItem(greenIcon, "Question i");
+    model->appendRow(elem);
+}
+
+void MainWindow::modifierQuestion()
+{
+    // Il faut envoyer les paramètres de l'item courant à la fenêtre pour pouvoir afficher les infos (texte de la question, ...)
+
+    QModelIndex index = ui->treeViewQuestion->currentIndex();
+
+    ModifQuestionWindow * myWindow = new ModifQuestionWindow(index, this);
+    myWindow->setModal(true);
+    myWindow->show();
+}
+
+void MainWindow::supprimerQuestion()
+{
+    // Peut-être demander confirmation avant de supprimer une question ? (surtout dans le cas ou la question possède des fils)
+
+    QModelIndex index = ui->treeViewQuestion->currentIndex();
+    model->removeRow(index.row(), index.parent());
 }
