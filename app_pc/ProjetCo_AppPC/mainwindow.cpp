@@ -72,6 +72,12 @@ void MainWindow::peuplerListeQuestions()
     elem3->appendRow(new QStandardItem(redIcon, "Question 3.2"));
     elem3->appendRow(new QStandardItem(greenIcon, "Question 3.3"));
     model->appendRow(elem3);
+
+    /*QStandardItem * root = new QStandardItem("Racine de l'arbre");
+    root->appendRow(elem1);
+    root->appendRow(elem2);
+    root->appendRow(elem3);
+    model->appendRow(root);*/
 }
 
 void MainWindow::peuplerListeReponses()
@@ -146,6 +152,9 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
 {
     QString texte = model->itemFromIndex(index)->text();
     ui->labelQuestion->setText(texte);
+
+    // au clic sur une question du TreeView des questions, il faut aussi afficher les médias associés à cette question ainsi que
+    // les réponses
 }
 
 void MainWindow::treeQuestionsContextMenu(const QPoint &pos)
@@ -161,8 +170,21 @@ void MainWindow::newQuestion()
 {
     // Ouvrir une fenêtre qui demande le nom de la question à insérer
 
+    QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
+    QStandardItem * parentSelection = model->itemFromIndex(index); // on récupère le parent de la selection
+
     QStandardItem * elem = new QStandardItem(greenIcon, "Question i");
-    model->appendRow(elem);
+
+    if (parentSelection->parent() != 0)
+    {
+        parentSelection->insertRow(index.row() + 1, elem);
+        //parentSelection->appendRow(elem);
+    }
+    else
+    {
+        model->insertRow(index.row() + 1 , elem);
+        //model->appendRow(elem);
+    }
 }
 
 void MainWindow::modifierQuestion()
