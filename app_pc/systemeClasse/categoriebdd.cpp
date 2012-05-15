@@ -52,5 +52,14 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
 
 void CategorieBDD::enregistrerArbre(Categorie *racine)
 {
+    QDomDocument doc(QString("file"));
+    QDomElement cat;
+    cat.setNodeValue("branche");
+    cat.setAttribute("id", QString("b"+racine->getIdentifiant()));
+
+
+    doc.appendChild(cat);
+
+    qDebug() << doc.toString();
 
 }

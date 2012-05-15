@@ -12,8 +12,9 @@ int main(int argc, char *argv[])
 
 
     //QuestionBDD * o = new QuestionBDD();
+    Categorie* categ = new Categorie();
     CategorieBDD::CreerArbre();
-
+    CategorieBDD::enregistrerArbre(categ);
     //o->CreerArbre();
 
     return a.exec();

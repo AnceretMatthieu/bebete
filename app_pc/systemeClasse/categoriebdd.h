@@ -17,6 +17,9 @@ class CategorieBDD : public BDD
 public:
     static ListeQuestion * CreerArbre();
     static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
+    static void enregistrerArbre(Categorie *racine);
+
+
 };
 
 #endif // CATEGORIEBDD_H
