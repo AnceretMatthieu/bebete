@@ -8,8 +8,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     yellowIcon = QIcon("images/icon_yellow.png");
     redIcon = QIcon("images/icon_red.png");
 
+    // parsage de l'arbre
+    maListeQuestions = CategorieBDD::CreerArbre();
+
     /* Peuplement des TreeView */
-    peuplerListeQuestions();
+    //peuplerListeQuestions();
+    peuplerListeQuestionsXML();
     peuplerListeReponses();
 
     /* Création des actions */
@@ -44,6 +48,28 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::peuplerListeQuestionsXML()
+{
+    model = new QStandardItemModel(0, 0);
+
+    for(int i = 0; i < maListeQuestions->size(); i++)
+    {
+        Question * q = maListeQuestions->at(i);
+        QStandardItem * elem = new QStandardItem(q->getQuestion());
+
+        ListeReponse * uneListeReponse = q->getListeReponse();
+
+        for(int j = 0; j < uneListeReponse->size(); j++)
+        {
+            Reponse * r = uneListeReponse->at(j);
+            QStandardItem * elem2 = new QStandardItem(r->getReponse());
+            elem->appendRow(elem2);
+        }
+
+        model->appendRow(elem);
+    }
 }
 
 void MainWindow::peuplerListeQuestions()
