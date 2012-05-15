@@ -9,10 +9,12 @@ TEMPLATE = app
 SOURCES += main.cpp \
     mainwindow.cpp \
     aboutwindow.cpp \
-    modifquestionwindow.cpp
+    modifquestionwindow.cpp \
+    couleursdonnees.cpp
 HEADERS += mainwindow.h \
     aboutwindow.h \
-    modifquestionwindow.h
+    modifquestionwindow.h \
+    couleursdonnees.h
 FORMS += mainwindow.ui \
     aboutwindow.ui \
     modifquestionwindow.ui
