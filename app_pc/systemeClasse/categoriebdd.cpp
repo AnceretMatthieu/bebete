@@ -49,3 +49,8 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
         cat->ajouterQuestion(temp);
     }
 }
+
+void CategorieBDD::enregistrerArbre(Categorie *racine)
+{
+
+}
