@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 
     //QuestionBDD * o = new QuestionBDD();
     CategorieBDD::CreerArbre();
+
     //o->CreerArbre();
     
 
