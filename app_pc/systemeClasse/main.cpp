@@ -15,7 +15,6 @@ int main(int argc, char *argv[])
     CategorieBDD::CreerArbre();
 
     //o->CreerArbre();
-    
 
     return a.exec();
 }
