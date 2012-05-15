@@ -44,6 +44,19 @@ public class BebeteActivity extends Activity
         droite.setEnabled(false);
         
         GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
+        
+        //**********************Code à enlever par la suite************************
+        //Creation d'un piege auto pour test rapide d'insertion sur la BDD
+        Piege piege = new Piege();
+        piege.setNom("toto");
+        piege.setId(117);
+        
+        PiegeBDD bdd = new PiegeBDD(getApplicationContext());
+        bdd.open();
+        bdd.insertPiege(piege);
+        bdd.close();
+        
+        //*************************************************************************
 		
 		miseAjourAffichage();
 		

@@ -93,7 +93,7 @@ public class GestionBDD extends SQLiteOpenHelper {
 					COL_NOM + " VARCHAR(50), " +
 					COL_NOMBRE + " INTEGER, " +
 					"FOREIGN KEY(" + COL_PIEGE_ID +") REFERENCES " + TABLE_PARCELLE + "(" + COL_ID + ") ON DELETE CASCADE, " +
-					"UNIQUE (" + COL_PIEGE_ID + "," + COL_NOM + ");";
+					"UNIQUE (" + COL_PIEGE_ID + "," + COL_NOM + "));";
 	
 	public GestionBDD(Context context, String name, CursorFactory factory, int version) {
 		super(context, name, factory, version);

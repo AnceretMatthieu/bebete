@@ -6,6 +6,11 @@ public class Recolte {
 	private String nom;
 	private int nombre;
 	
+	public Recolte()
+	{
+		nombre = 0;
+	}
+	
 	public int getId() {
 		return id;
 	}

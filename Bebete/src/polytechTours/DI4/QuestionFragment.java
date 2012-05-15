@@ -11,6 +11,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
@@ -23,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -50,6 +53,10 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private ImageButton retour;
 	private ImageButton suivant;
 	private ImageButton alerte;
+	private Button boutonEnregistrer;
+	private Button boutonAnnuler;
+	private Resultat resultat;
+	private boolean dialogVisible;
 	
 	public QuestionFragment()
 	{
@@ -58,6 +65,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		currentQuestion = question;
 		listQuestion.add(question);
 		navigation = 0;
+		dialogVisible = false;
 	}
 	
 	//*************************************************************************************************************
@@ -191,30 +199,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 			}
 		transaction.commit();
 	}
-	
-	/* @Override
-    public void onStop()
-    {
-    	super.onStop();
-    	Log.d( "QuestionFragment", "Fragment Stop" );
-    	releaseCamera();
-    }
-	
-	@Override
-	public void onDestroyView()
-	{
-		super.onDestroyView();
-		Log.d( "QuestionFragment", "Fragment DestroyView" );
-    	releaseCamera();
-	}
-	
-	@Override
-	public void onDestroy()
-	{
-		super.onDestroy();
-		Log.d( "QuestionFragment", "Fragment Destroy" );
-    	releaseCamera();
-	}*/
 	
 	@Override
 	public void onDetach()
@@ -351,7 +335,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 					else
 					{
 						Log.d("Affichage Resultat", "Le resultat doit s'afficher");
-						afficherResultat( reponse.getResultat() );
+						resultat = reponse.getResultat();
+						afficherResultat( resultat );
 					}
 				}
 			}
@@ -386,6 +371,41 @@ public class QuestionFragment extends Fragment implements OnClickListener
 					retour.setEnabled(true);
 				}
 				changeUIviaHisto();
+			}
+			else if( dialogVisible && arg0.getId() == boutonAnnuler.getId() )
+			{
+				dialogVisible = false;
+				dialog.dismiss();
+			}
+			else if( dialogVisible && arg0.getId() == boutonEnregistrer.getId() )
+			{
+				SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
+		        
+				//*************Code temporaire*****************************************
+				int piegeID = (int)preferences.getLong("PIEGE_ID", -1);
+		        //int piegeID = 117;
+		        //*********************************************************************
+				
+		        RecolteBDD bdd = new RecolteBDD(activity.getApplicationContext());
+		        bdd.open();
+		        Recolte recolte = bdd.getRecolteWithNOM( resultat.getNom() );
+		        
+		        if( recolte == null )
+		        {
+		        	recolte = new Recolte();
+		        	recolte.setNom(resultat.getNom());
+		        }
+		        
+		        recolte.setPege_id( piegeID );
+		        recolte.setNombre( recolte.getNombre() + 1 );
+		        bdd.insinsertOrUpdateRecolte( recolte.getId(), recolte );
+		        bdd.close();
+		        
+		        Log.d("Resultat", "Bete : " + recolte.getNom() + " nombre : " + recolte.getNombre() );
+		        
+		        dialog.dismiss();
+		        dialogVisible = false;
+		        
 			}
 			else if( aquis )
 			{
@@ -497,6 +517,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		dialog.setCancelable(true);
 		dialog.setCanceledOnTouchOutside(true);
 		
+		dialogVisible = true;
+		
 		TextView nom = (TextView)dialog.findViewById(R.id.nom );
 		nom.setText( resultat.getNom() );
 		
@@ -505,6 +527,12 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		TextView regimeAlimentaire = (TextView)dialog.findViewById(R.id.regimeAlimentaire );
 		regimeAlimentaire.setText( resultat.getRegimeAlimentaire() );
+		
+		boutonEnregistrer = (Button)dialog.findViewById(R.id.button1);
+		boutonEnregistrer.setOnClickListener(this);
+		
+		boutonAnnuler = (Button)dialog.findViewById(R.id.button2);
+		boutonAnnuler.setOnClickListener(this);
 		
 		Bitmap[] bitmaps = new Bitmap[resultat.getListeImage().size()];
 		
