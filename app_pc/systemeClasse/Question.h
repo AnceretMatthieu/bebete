@@ -17,6 +17,7 @@ class Question {
        int idleft;
        int idright;
        QString texte;
+       QString visible;
 
        ListeReponse * listeReponse;
        ListeMedia * listeMedia;
@@ -26,11 +27,14 @@ class Question {
         Question(int id);
         int getIdentifiant() {return id;}
         QString getQuestion() {return texte;}
+        QString getVisible() {return visible;}
 
+        void setVisible(QString visible) {this->visible = visible;}
         void setIdLeft(int id)  {idleft = id;}
         void setIdRight(int id)  {idright = id;}
         int getIdLeft()  {return idleft;}
         int getIdRight()  {return idright;}
+
 
         void setQuestion(QString question) {texte = question;}
 
@@ -40,6 +44,7 @@ class Question {
 
         void ajouterMedia(Media * med);
         void supprimerMedia(Media * med);
+        ListeMedia * getListeMedia()    {return listeMedia;}
 };
 
 #endif // Question_h

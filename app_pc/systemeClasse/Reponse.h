@@ -4,6 +4,8 @@
 #include <QVector>
 #include <QString>
 #define MEDIA_NOT_IN_LIST_EXCEPTION 404
+#define TYPE_ESPECE 0
+#define TYPE_CATEGORIE 1
 
 class Media;
 class Question;
@@ -18,36 +20,38 @@ class Reponse {
         int idright;
         QString texte;
 
-        Question * QuestionEntree;
-        Question * QuestionSortie;
-        Espece * myEspece;
+        void * pere;
+        void * fils;
+        int typePere;
+        int typeFils;
+
         ListeMedia * illustrationMedia;
 
     public:
         Reponse(int id);
 
-        int getIdentifiant() {
-            return id;
-        }
+        int getIdentifiant() {  return id; }
+        QString getReponse() {  return texte;   }
 
-        QString getReponse() {
-            return texte;
-        }
+        void setSuiv(void * suiv)   {   fils = suiv; }
+        void * getSuiv()            { return fils; }
+        void setPrec(void * prec)   {   pere = prec; }
+        void * getPrec()            { return pere; }
+
+        void setTypeSuiv(int type);
+        int getTypeSuiv()   {return typeFils;}
+
+        void setTypePrec(int type);
+        int getTypePrec()   {return typePere;}
 
         void setIdLeft(int id)  {idleft = id;}
         void setIdRight(int id)  {idright = id;}
         int getIdLeft()  {return idleft;}
         int getIdRight()  {return idright;}
 
-        Question * getQuestionSuiv()    {return QuestionSortie;}
-        Question * getQuestionPrec()    {return QuestionEntree;}
-
         void setReponse(QString rep) {
             texte = rep;
         }
-
-        void setQuestionSuiv(Question * question)   {QuestionSortie = question;}
-        void setQuestionPrec(Question * question)   {QuestionEntree = question;}
 
         ListeMedia * getListeIllustration() {return illustrationMedia;}
 

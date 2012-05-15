@@ -22,6 +22,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
                 tempr->setIdLeft(quest->getListeReponse()->at(quest->getListeReponse()->size()-2)->getIdentifiant());
             }
 
+            BDD::currentNode = lstBaliseQuestion.at(i).toElement();
             if(recursif) {
                 ReponseBDD::listeFromReponse(tempr, recursif);
             }
@@ -42,6 +43,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
                     tempm->setPath(lstMedia.at(j).toElement().text());
                 }
                 qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
+                quest->ajouterMedia(tempm);
             }
         }
     }

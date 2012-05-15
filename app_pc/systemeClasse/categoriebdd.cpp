@@ -35,7 +35,8 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
         //découpage du q devant l'id
         temp = new Question(lstBaliseQuestion.at(i).toElement().attribute("id").left(1).toInt());
         temp->setQuestion(lstBaliseQuestion.at(i).toElement().attribute("texte"));
-
+        temp->setVisible(lstBaliseQuestion.at(i).toElement().attribute("visible"));
+        qDebug() << "Visible" << temp->getVisible();
         qDebug() << "Question " << temp->getIdentifiant() << " : " << temp->getQuestion();
 
         if(i > 0)   {

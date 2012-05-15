@@ -1,6 +1,7 @@
 #ifndef Espece_h
 #define Espece_h
 
+#include "ListeMedia.h"
 #include <QString>
 
 class Reponse;
@@ -9,11 +10,13 @@ class Espece {
 
     private:
         int id;
-        int type;
+        QString type;
+        QString nom;
         QString regimeAlimentaire;
         QString information;
 
         Reponse * myReponse;
+        ListeMedia * listeMedia;
 
     public:
         Espece(int identifiant);
@@ -22,7 +25,10 @@ class Espece {
             return id;
         }
 
-        int getType() {
+        QString getNom()    {return nom;}
+        void setNom(QString o)  {nom = o;}
+
+        QString getType() {
             return type;
         }
 
@@ -34,7 +40,7 @@ class Espece {
             return information;
         }
 
-        void setType(int unType) {
+        void setType(QString unType) {
             type = unType;
         }
 
@@ -45,6 +51,10 @@ class Espece {
         void setInformation(QString uneInformation) {
             information = uneInformation;
         }
+
+        void ajouterMedia(Media * med);
+        void supprimerMedia(Media * med);
+        ListeMedia * getListeMedia()    {return listeMedia;}
 };
 
 #endif // Espece_h
