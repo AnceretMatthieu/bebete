@@ -5,6 +5,7 @@
 #include "QuestionBDD.h"
 #include "MediaBDD.h"
 #include "Categorie.h"
+#include "QFile.h"
 
 
 class Question;

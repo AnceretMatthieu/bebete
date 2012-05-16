@@ -5,8 +5,6 @@ ModifQuestionWindow::ModifQuestionWindow(QModelIndex index, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ModifQuestionWindow)
 {
-    //ui->label->setText(index.row() + " - monTexte");
-
     ui->setupUi(this);
 }
 

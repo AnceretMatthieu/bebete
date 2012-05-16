@@ -13,7 +13,8 @@ int main(int argc, char *argv[])
 
     //QuestionBDD * o = new QuestionBDD();
     Categorie* categ = new Categorie(1);
-    CategorieBDD::CreerArbre();
+    ListeQuestion * lq = CategorieBDD::CreerArbre();
+    categ->ajouterQuestion(lq->at(0));
     CategorieBDD::enregistrerArbre(categ);
     //o->CreerArbre();
 

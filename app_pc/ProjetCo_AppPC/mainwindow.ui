@@ -17,7 +17,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Bebete</string>
+   <string>INNOPHYT Identificateur - Editeur</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -56,6 +56,9 @@
         </property>
         <property name="contextMenuPolicy">
          <enum>Qt::CustomContextMenu</enum>
+        </property>
+        <property name="selectionBehavior">
+         <enum>QAbstractItemView::SelectRows</enum>
         </property>
        </widget>
       </item>
@@ -113,7 +116,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Média</string>
+           <string>Médias</string>
           </property>
          </widget>
         </item>
@@ -156,7 +159,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Réponse</string>
+           <string>Réponses</string>
           </property>
          </widget>
         </item>

@@ -8,8 +8,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     yellowIcon = QIcon("images/icon_yellow.png");
     redIcon = QIcon("images/icon_red.png");
 
+    // parsage de l'arbre
+    maListeQuestions = CategorieBDD::CreerArbre();
+
     /* Peuplement des TreeView */
-    peuplerListeQuestions();
+    //peuplerListeQuestions();
+    peuplerListeQuestionsXML();
     peuplerListeReponses();
 
     /* Création des actions */
@@ -46,6 +50,28 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::peuplerListeQuestionsXML()
+{
+    model = new QStandardItemModel(0, 0);
+
+    for(int i = 0; i < maListeQuestions->size(); i++)
+    {
+        Question * q = maListeQuestions->at(i);
+        QStandardItem * elem = new QStandardItem(q->getQuestion());
+
+        ListeReponse * uneListeReponse = q->getListeReponse();
+
+        for(int j = 0; j < uneListeReponse->size(); j++)
+        {
+            Reponse * r = uneListeReponse->at(j);
+            QStandardItem * elem2 = new QStandardItem(r->getReponse());
+            elem->appendRow(elem2);
+        }
+
+        model->appendRow(elem);
+    }
+}
+
 void MainWindow::peuplerListeQuestions()
 {
     // Pour le TreeView des questions, il faut voir si l'on affiche toutes les questions ou si l'on affiche les questions au fur et à mesure
@@ -72,6 +98,12 @@ void MainWindow::peuplerListeQuestions()
     elem3->appendRow(new QStandardItem(redIcon, "Question 3.2"));
     elem3->appendRow(new QStandardItem(greenIcon, "Question 3.3"));
     model->appendRow(elem3);
+
+    /*QStandardItem * root = new QStandardItem("Racine de l'arbre");
+    root->appendRow(elem1);
+    root->appendRow(elem2);
+    root->appendRow(elem3);
+    model->appendRow(root);*/
 }
 
 void MainWindow::peuplerListeReponses()
@@ -146,6 +178,9 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
 {
     QString texte = model->itemFromIndex(index)->text();
     ui->labelQuestion->setText(texte);
+
+    // au clic sur une question du TreeView des questions, il faut aussi afficher les médias associés à cette question ainsi que
+    // les réponses
 }
 
 void MainWindow::treeQuestionsContextMenu(const QPoint &pos)
@@ -161,8 +196,21 @@ void MainWindow::newQuestion()
 {
     // Ouvrir une fenêtre qui demande le nom de la question à insérer
 
+    QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
+    QStandardItem * parentSelection = model->itemFromIndex(index); // on récupère le parent de la selection
+
     QStandardItem * elem = new QStandardItem(greenIcon, "Question i");
-    model->appendRow(elem);
+
+    if (parentSelection->parent() != 0)
+    {
+        parentSelection->insertRow(index.row() + 1, elem);
+        //parentSelection->appendRow(elem);
+    }
+    else
+    {
+        model->insertRow(index.row() + 1 , elem);
+        //model->appendRow(elem);
+    }
 }
 
 void MainWindow::modifierQuestion()

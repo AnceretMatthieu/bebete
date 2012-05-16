@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon May 14 09:52:27 2012
+** Created: Tue May 15 09:14:33 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -111,6 +111,7 @@ public:
         font1.setPointSize(12);
         treeViewQuestion->setFont(font1);
         treeViewQuestion->setContextMenuPolicy(Qt::CustomContextMenu);
+        treeViewQuestion->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         horizontalLayout_2->addWidget(treeViewQuestion);
 
@@ -282,14 +283,14 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "Bebete", 0, QApplication::UnicodeUTF8));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "INNOPHYT Identificateur - Editeur", 0, QApplication::UnicodeUTF8));
         actionExporter_XML->setText(QApplication::translate("MainWindow", "Exporter XML", 0, QApplication::UnicodeUTF8));
         actionQuitter->setText(QApplication::translate("MainWindow", "Quitter", 0, QApplication::UnicodeUTF8));
         actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
         labelQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
-        label->setText(QApplication::translate("MainWindow", "M\303\251dia", 0, QApplication::UnicodeUTF8));
-        lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponse", 0, QApplication::UnicodeUTF8));
+        label->setText(QApplication::translate("MainWindow", "M\303\251dias", 0, QApplication::UnicodeUTF8));
+        lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
         labelImage->setText(QString());
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0, QApplication::UnicodeUTF8));

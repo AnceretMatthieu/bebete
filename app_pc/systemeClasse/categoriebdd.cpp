@@ -1,4 +1,5 @@
 #include "categoriebdd.h"
+#include <QIODevice>
 
 ListeQuestion * CategorieBDD::CreerArbre()
 {
@@ -52,40 +53,34 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
 
 void CategorieBDD::enregistrerArbre(Categorie *racine)
 {
-    QDomDocument doc(QString("file"));
-    QDomElement cat = doc.createElement("branche");
-    doc.appendChild(cat);
+    QDomElement arbre = BDD::doc.createElement("arbre");
+    doc.appendChild(arbre);
 
+    QDomElement root = doc.createElement("branche");
+    root.setAttribute("id", "b"+racine->getIdentifiant());
+    root.setAttribute("type", racine->getLabel());
+    arbre.appendChild(root);
 
-    cat.setNodeValue("branche");
-    cat.setAttribute("id", QString("b"+racine->getIdentifiant()));
-
-    QFile file(filename);
-    if ( !file.open(IO_WriteOnly) )
+    ListeQuestion * lq = racine->getListeQuestion();
+    for(int i = 0; i < lq->size(); i++)
     {
-        qDebug("Unable to create the XML config file for saving.");
+        QDomElement quest = doc.createElement("question");
+        quest.setAttribute("", "");
+        root.appendChild(quest);
+    }
+
+    QFile file("enregistrement.xml");
+    if ( !file.open(QIODevice::WriteOnly) )
+    {
+        qDebug("Impossible de créer le fichier xml pour sauvegarder les données");
         return;
     }
     else
     {
         QTextStream textStream(&file);
-        textStream.setEncoding(QTextStream::UnicodeUTF8);
+        qDebug() << "Enregistrement dans le fichier";
+        textStream <<  doc.toString();
+
     }
-
-    doc.appendChild(cat);
-
-    qDebug() << "affichage de l'enregistrement" << doc.toString();
-
-    /*
-
-
-
-
-
-
-    // c'est doc.toString() qui va transformer ton arborescence XML en texte
-    textStream << doc.toString();
-    file.close();
-}  */
-
+   file.close();
 }
