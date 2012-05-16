@@ -4,10 +4,12 @@
 Categorie::Categorie(int identifiant)   {
     this->id = identifiant;
     myQuestion = new ListeQuestion();
+    pere = NULL;
 }
 
 
 void Categorie::ajouterQuestion(Question *rep) {
+    rep->setCat(this);
     myQuestion->append(rep);
 }
 
@@ -17,6 +19,7 @@ void Categorie::supprimerQuestion(Question *rep) {
         i++;
 
     if(i != myQuestion->size())   {
+        myQuestion->at(i)->setCat(NULL);
         myQuestion->remove(i);
     }
 }

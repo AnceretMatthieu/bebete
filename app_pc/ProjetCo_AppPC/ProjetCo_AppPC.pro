@@ -11,13 +11,6 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     aboutwindow.cpp \
     modifquestionwindow.cpp \
-<<<<<<< HEAD
-    couleursdonnees.cpp
-HEADERS += mainwindow.h \
-    aboutwindow.h \
-    modifquestionwindow.h \
-    couleursdonnees.h
-=======
     ReponseBDD.cpp \
     Reponse.cpp \
     QuestionBDD.cpp \
@@ -51,7 +44,6 @@ HEADERS += mainwindow.h \
     categoriebdd.h \
     Categorie.h \
     BDD.h
->>>>>>> 28bba3ac5978b557352b22ded54ec70626ff7d71
 FORMS += mainwindow.ui \
     aboutwindow.ui \
     modifquestionwindow.ui

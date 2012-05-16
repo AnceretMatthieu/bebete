@@ -14,7 +14,7 @@
 					<legende>Exemple d'insecte à 6 pattes</legende>
 				</media>
 				<branche id="b2">
-					<question id="q3" texte="Encore des questions pour cet exemple test">
+					<question id="q3" texte="Plus de question pour cet exemple test">
 					</question>
 				</branche>
 			</reponse>

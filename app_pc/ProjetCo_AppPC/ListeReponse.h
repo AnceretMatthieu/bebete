@@ -2,6 +2,7 @@
 #define ListeReponse_h
 
 #include <QVector>
+#include "Reponse.h"
 
 using namespace std;
 

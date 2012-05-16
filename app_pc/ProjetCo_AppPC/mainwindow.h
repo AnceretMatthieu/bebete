@@ -21,6 +21,7 @@
 #include "aboutwindow.h"
 #include "modifquestionwindow.h"
 #include "categoriebdd.h"
+#include "Reponse.h"
 
 namespace Ui {
 class MainWindow;
@@ -47,10 +48,9 @@ class MainWindow : public QMainWindow
         QAction * modifQuestion;
         QAction * delQuestion;
         ListeQuestion * maListeQuestions;
+        QMap<QString, Question *> mapTreeQuestions;
 
-        void peuplerListeQuestions();
-        void peuplerListeQuestionsXML();
-        void peuplerListeReponses();
+        void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere);
         void createAction();
 
     private slots:

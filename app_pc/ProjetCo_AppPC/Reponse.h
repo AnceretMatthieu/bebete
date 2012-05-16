@@ -3,6 +3,9 @@
 
 #include <QVector>
 #include <QString>
+
+#include "Categorie.h"
+
 #define MEDIA_NOT_IN_LIST_EXCEPTION 404
 #define TYPE_ESPECE 0
 #define TYPE_CATEGORIE 1
@@ -33,10 +36,10 @@ class Reponse {
         int getIdentifiant() {  return id; }
         QString getReponse() {  return texte;   }
 
-        void setSuiv(void * suiv)   {   fils = suiv; }
-        void * getSuiv()            { return fils; }
-        void setPrec(void * prec)   {   pere = prec; }
-        void * getPrec()            { return pere; }
+        void setSuiv(void * suiv);
+        void * getSuiv();
+        void setPrec(void * prec);
+        void * getPrec();
 
         void setTypeSuiv(int type);
         int getTypeSuiv()   {return typeFils;}

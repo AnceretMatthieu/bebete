@@ -12,9 +12,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     maListeQuestions = CategorieBDD::CreerArbre();
 
     /* Peuplement des TreeView */
-    //peuplerListeQuestions();
-    peuplerListeQuestionsXML();
-    peuplerListeReponses();
+    model = new QStandardItemModel(0, 0);
+    model2 = new QStandardItemModel;
+
+    peuplerListeQuestionsXML(maListeQuestions, NULL);
 
     /* Création des actions */
     createAction();
@@ -50,77 +51,46 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::peuplerListeQuestionsXML()
+void MainWindow::peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere)
 {
-    model = new QStandardItemModel(0, 0);
-
-    for(int i = 0; i < maListeQuestions->size(); i++)
+    for(int i = 0; i < uneListeQuestions->size(); i++)
     {
-        Question * q = maListeQuestions->at(i);
-        QStandardItem * elem = new QStandardItem(q->getQuestion());
+        Question * q = uneListeQuestions->at(i);
+        QStandardItem * elem = new QStandardItem(greenIcon, q->getQuestion());
 
-        ListeReponse * uneListeReponse = q->getListeReponse();
-
-        for(int j = 0; j < uneListeReponse->size(); j++)
+        if(pere == NULL) // pour le cas ou les questions n'ont pas de père (c'est les premières)
         {
-            Reponse * r = uneListeReponse->at(j);
-            QStandardItem * elem2 = new QStandardItem(r->getReponse());
-            elem->appendRow(elem2);
+            model->appendRow(elem);
+        }
+        else
+        {
+            pere->appendRow(elem);
         }
 
-        model->appendRow(elem);
+        // Calcul du nombre de père
+        int nbPere = 0;
+        while(q->getCat()->getReponse() != NULL)
+        {
+             nbPere++;
+             qDebug() << nbPere;
+             q = (Question*)q->getCat()->getReponse()->getPrec();
+        }
+
+        QString coordonnees = nbPere + "-" + QString::number(i);
+        qDebug() << coordonnees;
+        mapTreeQuestions.insert(coordonnees, q);
+
+        // pour chaque réponse de la question courante
+        ListeReponse * lr = q->getListeReponse();
+        for(int j = 0; j < lr->size(); j++)
+        {
+            if(lr->at(j)->getTypeSuiv() == TYPE_CATEGORIE) // c'est une catégorie
+            {
+                ListeQuestion * lq = ((Categorie *)(lr->at(j)->getSuiv()))->getListeQuestion();
+                peuplerListeQuestionsXML(lq, elem);
+            }
+        }
     }
-}
-
-void MainWindow::peuplerListeQuestions()
-{
-    // Pour le TreeView des questions, il faut voir si l'on affiche toutes les questions ou si l'on affiche les questions au fur et à mesure
-
-    /* Remplissage TreeView des questions */
-    model = new QStandardItemModel(0, 0);
-
-    QStandardItem * elem1 = new QStandardItem(greenIcon, "Question 1");
-    elem1->appendRow(new QStandardItem(greenIcon, "Question 1.1"));
-    elem1->appendRow(new QStandardItem(yellowIcon, "Question 1.2"));
-    model->appendRow(elem1);
-
-    QStandardItem * elem2 = new QStandardItem(redIcon, "Question 2");
-    elem2->appendRow(new QStandardItem(greenIcon, "Question 2.1"));
-    QStandardItem * elem22 = new QStandardItem(greenIcon, "Question 2.2");
-    elem22->appendRow(new QStandardItem(greenIcon, "Question 2.2.1"));
-    elem22->appendRow(new QStandardItem(greenIcon, "Question 2.2.2"));
-    elem2->appendRow(elem22);
-    elem2->appendRow(new QStandardItem(yellowIcon, "Question 2.3"));
-    model->appendRow(elem2);
-
-    QStandardItem * elem3 = new QStandardItem(yellowIcon, "Question 3");
-    elem3->appendRow(new QStandardItem(redIcon, "Question 3.1"));
-    elem3->appendRow(new QStandardItem(redIcon, "Question 3.2"));
-    elem3->appendRow(new QStandardItem(greenIcon, "Question 3.3"));
-    model->appendRow(elem3);
-
-    /*QStandardItem * root = new QStandardItem("Racine de l'arbre");
-    root->appendRow(elem1);
-    root->appendRow(elem2);
-    root->appendRow(elem3);
-    model->appendRow(root);*/
-}
-
-void MainWindow::peuplerListeReponses()
-{
-    /* Remplissage TreeView des reponses */
-    model2 = new QStandardItemModel;
-
-    QStandardItem * elem4 = new QStandardItem("Reponse 1");
-    model2->appendRow(elem4);
-
-    QStandardItem * elem5 = new QStandardItem("Reponse 2");
-    model2->appendRow(elem5);
-
-    QStandardItem * elem6 = new QStandardItem("Reponse 3");
-    model2->appendRow(elem6);
-    elem6->appendRow(new QStandardItem("aide reponse 3"));
-    elem6->appendRow(new QStandardItem("media 1"));
 }
 
 void MainWindow::createAction()
@@ -176,11 +146,23 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
 {
+    model2->clear();
+
     QString texte = model->itemFromIndex(index)->text();
     ui->labelQuestion->setText(texte);
 
     // au clic sur une question du TreeView des questions, il faut aussi afficher les médias associés à cette question ainsi que
     // les réponses
+
+    Question * q = maListeQuestions->at(index.row());
+    ListeReponse * uneListeReponse = q->getListeReponse();
+
+    for(int j = 0; j < uneListeReponse->size(); j++)
+    {
+        Reponse * r = uneListeReponse->at(j);
+        QStandardItem * elem = new QStandardItem(r->getReponse());
+        model2->appendRow(elem);
+    }
 }
 
 void MainWindow::treeQuestionsContextMenu(const QPoint &pos)

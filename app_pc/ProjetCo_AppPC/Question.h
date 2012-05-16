@@ -35,6 +35,9 @@ class Question {
         int getIdLeft()  {return idleft;}
         int getIdRight()  {return idright;}
 
+        void setCat(Categorie * c)  { myCategorie = c;}
+        Categorie * getCat()    { return myCategorie; }
+
 
         void setQuestion(QString question) {texte = question;}
 
