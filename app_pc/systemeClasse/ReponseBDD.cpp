@@ -57,12 +57,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
         else if(tempNode.nodeName() == "resultat")
         {
             tempe = new Espece(tempNode.toElement().attribute("id").left(3).toInt());
-            /*
-                       // <nom>nom</nom>
-                        //<type>MEL1</type>
-                        //<regimeAlimentaire>Prédateur</regimeAlimentaire>
-                        //<informations>infos</informations>
-              */
+
             QDomNodeList toto = tempNode.childNodes();
             for(int p = 0; p < toto.size(); p++ )   {
                 if(toto.at(p).nodeName() == "nom")

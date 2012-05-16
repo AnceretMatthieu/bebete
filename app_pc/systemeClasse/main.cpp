@@ -12,7 +12,7 @@ int main(int argc, char *argv[])
 
 
     //QuestionBDD * o = new QuestionBDD();
-    Categorie* categ = new Categorie();
+    Categorie* categ = new Categorie(1);
     CategorieBDD::CreerArbre();
     CategorieBDD::enregistrerArbre(categ);
     //o->CreerArbre();

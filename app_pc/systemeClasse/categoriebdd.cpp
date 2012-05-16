@@ -53,13 +53,39 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
 void CategorieBDD::enregistrerArbre(Categorie *racine)
 {
     QDomDocument doc(QString("file"));
-    QDomElement cat;
+    QDomElement cat = doc.createElement("branche");
+    doc.appendChild(cat);
+
+
     cat.setNodeValue("branche");
     cat.setAttribute("id", QString("b"+racine->getIdentifiant()));
 
+    QFile file(filename);
+    if ( !file.open(IO_WriteOnly) )
+    {
+        qDebug("Unable to create the XML config file for saving.");
+        return;
+    }
+    else
+    {
+        QTextStream textStream(&file);
+        textStream.setEncoding(QTextStream::UnicodeUTF8);
+    }
 
     doc.appendChild(cat);
 
-    qDebug() << doc.toString();
+    qDebug() << "affichage de l'enregistrement" << doc.toString();
+
+    /*
+
+
+
+
+
+
+    // c'est doc.toString() qui va transformer ton arborescence XML en texte
+    textStream << doc.toString();
+    file.close();
+}  */
 
 }
