@@ -11,7 +11,21 @@ SOURCES += main.cpp \
     mainwindow.cpp \
     aboutwindow.cpp \
     modifquestionwindow.cpp \
-<<<<<<< HEAD
+<<<<<<< HEAD \
+    ReponseBDD.cpp \
+    Reponse.cpp \
+    Question.cpp \
+    MediaBDD.cpp \
+    Media.cpp \
+    ListeReponse.cpp \
+    ListeQuestion.cpp \
+    ListeMedia.cpp \
+    Legende.cpp \
+    EspeceBDD.cpp \
+    Espece.cpp \
+    categoriebdd.cpp \
+    Categorie.cpp \
+    BDD.cpp
     couleursdonnees.cpp
 HEADERS += mainwindow.h \
     aboutwindow.h \

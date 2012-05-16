@@ -1,0 +1,17 @@
+﻿Algorithme RechercheInformations
+Entrée : listeQuestions : liste de toutes les questions de l'arbre
+Sortie : (pas de sortie)
+
+Début
+	Pour i de 0 à finListeQuestions - 1 Faire
+		Si listeQuestions[i]->listeMedia->size() < 1 Alors
+			listeQuestions[i]->couleur = "rouge";
+		Sinon
+			Si listeQuestions[i]->listeMedia->size() < 2 Alors
+				listeQuestions[i]->couleur = "jaune";
+			Sinon
+				listeQuestions[i]->couleur = "vert";
+			FinSi
+		FinSi
+	FinPour
+Fin
