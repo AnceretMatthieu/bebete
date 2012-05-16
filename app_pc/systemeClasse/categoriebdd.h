@@ -5,6 +5,7 @@
 #include "QuestionBDD.h"
 #include "MediaBDD.h"
 #include "Categorie.h"
+#include "QFile.h"
 
 
 class Question;
@@ -17,6 +18,9 @@ class CategorieBDD : public BDD
 public:
     static ListeQuestion * CreerArbre();
     static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
+    static void enregistrerArbre(Categorie *racine);
+
+
 };
 
 #endif // CATEGORIEBDD_H

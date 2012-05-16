@@ -11,10 +11,10 @@ int main(int argc, char *argv[])
     QCoreApplication a(argc, argv);
 
 
-    //QuestionBDD * o = new QuestionBDD();
-    CategorieBDD::CreerArbre();
-
-    //o->CreerArbre();
+    Categorie* categ = new Categorie(1);
+    ListeQuestion * lq = CategorieBDD::CreerArbre();
+    categ->ajouterQuestion(lq->at(0));
+    CategorieBDD::enregistrerArbre(categ);
 
     return a.exec();
 }

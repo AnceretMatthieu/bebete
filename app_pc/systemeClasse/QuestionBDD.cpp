@@ -1,10 +1,10 @@
 #include "QuestionBDD.h"
 
 void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = true)   {
-    qDebug() << "listeReponseFromQuestion(" << quest->getIdentifiant() << ", " << recursif << ")";
+    //qDebug() << "listeReponseFromQuestion(" << quest->getIdentifiant() << ", " << recursif << ")";
     // récupération de la liste de toutes les questions
     QDomNodeList lstBaliseQuestion = BDD::currentNode.childNodes();
-    qDebug() << "Nombre de fils : " << lstBaliseQuestion.size();
+    //qDebug() << "Nombre de fils : " << lstBaliseQuestion.size();
 
     int i;
     Reponse * tempr;
@@ -12,7 +12,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
     for(i=0; i<lstBaliseQuestion.size(); i++) {
         QDomNode tempNode = lstBaliseQuestion.at(i);
         if(tempNode.nodeName() == "reponse")    {
-            qDebug() << "Reponse " << i;
+            //qDebug() << "Reponse " << i;
             tempr = new Reponse(tempNode.toElement().attribute("id").left(1).toInt());
             tempr->setReponse(tempNode.toElement().attribute("texte"));
             quest->ajouterReponse(tempr);
@@ -28,7 +28,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
             }
         }else if(tempNode.nodeName() == "media")  {
             QDomNodeList lstMedia = tempNode.childNodes();
-            qDebug() << "Media" << i << ": nombre de noeud" << lstMedia.size();
+            //qDebug() << "Media" << i << ": nombre de noeud" << lstMedia.size();
             int j;
             for(j=0; j<lstMedia.size(); j++) {
                 tempm = new Media(0);
@@ -42,7 +42,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
                     tempm->setType(MEDIA_TYPE_TEXT);
                     tempm->setPath(lstMedia.at(j).toElement().text());
                 }
-                qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
+                //qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
                 quest->ajouterMedia(tempm);
             }
         }
