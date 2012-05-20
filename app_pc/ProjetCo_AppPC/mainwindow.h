@@ -22,6 +22,7 @@
 #include "modifquestionwindow.h"
 #include "categoriebdd.h"
 #include "Reponse.h"
+#include "ListeMedia.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,8 +40,9 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow *ui;
-        QStandardItemModel * model;
-        QStandardItemModel * model2;
+        QStandardItemModel * model_tvQuestion;
+        QStandardItemModel * model_tvReponse;
+        QStandardItemModel * model_tvMediaQuestion;
         QIcon greenIcon;
         QIcon yellowIcon;
         QIcon redIcon;
@@ -50,7 +52,7 @@ class MainWindow : public QMainWindow
         ListeQuestion * maListeQuestions;
         QMap<QString, Question *> mapTreeQuestions;
 
-        void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere);
+        void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
         void createAction();
 
     private slots:

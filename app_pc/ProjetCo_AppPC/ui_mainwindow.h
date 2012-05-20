@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue May 15 09:14:33 2012
-**      by: Qt User Interface Compiler version 4.7.4
+** Created: Sun May 20 20:36:55 2012
+**      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QFrame>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -43,8 +44,11 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *labelQuestion;
     QFrame *line_4;
+    QCheckBox *checkBoxVisibleOeil;
+    QCheckBox *checkBoxVisibleLoupe;
+    QFrame *line_8;
     QLabel *label;
-    QFrame *line_7;
+    QTreeView *treeViewMediasQuestion;
     QSpacerItem *verticalSpacer;
     QFrame *line_2;
     QVBoxLayout *verticalLayout_2;
@@ -111,6 +115,7 @@ public:
         font1.setPointSize(12);
         treeViewQuestion->setFont(font1);
         treeViewQuestion->setContextMenuPolicy(Qt::CustomContextMenu);
+        treeViewQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeViewQuestion->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         horizontalLayout_2->addWidget(treeViewQuestion);
@@ -145,20 +150,43 @@ public:
 
         verticalLayout->addWidget(line_4);
 
+        checkBoxVisibleOeil = new QCheckBox(centralWidget);
+        checkBoxVisibleOeil->setObjectName(QString::fromUtf8("checkBoxVisibleOeil"));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("DejaVu Sans"));
+        font3.setPointSize(10);
+        font3.setBold(false);
+        font3.setWeight(50);
+        checkBoxVisibleOeil->setFont(font3);
+        checkBoxVisibleOeil->setLayoutDirection(Qt::LeftToRight);
+
+        verticalLayout->addWidget(checkBoxVisibleOeil);
+
+        checkBoxVisibleLoupe = new QCheckBox(centralWidget);
+        checkBoxVisibleLoupe->setObjectName(QString::fromUtf8("checkBoxVisibleLoupe"));
+        checkBoxVisibleLoupe->setFont(font3);
+
+        verticalLayout->addWidget(checkBoxVisibleLoupe);
+
+        line_8 = new QFrame(centralWidget);
+        line_8->setObjectName(QString::fromUtf8("line_8"));
+        line_8->setFrameShape(QFrame::HLine);
+        line_8->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line_8);
+
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        QFont font3;
-        font3.setPointSize(10);
-        label->setFont(font3);
+        QFont font4;
+        font4.setPointSize(10);
+        label->setFont(font4);
 
         verticalLayout->addWidget(label);
 
-        line_7 = new QFrame(centralWidget);
-        line_7->setObjectName(QString::fromUtf8("line_7"));
-        line_7->setFrameShape(QFrame::HLine);
-        line_7->setFrameShadow(QFrame::Sunken);
+        treeViewMediasQuestion = new QTreeView(centralWidget);
+        treeViewMediasQuestion->setObjectName(QString::fromUtf8("treeViewMediasQuestion"));
 
-        verticalLayout->addWidget(line_7);
+        verticalLayout->addWidget(treeViewMediasQuestion);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -252,7 +280,7 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1024, 21));
-        menuBar->setFont(font3);
+        menuBar->setFont(font4);
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
         menuEdition = new QMenu(menuBar);
@@ -289,6 +317,8 @@ public:
         actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
         labelQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
+        checkBoxVisibleOeil->setText(QApplication::translate("MainWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
+        checkBoxVisibleLoupe->setText(QApplication::translate("MainWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "M\303\251dias", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));

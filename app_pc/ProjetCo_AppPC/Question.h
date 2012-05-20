@@ -25,9 +25,9 @@ class Question {
 
     public:
         Question(int id);
-        int getIdentifiant() {return id;}
-        QString getQuestion() {return texte;}
-        QString getVisible() {return visible;}
+        int getIdentifiant() { return id; }
+        QString getQuestion() { return texte; }
+        QString getVisible() { return visible; }
 
         void setVisible(QString visible) {this->visible = visible;}
         void setIdLeft(int id)  {idleft = id;}

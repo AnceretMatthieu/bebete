@@ -14,7 +14,7 @@
 					<legende>Exemple d'insecte à 6 pattes</legende>
 				</media>
 				<branche id="b2">
-					<question id="q3" texte="Encore des questions pour cet exemple test">
+					<question id="q3" texte="Encore des questions pour cet exemple test" visible="false">
 					</question>
 				</branche>
 			</reponse>
@@ -24,7 +24,7 @@
 					<legende>Exemple d'insecte à 8 pattes</legende>
 			</media>
 			  <branche id="b3" type="Arachnide">
-				<question id="q2" texte="Quelle est la taille de l'arachnide ?">
+				<question id="q2" texte="Quelle est la taille de l'arachnide ?" visible="true">
 					<reponse id="r3" texte="Supérieur à 5 mm" >
 					  <resultat id="res1">
 						<nom>nom</nom>
@@ -38,7 +38,7 @@
 					</reponse>
 					<reponse id="r4" texte="Inférieur à 5 mm">
 						<branche id="b2">
-							<question id="q6" texte="Plus de question pour cet exemple test">
+							<question id="q6" texte="Plus de question pour cet exemple test" visible="both">
 							</question>
 						</branche>
 					</reponse>

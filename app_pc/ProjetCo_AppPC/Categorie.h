@@ -35,7 +35,7 @@ class Categorie {
 
         void ajouterQuestion(Question * rep);
         void supprimerQuestion(Question * rep);
-        ListeQuestion * getListeQuestion()  {return myQuestion;}
+        ListeQuestion * getListeQuestion()  { return myQuestion; }
 };
 
 #endif // Categorie_h
