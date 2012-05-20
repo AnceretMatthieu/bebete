@@ -6,6 +6,8 @@
 		<question id="q1" texte="Quelle réponse décrit le mieux l'insecte que vous voyez ?" visible="true">
 			<media>
 				<legende>Astuces : Compter le nombre de pattes pour commencer</legende>
+				<img src="images/insecte.jpg" />
+				<legende>Ceci est une autre légende...</legende>
 			</media>
 			<reponse id="r1" texte="6 pattes" visible="true">
 				<media>

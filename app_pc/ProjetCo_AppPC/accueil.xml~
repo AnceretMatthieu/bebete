@@ -6,6 +6,8 @@
 		<question id="q1" texte="Quelle réponse décrit le mieux l'insecte que vous voyez ?" visible="true">
 			<media>
 				<legende>Astuces : Compter le nombre de pattes pour commencer</legende>
+				<img src="images/image.jpg" />
+				<legende>Ceci est une autre légende...</legende>
 			</media>
 			<reponse id="r1" texte="6 pattes" visible="true">
 				<media>
@@ -24,7 +26,7 @@
 					<legende>Exemple d'insecte à 8 pattes</legende>
 			</media>
 			  <branche id="b3" type="Arachnide">
-				<question id="q2" texte="Quelle est la taille de l'arachnide ?" visible=true">
+				<question id="q2" texte="Quelle est la taille de l'arachnide ?" visible="true">
 					<reponse id="r3" texte="Supérieur à 5 mm" >
 					  <resultat id="res1">
 						<nom>nom</nom>

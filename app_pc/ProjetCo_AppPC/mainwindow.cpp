@@ -181,7 +181,7 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
         model_tvReponse->appendRow(elemRep);
     }
 
-    // On coche les cases "visible"
+    // Gestion de l'attribut "visible" de la balise "Question" ==> on coche/décoche les checkbox
     if(currentQuestion->getVisible() == "true")
     {
         ui->checkBoxVisibleOeil->setChecked(true);
@@ -199,7 +199,8 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
     }
     else
     {
-        qDebug() << "Erreur : l'élément \"visible\" ne possède pas une valeur correcte.";
+        ui->checkBoxVisibleOeil->setChecked(false);
+        ui->checkBoxVisibleLoupe->setChecked(false);
     }
 
     // On récupère les médias associés à la question
