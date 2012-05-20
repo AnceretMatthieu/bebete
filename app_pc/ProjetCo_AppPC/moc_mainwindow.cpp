@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Sun May 20 20:50:02 2012
+** Created: Sun May 20 23:32:48 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      14,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -36,10 +36,15 @@ static const uint qt_meta_data_MainWindow[] = {
       75,   11,   11,   11, 0x08,
      109,   11,   11,   11, 0x08,
      134,  128,   11,   11, 0x08,
-     173,   11,   11,   11, 0x08,
-     206,   11,   11,   11, 0x08,
-     220,   11,   11,   11, 0x08,
-     239,   11,   11,   11, 0x08,
+     173,  128,   11,   11, 0x08,
+     218,   11,   11,   11, 0x08,
+     251,   11,   11,   11, 0x08,
+     283,   11,   11,   11, 0x08,
+     297,   11,   11,   11, 0x08,
+     316,   11,   11,   11, 0x08,
+     336,   11,   11,   11, 0x08,
+     349,   11,   11,   11, 0x08,
+     367,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -50,9 +55,12 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_actionImporter_XML_triggered()\0"
     "on_actionApropos()\0index\0"
     "on_clickTreeViewQuestions(QModelIndex)\0"
+    "on_clickTreeViewMediasQuestions(QModelIndex)\0"
     "treeQuestionsContextMenu(QPoint)\0"
+    "treeReponsesContextMenu(QPoint)\0"
     "newQuestion()\0modifierQuestion()\0"
-    "supprimerQuestion()\0"
+    "supprimerQuestion()\0newReponse()\0"
+    "modifierReponse()\0supprimerReponse()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -66,10 +74,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->on_actionImporter_XML_triggered(); break;
         case 3: _t->on_actionApropos(); break;
         case 4: _t->on_clickTreeViewQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 5: _t->treeQuestionsContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 6: _t->newQuestion(); break;
-        case 7: _t->modifierQuestion(); break;
-        case 8: _t->supprimerQuestion(); break;
+        case 5: _t->on_clickTreeViewMediasQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 6: _t->treeQuestionsContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 7: _t->treeReponsesContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 8: _t->newQuestion(); break;
+        case 9: _t->modifierQuestion(); break;
+        case 10: _t->supprimerQuestion(); break;
+        case 11: _t->newReponse(); break;
+        case 12: _t->modifierReponse(); break;
+        case 13: _t->supprimerReponse(); break;
         default: ;
         }
     }
@@ -107,9 +120,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 14)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 14;
     }
     return _id;
 }

@@ -8,7 +8,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     yellowIcon = QIcon("images/icon_yellow.png");
     redIcon = QIcon("images/icon_red.png");
 
-    // parsage de l'arbre
+    // Parsage de l'arbre
+    // TODO : à intégrer dans le menu "Importer XML"
     maListeQuestions = CategorieBDD::CreerArbre();
 
     /* Peuplement des TreeView */
@@ -29,9 +30,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     ui->treeViewReponse->header()->hide();
     ui->treeViewReponse->setModel(model_tvReponse);
+    ui->treeViewReponse->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     ui->treeViewMediasQuestion->header()->hide();
     ui->treeViewMediasQuestion->setModel(model_tvMediaQuestion);
+    ui->treeViewMediasQuestion->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     /* Mise en place du style CSS et application sur le widget QTreeView des questions */
     QFile styleFile("style_qtreeview.css");
@@ -40,6 +43,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QString style(styleFile.readAll());
     ui->treeViewQuestion->setStyleSheet(style);
 
+    // TODO : peut-être à placer dans une fonction à part...
     /* Affectation des actions aux boutons du menu */
     connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
 
@@ -48,6 +52,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     /* Clic droit sur le TreeView des questions */
     connect(ui->treeViewQuestion, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeQuestionsContextMenu(const QPoint&)));
+
+    /* Clic droit sur le TreeView des réponses */
+    connect(ui->treeViewReponse, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeReponsesContextMenu(const QPoint&)));
+
+    /* Clic sur le TreeView des médias d'une question */
+    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewMediasQuestions(QModelIndex)));
 }
 
 MainWindow::~MainWindow()
@@ -101,6 +111,15 @@ void MainWindow::createAction()
 
     delQuestion = new QAction(tr("Supprimer"), this);
     connect(delQuestion, SIGNAL(triggered()), this, SLOT(supprimerQuestion()));
+
+    addReponse = new QAction(tr("Ajouter une réponse"), this);
+    connect(addReponse, SIGNAL(triggered()), this, SLOT(newReponse()));
+
+    modifReponse = new QAction(tr("Modifier"), this);
+    connect(modifReponse, SIGNAL(triggered()), this, SLOT(modifierReponse()));
+
+    delReponse = new QAction(tr("Supprimer"), this);
+    connect(delReponse, SIGNAL(triggered()), this, SLOT(supprimerReponse()));
 }
 
 void MainWindow::on_actionImporter_XML_triggered()
@@ -215,12 +234,45 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
     }
 }
 
+void MainWindow::on_clickTreeViewMediasQuestions(const QModelIndex &index)
+{
+    // Il faudrait tester le type du média qui a été selectionné
+
+    QString pathImg = model_tvMediaQuestion->itemFromIndex(index)->text();
+
+    QImage * myImg = new QImage(pathImg);
+    if(myImg->isNull() != true)
+    {
+        // Il faudrait réfléchir à la méthode de redimensionnement de l'image
+        // TODO : en cliquant sur l'image, il serait bien qu'elle puisse s'ouvrir en plein écran dans une nouvelle fenêtre
+        QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
+
+        QPixmap * img = new QPixmap();
+        img->convertFromImage(myScaledImg, Qt::AutoColor);
+
+        ui->labelImage->setPixmap(*img);
+    }
+    else
+    {
+        ui->labelImage->setText("Ce média n'est pas une image.");
+    }
+}
+
 void MainWindow::treeQuestionsContextMenu(const QPoint &pos)
 {
     QMenu menu(this);
     menu.addAction(addQuestion);
     menu.addAction(modifQuestion);
     menu.addAction(delQuestion);
+    menu.exec(pos);
+}
+
+void MainWindow::treeReponsesContextMenu(const QPoint &pos)
+{
+    QMenu menu(this);
+    menu.addAction(addReponse);
+    menu.addAction(modifReponse);
+    menu.addAction(delReponse);
     menu.exec(pos);
 }
 
@@ -262,4 +314,19 @@ void MainWindow::supprimerQuestion()
 
     QModelIndex index = ui->treeViewQuestion->currentIndex();
     model_tvQuestion->removeRow(index.row(), index.parent());
+}
+
+void MainWindow::newReponse()
+{
+
+}
+
+void MainWindow::modifierReponse()
+{
+
+}
+
+void MainWindow::supprimerReponse()
+{
+
 }

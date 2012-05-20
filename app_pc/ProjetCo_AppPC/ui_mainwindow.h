@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun May 20 20:36:55 2012
+** Created: Sun May 20 23:34:14 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -75,6 +75,11 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1024, 768);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         QFont font;
         font.setFamily(QString::fromUtf8("Helvetica Neue"));
         font.setPointSize(14);
@@ -90,11 +95,11 @@ public:
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
-        centralWidget->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy1);
         centralWidget->setMinimumSize(QSize(0, 0));
         horizontalLayout = new QHBoxLayout(centralWidget);
         horizontalLayout->setSpacing(6);
@@ -106,11 +111,8 @@ public:
         horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         treeViewQuestion = new QTreeView(centralWidget);
         treeViewQuestion->setObjectName(QString::fromUtf8("treeViewQuestion"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
-        treeViewQuestion->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
+        treeViewQuestion->setSizePolicy(sizePolicy);
         QFont font1;
         font1.setPointSize(12);
         treeViewQuestion->setFont(font1);
@@ -137,8 +139,8 @@ public:
         labelQuestion = new QLabel(centralWidget);
         labelQuestion->setObjectName(QString::fromUtf8("labelQuestion"));
         labelQuestion->setEnabled(true);
-        sizePolicy1.setHeightForWidth(labelQuestion->sizePolicy().hasHeightForWidth());
-        labelQuestion->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(labelQuestion->sizePolicy().hasHeightForWidth());
+        labelQuestion->setSizePolicy(sizePolicy);
         labelQuestion->setFont(font1);
 
         verticalLayout->addWidget(labelQuestion);
@@ -185,6 +187,15 @@ public:
 
         treeViewMediasQuestion = new QTreeView(centralWidget);
         treeViewMediasQuestion->setObjectName(QString::fromUtf8("treeViewMediasQuestion"));
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(treeViewMediasQuestion->sizePolicy().hasHeightForWidth());
+        treeViewMediasQuestion->setSizePolicy(sizePolicy2);
+        treeViewMediasQuestion->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        treeViewMediasQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        treeViewMediasQuestion->setAnimated(false);
+        treeViewMediasQuestion->header()->setMinimumSectionSize(25);
 
         verticalLayout->addWidget(treeViewMediasQuestion);
 
@@ -220,9 +231,10 @@ public:
 
         treeViewReponse = new QTreeView(centralWidget);
         treeViewReponse->setObjectName(QString::fromUtf8("treeViewReponse"));
-        sizePolicy1.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
-        treeViewReponse->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
+        treeViewReponse->setSizePolicy(sizePolicy);
         treeViewReponse->setFont(font1);
+        treeViewReponse->setContextMenuPolicy(Qt::CustomContextMenu);
 
         verticalLayout_2->addWidget(treeViewReponse);
 
@@ -258,6 +270,10 @@ public:
 
         labelImage = new QLabel(centralWidget);
         labelImage->setObjectName(QString::fromUtf8("labelImage"));
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("DejaVu Sans"));
+        font5.setPointSize(10);
+        labelImage->setFont(font5);
 
         verticalLayout_3->addWidget(labelImage);
 

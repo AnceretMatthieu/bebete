@@ -40,16 +40,24 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow *ui;
+
         QStandardItemModel * model_tvQuestion;
         QStandardItemModel * model_tvReponse;
         QStandardItemModel * model_tvMediaQuestion;
+
         QIcon greenIcon;
         QIcon yellowIcon;
         QIcon redIcon;
+
         QAction * addQuestion;
         QAction * modifQuestion;
         QAction * delQuestion;
+        QAction * addReponse;
+        QAction * modifReponse;
+        QAction * delReponse;
+
         ListeQuestion * maListeQuestions;
+
         QMap<QString, Question *> mapTreeQuestions;
 
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
@@ -61,10 +69,18 @@ class MainWindow : public QMainWindow
         void on_actionImporter_XML_triggered();
         void on_actionApropos();
         void on_clickTreeViewQuestions(const QModelIndex &index);
+        void on_clickTreeViewMediasQuestions(const QModelIndex &index);
+
         void treeQuestionsContextMenu(const QPoint&);
+        void treeReponsesContextMenu(const QPoint&);
+
         void newQuestion();
         void modifierQuestion();
         void supprimerQuestion();
+
+        void newReponse();
+        void modifierReponse();
+        void supprimerReponse();
 };
 
 #endif // MAINWINDOW_H

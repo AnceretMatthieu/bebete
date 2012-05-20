@@ -10,6 +10,12 @@
     <height>768</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
   <property name="font">
    <font>
     <family>Helvetica Neue</family>
@@ -164,7 +170,26 @@
          </widget>
         </item>
         <item>
-         <widget class="QTreeView" name="treeViewMediasQuestion"/>
+         <widget class="QTreeView" name="treeViewMediasQuestion">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="verticalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="horizontalScrollBarPolicy">
+           <enum>Qt::ScrollBarAsNeeded</enum>
+          </property>
+          <property name="animated">
+           <bool>false</bool>
+          </property>
+          <attribute name="headerMinimumSectionSize">
+           <number>25</number>
+          </attribute>
+         </widget>
         </item>
         <item>
          <spacer name="verticalSpacer">
@@ -222,6 +247,9 @@
             <pointsize>12</pointsize>
            </font>
           </property>
+          <property name="contextMenuPolicy">
+           <enum>Qt::CustomContextMenu</enum>
+          </property>
          </widget>
         </item>
         <item>
@@ -269,6 +297,12 @@
         </item>
         <item>
          <widget class="QLabel" name="labelImage">
+          <property name="font">
+           <font>
+            <family>DejaVu Sans</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string/>
           </property>
