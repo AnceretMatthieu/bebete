@@ -17,6 +17,7 @@ Question::Question(int id) {
 }
 
 void Question::ajouterReponse(Reponse *rep) {
+    rep->setPrec(this);
     listeReponse->append(rep);
 }
 
@@ -26,6 +27,7 @@ void Question::supprimerReponse(Reponse *rep) {
         i++;
 
     if(i != listeReponse->size())   {
+        listeReponse->at(i)->setPrec(NULL);
         listeReponse->remove(i);
     }
 }

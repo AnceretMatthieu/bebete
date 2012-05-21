@@ -12,6 +12,7 @@ class ListeQuestion : public QVector<Question*> {
     public:
         ListeQuestion();
 
+
         Question * getElementById(int id);
 };
 

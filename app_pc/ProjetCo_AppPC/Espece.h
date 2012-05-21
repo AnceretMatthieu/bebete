@@ -15,7 +15,7 @@ class Espece {
         QString regimeAlimentaire;
         QString information;
 
-        Reponse * myReponse;
+        Reponse * pere;
         ListeMedia * listeMedia;
 
     public:
@@ -31,6 +31,9 @@ class Espece {
         QString getType() {
             return type;
         }
+
+        void setReponse(Reponse * r)    { pere = r; }
+        Reponse * getReponse()          { return pere; }
 
         QString getRegimeAlimentaire() {
             return regimeAlimentaire;

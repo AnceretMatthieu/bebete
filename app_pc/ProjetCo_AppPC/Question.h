@@ -25,15 +25,18 @@ class Question {
 
     public:
         Question(int id);
-        int getIdentifiant() {return id;}
-        QString getQuestion() {return texte;}
-        QString getVisible() {return visible;}
+        int getIdentifiant() { return id; }
+        QString getQuestion() { return texte; }
+        QString getVisible() { return visible; }
 
         void setVisible(QString visible) {this->visible = visible;}
         void setIdLeft(int id)  {idleft = id;}
         void setIdRight(int id)  {idright = id;}
         int getIdLeft()  {return idleft;}
         int getIdRight()  {return idright;}
+
+        void setCat(Categorie * c)  { myCategorie = c;}
+        Categorie * getCat()    { return myCategorie; }
 
 
         void setQuestion(QString question) {texte = question;}

@@ -24,8 +24,8 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
             tempc = new Categorie(tempNode.toElement().attribute("id").left(1).toInt());
             tempc->setLabel(tempNode.toElement().attribute("type"));
             qDebug() << "Categorie" << tempc->getLabel();
-            rep->setSuiv(tempc);
             rep->setTypeSuiv(TYPE_CATEGORIE);
+            rep->setSuiv(tempc);
 
             BDD::currentNode = lstBaliseQuestion.at(i).toElement();
             if(recursif)
@@ -79,8 +79,8 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
             qDebug() << "regime alimentaire" << tempe->getRegimeAlimentaire();
             qDebug() << "informations" << tempe->getInformation();
 
-            rep->setSuiv(tempe);
             rep->setTypeSuiv(TYPE_ESPECE);
+            rep->setSuiv(tempe);
         }
     }
 }

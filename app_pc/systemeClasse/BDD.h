@@ -18,6 +18,7 @@ class BDD {
 
         //QDomDocument currentNode;
          static QDomNode currentNode;
+         static QDomDocument doc;
 };
 
 #endif // BDD_h

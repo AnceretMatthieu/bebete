@@ -21,6 +21,8 @@
 #include "aboutwindow.h"
 #include "modifquestionwindow.h"
 #include "categoriebdd.h"
+#include "Reponse.h"
+#include "ListeMedia.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,19 +40,27 @@ class MainWindow : public QMainWindow
 
     private:
         Ui::MainWindow *ui;
-        QStandardItemModel * model;
-        QStandardItemModel * model2;
+
+        QStandardItemModel * model_tvQuestion;
+        QStandardItemModel * model_tvReponse;
+        QStandardItemModel * model_tvMediaQuestion;
+
         QIcon greenIcon;
         QIcon yellowIcon;
         QIcon redIcon;
+
         QAction * addQuestion;
         QAction * modifQuestion;
         QAction * delQuestion;
+        QAction * addReponse;
+        QAction * modifReponse;
+        QAction * delReponse;
+
         ListeQuestion * maListeQuestions;
 
-        void peuplerListeQuestions();
-        void peuplerListeQuestionsXML();
-        void peuplerListeReponses();
+        QMap<QString, Question *> mapTreeQuestions;
+
+        void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
         void createAction();
 
     private slots:
@@ -59,10 +69,18 @@ class MainWindow : public QMainWindow
         void on_actionImporter_XML_triggered();
         void on_actionApropos();
         void on_clickTreeViewQuestions(const QModelIndex &index);
+        void on_clickTreeViewMediasQuestions(const QModelIndex &index);
+
         void treeQuestionsContextMenu(const QPoint&);
+        void treeReponsesContextMenu(const QPoint&);
+
         void newQuestion();
         void modifierQuestion();
         void supprimerQuestion();
+
+        void newReponse();
+        void modifierReponse();
+        void supprimerReponse();
 };
 
 #endif // MAINWINDOW_H

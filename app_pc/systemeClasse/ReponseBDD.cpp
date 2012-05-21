@@ -8,10 +8,10 @@
 #include "categoriebdd.h"
 
 void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
-    qDebug() << "listeFromReponse(" << rep->getIdentifiant() << ", " << recursif << ")";
+    //qDebug() << "listeFromReponse(" << rep->getIdentifiant() << ", " << recursif << ")";
     // récupération de la liste de toutes les questions
     QDomNodeList lstBaliseQuestion = BDD::currentNode.childNodes();
-    qDebug() << "Nombre de fils : " << lstBaliseQuestion.size();
+    //qDebug() << "Nombre de fils : " << lstBaliseQuestion.size();
 
     Media * tempm;
     Categorie * tempc;
@@ -23,7 +23,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
         {
             tempc = new Categorie(tempNode.toElement().attribute("id").left(1).toInt());
             tempc->setLabel(tempNode.toElement().attribute("type"));
-            qDebug() << "Categorie" << tempc->getLabel();
+            //qDebug() << "Categorie" << tempc->getLabel();
             rep->setSuiv(tempc);
             rep->setTypeSuiv(TYPE_CATEGORIE);
 
@@ -35,7 +35,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
         else if(tempNode.nodeName() == "media")
         {
             QDomNodeList lstMedia = tempNode.childNodes();
-            qDebug() << "Media" << i << ": nombre de noeud" << lstMedia.size();
+            //qDebug() << "Media" << i << ": nombre de noeud" << lstMedia.size();
             int j;
             for(j=0; j<lstMedia.size(); j++)
             {
@@ -50,19 +50,14 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
                      tempm->setType(MEDIA_TYPE_TEXT);
                      tempm->setPath(lstMedia.at(j).toElement().text());
                 }
-                qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
+                //qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
              }
              rep->ajouterMedia(tempm);
         }
         else if(tempNode.nodeName() == "resultat")
         {
             tempe = new Espece(tempNode.toElement().attribute("id").left(3).toInt());
-            /*
-                       // <nom>nom</nom>
-                        //<type>MEL1</type>
-                        //<regimeAlimentaire>Prédateur</regimeAlimentaire>
-                        //<informations>infos</informations>
-              */
+
             QDomNodeList toto = tempNode.childNodes();
             for(int p = 0; p < toto.size(); p++ )   {
                 if(toto.at(p).nodeName() == "nom")
@@ -74,10 +69,10 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
                 else if (toto.at(p).nodeName() == "informations")
                     tempe->setInformation(toto.at(p).toElement().text());
             }
-            qDebug() << "nom" << tempe->getNom();
-            qDebug() << "type" << tempe->getType();
-            qDebug() << "regime alimentaire" << tempe->getRegimeAlimentaire();
-            qDebug() << "informations" << tempe->getInformation();
+            //qDebug() << "nom" << tempe->getNom();
+            //qDebug() << "type" << tempe->getType();
+            //qDebug() << "regime alimentaire" << tempe->getRegimeAlimentaire();
+            //qDebug() << "informations" << tempe->getInformation();
 
             rep->setSuiv(tempe);
             rep->setTypeSuiv(TYPE_ESPECE);

@@ -1,8 +1,8 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue May 15 09:14:33 2012
-**      by: Qt User Interface Compiler version 4.7.4
+** Created: Sun May 20 23:34:14 2012
+**      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,6 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QCheckBox>
 #include <QtGui/QFrame>
 #include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
@@ -43,8 +44,11 @@ public:
     QVBoxLayout *verticalLayout;
     QLabel *labelQuestion;
     QFrame *line_4;
+    QCheckBox *checkBoxVisibleOeil;
+    QCheckBox *checkBoxVisibleLoupe;
+    QFrame *line_8;
     QLabel *label;
-    QFrame *line_7;
+    QTreeView *treeViewMediasQuestion;
     QSpacerItem *verticalSpacer;
     QFrame *line_2;
     QVBoxLayout *verticalLayout_2;
@@ -71,6 +75,11 @@ public:
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
         MainWindow->resize(1024, 768);
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
+        MainWindow->setSizePolicy(sizePolicy);
         QFont font;
         font.setFamily(QString::fromUtf8("Helvetica Neue"));
         font.setPointSize(14);
@@ -86,11 +95,11 @@ public:
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
-        centralWidget->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(centralWidget->sizePolicy().hasHeightForWidth());
+        centralWidget->setSizePolicy(sizePolicy1);
         centralWidget->setMinimumSize(QSize(0, 0));
         horizontalLayout = new QHBoxLayout(centralWidget);
         horizontalLayout->setSpacing(6);
@@ -102,15 +111,13 @@ public:
         horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
         treeViewQuestion = new QTreeView(centralWidget);
         treeViewQuestion->setObjectName(QString::fromUtf8("treeViewQuestion"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
-        treeViewQuestion->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
+        treeViewQuestion->setSizePolicy(sizePolicy);
         QFont font1;
         font1.setPointSize(12);
         treeViewQuestion->setFont(font1);
         treeViewQuestion->setContextMenuPolicy(Qt::CustomContextMenu);
+        treeViewQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeViewQuestion->setSelectionBehavior(QAbstractItemView::SelectRows);
 
         horizontalLayout_2->addWidget(treeViewQuestion);
@@ -132,8 +139,8 @@ public:
         labelQuestion = new QLabel(centralWidget);
         labelQuestion->setObjectName(QString::fromUtf8("labelQuestion"));
         labelQuestion->setEnabled(true);
-        sizePolicy1.setHeightForWidth(labelQuestion->sizePolicy().hasHeightForWidth());
-        labelQuestion->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(labelQuestion->sizePolicy().hasHeightForWidth());
+        labelQuestion->setSizePolicy(sizePolicy);
         labelQuestion->setFont(font1);
 
         verticalLayout->addWidget(labelQuestion);
@@ -145,20 +152,52 @@ public:
 
         verticalLayout->addWidget(line_4);
 
+        checkBoxVisibleOeil = new QCheckBox(centralWidget);
+        checkBoxVisibleOeil->setObjectName(QString::fromUtf8("checkBoxVisibleOeil"));
+        QFont font3;
+        font3.setFamily(QString::fromUtf8("DejaVu Sans"));
+        font3.setPointSize(10);
+        font3.setBold(false);
+        font3.setWeight(50);
+        checkBoxVisibleOeil->setFont(font3);
+        checkBoxVisibleOeil->setLayoutDirection(Qt::LeftToRight);
+
+        verticalLayout->addWidget(checkBoxVisibleOeil);
+
+        checkBoxVisibleLoupe = new QCheckBox(centralWidget);
+        checkBoxVisibleLoupe->setObjectName(QString::fromUtf8("checkBoxVisibleLoupe"));
+        checkBoxVisibleLoupe->setFont(font3);
+
+        verticalLayout->addWidget(checkBoxVisibleLoupe);
+
+        line_8 = new QFrame(centralWidget);
+        line_8->setObjectName(QString::fromUtf8("line_8"));
+        line_8->setFrameShape(QFrame::HLine);
+        line_8->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout->addWidget(line_8);
+
         label = new QLabel(centralWidget);
         label->setObjectName(QString::fromUtf8("label"));
-        QFont font3;
-        font3.setPointSize(10);
-        label->setFont(font3);
+        QFont font4;
+        font4.setPointSize(10);
+        label->setFont(font4);
 
         verticalLayout->addWidget(label);
 
-        line_7 = new QFrame(centralWidget);
-        line_7->setObjectName(QString::fromUtf8("line_7"));
-        line_7->setFrameShape(QFrame::HLine);
-        line_7->setFrameShadow(QFrame::Sunken);
+        treeViewMediasQuestion = new QTreeView(centralWidget);
+        treeViewMediasQuestion->setObjectName(QString::fromUtf8("treeViewMediasQuestion"));
+        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(treeViewMediasQuestion->sizePolicy().hasHeightForWidth());
+        treeViewMediasQuestion->setSizePolicy(sizePolicy2);
+        treeViewMediasQuestion->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        treeViewMediasQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        treeViewMediasQuestion->setAnimated(false);
+        treeViewMediasQuestion->header()->setMinimumSectionSize(25);
 
-        verticalLayout->addWidget(line_7);
+        verticalLayout->addWidget(treeViewMediasQuestion);
 
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -192,9 +231,10 @@ public:
 
         treeViewReponse = new QTreeView(centralWidget);
         treeViewReponse->setObjectName(QString::fromUtf8("treeViewReponse"));
-        sizePolicy1.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
-        treeViewReponse->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
+        treeViewReponse->setSizePolicy(sizePolicy);
         treeViewReponse->setFont(font1);
+        treeViewReponse->setContextMenuPolicy(Qt::CustomContextMenu);
 
         verticalLayout_2->addWidget(treeViewReponse);
 
@@ -230,6 +270,10 @@ public:
 
         labelImage = new QLabel(centralWidget);
         labelImage->setObjectName(QString::fromUtf8("labelImage"));
+        QFont font5;
+        font5.setFamily(QString::fromUtf8("DejaVu Sans"));
+        font5.setPointSize(10);
+        labelImage->setFont(font5);
 
         verticalLayout_3->addWidget(labelImage);
 
@@ -252,7 +296,7 @@ public:
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 1024, 21));
-        menuBar->setFont(font3);
+        menuBar->setFont(font4);
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
         menuEdition = new QMenu(menuBar);
@@ -289,6 +333,8 @@ public:
         actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
         labelQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
+        checkBoxVisibleOeil->setText(QApplication::translate("MainWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
+        checkBoxVisibleLoupe->setText(QApplication::translate("MainWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "M\303\251dias", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));

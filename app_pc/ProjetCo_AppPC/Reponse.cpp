@@ -48,3 +48,23 @@ void  Reponse::setTypePrec(int type) {
     else
         throw exception();
 }
+
+void Reponse::setSuiv(void * suiv)   {
+    fils = suiv;
+    if(typePere == TYPE_ESPECE)
+        ((Espece*)suiv)->setReponse(this);
+    else
+        ((Categorie*)suiv)->setReponse(this);
+}
+
+void * Reponse::getSuiv()            {
+    return fils;
+}
+
+void Reponse::setPrec(void * prec)   {
+    pere = prec;
+}
+
+void * Reponse::getPrec()            {
+    return pere;
+}
