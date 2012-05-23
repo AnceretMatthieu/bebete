@@ -33,8 +33,9 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
             QDomNodeList lstMedia = tempNode.childNodes();
             int j;
 
-            for(j=0; j<lstMedia.size(); j++) {
-                tempm = new Media(0);
+            for(j=0; j<lstMedia.size(); j++)
+            {
+                tempm = new Media(0); // TODO : attention à bien prendre en compte l'ID présent dans le fichier XML
                 if(lstMedia.at(j).nodeName() == "video") {
                     tempm->setType(MEDIA_TYPE_VIDEO);
                     tempm->setPath(lstMedia.at(j).toElement().attribute("src"));

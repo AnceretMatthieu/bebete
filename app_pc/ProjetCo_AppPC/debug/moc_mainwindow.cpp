@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed 23. May 16:33:49 2012
+** Created: Wed 23. May 17:10:33 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      20,   14, // methods
+      21,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -42,15 +42,16 @@ static const uint qt_meta_data_MainWindow[] = {
      288,   11,   11,   11, 0x08,
      329,  320,   11,   11, 0x08,
      348,  320,   11,   11, 0x08,
-     367,   11,   11,   11, 0x08,
-     385,   11,   11,   11, 0x08,
-     404,   11,   11,   11, 0x08,
-     423,   11,   11,   11, 0x08,
-     443,   11,   11,   11, 0x08,
-     456,   11,   11,   11, 0x08,
-     474,   11,   11,   11, 0x08,
-     493,   11,   11,   11, 0x08,
-     519,   11,   11,   11, 0x08,
+     386,  367,   11,   11, 0x08,
+     409,   11,   11,   11, 0x08,
+     427,   11,   11,   11, 0x08,
+     446,   11,   11,   11, 0x08,
+     465,   11,   11,   11, 0x08,
+     485,   11,   11,   11, 0x08,
+     498,   11,   11,   11, 0x08,
+     516,   11,   11,   11, 0x08,
+     535,   11,   11,   11, 0x08,
+     561,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -66,7 +67,8 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "treeQuestionsContextMenu(QPoint)\0"
     "treeReponsesContextMenu(QPoint)\0"
     "fileName\0playAudio(QString)\0"
-    "playVideo(QString)\0newQuestionFils()\0"
+    "playVideo(QString)\0fileName,typeMedia\0"
+    "openMedia(QString,int)\0newQuestionFils()\0"
     "newQuestionFrere()\0modifierQuestion()\0"
     "supprimerQuestion()\0newReponse()\0"
     "modifierReponse()\0supprimerReponse()\0"
@@ -91,15 +93,16 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 8: _t->treeReponsesContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
         case 9: _t->playAudio((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 10: _t->playVideo((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 11: _t->newQuestionFils(); break;
-        case 12: _t->newQuestionFrere(); break;
-        case 13: _t->modifierQuestion(); break;
-        case 14: _t->supprimerQuestion(); break;
-        case 15: _t->newReponse(); break;
-        case 16: _t->modifierReponse(); break;
-        case 17: _t->supprimerReponse(); break;
-        case 18: _t->on_pushButton_6_clicked(); break;
-        case 19: _t->on_pushButton_7_clicked(); break;
+        case 11: _t->openMedia((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 12: _t->newQuestionFils(); break;
+        case 13: _t->newQuestionFrere(); break;
+        case 14: _t->modifierQuestion(); break;
+        case 15: _t->supprimerQuestion(); break;
+        case 16: _t->newReponse(); break;
+        case 17: _t->modifierReponse(); break;
+        case 18: _t->supprimerReponse(); break;
+        case 19: _t->on_pushButton_6_clicked(); break;
+        case 20: _t->on_pushButton_7_clicked(); break;
         default: ;
         }
     }
@@ -137,9 +140,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 21)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 21;
     }
     return _id;
 }

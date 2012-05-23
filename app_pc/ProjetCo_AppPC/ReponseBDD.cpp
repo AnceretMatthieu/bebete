@@ -39,7 +39,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif)
 
             for(int j = 0; j < lstMedia.size(); j++)
             {
-                tempm = new Media(0);
+                tempm = new Media(0); // TODO : il faut récupérer l'ID présent dans le fichier XML ; il faudra probablement changer le type "int" par "QString"
                 if(lstMedia.at(j).nodeName() == "video") {
                     tempm->setType(MEDIA_TYPE_VIDEO);
                     tempm->setPath(lstMedia.at(j).toElement().attribute("src"));

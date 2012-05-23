@@ -12,6 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     maListeQuestions = CategorieBDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
 
     /* Peuplement des TreeView */
+    // TODO : il faudrait que le TreeView des réponses et celui des médiasQuestions soient composés de 2 colonnes : une pour le type et l'autre pour le contenu
     model_tvQuestion = new QStandardItemModel(0, 0);
     model_tvReponse = new QStandardItemModel;
     model_tvMediaQuestion = new QStandardItemModel;
@@ -228,7 +229,7 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
         ListeMedia * lm = r->getListeIllustration();
         for(int j = 0; j < lm->size(); j++)
         {
-            elemRep->appendRow(new QStandardItem(lm->at(j)->getPath()));
+            elemRep->appendRow(new QStandardItem(QString::number(lm->at(j)->getType()) + "-" + lm->at(j)->getPath()));
         }
 
         model_tvReponse->appendRow(elemRep);
@@ -263,57 +264,24 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
     for(int i = 0; i < lm->size(); i++)
     {
         Media * m = lm->at(i);
-        QStandardItem * elemMed = new QStandardItem(m->getPath());
+        QStandardItem * elemMed = new QStandardItem(QString::number(m->getType()) + "-" + m->getPath());
         model_tvMediaQuestion->appendRow(elemMed);
     }
 }
 
 void MainWindow::on_clickTreeViewMediasQuestions(const QModelIndex &index)
 {
-    // Il faudrait tester le type du média qui a été selectionné
-
-    QString pathImg = model_tvMediaQuestion->itemFromIndex(index)->text();
-
-    QImage * myImg = new QImage(pathImg);
-    if(myImg->isNull() != true)
-    {
-        // Il faudrait réfléchir à la méthode de redimensionnement de l'image
-        // TODO : en cliquant sur l'image, il serait bien qu'elle puisse s'ouvrir en plein écran dans une nouvelle fenêtre
-        QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
-
-        QPixmap * img = new QPixmap();
-        img->convertFromImage(myScaledImg, Qt::AutoColor);
-
-        ui->labelImage->setPixmap(*img);
-    }
-    else
-    {
-        ui->labelImage->setText("Ce média n'est pas une image.");
-    }
+    QString txtCurIdx = model_tvMediaQuestion->itemFromIndex(index)->text();
+    openMedia(txtCurIdx, 0);
 }
 
 void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
 {
-    // Il faudrait tester le type du média qui a été selectionné
-
-    QString pathImg = model_tvReponse->itemFromIndex(index)->text();
-
-    QImage * myImg = new QImage(pathImg);
-    if(myImg->isNull() != true)
-    {
-        // Il faudrait réfléchir à la méthode de redimensionnement de l'image
-        // TODO : en cliquant sur l'image, il serait bien qu'elle puisse s'ouvrir en plein écran dans une nouvelle fenêtre
-        QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
-
-        QPixmap * img = new QPixmap();
-        img->convertFromImage(myScaledImg, Qt::AutoColor);
-
-        ui->labelImage->setPixmap(*img);
-    }
-    else
-    {
-        ui->labelImage->setText("Ce média n'est pas une image.");
-    }
+    // TODO : refléchir à une meilleur méthode pour déterminer le type de media :
+    //      - TreeView avec 2 colonnes (1 pour le type et l'autre pour le contenu)
+    //      - ...
+    QString txtCurIdx = model_tvReponse->itemFromIndex(index)->text();
+    openMedia(txtCurIdx, 0);
 }
 
 void MainWindow::treeQuestionsContextMenu(const QPoint &pos)
@@ -505,4 +473,48 @@ void MainWindow::on_pushButton_6_clicked()
 void MainWindow::on_pushButton_7_clicked()
 {
     playVideo("test");
+}
+
+void MainWindow::openMedia(QString fileName, int typeMedia)
+{
+    QString txtCurIdx = fileName;
+
+    if(txtCurIdx.startsWith("0")) // Media de type MEDIA_TYPE_VIDEO
+    {
+        txtCurIdx.remove(0, 2); // on supprime le chiffre et le tiret représentant le type du media
+        playVideo(txtCurIdx);
+    }
+    else if(txtCurIdx.startsWith("1")) // Media de type MEDIA_TYPE_IMAGE
+    {
+        txtCurIdx.remove(0, 2);
+
+        QImage * myImg = new QImage(txtCurIdx);
+        if(myImg->isNull() != true)
+        {
+            // TODO : Réfléchir à comment redimensionner l'image correctement
+            // TODO : en cliquant sur l'image, il serait bien qu'elle puisse s'ouvrir en plein écran dans une nouvelle fenêtre par exemple
+            QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
+
+            QPixmap * img = new QPixmap();
+            img->convertFromImage(myScaledImg, Qt::AutoColor);
+
+            ui->labelImage->setPixmap(*img);
+        }
+    }
+    else if(txtCurIdx.startsWith("2")) // Media de type MEDIA_TYPE_TEXT
+    {
+        txtCurIdx.remove(0, 2);
+
+        ui->labelImage->setText(txtCurIdx);
+    }
+    else if(txtCurIdx.startsWith("3")) // Media de type MEDIA_TYPE_AUDIO
+    {
+        txtCurIdx.remove(0, 2);
+
+        playAudio(txtCurIdx);
+    }
+    else
+    {
+        ui->labelImage->setText("Media inconnu...");
+    }
 }

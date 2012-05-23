@@ -83,6 +83,7 @@ class MainWindow : public QMainWindow
 
         void playAudio(QString fileName);
         void playVideo(QString fileName);
+        void openMedia(QString fileName, int typeMedia);
 
         void newQuestionFils();
         void newQuestionFrere();
