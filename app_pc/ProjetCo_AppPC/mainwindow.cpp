@@ -480,3 +480,29 @@ void MainWindow::supprimerReponse()
 {
 
 }
+
+void MainWindow::playAudio(QString fileName)
+{
+    myAudioPlayer = new AudioPlayer("images/test_audio.wav");
+
+    myAudioPlayer->setModal(true);
+    myAudioPlayer->exec();
+}
+
+void MainWindow::playVideo(QString fileName)
+{
+    myVideoPlayer = new VideoPlayer("images/test_video.avi");
+
+    myVideoPlayer->setModal(true);
+    myVideoPlayer->exec();
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    playAudio("test");
+}
+
+void MainWindow::on_pushButton_7_clicked()
+{
+    playVideo("test");
+}

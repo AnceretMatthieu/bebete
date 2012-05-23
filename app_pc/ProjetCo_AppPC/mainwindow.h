@@ -23,6 +23,8 @@
 #include "categoriebdd.h"
 #include "Reponse.h"
 #include "ListeMedia.h"
+#include "audioplayer.h"
+#include "videoplayer.h"
 
 namespace Ui {
 class MainWindow;
@@ -61,6 +63,8 @@ class MainWindow : public QMainWindow
         QMap<QString, Question *> mapTreeQuestions;
 
         ModifQuestionWindow * myWindow;
+        AudioPlayer * myAudioPlayer;
+        VideoPlayer * myVideoPlayer;
 
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
         void createAction();
@@ -77,6 +81,9 @@ class MainWindow : public QMainWindow
         void treeQuestionsContextMenu(const QPoint&);
         void treeReponsesContextMenu(const QPoint&);
 
+        void playAudio(QString fileName);
+        void playVideo(QString fileName);
+
         void newQuestionFils();
         void newQuestionFrere();
         void modifierQuestion();
@@ -85,6 +92,8 @@ class MainWindow : public QMainWindow
         void newReponse();
         void modifierReponse();
         void supprimerReponse();
+        void on_pushButton_6_clicked();
+        void on_pushButton_7_clicked();
 };
 
 #endif // MAINWINDOW_H

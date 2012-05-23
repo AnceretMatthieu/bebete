@@ -25,7 +25,9 @@ SOURCES += main.cpp \
     Espece.cpp \
     CategorieBDD.cpp \
     Categorie.cpp \
-    BDD.cpp
+    BDD.cpp \
+    audioplayer.cpp \
+    videoplayer.cpp
 HEADERS += mainwindow.h \
     aboutwindow.h \
     modifquestionwindow.h \
@@ -43,7 +45,11 @@ HEADERS += mainwindow.h \
     Espece.h \
     CategorieBDD.h \
     Categorie.h \
-    BDD.h
+    BDD.h \
+    audioplayer.h \
+    videoplayer.h
 FORMS += mainwindow.ui \
     aboutwindow.ui \
-    modifquestionwindow.ui 
+    modifquestionwindow.ui \ 
+    audioplayer.ui \
+    videoplayer.ui
