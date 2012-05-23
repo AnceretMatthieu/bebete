@@ -1,10 +1,10 @@
 #include "categoriebdd.h"
 
-ListeQuestion * CategorieBDD::CreerArbre()
+ListeQuestion * CategorieBDD::CreerArbre(QString unFilePath)
 {
-    //QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
-    //QFile fichier(QDir::currentPath() + "/test.xml");
-    QFile fichier(QDir::currentPath() + "/accueil.xml");
+    //QFile fichier(QDir::currentPath() + "/accueil.xml");
+    QFile fichier(unFilePath);
+
     QDomDocument doc;
     doc.setContent(&fichier);
     BDD::currentNode = doc.elementsByTagName("arbre").at(0);

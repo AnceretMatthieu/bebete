@@ -4,6 +4,8 @@
 #include <QDialog>
 #include <QModelIndex>
 
+#include "Question.h"
+
 namespace Ui {
     class ModifQuestionWindow;
 }
@@ -12,7 +14,7 @@ class ModifQuestionWindow : public QDialog {
         Q_OBJECT
 
     public:
-        ModifQuestionWindow(QModelIndex index, QWidget *parent = 0);
+        ModifQuestionWindow(Question * currentQuestion, QWidget *parent = 0);
         ~ModifQuestionWindow();
 
     protected:

@@ -8,19 +8,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     yellowIcon = QIcon("images/icon_yellow.png");
     redIcon = QIcon("images/icon_red.png");
 
-    // Parsage de l'arbre
-    // TODO : à intégrer dans le menu "Importer XML"
-    maListeQuestions = CategorieBDD::CreerArbre();
+    // TODO : à supprimer ; se trouve désormais dans la fonction du menu "Importer XML"
+    maListeQuestions = CategorieBDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
 
     /* Peuplement des TreeView */
     model_tvQuestion = new QStandardItemModel(0, 0);
     model_tvReponse = new QStandardItemModel;
     model_tvMediaQuestion = new QStandardItemModel;
 
+    // TODO : à supprimer ; se trouve désormais dans la fonction du menu "Importer XML"
     peuplerListeQuestionsXML(maListeQuestions, NULL, 0);
-
-    /* Création des actions */
-    createAction();
 
     ui->setupUi(this);
 
@@ -43,21 +40,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     QString style(styleFile.readAll());
     ui->treeViewQuestion->setStyleSheet(style);
 
-    // TODO : peut-être à placer dans une fonction à part...
-    /* Affectation des actions aux boutons du menu */
-    connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
-
-    /* On gère le click sur le TreeView des questions */
-    connect(ui->treeViewQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewQuestions(QModelIndex)));
-
-    /* Clic droit sur le TreeView des questions */
-    connect(ui->treeViewQuestion, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeQuestionsContextMenu(const QPoint&)));
-
-    /* Clic droit sur le TreeView des réponses */
-    connect(ui->treeViewReponse, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeReponsesContextMenu(const QPoint&)));
-
-    /* Clic sur le TreeView des médias d'une question */
-    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewMediasQuestions(QModelIndex)));
+    /* Création des actions */
+    createAction();
 }
 
 MainWindow::~MainWindow()
@@ -70,7 +54,24 @@ void MainWindow::peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QSt
     for(int i = 0; i < uneListeQuestions->size(); i++)
     {
         Question * q = uneListeQuestions->at(i);
-        QStandardItem * elem = new QStandardItem(greenIcon, q->getQuestion());
+        QStandardItem * elem;
+
+        // Permet de déterminer la couleur
+        if(q->getListeMedia()->size() < 1)
+        {
+            elem = new QStandardItem(redIcon, q->getQuestion());
+        }
+        else
+        {
+            if(q->getListeMedia()->size() < 2)
+            {
+                elem = new QStandardItem(yellowIcon, q->getQuestion());
+            }
+            else
+            {
+                elem = new QStandardItem(greenIcon, q->getQuestion());
+            }
+        }
 
         if(pere == NULL) // pour le cas ou les questions n'ont pas de père
         {
@@ -120,20 +121,40 @@ void MainWindow::createAction()
 
     delReponse = new QAction(tr("Supprimer"), this);
     connect(delReponse, SIGNAL(triggered()), this, SLOT(supprimerReponse()));
+
+    /* Affectation des actions aux boutons du menu */
+    connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
+
+    /* On gère le click sur le TreeView des questions */
+    connect(ui->treeViewQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewQuestions(QModelIndex)));
+
+    /* Clic droit sur le TreeView des questions */
+    connect(ui->treeViewQuestion, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeQuestionsContextMenu(const QPoint&)));
+
+    /* Clic droit sur le TreeView des réponses */
+    connect(ui->treeViewReponse, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeReponsesContextMenu(const QPoint&)));
+
+    /* Clic sur le TreeView des médias d'une question */
+    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewMediasQuestions(QModelIndex)));
 }
 
 void MainWindow::on_actionImporter_XML_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de donnees"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
-    std::cout << "Nom du fichier selectionne : " << qPrintable(fileName) << std::endl;
+    // TODO : peut-être penser à vider tous les TreeView & Co avant d'importer un nouvel arbre ;
+    // peut-être proposer aussi d'enregistrer le travail courant
 
-    // il faut ensuite appeler la fonction pour parser (lire) le fichier XML
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
+
+    // Parsage de l'arbre
+    maListeQuestions = CategorieBDD::CreerArbre(fileName);
+
+    // Remplissage des TreeView
+    peuplerListeQuestionsXML(maListeQuestions, NULL, 0);
 }
 
 void MainWindow::on_actionExporter_XML_triggered()
 {
     QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de donnees"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
-    std::cout << "Nom du fichier selectionne : " << qPrintable(fileName) << std::endl;
 
     // il faut ensuite appeler la fonction pour ecrire le fichier XML
 }
@@ -183,7 +204,7 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
 
     // On peut donc construire les coordonées de l'item selectionné
     QString coordonnees = QString::number(profondeur) + "-" + QString::number(index.row());
-    //qDebug() << "Coordonnées : " << coordonnees;
+    qDebug() << "Coordonnées : " << coordonnees;
 
     // On affiche le texte de la question
     QString texte = model_tvQuestion->itemFromIndex(index)->text();
@@ -276,24 +297,105 @@ void MainWindow::treeReponsesContextMenu(const QPoint &pos)
     menu.exec(pos);
 }
 
-void MainWindow::newQuestion()
+void MainWindow::newQuestionFils()
 {
-    // Ouvrir une fenêtre qui demande le nom de la question à insérer
+    // TODO : Ouvrir une fenêtre qui demande le nom de la question à insérer
 
     QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
     QStandardItem * parentSelection = model_tvQuestion->itemFromIndex(index); // on récupère le parent de la selection
 
-    QStandardItem * elem = new QStandardItem(greenIcon, "Question i");
+    QStandardItem * elem = new QStandardItem(greenIcon, "Ceci est une nouvelle question"); // on crée un élém bidon à insérer
 
-    if (parentSelection->parent() != 0)
+    // on calcul les coordonnées du noeud courant
+    int profondeur = 0;
+    QModelIndex currentIndex = index.parent();
+    while(currentIndex != QModelIndex())
     {
-        parentSelection->insertRow(index.row() + 1, elem);
+        currentIndex = currentIndex.parent();
+        profondeur++;
+    }
+    QString coordonnees = QString::number(profondeur) + "-" + QString::number(index.row());
+    Question * currentQuestion = mapTreeQuestions.value(coordonnees); // on récupère la question courante
+
+    // On récupère le nombre de frère de la question
+    int nbFrere = currentQuestion->getCat()->getListeQuestion()->size();
+
+    if (parentSelection->parent() != 0) // si l'élément selectionné n'est pas un élément racine
+    {
+        parentSelection->insertRow(nbFrere, elem);
         //parentSelection->appendRow(elem);
+
+        profondeur++;
+        // TODO : problème au niveau du 2ème paramètre
+        QString coordonnees2 = QString::number(profondeur) + "-" + QString::number(0);
+        qDebug() << "coordonnees2 : " + coordonnees2;
+
+        Question * q = new Question(1);
+        q->setQuestion("Ceci est une nouvelle question");
+        q->setVisible("true");
+        currentQuestion->getCat()->ajouterQuestion(q);
+
+        mapTreeQuestions.insert(coordonnees2, q);
     }
     else
     {
         model_tvQuestion->insertRow(index.row() + 1 , elem);
         //model->appendRow(elem);
+
+        Question * q = new Question(1);
+        q->setQuestion("Ceci est une nouvelle question");
+        q->setVisible("true");
+        currentQuestion->getCat()->ajouterQuestion(q);
+    }
+}
+
+void MainWindow::newQuestionFrere()
+{
+    // TODO : Ouvrir une fenêtre qui demande le nom de la question à insérer
+
+    QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
+    QStandardItem * parentSelection = model_tvQuestion->itemFromIndex(index); // on récupère le parent de la selection
+
+    QStandardItem * elem = new QStandardItem(greenIcon, "Ceci est une nouvelle question"); // on crée un élém bidon à insérer
+
+    // on calcul les coordonnées du noeud courant
+    int profondeur = 0;
+    QModelIndex currentIndex = index.parent();
+    while(currentIndex != QModelIndex())
+    {
+        currentIndex = currentIndex.parent();
+        profondeur++;
+    }
+    QString coordonnees = QString::number(profondeur) + "-" + QString::number(index.row());
+    Question * currentQuestion = mapTreeQuestions.value(coordonnees); // on récupère la question courante
+
+    // On récupère le nombre de frère de la question
+    int nbFrere = currentQuestion->getCat()->getListeQuestion()->size();
+
+    if (parentSelection->parent() != 0) // si l'élément selectionné n'est pas un élément racine
+    {
+        parentSelection->insertRow(nbFrere, elem); // ou insertRow()
+
+        profondeur++;
+        // TODO : problème au niveau du 2ème paramètre
+        QString coordonnees2 = QString::number(profondeur) + "-" + QString::number(nbFrere);
+        qDebug() << "coordonnees2 : " + coordonnees2;
+
+        Question * q = new Question(1);
+        q->setQuestion("Ceci est une nouvelle question");
+        q->setVisible("true");
+        currentQuestion->getCat()->ajouterQuestion(q);
+
+        mapTreeQuestions.insert(coordonnees2, q);
+    }
+    else
+    {
+        model_tvQuestion->insertRow(index.row() + 1, elem);
+
+        Question * q = new Question(1);
+        q->setQuestion("Ceci est une nouvelle question");
+        q->setVisible("true");
+        currentQuestion->getCat()->ajouterQuestion(q);
     }
 }
 
@@ -302,10 +404,21 @@ void MainWindow::modifierQuestion()
     // Il faut envoyer les paramètres de l'item courant à la fenêtre pour pouvoir afficher les infos (texte de la question, ...)
 
     QModelIndex index = ui->treeViewQuestion->currentIndex();
+    int profondeur = 0;
+    QModelIndex currentIndex = index.parent();
+    while(currentIndex != QModelIndex())
+    {
+        currentIndex = currentIndex.parent();
+        profondeur++;
+    }
 
-    ModifQuestionWindow * myWindow = new ModifQuestionWindow(index, this);
+    QString coordonnees = QString::number(profondeur) + "-" + QString::number(index.row());
+    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+
+    myWindow = new ModifQuestionWindow(currentQuestion, this);
+
     myWindow->setModal(true);
-    myWindow->show();
+    myWindow->exec();
 }
 
 void MainWindow::supprimerQuestion()

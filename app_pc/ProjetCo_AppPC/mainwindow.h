@@ -60,6 +60,8 @@ class MainWindow : public QMainWindow
 
         QMap<QString, Question *> mapTreeQuestions;
 
+        ModifQuestionWindow * myWindow;
+
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
         void createAction();
 
@@ -74,7 +76,8 @@ class MainWindow : public QMainWindow
         void treeQuestionsContextMenu(const QPoint&);
         void treeReponsesContextMenu(const QPoint&);
 
-        void newQuestion();
+        void newQuestionFils();
+        void newQuestionFrere();
         void modifierQuestion();
         void supprimerQuestion();
 

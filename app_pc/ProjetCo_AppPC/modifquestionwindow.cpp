@@ -1,7 +1,7 @@
 #include "modifquestionwindow.h"
 #include "ui_modifquestionwindow.h"
 
-ModifQuestionWindow::ModifQuestionWindow(QModelIndex index, QWidget *parent) :
+ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ModifQuestionWindow)
 {

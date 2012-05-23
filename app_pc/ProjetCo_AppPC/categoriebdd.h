@@ -15,7 +15,7 @@ class Categorie;
 class CategorieBDD : public BDD
 {
 public:
-    static ListeQuestion * CreerArbre();
+    static ListeQuestion * CreerArbre(QString unFilePath);
     static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
 };
 
