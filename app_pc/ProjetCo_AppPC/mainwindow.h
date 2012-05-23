@@ -72,6 +72,7 @@ class MainWindow : public QMainWindow
         void on_actionApropos();
         void on_clickTreeViewQuestions(const QModelIndex &index);
         void on_clickTreeViewMediasQuestions(const QModelIndex &index);
+        void on_clickTreeViewReponse(const QModelIndex &index);
 
         void treeQuestionsContextMenu(const QPoint&);
         void treeReponsesContextMenu(const QPoint&);

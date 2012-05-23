@@ -7,6 +7,7 @@
 #define MEDIA_TYPE_VIDEO    0
 #define MEDIA_TYPE_IMAGE    1
 #define MEDIA_TYPE_TEXT     2
+#define MEDIA_TYPE_AUDIO    3
 
 class Reponse;
 class Question;

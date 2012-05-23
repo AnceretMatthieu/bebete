@@ -104,6 +104,7 @@ void MainWindow::peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QSt
 
 void MainWindow::createAction()
 {
+    /* Affectation des actions sur les menus contextuels */
     addQuestion = new QAction(tr("Ajouter une question"), this);
     connect(addQuestion, SIGNAL(triggered()), this, SLOT(newQuestion()));
 
@@ -122,20 +123,23 @@ void MainWindow::createAction()
     delReponse = new QAction(tr("Supprimer"), this);
     connect(delReponse, SIGNAL(triggered()), this, SLOT(supprimerReponse()));
 
-    /* Affectation des actions aux boutons du menu */
+    /* Affectation des actions aux boutons du menu "A propos" */
     connect(ui->actionA_propos, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
 
     /* On gère le click sur le TreeView des questions */
     connect(ui->treeViewQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewQuestions(QModelIndex)));
+
+    /* On gère le click sur le TreeView des réponses */
+    connect(ui->treeViewReponse, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewReponse(QModelIndex)));
+
+    /* Clic sur le TreeView des médias d'une question */
+    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewMediasQuestions(QModelIndex)));
 
     /* Clic droit sur le TreeView des questions */
     connect(ui->treeViewQuestion, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeQuestionsContextMenu(const QPoint&)));
 
     /* Clic droit sur le TreeView des réponses */
     connect(ui->treeViewReponse, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeReponsesContextMenu(const QPoint&)));
-
-    /* Clic sur le TreeView des médias d'une question */
-    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewMediasQuestions(QModelIndex)));
 }
 
 void MainWindow::on_actionImporter_XML_triggered()
@@ -214,10 +218,19 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
     Question * currentQuestion = mapTreeQuestions.value(coordonnees);
     ListeReponse * lr = currentQuestion->getListeReponse();
 
+    // On remplit le TreeView des réponses
     for(int i = 0; i < lr->size(); i++)
     {
         Reponse * r = lr->at(i);
         QStandardItem * elemRep = new QStandardItem(r->getReponse());
+
+        // Pour chaque réponse, on ajoute ses médias associés
+        ListeMedia * lm = r->getListeIllustration();
+        for(int j = 0; j < lm->size(); j++)
+        {
+            elemRep->appendRow(new QStandardItem(lm->at(j)->getPath()));
+        }
+
         model_tvReponse->appendRow(elemRep);
     }
 
@@ -260,6 +273,30 @@ void MainWindow::on_clickTreeViewMediasQuestions(const QModelIndex &index)
     // Il faudrait tester le type du média qui a été selectionné
 
     QString pathImg = model_tvMediaQuestion->itemFromIndex(index)->text();
+
+    QImage * myImg = new QImage(pathImg);
+    if(myImg->isNull() != true)
+    {
+        // Il faudrait réfléchir à la méthode de redimensionnement de l'image
+        // TODO : en cliquant sur l'image, il serait bien qu'elle puisse s'ouvrir en plein écran dans une nouvelle fenêtre
+        QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
+
+        QPixmap * img = new QPixmap();
+        img->convertFromImage(myScaledImg, Qt::AutoColor);
+
+        ui->labelImage->setPixmap(*img);
+    }
+    else
+    {
+        ui->labelImage->setText("Ce média n'est pas une image.");
+    }
+}
+
+void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
+{
+    // Il faudrait tester le type du média qui a été selectionné
+
+    QString pathImg = model_tvReponse->itemFromIndex(index)->text();
 
     QImage * myImg = new QImage(pathImg);
     if(myImg->isNull() != true)

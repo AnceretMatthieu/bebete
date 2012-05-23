@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed 23. May 14:37:32 2012
+** Created: Wed 23. May 15:32:22 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      15,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -37,15 +37,16 @@ static const uint qt_meta_data_MainWindow[] = {
      109,   11,   11,   11, 0x08,
      134,  128,   11,   11, 0x08,
      173,  128,   11,   11, 0x08,
-     218,   11,   11,   11, 0x08,
-     251,   11,   11,   11, 0x08,
-     283,   11,   11,   11, 0x08,
-     301,   11,   11,   11, 0x08,
+     218,  128,   11,   11, 0x08,
+     255,   11,   11,   11, 0x08,
+     288,   11,   11,   11, 0x08,
      320,   11,   11,   11, 0x08,
-     339,   11,   11,   11, 0x08,
-     359,   11,   11,   11, 0x08,
-     372,   11,   11,   11, 0x08,
-     390,   11,   11,   11, 0x08,
+     338,   11,   11,   11, 0x08,
+     357,   11,   11,   11, 0x08,
+     376,   11,   11,   11, 0x08,
+     396,   11,   11,   11, 0x08,
+     409,   11,   11,   11, 0x08,
+     427,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -57,6 +58,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "on_actionApropos()\0index\0"
     "on_clickTreeViewQuestions(QModelIndex)\0"
     "on_clickTreeViewMediasQuestions(QModelIndex)\0"
+    "on_clickTreeViewReponse(QModelIndex)\0"
     "treeQuestionsContextMenu(QPoint)\0"
     "treeReponsesContextMenu(QPoint)\0"
     "newQuestionFils()\0newQuestionFrere()\0"
@@ -77,15 +79,16 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 3: _t->on_actionApropos(); break;
         case 4: _t->on_clickTreeViewQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 5: _t->on_clickTreeViewMediasQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 6: _t->treeQuestionsContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 7: _t->treeReponsesContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
-        case 8: _t->newQuestionFils(); break;
-        case 9: _t->newQuestionFrere(); break;
-        case 10: _t->modifierQuestion(); break;
-        case 11: _t->supprimerQuestion(); break;
-        case 12: _t->newReponse(); break;
-        case 13: _t->modifierReponse(); break;
-        case 14: _t->supprimerReponse(); break;
+        case 6: _t->on_clickTreeViewReponse((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 7: _t->treeQuestionsContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 8: _t->treeReponsesContextMenu((*reinterpret_cast< const QPoint(*)>(_a[1]))); break;
+        case 9: _t->newQuestionFils(); break;
+        case 10: _t->newQuestionFrere(); break;
+        case 11: _t->modifierQuestion(); break;
+        case 12: _t->supprimerQuestion(); break;
+        case 13: _t->newReponse(); break;
+        case 14: _t->modifierReponse(); break;
+        case 15: _t->supprimerReponse(); break;
         default: ;
         }
     }
@@ -123,9 +126,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 15)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 15;
+        _id -= 16;
     }
     return _id;
 }

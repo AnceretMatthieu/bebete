@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 23. May 14:37:25 2012
+** Created: Wed 23. May 14:50:29 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -22,6 +22,7 @@
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QPushButton>
 #include <QtGui/QSpacerItem>
 #include <QtGui/QTreeView>
 #include <QtGui/QVBoxLayout>
@@ -39,6 +40,12 @@ public:
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QHBoxLayout *horizontalLayout_2;
+    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_3;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
     QTreeView *treeViewQuestion;
     QFrame *line;
     QVBoxLayout *verticalLayout;
@@ -54,6 +61,8 @@ public:
     QVBoxLayout *verticalLayout_2;
     QLabel *lblReponse;
     QFrame *line_5;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *pushButton_5;
     QTreeView *treeViewReponse;
     QSpacerItem *verticalSpacer_2;
     QFrame *line_3;
@@ -109,6 +118,35 @@ public:
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
         horizontalLayout_2->setSizeConstraint(QLayout::SetDefaultConstraint);
+        verticalLayout_4 = new QVBoxLayout();
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        pushButton_4 = new QPushButton(centralWidget);
+        pushButton_4->setObjectName(QString::fromUtf8("pushButton_4"));
+
+        horizontalLayout_3->addWidget(pushButton_4);
+
+        pushButton_3 = new QPushButton(centralWidget);
+        pushButton_3->setObjectName(QString::fromUtf8("pushButton_3"));
+
+        horizontalLayout_3->addWidget(pushButton_3);
+
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        horizontalLayout_3->addWidget(pushButton_2);
+
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        horizontalLayout_3->addWidget(pushButton);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_3);
+
         treeViewQuestion = new QTreeView(centralWidget);
         treeViewQuestion->setObjectName(QString::fromUtf8("treeViewQuestion"));
         sizePolicy.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
@@ -120,7 +158,10 @@ public:
         treeViewQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeViewQuestion->setSelectionBehavior(QAbstractItemView::SelectRows);
 
-        horizontalLayout_2->addWidget(treeViewQuestion);
+        verticalLayout_4->addWidget(treeViewQuestion);
+
+
+        horizontalLayout_2->addLayout(verticalLayout_4);
 
         line = new QFrame(centralWidget);
         line->setObjectName(QString::fromUtf8("line"));
@@ -229,6 +270,17 @@ public:
 
         verticalLayout_2->addWidget(line_5);
 
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+
+        verticalLayout_2->addLayout(horizontalLayout_4);
+
+        pushButton_5 = new QPushButton(centralWidget);
+        pushButton_5->setObjectName(QString::fromUtf8("pushButton_5"));
+
+        verticalLayout_2->addWidget(pushButton_5);
+
         treeViewReponse = new QTreeView(centralWidget);
         treeViewReponse->setObjectName(QString::fromUtf8("treeViewReponse"));
         sizePolicy.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
@@ -295,7 +347,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1024, 21));
+        menuBar->setGeometry(QRect(0, 0, 1024, 23));
         menuBar->setFont(font4);
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
@@ -332,11 +384,16 @@ public:
         actionQuitter->setText(QApplication::translate("MainWindow", "Quitter", 0, QApplication::UnicodeUTF8));
         actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
+        pushButton_4->setText(QApplication::translate("MainWindow", "+ fils", 0, QApplication::UnicodeUTF8));
+        pushButton_3->setText(QApplication::translate("MainWindow", "+ frere", 0, QApplication::UnicodeUTF8));
+        pushButton_2->setText(QApplication::translate("MainWindow", "Edit", 0, QApplication::UnicodeUTF8));
+        pushButton->setText(QApplication::translate("MainWindow", "-", 0, QApplication::UnicodeUTF8));
         labelQuestion->setText(QApplication::translate("MainWindow", "Question", 0, QApplication::UnicodeUTF8));
         checkBoxVisibleOeil->setText(QApplication::translate("MainWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
         checkBoxVisibleLoupe->setText(QApplication::translate("MainWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "M\303\251dias", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
+        pushButton_5->setText(QApplication::translate("MainWindow", "Ajouter r\303\251ponse", 0, QApplication::UnicodeUTF8));
         lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
         labelImage->setText(QString());
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0, QApplication::UnicodeUTF8));
