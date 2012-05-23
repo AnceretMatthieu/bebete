@@ -1,17 +1,26 @@
 package polytechTours.DI4;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Vector;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -19,6 +28,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,6 +54,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private static boolean aquis = false;
 	private ReacherQR reacher;
 	private Dialog dialog;
+	private Dialog dialogAlerte;
 	
 	private static Question currentQuestion;
 	private Vector<Question> listQuestion = new Vector<Question>();
@@ -55,8 +66,11 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private ImageButton alerte;
 	private Button boutonEnregistrer;
 	private Button boutonAnnuler;
+	private Button boutonSubmit;
+	private Button boutonAnnulerAlerte;
 	private Resultat resultat;
 	private boolean dialogVisible;
+	private boolean dialogAlerteVisible;
 	
 	public QuestionFragment()
 	{
@@ -66,6 +80,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		listQuestion.add(question);
 		navigation = 0;
 		dialogVisible = false;
+		dialogAlerteVisible = false;
 	}
 	
 	//*************************************************************************************************************
@@ -146,6 +161,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		 suivant.setEnabled(false);
 		 alerte = (ImageButton)activity.findViewById(R.id.imageAlerte );
 		 alerte.setVisibility(ImageView.VISIBLE);
+		 alerte.setOnClickListener(this);
 		 
 		 //changeUI();
 		 
@@ -358,7 +374,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				}
 				changeUIviaHisto();
 			}
-			else if( arg0.getId() == suivant.getId() )
+			else if( arg0.getId() == suivant.getId() )  //Suivant cliqué dans l'historique
 			{
 				navigation++;
 				
@@ -372,12 +388,12 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				}
 				changeUIviaHisto();
 			}
-			else if( dialogVisible && arg0.getId() == boutonAnnuler.getId() )
+			else if( dialogVisible && arg0.getId() == boutonAnnuler.getId() )  //Annuler cliqué dans le dialog de resultat
 			{
 				dialogVisible = false;
 				dialog.dismiss();
 			}
-			else if( dialogVisible && arg0.getId() == boutonEnregistrer.getId() )
+			else if( dialogVisible && arg0.getId() == boutonEnregistrer.getId() ) //Enregistrer clique dans le dialog de resultat
 			{
 				SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
 		        
@@ -406,6 +422,97 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		        dialog.dismiss();
 		        dialogVisible = false;
 		        
+			}
+			else if( arg0.getId() == alerte.getId() )
+			{
+				if( !dialogAlerteVisible )
+				{
+					afficherAlerte();
+				}
+			}
+			else if( dialogAlerteVisible && arg0.getId() ==  boutonAnnulerAlerte.getId() ) //Bouton annuler cliqué sur le dialog alerte
+			{
+				dialogAlerte.dismiss();
+				dialogAlerteVisible = false;
+			}
+			else if( dialogAlerteVisible && arg0.getId() == boutonSubmit.getId() )   //Bouton submit cliqué sur le dialog alerte
+			{
+				EditText detail = (EditText)dialogAlerte.findViewById(R.id.detail);
+				Date date = new Date();				
+				
+				if( detail.getText().length() != 0 )
+				{
+					File imageFileDir = new File(Environment.getExternalStoragePublicDirectory(
+				              Environment.DIRECTORY_PICTURES), "Inno");
+					File rapport = new File(Environment.getExternalStoragePublicDirectory(
+				              Environment.DIRECTORY_PICTURES), "Inno");
+	
+	                Bitmap bitmap;
+	                View v1 = getView(); 
+	                v1.setDrawingCacheEnabled(true);
+	                bitmap = Bitmap.createBitmap(v1.getDrawingCache());
+	                v1.setDrawingCacheEnabled(false);
+	
+	                File rapportFile = new File( rapport.getPath() + File.separator + "Incident" + File.separator + "RapportIncident" + date.getTime() + ".txt" );
+	                
+	                try 
+	                {
+						FileOutputStream fo = new FileOutputStream( rapportFile );
+						try {
+							fo.write( detail.getText().toString().getBytes() );
+							Log.d("Ecriture fichier", "Retour : " + detail.getText().toString() );
+							fo.flush();
+							fo.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
+					} 
+	                catch (FileNotFoundException e1) 
+	                {
+	                	e1.printStackTrace();
+					}
+	                
+	                try 
+	                {	                	
+	                	Log.d( "Screen", imageFileDir.getPath() + File.separator + "Incident" + File.separator + "Incident_.jpeg" );
+	                	File imageFile = new File( imageFileDir.getPath() + File.separator + "Incident_.jpeg"  );
+	                	
+	                	FileOutputStream fos = new FileOutputStream(imageFile);
+			            
+	                	ByteArrayOutputStream fout = new ByteArrayOutputStream();
+	                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+	                    
+	                    fos.write( fout.toByteArray() );
+	                    fos.close();
+	                    
+	                } 
+	                catch (FileNotFoundException e) 
+	                {
+	                    // TODO Auto-generated catch block
+	                    e.printStackTrace();
+	                }
+	                catch (IOException e) 
+	                {
+	                    // TODO Auto-generated catch block
+	                    e.printStackTrace();
+	                }
+				}
+				else
+				{
+					AlertDialog.Builder builder = new AlertDialog.Builder(activity.getApplicationContext());
+					builder.setMessage("Veuillez décrire votre problème")
+						.setCancelable(false)
+						.setPositiveButton("Ok", new DialogInterface.OnClickListener() 
+													  {
+															public void onClick(DialogInterface dialog, int id) 
+															{
+																//this.dismiss();
+															}
+													  });
+					AlertDialog alert = builder.create();
+					
+				}
 			}
 			else if( aquis )
 			{
@@ -549,5 +656,26 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		gallery.setAdapter( adapter );
 		
 		dialog.show();
+	}
+	
+	private void afficherAlerte()
+	{
+		dialogAlerte = new Dialog( activity );
+		dialogAlerte.setOwnerActivity(activity);
+	       
+		dialogAlerte.setContentView(R.layout.alerte);
+		dialogAlerte.setTitle("Incident");
+		dialogAlerte.setCancelable(false);
+		dialogAlerte.setCanceledOnTouchOutside(true);
+		
+		dialogAlerteVisible = true;
+		
+		boutonSubmit = (Button)dialogAlerte.findViewById( R.id.button1 );
+		boutonSubmit.setOnClickListener(this);
+		
+		boutonAnnulerAlerte = (Button)dialogAlerte.findViewById( R.id.button2 );
+		boutonAnnulerAlerte.setOnClickListener( this );
+		
+		dialogAlerte.show();
 	}
 }
