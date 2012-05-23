@@ -22,16 +22,16 @@ class AudioPlayer : public QDialog
         void changerSourceVolume();
         void changerSourceAvancement();
 
+    private slots:
+        void on_AudioPlayer_destroyed();
+
     private:
         Ui::AudioPlayer *ui;
 
-        // Les 2 slider (avancement et volume)
         Phonon::SeekSlider * barreAvancement;
         Phonon::VolumeSlider *barreVolume;
 
         Phonon::MediaObject *mediaObjet;
-
-        // Sortie audio des "musiques"
         Phonon::AudioOutput *sortie;
 };
 

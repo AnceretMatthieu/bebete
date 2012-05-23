@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed 23. May 17:10:33 2012
+** Created: Wed 23. May 23:47:19 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      19,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -50,8 +50,6 @@ static const uint qt_meta_data_MainWindow[] = {
      485,   11,   11,   11, 0x08,
      498,   11,   11,   11, 0x08,
      516,   11,   11,   11, 0x08,
-     535,   11,   11,   11, 0x08,
-     561,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -72,8 +70,6 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "newQuestionFrere()\0modifierQuestion()\0"
     "supprimerQuestion()\0newReponse()\0"
     "modifierReponse()\0supprimerReponse()\0"
-    "on_pushButton_6_clicked()\0"
-    "on_pushButton_7_clicked()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -101,8 +97,6 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 16: _t->newReponse(); break;
         case 17: _t->modifierReponse(); break;
         case 18: _t->supprimerReponse(); break;
-        case 19: _t->on_pushButton_6_clicked(); break;
-        case 20: _t->on_pushButton_7_clicked(); break;
         default: ;
         }
     }
@@ -140,9 +134,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 19)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 19;
     }
     return _id;
 }

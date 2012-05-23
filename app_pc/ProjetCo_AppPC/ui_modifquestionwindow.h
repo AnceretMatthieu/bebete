@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifquestionwindow.ui'
 **
-** Created: Wed 23. May 14:37:25 2012
+** Created: Thu 24. May 00:39:55 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,7 +14,7 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
-#include <QtGui/QComboBox>
+#include <QtGui/QCheckBox>
 #include <QtGui/QDialog>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QFormLayout>
@@ -32,11 +32,11 @@ public:
     QWidget *layoutWidget;
     QFormLayout *formLayout;
     QLabel *label;
-    QLabel *label_2;
+    QLabel *label_id;
     QLabel *label_3;
     QTextEdit *textEdit;
-    QLabel *label_4;
-    QComboBox *comboBox;
+    QCheckBox *checkBox_visibleOeil;
+    QCheckBox *checkBox_visibleLoupe;
 
     void setupUi(QDialog *ModifQuestionWindow)
     {
@@ -53,16 +53,17 @@ public:
         layoutWidget->setGeometry(QRect(10, 10, 365, 230));
         formLayout = new QFormLayout(layoutWidget);
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
+        formLayout->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
         formLayout->setContentsMargins(0, 0, 0, 0);
         label = new QLabel(layoutWidget);
         label->setObjectName(QString::fromUtf8("label"));
 
         formLayout->setWidget(0, QFormLayout::LabelRole, label);
 
-        label_2 = new QLabel(layoutWidget);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_id = new QLabel(layoutWidget);
+        label_id->setObjectName(QString::fromUtf8("label_id"));
 
-        formLayout->setWidget(0, QFormLayout::FieldRole, label_2);
+        formLayout->setWidget(0, QFormLayout::FieldRole, label_id);
 
         label_3 = new QLabel(layoutWidget);
         label_3->setObjectName(QString::fromUtf8("label_3"));
@@ -74,20 +75,15 @@ public:
 
         formLayout->setWidget(1, QFormLayout::FieldRole, textEdit);
 
-        label_4 = new QLabel(layoutWidget);
-        label_4->setObjectName(QString::fromUtf8("label_4"));
+        checkBox_visibleOeil = new QCheckBox(layoutWidget);
+        checkBox_visibleOeil->setObjectName(QString::fromUtf8("checkBox_visibleOeil"));
 
-        formLayout->setWidget(2, QFormLayout::LabelRole, label_4);
+        formLayout->setWidget(2, QFormLayout::FieldRole, checkBox_visibleOeil);
 
-        comboBox = new QComboBox(layoutWidget);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Fixed);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(comboBox->sizePolicy().hasHeightForWidth());
-        comboBox->setSizePolicy(sizePolicy);
+        checkBox_visibleLoupe = new QCheckBox(layoutWidget);
+        checkBox_visibleLoupe->setObjectName(QString::fromUtf8("checkBox_visibleLoupe"));
 
-        formLayout->setWidget(2, QFormLayout::FieldRole, comboBox);
+        formLayout->setWidget(3, QFormLayout::FieldRole, checkBox_visibleLoupe);
 
 
         retranslateUi(ModifQuestionWindow);
@@ -101,15 +97,10 @@ public:
     {
         ModifQuestionWindow->setWindowTitle(QApplication::translate("ModifQuestionWindow", "Dialog", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("ModifQuestionWindow", "ID : ", 0, QApplication::UnicodeUTF8));
-        label_2->setText(QApplication::translate("ModifQuestionWindow", "id_question", 0, QApplication::UnicodeUTF8));
+        label_id->setText(QApplication::translate("ModifQuestionWindow", "id_question", 0, QApplication::UnicodeUTF8));
         label_3->setText(QApplication::translate("ModifQuestionWindow", "Texte : ", 0, QApplication::UnicodeUTF8));
-        label_4->setText(QApplication::translate("ModifQuestionWindow", "Visibilit\303\251 : ", 0, QApplication::UnicodeUTF8));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("ModifQuestionWindow", "A l'oeil nu", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("ModifQuestionWindow", "A la loupe", 0, QApplication::UnicodeUTF8)
-         << QApplication::translate("ModifQuestionWindow", "Les deux", 0, QApplication::UnicodeUTF8)
-        );
+        checkBox_visibleOeil->setText(QApplication::translate("ModifQuestionWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
+        checkBox_visibleLoupe->setText(QApplication::translate("ModifQuestionWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

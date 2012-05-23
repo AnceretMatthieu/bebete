@@ -31,11 +31,6 @@ AudioPlayer::AudioPlayer(QString filePath, QWidget *parent) :
     Phonon::createPath(mediaObjet, sortie);
 
     connect(ui->btnPlay, SIGNAL(clicked()), mediaObjet, SLOT(play()));
-    /*
-    connect(ui->btnPlay, SIGNAL(clicked()), this, SLOT(changerSourceVolume()));
-    connect(ui->btnPlay, SIGNAL(clicked()), this, SLOT(changerTemps()));
-    connect(ui->btnPlay, SIGNAL(clicked()), this, SLOT(changerSourceAvancement()));
-    */
     connect(ui->btnPause, SIGNAL(clicked()), mediaObjet, SLOT(pause()));
     connect(ui->btnStop, SIGNAL(clicked()), mediaObjet, SLOT(stop()));
 
@@ -89,3 +84,7 @@ void AudioPlayer::changerSourceAvancement()
     barreAvancement->setMediaObject(mediaObjet);
 }
 
+void AudioPlayer::on_AudioPlayer_destroyed()
+{
+    close();
+}

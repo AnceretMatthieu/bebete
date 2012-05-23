@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'videoplayer.ui'
 **
-** Created: Wed 23. May 16:37:27 2012
+** Created: Wed 23. May 23:39:42 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -122,7 +122,7 @@ public:
 
     void retranslateUi(QDialog *VideoPlayer)
     {
-        VideoPlayer->setWindowTitle(QApplication::translate("VideoPlayer", "Dialog", 0, QApplication::UnicodeUTF8));
+        VideoPlayer->setWindowTitle(QApplication::translate("VideoPlayer", "VideoPlayer", 0, QApplication::UnicodeUTF8));
         btnPlay_2->setText(QString());
         btnPause_2->setText(QString());
         btnStop_2->setText(QString());

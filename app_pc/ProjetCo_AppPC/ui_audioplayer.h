@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'audioplayer.ui'
 **
-** Created: Wed 23. May 16:37:27 2012
+** Created: Wed 23. May 23:39:42 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -123,7 +123,7 @@ public:
 
     void retranslateUi(QDialog *AudioPlayer)
     {
-        AudioPlayer->setWindowTitle(QApplication::translate("AudioPlayer", "Dialog", 0, QApplication::UnicodeUTF8));
+        AudioPlayer->setWindowTitle(QApplication::translate("AudioPlayer", "AudioPlayer", 0, QApplication::UnicodeUTF8));
         btnPlay->setText(QString());
         btnPause->setText(QString());
         btnStop->setText(QString());
