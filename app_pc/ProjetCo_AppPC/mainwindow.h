@@ -93,6 +93,10 @@ class MainWindow : public QMainWindow
         void newReponse();
         void modifierReponse();
         void supprimerReponse();
+
+        void newMedia();
+        void modifierMedia();
+        void supprimerMedia();
 };
 
 #endif // MAINWINDOW_H

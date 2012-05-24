@@ -453,13 +453,34 @@
          </widget>
         </item>
         <item>
-         <widget class="QLabel" name="labelImage">
+         <widget class="QLabel" name="labelImage1">
           <property name="font">
            <font>
             <family>DejaVu Sans</family>
             <pointsize>10</pointsize>
            </font>
           </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelImage2">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelImage3">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelImage4">
           <property name="text">
            <string/>
           </property>

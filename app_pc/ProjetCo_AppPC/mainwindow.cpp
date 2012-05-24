@@ -143,10 +143,15 @@ void MainWindow::createAction()
     connect(ui->button_supprimerQuestion, SIGNAL(clicked()), this, SLOT(supprimerQuestion()));
 
     /* Affectation des actions aux boutons des réponses */
-    // ...
+    connect(ui->button_ajouterReponse, SIGNAL(clicked()), this, SLOT(newReponse()));
+    connect(ui->button_modifierReponse, SIGNAL(clicked()), this, SLOT(modifierReponse()));
+    connect(ui->button_supprimerReponse, SIGNAL(clicked()), this, SLOT(supprimerReponse()));
 
     /* Affectation des actions aux boutons des médias des questions */
-    // ...
+    // ..
+
+    /* Affectation des actions aux boutons des médias des réponses */
+    // ..
 }
 
 void MainWindow::on_actionImporter_XML_triggered()
@@ -286,8 +291,35 @@ void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
     // TODO : refléchir à une meilleur méthode pour déterminer le type de media :
     //      - TreeView avec 2 colonnes (1 pour le type et l'autre pour le contenu)
     //      - ...
-    QString txtCurIdx = model_tvReponse->itemFromIndex(index)->text();
-    openMedia(txtCurIdx, 0);
+
+    qDebug() << "row : " << index.row() << "; column : " << index.column();
+
+    if(index.parent() == QModelIndex()) // l'élément courant n'a pas de parent ; on affiche ses 4 premières images
+    {
+        // Il faut parcourir les médias (ses fils) et afficher les 4 premières images
+        // On ne tient pas compte des autres médias ni des 5ème, 6ème... images
+        int nbImage = 0;
+        int column = 0;
+        while(nbImage < 4) // tant que l'on a pas affiché 4 images
+        {
+            QModelIndex curChild = index.child(0, column);
+            if(curChild.isValid() == true) // on test si l'item est valide pour savoir si il existe encore un fils
+            {
+                if(model_tvReponse->itemFromIndex(curChild)->text().startsWith("1")) // si l'élément courant est une image
+                {
+                    // on affiche l'image dans le label i (= nbImage)
+                    nbImage++;
+                }
+                // on passe au fils suivant
+                column++;
+            }
+        }
+    }
+    else
+    {
+        QString txtCurIdx = model_tvReponse->itemFromIndex(index)->text();
+        openMedia(txtCurIdx, 0);
+    }
 }
 
 void MainWindow::treeQuestionsContextMenu(const QPoint &pos)
@@ -446,7 +478,8 @@ void MainWindow::supprimerQuestion()
 
 void MainWindow::newReponse()
 {
-
+    QStandardItem * elemRep = new QStandardItem("Nouvelle réponse");
+    model_tvReponse->appendRow(elemRep);
 }
 
 void MainWindow::modifierReponse()
@@ -455,6 +488,22 @@ void MainWindow::modifierReponse()
 }
 
 void MainWindow::supprimerReponse()
+{
+    QModelIndex currentIndex = ui->treeViewReponse->currentIndex();
+    model_tvReponse->removeRow(currentIndex.row());
+}
+
+void MainWindow::newMedia()
+{
+
+}
+
+void MainWindow::modifierMedia()
+{
+
+}
+
+void MainWindow::supprimerMedia()
 {
 
 }
@@ -498,14 +547,14 @@ void MainWindow::openMedia(QString fileName, int typeMedia)
             QPixmap * img = new QPixmap();
             img->convertFromImage(myScaledImg, Qt::AutoColor);
 
-            ui->labelImage->setPixmap(*img);
+            ui->labelImage1->setPixmap(*img);
         }
     }
     else if(txtCurIdx.startsWith("2")) // Media de type MEDIA_TYPE_TEXT
     {
         txtCurIdx.remove(0, 2);
 
-        ui->labelImage->setText(txtCurIdx);
+        ui->labelImage1->setText(txtCurIdx);
     }
     else if(txtCurIdx.startsWith("3")) // Media de type MEDIA_TYPE_AUDIO
     {
@@ -515,6 +564,6 @@ void MainWindow::openMedia(QString fileName, int typeMedia)
     }
     else
     {
-        ui->labelImage->setText("Media inconnu...");
+        ui->labelImage1->setText("Media inconnu...");
     }
 }

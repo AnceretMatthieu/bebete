@@ -27,7 +27,8 @@ SOURCES += main.cpp \
     Categorie.cpp \
     BDD.cpp \
     audioplayer.cpp \
-    videoplayer.cpp
+    videoplayer.cpp \
+    ajoutertexte.cpp
 HEADERS += mainwindow.h \
     aboutwindow.h \
     modifquestionwindow.h \
@@ -47,9 +48,11 @@ HEADERS += mainwindow.h \
     Categorie.h \
     BDD.h \
     audioplayer.h \
-    videoplayer.h
+    videoplayer.h \
+    ajoutertexte.h
 FORMS += mainwindow.ui \
     aboutwindow.ui \
     modifquestionwindow.ui \ 
     audioplayer.ui \
-    videoplayer.ui
+    videoplayer.ui \
+    ajoutertexte.ui

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed 23. May 23:47:19 2012
+** Created: Thu 24. May 19:03:59 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      19,   14, // methods
+      22,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -50,6 +50,9 @@ static const uint qt_meta_data_MainWindow[] = {
      485,   11,   11,   11, 0x08,
      498,   11,   11,   11, 0x08,
      516,   11,   11,   11, 0x08,
+     535,   11,   11,   11, 0x08,
+     546,   11,   11,   11, 0x08,
+     562,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -70,6 +73,7 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "newQuestionFrere()\0modifierQuestion()\0"
     "supprimerQuestion()\0newReponse()\0"
     "modifierReponse()\0supprimerReponse()\0"
+    "newMedia()\0modifierMedia()\0supprimerMedia()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -97,6 +101,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 16: _t->newReponse(); break;
         case 17: _t->modifierReponse(); break;
         case 18: _t->supprimerReponse(); break;
+        case 19: _t->newMedia(); break;
+        case 20: _t->modifierMedia(); break;
+        case 21: _t->supprimerMedia(); break;
         default: ;
         }
     }
@@ -134,9 +141,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 19)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 19;
+        _id -= 22;
     }
     return _id;
 }
