@@ -13,8 +13,12 @@ int main(int argc, char *argv[])
 
     Categorie* categ = new Categorie(1);
     ListeQuestion * lq = CategorieBDD::CreerArbre();
-    categ->ajouterQuestion(lq->at(0));
-    CategorieBDD::enregistrerArbre(categ);
+    if(lq->size() != 0) {
+        categ->ajouterQuestion(lq->at(0));
+        CategorieBDD::enregistrerArbre(categ);
+    }
+    else
+        qDebug() << "Error";
 
     return a.exec();
 }

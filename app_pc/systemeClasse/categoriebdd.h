@@ -19,7 +19,7 @@ public:
     static ListeQuestion * CreerArbre();
     static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
     static void enregistrerArbre(Categorie *racine);
-
+    static void enregistrerCategorie(Categorie * currentCat);
 
 };
 

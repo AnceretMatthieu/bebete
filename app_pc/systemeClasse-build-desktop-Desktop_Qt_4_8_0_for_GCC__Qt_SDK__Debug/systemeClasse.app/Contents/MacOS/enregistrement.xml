@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<arbre>
+ <branche type="" id="b1">
+  <question texte="Quelle réponse décrit le mieux l'insecte que vous voyez ?" visible="Quelle réponse décrit le mieux l'insecte que vous voyez ?" id="q0">
+   <reponse texte="6 pattes" id="r0">
+    <branche type="" id="b0">
+     <question texte="Plus de question pour cet exemple test" visible="Plus de question pour cet exemple test" id="q0">
+      <reponse texte="8 pattes, ailes et antennes absentes" id="r0">
+       <branche type="Arachnide" id="b0">
+        <question texte="Quelle est la taille de l'arachnide ?" visible="Quelle est la taille de l'arachnide ?" id="q0">
+         <reponse texte="Supérieur à 5 mm" id="r0">
+          <resultat id="res0">
+           <nom/>
+           <type/>
+           <regimeAlimentaire/>
+           <informations/>
+          </resultat>
+          <reponse texte="Inférieur à 5 mm" id="r0">
+           <branche type="" id="b0">
+            <question texte="Plus de question pour cet exemple test" visible="Plus de question pour cet exemple test" id="q0"/>
+           </branche>
+          </reponse>
+         </reponse>
+        </question>
+       </branche>
+      </reponse>
+     </question>
+    </branche>
+   </reponse>
+  </question>
+ </branche>
+</arbre>

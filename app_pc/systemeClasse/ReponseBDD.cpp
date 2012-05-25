@@ -5,6 +5,7 @@
 #include "Question.h"
 #include "Espece.h"
 #include "BDD.h"
+#include "EspeceBDD.h"`
 #include "categoriebdd.h"
 
 void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
@@ -35,7 +36,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
         else if(tempNode.nodeName() == "media")
         {
             QDomNodeList lstMedia = tempNode.childNodes();
-            //qDebug() << "Media" << i << ": nombre de noeud" << lstMedia.size();
+            //qDebug() << "MediaReponse" << i << ": nombre de noeud" << lstMedia.size();
             int j;
             for(j=0; j<lstMedia.size(); j++)
             {
@@ -51,8 +52,8 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
                      tempm->setPath(lstMedia.at(j).toElement().text());
                 }
                 //qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
+                rep->ajouterMedia(tempm);
              }
-             rep->ajouterMedia(tempm);
         }
         else if(tempNode.nodeName() == "resultat")
         {
@@ -77,5 +78,34 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
             rep->setSuiv(tempe);
             rep->setTypeSuiv(TYPE_ESPECE);
         }
+    }
+}
+
+void ReponseBDD::enregistrerReponse(Reponse * rep)  {
+    QDomElement reponse = doc.createElement("reponse");
+    reponse.setAttribute("id", "r"+QString::number(rep->getIdentifiant()));
+    reponse.setAttribute("texte", rep->getReponse());
+    currentNode.appendChild(reponse);
+
+    ListeMedia * lm = rep->getListeIllustration();
+    if(lm->size() > 0)  {
+        QDomElement dommed = doc.createElement("media");
+        currentNode.appendChild(dommed);
+        currentNode = dommed;
+    }
+    for(int i = 0; i < lm->size(); i++)   {
+        MediaBDD::enregistrerMedia(lm->at(i));
+    }
+
+    currentNode = reponse;
+
+    if(rep->getTypeSuiv() == TYPE_CATEGORIE)    {
+        CategorieBDD::enregistrerCategorie((Categorie*)rep->getSuiv());
+    }
+    else if(rep->getTypeSuiv() == TYPE_ESPECE)    {
+        EspeceBDD::enregistrerEspece((Espece*)rep->getSuiv());
+    }
+    else    {
+        //grosse erreur de malade
     }
 }

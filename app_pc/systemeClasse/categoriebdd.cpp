@@ -3,17 +3,18 @@
 
 ListeQuestion * CategorieBDD::CreerArbre()
 {
-    //QFile fichier(QDir::currentPath() + "/donnes_insectes.xml");
-    //QFile fichier(QDir::currentPath() + "/test.xml");
+#ifdef Q_OS_MACX
+    QDir dir(QDir::currentPath());
+    dir.cd("../../..");
+    QFile fichier(dir.path() + "/accueil.xml");
+#else
     QFile fichier(QDir::currentPath() + "/accueil.xml");
-    QDomDocument doc;
+#endif
     doc.setContent(&fichier);
     BDD::currentNode = doc.elementsByTagName("arbre").at(0);
-    //qDebug() << currentNode.nodeName();
 
     //firstchild = branche
-    BDD::currentNode = currentNode.firstChild();
-    //qDebug() << currentNode.nodeName();
+    currentNode = currentNode.firstChild();
 
     Categorie * cat = new Categorie(0);
 
@@ -53,46 +54,49 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
 
 void CategorieBDD::enregistrerArbre(Categorie *racine)
 {
-     QDomElement arbre = BDD::doc.createElement("arbre");
+    doc.clear();
+    QDomNode noeud = doc.createProcessingInstruction("xml","version=\"1.0\"");
+    doc.appendChild(noeud);
+
+    QDomElement arbre = doc.createElement("arbre");
     doc.appendChild(arbre);
 
-    QDomNode noeud = doc.createProcessingInstruction("xml","version=\"1.0\"");
+    currentNode = arbre;
 
-    doc.insertBefore(noeud,doc.firstChild());
+    enregistrerCategorie(racine);
 
-    QDomElement root = doc.createElement("branche");
-    root.setAttribute("id", "b"+racine->getIdentifiant());
-    root.setAttribute("type", racine->getLabel());
-    arbre.appendChild(root);
-
-    ListeQuestion * lq = racine->getListeQuestion();
-
-    //martinestbeau()
-    for(int i = 0; i < lq->size(); i++)
-    {
-        QDomElement quest = doc.createElement("question");
-        quest.setAttribute("", "");
-        root.appendChild(quest);
-        lq->at(i)->getListeReponse();
-        //martinesttresbeau()
-    }
-
-
-    QFile file("enregistrement.xml");
-    if ( !file.open(QIODevice::WriteOnly) )
-    {
+#ifdef Q_OS_MACX
+    QDir dir(QDir::currentPath());
+    dir.cd("../../..");
+    QFile fichier(dir.path() + "/enregistrement.xml");
+#else
+    QFile fichier(QDir::currentPath() + "/enregistrement.xml");
+#endif
+    if ( !fichier.open(QIODevice::WriteOnly) ) {
         qDebug("Impossible de créer le fichier xml pour sauvegarder les données");
         return;
     }
-    else
-    {
-        QTextStream textStream(&file);
+    else    {
+        QTextStream textStream(&fichier);
         qDebug() <<"\n Enregistrement dans le fichier";
         textStream <<  doc.toString();
-
     }
 
-   file.close();
+   fichier.close();
+}
+
+void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
+    QDomElement root = doc.createElement("branche");
+    root.setAttribute("id", "b"+QString::number(currentCat->getIdentifiant()));
+    root.setAttribute("type", currentCat->getLabel());
+    currentNode.appendChild(root);
+
+    currentNode = root;
+
+    ListeQuestion *lq = currentCat->getListeQuestion();
+    for(int i = 0; i < lq->size(); i++) {
+        QuestionBDD::enregistrerQuestion(lq->at(i));
+    }
 }
 
 

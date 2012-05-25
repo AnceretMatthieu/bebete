@@ -17,6 +17,7 @@ class ReponseBDD : public BDD {
     public:
         ReponseBDD();
         static void listeFromReponse(Reponse * rep, bool recursif);
+        static void enregistrerReponse(Reponse * rep);
 };
 
 #endif // ReponseBDD_h
