@@ -23,9 +23,15 @@
 <!ELEMENT regimeAlimentaire (#PCDATA)>
 <!ELEMENT informations (#PCDATA)>
 
-<!ELEMENT media (img+, legende+)>
+<!ELEMENT media (img+, video+, audio+, legende+)>
 <!ELEMENT img EMPTY>
 <!ATTLIST img id ID #REQUIRED>
 <!ATTLIST img src ENTITY #REQUIRED>
+<!ELEMENT video EMPTY>
+<!ATTLIST video id ID #REQUIRED>
+<!ATTLIST video src ENTITY #REQUIRED>
+<!ELEMENT audio EMPTY>
+<!ATTLIST audio id ID #REQUIRED>
+<!ATTLIST audio src ENTITY #REQUIRED>
 <!ELEMENT legende (#PCDATA)>
 
