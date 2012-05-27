@@ -21,6 +21,7 @@ public class BebeteActivity extends Activity
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
 	    MenuInflater inflater = getMenuInflater();
+	    menu.setGroupVisible( 0, true );
 	    inflater.inflate( R.layout.actionbar, menu); 
 	    return true;
 	}

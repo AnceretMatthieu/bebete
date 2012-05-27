@@ -26,6 +26,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.hardware.Camera;
 import android.hardware.Camera.PictureCallback;
+import android.media.MediaScannerConnection;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.IBinder;
@@ -442,10 +444,14 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				
 				if( detail.getText().length() != 0 )
 				{
-					File imageFileDir = new File(Environment.getExternalStoragePublicDirectory(
-				              Environment.DIRECTORY_PICTURES), "Inno");
-					File rapport = new File(Environment.getExternalStoragePublicDirectory(
-				              Environment.DIRECTORY_PICTURES), "Inno");
+					File rapport = new File(Environment.getExternalStorageDirectory(), "Innophyt" + File.separator + "Incident");
+					if (!rapport.exists()) 
+					{
+	                    if (!rapport.mkdirs()) 
+	                    {
+	                            Log.d("FileManager", "Cannot create directory: " + rapport.toString());
+	                    }
+					}
 	
 	                Bitmap bitmap;
 	                View v1 = getView(); 
@@ -453,17 +459,51 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	                bitmap = Bitmap.createBitmap(v1.getDrawingCache());
 	                v1.setDrawingCacheEnabled(false);
 	
-	                File rapportFile = new File( rapport.getPath() + File.separator + "Incident" + File.separator + "RapportIncident" + date.getTime() + ".txt" );
+	                File rapportFile = new File( rapport.getPath() + File.separator + "Incident" + date.getTime() + ".txt" );
+	                File imageFile = new File( rapport.getPath() + File.separator + "Incident" + date.getTime() +".jpg"  );
 	                
 	                try 
 	                {
 						FileOutputStream fo = new FileOutputStream( rapportFile );
-						try {
+						FileOutputStream fos = new FileOutputStream(imageFile);
+						
+						try 
+						{	
+							fo.write( new String("********* " + date.toString() + " **********\n" ).getBytes() );
 							fo.write( detail.getText().toString().getBytes() );
-							Log.d("Ecriture fichier", "Retour : " + detail.getText().toString() );
-							fo.flush();
+							fo.write( new String("\n" ).getBytes() );
+							fo.write( new String("********************************************\n" ).getBytes() );
+							
 							fo.close();
-						} catch (IOException e) {
+
+		                	ByteArrayOutputStream fout = new ByteArrayOutputStream();
+		                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
+		                    
+		                    fos.write( fout.toByteArray() );
+		                    fos.close();
+							
+							MediaScannerConnection.scanFile(activity, new String[] { rapportFile.toString() }, null, new MediaScannerConnection.OnScanCompletedListener() 
+		                    {
+		                        public void onScanCompleted(String path, Uri uri) 
+		                        {
+		                            Log.d("ExternalStorage", "Scanned " + path + ":");
+		                            Log.d("ExternalStorage", "-> uri=" + uri);
+		                        }
+		                    }
+		                    );
+							
+							MediaScannerConnection.scanFile(activity, new String[] { imageFile.toString() }, null, new MediaScannerConnection.OnScanCompletedListener() 
+		                    {
+		                        public void onScanCompleted(String path, Uri uri) 
+		                        {
+		                            Log.d("ExternalStorage", "Scanned " + path + ":");
+		                            Log.d("ExternalStorage", "-> uri=" + uri);
+		                        }
+		                    }
+		                    );
+						}
+						catch (IOException e)
+						{
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
@@ -472,31 +512,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	                {
 	                	e1.printStackTrace();
 					}
-	                
-	                try 
-	                {	                	
-	                	Log.d( "Screen", imageFileDir.getPath() + File.separator + "Incident" + File.separator + "Incident_.jpeg" );
-	                	File imageFile = new File( imageFileDir.getPath() + File.separator + "Incident_.jpeg"  );
-	                	
-	                	FileOutputStream fos = new FileOutputStream(imageFile);
-			            
-	                	ByteArrayOutputStream fout = new ByteArrayOutputStream();
-	                    bitmap.compress(Bitmap.CompressFormat.JPEG, 90, fout);
-	                    
-	                    fos.write( fout.toByteArray() );
-	                    fos.close();
-	                    
-	                } 
-	                catch (FileNotFoundException e) 
-	                {
-	                    // TODO Auto-generated catch block
-	                    e.printStackTrace();
-	                }
-	                catch (IOException e) 
-	                {
-	                    // TODO Auto-generated catch block
-	                    e.printStackTrace();
-	                }
 				}
 				else
 				{
@@ -511,7 +526,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 															}
 													  });
 					AlertDialog alert = builder.create();
-					
 				}
 			}
 			else if( aquis )

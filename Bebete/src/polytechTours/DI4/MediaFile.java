@@ -27,8 +27,14 @@ public class MediaFile
 	public static File getOutputMediaFile(int type)
 	{
 		//Chemin de sauvegarde memoire interne : /Pictures/Inno/temp.jpg
-	   File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	              Environment.DIRECTORY_PICTURES), "Inno");
+	   File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "Innophyt" );
+		if (!mediaStorageDir.exists()) 
+		{
+           if (!mediaStorageDir.mkdirs()) 
+           {
+                   Log.d("FileManager", "Cannot create directory: " + mediaStorageDir.toString());
+           }
+		}
 		
 	    if (! mediaStorageDir.exists()){
 	        if (! mediaStorageDir.mkdirs()){

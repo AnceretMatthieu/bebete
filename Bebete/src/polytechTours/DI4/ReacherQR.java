@@ -28,8 +28,14 @@ public class ReacherQR
 	
 	public ReacherQR()
 	{	
-		File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
-	              Environment.DIRECTORY_PICTURES), "Inno");
+		File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "Innophyt" );
+		if (!mediaStorageDir.exists()) 
+		{
+            if (!mediaStorageDir.mkdirs()) 
+            {
+                    Log.d("FileManager", "Cannot create directory: " + mediaStorageDir.toString());
+            }
+		}
 		File fichierXML = new File( mediaStorageDir.getPath() + File.separator + "accueil.xml" );
 		factory = DocumentBuilderFactory.newInstance();
 		
