@@ -504,7 +504,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 						}
 						catch (IOException e)
 						{
-							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
 					} 
@@ -512,6 +511,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	                {
 	                	e1.printStackTrace();
 					}
+	                
+	                bitmap.recycle();
 				}
 				else
 				{

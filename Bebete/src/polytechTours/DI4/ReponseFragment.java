@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -67,10 +68,18 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		{
 			Bitmap[] bitmaps = new Bitmap[reponse.getListeImage().size()];
 			
+			File rapport = new File(Environment.getExternalStorageDirectory(), "Innophyt");
+			if (!rapport.exists()) 
+			{
+                if (!rapport.mkdirs()) 
+                {
+                        Log.d("FileManager", "Cannot create directory: " + rapport.toString());
+                }
+			}
+			
 			for( int i = 0; i < reponse.getListeImage().size(); i++ )
 			{
-				bitmaps[i] = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
-						Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + reponse.getListeImage().get(i) );
+				bitmaps[i] = BitmapFactory.decodeFile(rapport.getPath() + File.separator + reponse.getListeImage().get(i) );
 			}
 			reponse.setmImageIds(bitmaps);
 			
@@ -137,8 +146,16 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		BitmapFactory.Options options = new BitmapFactory.Options();
 		options.inSampleSize = 8;
 		
-		Bitmap screenCap = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
-				Environment.DIRECTORY_PICTURES) + File.separator + "Inno/temp.jpg", options );
+		File rapport = new File(Environment.getExternalStorageDirectory(), "Innophyt");
+		if (!rapport.exists()) 
+		{
+            if (!rapport.mkdirs()) 
+            {
+                    Log.d("FileManager", "Cannot create directory: " + rapport.toString());
+            }
+		}
+		
+		Bitmap screenCap = BitmapFactory.decodeFile( rapport.getPath() + File.separator + "temp.jpg", options );
 		resizedBitmap = Bitmap.createScaledBitmap(screenCap, 600, 375, false );
 		screenCap.recycle();
 		
