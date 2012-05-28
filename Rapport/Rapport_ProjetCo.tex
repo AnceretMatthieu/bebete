@@ -42,44 +42,176 @@
 \begin{document}
 
 \chapter{Introduction}
+Notre projet est un projet collectif à 8 personnes dans le cadre de notre cursus à Polytech'Tours. Le client de notre projet est l'équipe INNOPHYT, et plus particulièrement la responsable de cette équipe, Ingrid Arnault. Cette équipe fait partie de l'Université François Rabelais de Tours et elle est consacrée aux activités de valorisation et de recherche dans le domaine de la lutte anti-parasitaire durable. Gilles Venturini, professeur au sein de l'école Polytech'Tours, est notre encadrant de projet. De part sa bonne connaissance du projet, il est aussi un interlocuteur privilégié pour les aspectes techniques et opérationnels. 
 
 \chapter{Présentation du projet}
+L'objectif du projet est de réaliser deux applications : une application PC et une application mobile. L'application mobile permet, à partir du visuel d'un insecte, de déterminer grâce à une succession de question si celui-ci est nuisible ou non. L'application PC permet quand a elle de consulter et de modifier la base de données associées à l'application mobile, c'est-à-dire les questions, les réponses et les médias. 
 
-\chapter{Contenu du rapport}
-
-	\section{Analyse complémentaires}
-		\subsection{Modélisation UML}
-		Montrer les schémas UML réalisés à posteriori du cahier de specs (lecture/ecriture XML...).		
-		
-		\subsection{Fichier XML final + DTD}
-		Format du fichier XML de données final avec toutes les modifications apportées tout au long du projet. 
-
-	\section{Application PC}
+\chapter{Analyse complémentaires}
+Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteriori du cahier de spécifications.  
 	
-	\section{Application mobile}
+	\section{Modélisation UML}		
+	Avant de développer l'application PC, nous avons pris soin de modéliser une structure fiable et efficace à même de réaliser toutes les fonctionnalités demandées et de pouvoir évoluer de façon simple. 
+	%diagramme de classe de l'application PC 
+	
+	\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/diag_classes_app_PC.png}
+	\caption{Diagramme de classes de l'application PC}
+	\label{diagramme classes appli PC}
+	\end{figure}
+	
+	\section{Fichier XML final + DTD}
+	Notre base de données est représentée sous la forme d'un fichier XML. Ce format a été privilégié car il est relativement simple à manipuler et assez performant pour de petites bases, comparativement à une base SQL/SQLite par exemple. N'ayant de toutes manières pas besoin de relation, d'intégrité et d'indexation, la choix du XML s'est imposé de lui-même. 
+	
+	En raison de nouveaux éléments apparus tout au long du projet (après la rédaction du cahier de spécification), la structure du fichier XML de données a évoluée. Par exemple, nous avons inséré un nouvel attribut "visible" sur les questions et les réponses suite à la demande du client de voir apparaitre ce critère dans l'interface (dans le but d'aider l'utilisateur de l'application).
+	De plus, au fur et à mesure de l'avancement du projet, nous nous sommes rendus compte de quelques erreurs ou incohérence dans le fichier XML. Nous avons donc du corriger ces problèmes, ce qui a engendré des modifications au niveau du code C++ de traitement du fichier XML. 	
+	
+	Nous allons donc exposer la version finale du fichier XML : 
+	\begin{verbatim}
+<?xml version = '1.0' encoding="UTF-8"?> 
+<!DOCTYPE arbre SYSTEM "arbre.dtd">
 
+<arbre>
+	<branche id="b1" type="accueil" date="01/06/2012">
+		<question id="q1" texte="Première question ?" visible="true">
+			<media>
+				<legende>Astuces : regarder attentivement l'insecte</legende>
+				<img src="images/insecte.jpg" />
+				<audio id="aud1" src="images/test_audio.wav" />
+			</media>
+			<reponse id="r1" texte="Réponse 1">
+				<media>
+					<img id="img1" src="images/insecte2.jpg" />
+					<img id="img1" src="images/insecte3.jpg" />
+					<legende>Ceci est le texte de la réponse 1</legende>
+				</media>
+				<branche id="b2">
+					<question id="q3" texte="Autre question" visible="false">
+						...
+					</question>
+				</branche>
+			</reponse>
+			<reponse id="r2" texte="Réponse 2">
+			<media>
+					<img id="img1" src="images/insecte2.jpg" />
+					<legende>Ceci est le texte de la réponse 2</legende>
+			</media>
+				<branche id="b3" type="Arachnide">
+					<question id="q2" texte="Deuxième question ?" visible="true">
+						<reponse id="r3" texte="Réponse 3">
+							<resultat id="res1">
+								<nom>Insecte 1</nom>
+								<type>MEL1</type>
+								<regimeAlimentaire>Prédateur</regimeAlimentaire>
+								<informations>Informations insecte 1</informations>
+								<media>
+									<img id="img2" src="images/insecte.jpg" />
+								</media>
+							</resultat>
+						</reponse>
+						<reponse id="r4" texte="Réponse 4">
+							<branche id="b2">
+								<question id="q6" texte="Encore une question ?" visible="both">
+									...
+								</question>
+							</branche>
+						</reponse>
+					</question>
+				</branche>
+			</reponse>
+		</question>
+	</branche>
+</arbre>
+	\end{verbatim}
+	
+	Nous avons bien sur corrigé la DTD associée à ce fichier XML. Cette DTD est le modèle du fichier XML et permet donc de le valider. 
+	\begin{verbatim}
+	<?xml version="1.0" encoding="UTF-8"?>
 
-Parler des compétences acquises grâce à ce projet. \\
+<!ELEMENT arbre (branche)>
+<!ATTLIST branche date CDATA #IMPLIED>
 
+<!ELEMENT branche (question)>
+<!ATTLIST branche id ID #REQUIRED>
+<!ATTLIST branche type CDATA #IMPLIED>
+
+<!ELEMENT question (reponse+, media*)>
+<!ATTLIST question id ID #REQUIRED>
+<!ATTLIST question texte NMTOKENS #REQUIRED>
+<!ATTLIST question visible NMTOKENS #IMPLIED>
+
+<!ELEMENT reponse ((branche|resultat), media*)>
+<!ATTLIST reponse id ID #REQUIRED>
+<!ATTLIST reponse texte NMTOKENS #REQUIRED>
+<!ATTLIST reponse visible NMTOKENS #IMPLIED>
+
+<!ELEMENT resultat (nom, type, regimeAlimentaire, informations, media*)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT regimeAlimentaire (#PCDATA)>
+<!ELEMENT informations (#PCDATA)>
+
+<!ELEMENT media (img+, video+, audio+, legende+)>
+<!ELEMENT img EMPTY>
+<!ATTLIST img id ID #REQUIRED>
+<!ATTLIST img src ENTITY #REQUIRED>
+<!ELEMENT video EMPTY>
+<!ATTLIST video id ID #REQUIRED>
+<!ATTLIST video src ENTITY #REQUIRED>
+<!ELEMENT audio EMPTY>
+<!ATTLIST audio id ID #REQUIRED>
+<!ATTLIST audio src ENTITY #REQUIRED>
+<!ELEMENT legende (#PCDATA)>
+	\end{verbatim}
+	
+	Nous avons aussi, suite à plusieurs discussions avec le client, modifié le format de sortie des résultats. 
+	%mettre le nouveau format des données + explications
+
+\chapter{Application PC}
+	
+\chapter{Application mobile}
 
 \chapter{Aspect gestion de projet}
+Pour coller au mieux aux attentes du client, nous avons essayé d'organiser le plus souvent possible des réunions de travail avec le client. Ces réunions avaient pour but de discuter des choix d'ergonomie des applications et de présenter notre travail. Cela a permis à l'équipe INNOPHYT de suivre notre travail au plus près, et de relever les erreurs ou les incohérences au plus tôt, afin que nous puissions les corriger au plus vite. 
 
-	\section{Calendrier prévisionnel et calendrier réel}
+Pour les aspects plus techniques, nous organisions des bilans réguliers avec notre encadrant de projet, Gilles Venturini. Notamment, pour valider les étapes essentielles du projet : le format des données, le contenu du fichier XML, certains points de l'interface, certaines fonctionnalités critiques...
+
+Enfin, au sein même de l'équipe, nous avons essayé d'organiser des points le plus régulièrement possible. Ces points permettaient de partager les difficultés rencontrées, de connaitre l'avancement des membres, de savoir ce qu'il restait à faire... Nous faisions un point par semaine, de préférence en début, qui durait en moyenne 10 à 15 minutes. 
+
+	\section{Compétences acquises}
+	Parler des compétences acquises grâce à ce projet. 
+	%à voir si cela nécessite une partie à part entière
+	%demander à chacun ce que le projet lui a apporté
+	%peut-être faire un paragraphe pour chaque personne, en citation
+	
+	%personnelement, ce projet m'a permis d'obtenir une "première expérience" de "chef de projet"
+	%il m'a confronté aux difficultés de gérer une équipe dans le temps (durée assez longue d'ailleurs)
+	%aux difficultés de gérer les demandes d'un client 
+	%aux difficultés de gérer le temps, le travail effectué, le travail restant...
+	%à la pression de terminer le projet en temps et en heure ^^
+
+	\section{Calendrier prévisionnel et calendrier réel} 
+	%expliquer les différences existantes entre prévisionnel et réel
 
 	\section{Erreurs commises et problèmes rencontrés}
 	+ parler des solutions mises en place
 	
 \chapter{Futur du projet}
-Ce qu'il reste à faire \\
-Les priorités \\
+Ce qu'il reste à faire 
+
+Les priorités 
+
 ...
 
 \chapter{Conclusion}
 
 \annexes
 
-Documentation doxygen \\
-Documentation utilisateur (manuel d'utilisation) \\
+Documentation doxygen 
+
+Documentation utilisateur (manuel d'utilisation) 
+
 Quelques éléments techniques bien précis 
 
 \end{document}
