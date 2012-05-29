@@ -3,6 +3,7 @@
 
 #include "Espece.h"
 #include "BDD.h"
+#include "MediaBDD.h"
 
 class EspeceBDD : public BDD {
 

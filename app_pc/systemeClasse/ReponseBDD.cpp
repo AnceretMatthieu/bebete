@@ -72,6 +72,28 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
                     tempe->setRegimeAlimentaire(toto.at(p).toElement().text());
                 else if (toto.at(p).nodeName() == "informations")
                     tempe->setInformation(toto.at(p).toElement().text());
+                else if (toto.at(p).nodeName() == "media"){
+
+                QDomNodeList lstMedia =  toto.at(p).childNodes();
+                //qDebug() << "MediaReponse" << i << ": nombre de noeud" << lstMedia.size();
+                int j;
+                for(j=0; j<lstMedia.size(); j++)
+                {
+                    tempm = new Media(0);
+                    if(lstMedia.at(j).nodeName() == "video")    {
+                        tempm->setType(MEDIA_TYPE_VIDEO);
+                        tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                    }else if(lstMedia.at(j).nodeName() == "img")    {
+                         tempm->setType(MEDIA_TYPE_IMAGE);
+                         tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                    }else if(lstMedia.at(j).nodeName() == "legende")    {
+                         tempm->setType(MEDIA_TYPE_TEXT);
+                         tempm->setPath(lstMedia.at(j).toElement().text());
+                    }
+                    //qDebug() << "Media<" << tempm->getType() << "> :" << tempm->getPath();
+                    tempe->ajouterMedia(tempm);
+                 }
+                }
             }
             //qDebug() << "nom" << tempe->getNom();
             //qDebug() << "type" << tempe->getType();
@@ -90,19 +112,18 @@ void ReponseBDD::enregistrerReponse(Reponse * rep)  {
     reponse.setAttribute("id", "r"+QString::number(rep->getIdentifiant()));
     reponse.setAttribute("texte", rep->getReponse());
     currentNode.appendChild(reponse);
-
+    currentNode = reponse;
     ListeMedia * lm = rep->getListeIllustration();
     if(lm->size() > 0)  {
         QDomElement dommed = doc.createElement("media");
         currentNode.appendChild(dommed);
         currentNode = dommed;
+
     }
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }
-
     currentNode = reponse;
-
     if(rep->getTypeSuiv() == TYPE_CATEGORIE)    {
         CategorieBDD::enregistrerCategorie((Categorie*)rep->getSuiv());
     }
