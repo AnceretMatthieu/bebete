@@ -6,7 +6,7 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
     ui(new Ui::ModifQuestionWindow)
 {
     ui->setupUi(this);
-*
+
     // On sauvegarde la question envoyée par la fenêtre principale
     laQuestion = currentQuestion;
 
