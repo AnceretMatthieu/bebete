@@ -58,17 +58,19 @@ void QuestionBDD::enregistrerQuestion(Question * quest) {
     question.setAttribute("visible", quest->getVisible());
     currentNode.appendChild(question);
 
+    currentNode = question;
+
     ListeMedia * lm = quest->getListeMedia();
     if(lm->size() > 0)  {
         QDomElement dommed = doc.createElement("media");
         currentNode.appendChild(dommed);
         currentNode = dommed;
+        //qDebug()<< currentNode.nodeName();
     }
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }
 
-    currentNode = question;
     ListeReponse * lr = quest->getListeReponse();
     for(int i = 0; i < lr->size(); i++)   {
         ReponseBDD::enregistrerReponse(lr->at(i));

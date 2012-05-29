@@ -90,18 +90,17 @@ void ReponseBDD::enregistrerReponse(Reponse * rep)  {
     reponse.setAttribute("id", "r"+QString::number(rep->getIdentifiant()));
     reponse.setAttribute("texte", rep->getReponse());
     currentNode.appendChild(reponse);
-
+    currentNode = reponse;
     ListeMedia * lm = rep->getListeIllustration();
     if(lm->size() > 0)  {
         QDomElement dommed = doc.createElement("media");
         currentNode.appendChild(dommed);
         currentNode = dommed;
+
     }
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }
-
-    currentNode = reponse;
 
     if(rep->getTypeSuiv() == TYPE_CATEGORIE)    {
         CategorieBDD::enregistrerCategorie((Categorie*)rep->getSuiv());
