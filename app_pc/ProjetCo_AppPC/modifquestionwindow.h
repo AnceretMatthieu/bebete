@@ -17,10 +17,17 @@ class ModifQuestionWindow : public QDialog {
         ModifQuestionWindow(Question * currentQuestion, QWidget *parent = 0);
         ~ModifQuestionWindow();
 
+        Question * laQuestion;
+
     protected:
         void changeEvent(QEvent *e);
 
-    private:
+private slots:
+        void on_buttonBox_accepted();
+
+        void on_buttonBox_rejected();
+
+private:
         Ui::ModifQuestionWindow *ui;
 };
 

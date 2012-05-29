@@ -8,6 +8,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     yellowIcon = QIcon("images/icon_yellow.png");
     redIcon = QIcon("images/icon_red.png");
 
+    // TODO : penser à vérifier que la structure des dossiers de médias est correctement créé
+    // Si ce n'est pas le cas, le faire.
+
     // TODO : à supprimer ; se trouve désormais dans la fonction du menu "Importer XML"
     maListeQuestions = CategorieBDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
 
@@ -303,11 +306,30 @@ void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
         while(nbImage < 4) // tant que l'on a pas affiché 4 images
         {
             QModelIndex curChild = index.child(0, column);
-            if(curChild.isValid() == true) // on test si l'item est valide pour savoir si il existe encore un fils
+            if(curChild.isValid() == true) // on test si l'item est valide pour savoir s'il existe encore un fils
             {
                 if(model_tvReponse->itemFromIndex(curChild)->text().startsWith("1")) // si l'élément courant est une image
                 {
                     // on affiche l'image dans le label i (= nbImage)
+                    QLabel * myLabel = new QLabel();
+
+                    QString fileName = model_tvReponse->itemFromIndex(curChild)->text();
+                    fileName.remove(0, 2);
+
+                    QImage * myImg = new QImage(fileName);
+                    if(myImg->isNull() != true)
+                    {
+                        QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
+
+                        QPixmap * img = new QPixmap();
+                        img->convertFromImage(myScaledImg, Qt::AutoColor);
+
+                        myLabel->setPixmap(*img);
+                    }
+
+                    // On ajoute l'image au conteneur
+                    ui->verticalLayout_3->addWidget(myLabel);
+
                     nbImage++;
                 }
                 // on passe au fils suivant
@@ -345,6 +367,11 @@ void MainWindow::newQuestionFils()
     // Permet d'ajouter une question en tant que fils de la question courante (est-ce pertinent ? cette question ne sera pas reliée par une réponse)
 
     // TODO : Ouvrir une fenêtre qui demande le nom de la question à insérer
+    Question * newQuestion = new Question(0);
+
+    myWindow = new ModifQuestionWindow(newQuestion, this);
+    myWindow->setModal(true);
+    myWindow->exec();
 
     QModelIndex index = ui->treeViewQuestion->currentIndex();
     QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
