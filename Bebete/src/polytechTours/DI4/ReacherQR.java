@@ -18,6 +18,11 @@ import org.xml.sax.SAXException;
 import android.os.Environment;
 import android.util.Log;
 
+/**
+ * @author Julien Teruel
+ * Classe permettant de parser le fichier XML d'entrée en d'en générer toutes les questions, réponses ainsi que leur arborescence
+ * Utiliser par QuestionFramgent pour obtenir la réponse de Base et naviguer entre les questions
+ */
 public class ReacherQR 
 {
 	private DocumentBuilderFactory factory;
@@ -28,15 +33,7 @@ public class ReacherQR
 	
 	public ReacherQR()
 	{	
-		File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "Innophyt" );
-		if (!mediaStorageDir.exists()) 
-		{
-            if (!mediaStorageDir.mkdirs()) 
-            {
-                    Log.d("FileManager", "Cannot create directory: " + mediaStorageDir.toString());
-            }
-		}
-		File fichierXML = new File( mediaStorageDir.getPath() + File.separator + "accueil.xml" );
+		File fichierXML = new File( FileManager.getSavePath() + File.separator + "accueil.xml" );
 		factory = DocumentBuilderFactory.newInstance();
 		
 		try 

@@ -7,6 +7,13 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.view.SurfaceHolder;
 
+/**
+ * @author Android
+ * Classe nécessaire pour définir une nouvelle surface dans Android permettant d'afficher le flux vidéo d'une caméra
+ * Ajout de la fonction update, pour éviter d'avoir un affichage figé lors d'un retour de veille : voir rapport
+ * Voir : http://developer.android.com/resources/samples/ApiDemos/src/com/example/android/apis/graphics/CameraPreview.html
+ *        http://developer.android.com/guide/topics/media/camera.html
+ */
 public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback 
 {
     private SurfaceHolder mHolder;
@@ -67,16 +74,22 @@ public class CameraPreview extends SurfaceView implements SurfaceHolder.Callback
         }
     }
     
+    /**
+     * Fonction nécessaire pour éviter d'avoir une zone d'affichage figé lors de la mise en veille de la tablette
+     * @param cam le nouveau objet caméra acquis au retour de veille
+     */
     public void update( Camera cam )
     {
     	mCamera = cam;
+    	
     	try 
     	{
             mCamera.setPreviewDisplay(mHolder);
             mCamera.startPreview();
         }
-    	catch (Exception e){
-            Log.d("tag", "Error starting camera preview: " + e.getMessage());
+    	catch (Exception e)
+    	{
+            Log.d("CameraPreview", "Error starting camera preview: " + e.getMessage());
         }
     }
 }

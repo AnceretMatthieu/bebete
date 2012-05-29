@@ -9,13 +9,22 @@ import android.widget.BaseAdapter;
 import android.widget.Gallery;
 import android.widget.ImageView;
 
+/**
+ * Classe gérant le moteur de la galerie d'image, tiré de la documentation Android et adpaté pour fonctionner avec des Bitmaps
+ * Voir : http://developer.android.com/resources/tutorials/views/hello-gallery.html
+ * Attention à l'utilisation de Bitmaps, il est nécessaire de les libérer (recycle) dès que possible, des dépassements mémoires
+ * apparaissent très vite
+ */
 public class ImageAdapter extends BaseAdapter 
 {
 	  int mGalleryItemBackground;
 	  private Context mContext;
 	  private Bitmap[] bitmaps;
 
-	   
+	  /**
+	   * Fonction rajouté pour libérer tous les bitmaps avant de tuer la gallery
+	   * Finalize -> "destructeur java" 
+	   */
 	  public void finalize()
 	  {
 		  for( int i = 0; i < bitmaps.length; i++ )

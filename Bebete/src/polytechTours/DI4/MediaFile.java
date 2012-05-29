@@ -11,6 +11,11 @@ import android.net.Uri;
 import android.os.Environment;
 import android.util.Log;
 
+/**
+ * Classe servant à l'enregistrement de la capture d'écran de la caméra, similaire à FileManager,
+ * avec l'option de pouvoir gérer l'utilisation future de vidéo
+ * Voir : http://developer.android.com/guide/topics/media/camera.html
+ */
 public class MediaFile 
 {
 	public static final int MEDIA_TYPE_IMAGE = 1;
@@ -26,33 +31,21 @@ public class MediaFile
 	/** Create a File for saving an image or video */
 	public static File getOutputMediaFile(int type)
 	{
-		//Chemin de sauvegarde memoire interne : /Pictures/Inno/temp.jpg
-	   File mediaStorageDir = new File(Environment.getExternalStorageDirectory(), "Innophyt" );
-		if (!mediaStorageDir.exists()) 
-		{
-           if (!mediaStorageDir.mkdirs()) 
-           {
-                   Log.d("FileManager", "Cannot create directory: " + mediaStorageDir.toString());
-           }
-		}
-		
-	    if (! mediaStorageDir.exists()){
-	        if (! mediaStorageDir.mkdirs()){
-	            Log.d("MyCameraApp", "failed to create directory");
-	            return null;
-	        }
-	    }
-
 	    // Create a media file name
 	    String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+	    
 	    File mediaFile;
-	    if (type == MEDIA_TYPE_IMAGE){
-	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	        "temp.jpg");
-	    } else if(type == MEDIA_TYPE_VIDEO) {
-	        mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-	        "VID_"+ timeStamp + ".mp4");
-	    } else {
+	    
+	    if (type == MEDIA_TYPE_IMAGE)
+	    {
+	        mediaFile = new File( FileManager.getSavePath() + File.separator + "temp.jpg");
+	    } 
+	    else if(type == MEDIA_TYPE_VIDEO) 
+	    {
+	        mediaFile = new File(FileManager.getSavePath() + File.separator + "VID_"+ timeStamp + ".mp4");
+	    }
+	    else 
+	    {
 	        return null;
 	    }
 

@@ -13,10 +13,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+/**
+ * @author Julien Teruel
+ *
+ * Classe démarrant l'activité principale de l'application
+ * Elle gère les fragments d'interface graphique en réaction aux clics sur l'action bar
+ */
 
 public class BebeteActivity extends Activity 
 {
+	/**
+	 * Le fragment manager permettant gérer les fragments
+	 */
 	private FragmentManager manager;
+	
+	/**
+	 * Rajout du menu droit dans l'action bar via inflation à partir du fichier de layout actionbar.xml 
+	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
 	{
@@ -26,19 +39,26 @@ public class BebeteActivity extends Activity
 	    return true;
 	}
 	
+	/**
+	 * Gestion de l'interface graphique de base
+	 */
     @Override 
     public void onCreate(Bundle savedInstanceState) 
     {
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE); //Fixe la vue de l'application en Landscape
+        
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         
         manager = this.getFragmentManager();  
         
+        //Rajout de la partie gauche de l'action bar
         ActionBar actionBar = getActionBar();
         View mActionBarView = getLayoutInflater().inflate(R.layout.action_bar_custom, null);
         actionBar.setCustomView(mActionBarView);
         actionBar.setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        
+        //On cache les boutons responsables de l'historique dans la partie identification
         ImageButton gauche = (ImageButton)this.findViewById( R.id.histo_gauche );
         gauche.setEnabled(false);
         ImageButton droite = (ImageButton)this.findViewById( R.id.histo_droite );
@@ -61,11 +81,16 @@ public class BebeteActivity extends Activity
 		
 		miseAjourAffichage();
 		
+		//On mets le fragment de base en place
 		FragmentTransaction transaction = manager.beginTransaction();
 			transaction.add( R.id.linearLayout2, gestionutilisateur, "enCours" );
 		transaction.commit();
     }
     
+    /**
+     * Réaction aux clics sur l'action bar -> chargement du fragments nécessaire
+     * Le nouveau fragment est taggé "enCours" pour pouvoir le retrouver et l'enlever par la suite
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) 
     {
@@ -111,7 +136,6 @@ public class BebeteActivity extends Activity
     	}
     	else if( item.getItemId() == R.id.menu_identifier )
     	{
-    		//Question question = new Question ("Coucou je suis Dynamique", "Je peux mï¿½me afficher un texte d'aide", "" );
     		QuestionFragment questionView = new QuestionFragment();
     		questionView.getId();
 			
@@ -125,6 +149,9 @@ public class BebeteActivity extends Activity
     	return true;
     }
     
+    /**
+     * Fonction pratique qui enlève le fragment actuellement affiché si il y en a un 
+     */
     public void miseAjourAffichage()
     {
     	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
@@ -136,36 +163,4 @@ public class BebeteActivity extends Activity
 			transaction.commit();
 		}
     }
-    
-   /* @Override 
-    public void onPause()
-    {
-    	super.onPause();
-    	
-    	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
-    	
-    	Log.d("Activity", "onPause Fragment Question" );
-    	
-    	if( fragmentEnCours != null && fragmentEnCours.getId() == idFragmentQuestion )
-    	{
-    		Log.d("Activity", "onPause Fragment Question" );
-    		QuestionFragment fragment = (QuestionFragment)fragmentEnCours;
-    		fragment.onPause(); 
-    	}
-    }
-    
-    @Override
-    public void onDestroy ()
-    {
-    	super.onDestroy();
-    	
-    	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
-    	
-    	if( fragmentEnCours != null && fragmentEnCours.getId() == idFragmentQuestion )
-    	{
-    		Log.d("Activity", "onDestroy" );
-    		QuestionFragment fragment = (QuestionFragment)fragmentEnCours;
-    		fragment.onDestroy(); 
-    	}
-    }*/
 }

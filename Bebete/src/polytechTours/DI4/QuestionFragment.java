@@ -47,33 +47,133 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+/**
+ * @author Julien Teruel
+ * Classe la plus conséquente gérant la caméra, les questions, l'affichage, l'historique d'où sa taille conséquente
+ * Pour plus de détails sur cette classe se reporter au rapport
+ * Vie de la classe :
+ *  Au depart on parse le fichier XML, on obtient la question root de base
+ *  currentQuestion est la à afficher, changeUI() adapte l'interface graphique à currentQuestion
+ */
 public class QuestionFragment extends Fragment implements OnClickListener 
 {
+	//************ Partie Camera *******************
+	/**
+	 * L'objet caméra 
+	 */
 	private Camera mCamera;
+	
+	/**
+	 * La zone de preview de la vue caméra
+	 */
 	private CameraPreview mPreview;
+	
+	/**
+	 * Deuxieme partie de la zone d'affichage
+	 */
 	private FrameLayout preview;
+	
+	/**
+	 * L'activity principale, sauvegarder pour utilisation future
+	 */
 	private BebeteActivity activity;
+	
+	/**
+	 * Booléen gérant l'accès concurrent à la caméra
+	 */
 	private static boolean aquis = false;
+	
+	//********************************************************
+	
+	
+	//**************** Partie Historique *********************
+	/**
+	 * Le parser XML
+	 */
 	private ReacherQR reacher;
+	
+	/**
+	 * La question courante sur laquelle se base l'interface graphique
+	 */
+	private static Question currentQuestion;
+	
+	/**
+	 * La liste des questions vue par l'utilisateur
+	 */
+	private Vector<Question> listQuestion = new Vector<Question>();
+	
+	/**
+	 * La liste des reponses choisie par l'utilisateur ( taille - 1 par rapport a listQuestion, l'utilisateur voit une question de plus que ce qu'il a répondue)
+	 */
+	private Vector<Reponse> listReponseChoisi = new Vector<Reponse>();
+	
+	/**
+	 * La liste des réponse Fragment de la question en cours, nécessaire pour retrouver la réponses choisie par l'utilisateur
+	 */
+	private Vector<ReponseFragment> listReponseFragment = new Vector<ReponseFragment>();
+	
+	/**
+	 * Int de navigation dans l'historique
+	 */
+	private int navigation;
+	//*********************************************************
+	
+	
+	// *********** Partie affichage des Dialog ****************
+	/**
+	 * Le dialog affichant le résultat trouver en fin d'arbre
+	 */
 	private Dialog dialog;
+	
+	/**
+	 * Le dialog d'alerte correspondant à l'appuie sur le bouton d'alerte 
+	 */
 	private Dialog dialogAlerte;
 	
-	private static Question currentQuestion;
-	private Vector<Question> listQuestion = new Vector<Question>();
-	private Vector<Reponse> listReponseChoisi = new Vector<Reponse>();
-	private Vector<ReponseFragment> listReponseFragment = new Vector<ReponseFragment>();
-	private int navigation;
+	/**
+	 * Indique si le dialog resultat est actuellement visible
+	 */
+	private boolean dialogVisible;
+	
+	/**
+	 * Indique si le dialog d'alerte est visible à l'ecran
+	 */
+	private boolean dialogAlerteVisible;
+	
+	/**
+	 * Bouton enregistrer du dialog Resultat
+	 */
+	private Button boutonEnregistrer;
+	
+	/**
+	 * Bouton annuler du dialog Resultat
+	 */
+	private Button boutonAnnuler;
+	
+	/**
+	 * Bouton enregistrer du dialog Alerte
+	 */
+	private Button boutonSubmit;
+	
+	/**
+	 * Bouton annuler du dialog Alerte
+	 */
+	private Button boutonAnnulerAlerte;
+	
+	/**
+	 * Objet resultat contenant toutes les informations nécessaire à afficher
+	 */
+	private Resultat resultat;
+	//****************************************************************************
+	
+	//Boutons de l'action bar
 	private ImageButton retour;
 	private ImageButton suivant;
 	private ImageButton alerte;
-	private Button boutonEnregistrer;
-	private Button boutonAnnuler;
-	private Button boutonSubmit;
-	private Button boutonAnnulerAlerte;
-	private Resultat resultat;
-	private boolean dialogVisible;
-	private boolean dialogAlerteVisible;
 	
+	/**
+	 * Constructeur par défaut, le XML est parser, l'affichage se modifie pour correspondre à la currentQuestion
+	 */
 	public QuestionFragment()
 	{
 		reacher = new ReacherQR();
@@ -85,41 +185,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		dialogAlerteVisible = false;
 	}
 	
-	//*************************************************************************************************************
-	private PictureCallback mPicture = new PictureCallback()  
-											{
-												public void onPictureTaken(byte[] data, Camera camera)
-												{
-													/*Uri uri = MediaFile.getOutputMediaFileUri( MediaFile.MEDIA_TYPE_IMAGE );
-													Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-													mIntent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
-													startActivityForResult(mIntent, 1);*/
-													
-											        File pictureFile = MediaFile.getOutputMediaFile( MediaFile.MEDIA_TYPE_IMAGE);
-													
-											        if (pictureFile == null)
-											        {
-											            Log.d("tag", "Error creating media file, check storage permissions: ");
-											            return;
-											        }
-									
-											        try 
-											        {
-											            FileOutputStream fos = new FileOutputStream(pictureFile);
-											            fos.write(data);
-											            fos.close();
-											            Log.d("tag", "File created : " + pictureFile.getAbsolutePath() );
-											        } catch (FileNotFoundException e) {
-											            Log.d("tag", "File not found: " + e.getMessage());
-											        } catch (IOException e) {
-											            Log.d("tag", "Error accessing file: " + e.getMessage());
-											        }
-												}	
-											};
-	
-	
-	
 	//******* Les méthodes sont dans l'ordre du cycle de vie d'un fragment pour plus de détails http://developer.android.com/guide/topics/fundamentals/fragments.html *********
+	// Pour plus de détails sur le cycle de vie et leur implications voir le rapport
 	
     @Override
     public void onAttach(Activity activity)  
@@ -164,8 +231,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		 alerte = (ImageButton)activity.findViewById(R.id.imageAlerte );
 		 alerte.setVisibility(ImageView.VISIBLE);
 		 alerte.setOnClickListener(this);
-		 
-		 //changeUI();
 		 
 		 mPreview = new CameraPreview(activity.getApplicationContext(), mCamera);
 		 preview = (FrameLayout) activity.findViewById( R.id.camera_preview);
@@ -223,7 +288,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	{
 		super.onDetach();
 		Log.d( "QuestionFragment", "Fragment Detach" );
-    	//releaseCamera();
     	retour.setVisibility(ImageButton.INVISIBLE);
     	suivant.setVisibility(ImageButton.INVISIBLE);
     	alerte.setVisibility(ImageButton.INVISIBLE);
@@ -231,38 +295,44 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	 
     //********************************* Méthodes pratiques hors du cycle de vie du fragment *******************************************
     
+	//********************* Partie Camera ********************************************
     /** A safe way to get an instance of the Camera object. */
-    public Camera getCameraInstance()
+    public Camera getCameraInstance() //Retourne null si la camera n'a pas pu etre acquise
     {
-    	if( !aquis )
+    	if( !aquis )   //Si la camera n'est pas deja acquise
     	{
     		Camera c = null;
-	        try {
-	            c = Camera.open(); // attempt to get a Camera instance
-	            Camera.Parameters params = c.getParameters();
+    		
+	        try 
+	        {
+	            c = Camera.open();  //Obtention de la camera de base 
+	            
+	            Camera.Parameters params = c.getParameters(); //Activation des paramètres de base de la caméra
 	    		params.setWhiteBalance( Camera.Parameters.WHITE_BALANCE_AUTO );
 	    		params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 	    		params.setAntibanding( Camera.Parameters.ANTIBANDING_AUTO );
 	    		c.setParameters(params);
+	    		
 	    		aquis = true;
 	    		mCamera.startPreview();
 	        }
-	        catch (Exception e){
-	            // Camera is not available (in use or does not exist)
+	        catch (Exception e)
+	        {
+	           Log.d("Camera", "la camera n'est pas accessible ou n'existe pas");
 	        }
-	        return c; // returns null if camera is unavailable
+	        return c; 
     	}
     	else
     	{
     		Log.d("Camera", "getCameraInstance camera non relaché" );
-    		//Trouver pourquoi la veille fige l'image
-	 
-    		mCamera.startPreview();
     		
     		return mCamera;
     	}
     }
       
+    /**
+     * Release de la camera, si elle a été acquise
+     */
     private void releaseCamera()
     {
         if ( aquis )
@@ -274,14 +344,63 @@ public class QuestionFragment extends Fragment implements OnClickListener
             aquis = false;
         }
     }
+    
+    /**
+     * Gestion de la capture d'image via le flux de la caméra
+     */
+    private PictureCallback mPicture = new PictureCallback()  
+	{
+		public void onPictureTaken(byte[] data, Camera camera)
+		{
+			//Test d'appel à l'intent de gestion de photo d'Android considérer trop long mais laissé ici au cas ou
+			/*Uri uri = MediaFile.getOutputMediaFileUri( MediaFile.MEDIA_TYPE_IMAGE );
+			Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+			mIntent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
+			startActivityForResult(mIntent, 1);*/
+			
+	        File pictureFile = MediaFile.getOutputMediaFile( MediaFile.MEDIA_TYPE_IMAGE);
+			
+	        if (pictureFile == null)
+	        {
+	            Log.d("tag", "Error creating media file, check storage permissions: ");
+	            return;
+	        }
 
+	        try 
+	        {
+	        	//Ecriture de l'image dans le fichier
+	            FileOutputStream fos = new FileOutputStream(pictureFile);
+	            fos.write(data);
+	            fos.close();
+	            Log.d("tag", "File created : " + pictureFile.getAbsolutePath() );
+	        }
+	        catch (FileNotFoundException e) 
+	        {
+	            Log.d("tag", "File not found: " + e.getMessage());
+	        } 
+	        catch (IOException e) 
+	        {
+	            Log.d("tag", "Error accessing file: " + e.getMessage());
+	        }
+		}	
+	};
+	//************************************************************************************************
+	//************************************************************************************************
+	
+	/**
+	 * Fonction délicate, elle gère tous les clics dans cette interface graphique dense
+	 * On regarde en priorité si une question a été cliqué sinon on regarde si c'est un bouton de gestion d'historique,
+	 * sinon on regarde finalement si c'est un bouton d'un des deux dialog, celui de resultat ou d'alerte
+	 */
 	public void onClick(View arg0) 
 	{
+		//*********** Parcour de tous les framgents pour tester si une checkbox a été cocher ******************************
 		boolean checkBox = false;
 		
 		for( int i = 0; i < listReponseFragment.size(); i++ )
 		{
 			Log.d("ID", "arg0 : " + arg0.getId() + " listRep : " + listReponseFragment.get(i).getCheckboxId()  );
+			
 			if( arg0.getId() == listReponseFragment.get(i).getCheckboxId() )
 			{
 				CheckBox ch = (CheckBox)arg0;
@@ -331,6 +450,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 						navigation++;
 						
 						Log.d("Navigation", "nav = " + navigation );
+						//Mise à jour de l'affichage des boutons en fonction des changements dans l'historique
 						if( navigation > 0 )
 						{
 							retour.setEnabled(true);
@@ -339,6 +459,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 						{
 							retour.setEnabled(false);
 						}
+						
 						if( navigation < listQuestion.size()-1 )
 						{
 							suivant.setEnabled(true);
@@ -352,6 +473,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 					}
 					else
 					{
+						//Si on a choisi une questione en fin d'arbre, cela fait pop up la fenetre de resultat
 						Log.d("Affichage Resultat", "Le resultat doit s'afficher");
 						resultat = reponse.getResultat();
 						afficherResultat( resultat );
@@ -359,8 +481,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				}
 			}
 		}
+		//****************************************************************************************
 		
-		if( !checkBox )
+		if( !checkBox ) //Si on rentre ici aucune question n'a été selectionnées
 		{
 			if( arg0.getId() == retour.getId() ) //Retour cliqué dans l'historique
 			{
@@ -425,7 +548,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		        dialogVisible = false;
 		        
 			}
-			else if( arg0.getId() == alerte.getId() )
+			else if( arg0.getId() == alerte.getId() )  //Bouton alerte cliqué dans l'action bar
 			{
 				if( !dialogAlerteVisible )
 				{
@@ -439,28 +562,21 @@ public class QuestionFragment extends Fragment implements OnClickListener
 			}
 			else if( dialogAlerteVisible && arg0.getId() == boutonSubmit.getId() )   //Bouton submit cliqué sur le dialog alerte
 			{
+				//Enregistrement de l'erreur : un fichier texte contenant le text de l'utilisateur avec la date en haut du fichier
+				// Une capture d'écran utilisateur
 				EditText detail = (EditText)dialogAlerte.findViewById(R.id.detail);
 				Date date = new Date();				
 				
 				if( detail.getText().length() != 0 )
 				{
-					File rapport = new File(Environment.getExternalStorageDirectory(), "Innophyt" + File.separator + "Incident");
-					if (!rapport.exists()) 
-					{
-	                    if (!rapport.mkdirs()) 
-	                    {
-	                            Log.d("FileManager", "Cannot create directory: " + rapport.toString());
-	                    }
-					}
-	
 	                Bitmap bitmap;
 	                View v1 = getView(); 
 	                v1.setDrawingCacheEnabled(true);
 	                bitmap = Bitmap.createBitmap(v1.getDrawingCache());
 	                v1.setDrawingCacheEnabled(false);
 	
-	                File rapportFile = new File( rapport.getPath() + File.separator + "Incident" + date.getTime() + ".txt" );
-	                File imageFile = new File( rapport.getPath() + File.separator + "Incident" + date.getTime() +".jpg"  );
+	                File rapportFile = new File( FileManager.getSaveIncidentPath() + File.separator + "Incident" + date.getTime() + ".txt" );
+	                File imageFile = new File( FileManager.getSaveIncidentPath() + File.separator + "Incident" + date.getTime() +".jpg"  );
 	                
 	                try 
 	                {
@@ -473,7 +589,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 							fo.write( detail.getText().toString().getBytes() );
 							fo.write( new String("\n" ).getBytes() );
 							fo.write( new String("********************************************\n" ).getBytes() );
-							
 							fo.close();
 
 		                	ByteArrayOutputStream fout = new ByteArrayOutputStream();
@@ -482,25 +597,13 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		                    fos.write( fout.toByteArray() );
 		                    fos.close();
 							
-							MediaScannerConnection.scanFile(activity, new String[] { rapportFile.toString() }, null, new MediaScannerConnection.OnScanCompletedListener() 
-		                    {
-		                        public void onScanCompleted(String path, Uri uri) 
-		                        {
-		                            Log.d("ExternalStorage", "Scanned " + path + ":");
-		                            Log.d("ExternalStorage", "-> uri=" + uri);
-		                        }
-		                    }
-		                    );
-							
-							MediaScannerConnection.scanFile(activity, new String[] { imageFile.toString() }, null, new MediaScannerConnection.OnScanCompletedListener() 
-		                    {
-		                        public void onScanCompleted(String path, Uri uri) 
-		                        {
-		                            Log.d("ExternalStorage", "Scanned " + path + ":");
-		                            Log.d("ExternalStorage", "-> uri=" + uri);
-		                        }
-		                    }
-		                    );
+		                    FileManager.updateFileSystem( rapportFile, activity);
+		                    FileManager.updateFileSystem( imageFile, activity);
+		                    
+		                    bitmap.recycle();
+		                    
+		                    dialogAlerte.dismiss();
+		    				dialogAlerteVisible = false;		                    
 						}
 						catch (IOException e)
 						{
@@ -511,8 +614,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	                {
 	                	e1.printStackTrace();
 					}
-	                
-	                bitmap.recycle();
 				}
 				else
 				{
@@ -537,6 +638,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		}
 	}
 
+	/**
+	 * Fonction qui adapte l'UI de QuestionFragment pour correspondre à la currentQuestion
+	 */
 	private void changeUI( )
 	{	
 		EditText texteQuestion = (EditText)activity.findViewById(R.id.question);
@@ -576,8 +680,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		}
 		
 		ImageView image = (ImageView)activity.findViewById(R.id.imageQuestion );
-		image.setImageBitmap( BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
-					Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + currentQuestion.getCheminImage() )  );
+		image.setImageBitmap( BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + currentQuestion.getCheminImage() )  );
 		
 		if( currentQuestion.getCheminImage() == "" )
 		{
@@ -597,7 +700,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		for( int i = 0; i < listRep.size(); i++ )
 		{
-			LinearLayout innerLayout1 = new LinearLayout( activity );  // 1 Layout par Fragment !!!!!
+			LinearLayout innerLayout1 = new LinearLayout( activity );  // 1 Layout par Fragment !!!!!!!!!
 			    innerLayout1.setLayoutParams(new LinearLayout.LayoutParams( ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT ) );
 			    innerLayout1.setId(0x116+i);
 				
@@ -623,12 +726,20 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		}
 	}
 	
+	/**
+	 * Fonction prévue pour le futur si un traitement différent est requis lors d'un changement via d'UI via l'historique.
+	 * Pour l'instant équivaut à changeUI();
+	 */
 	private void changeUIviaHisto()
 	{
 		currentQuestion = listQuestion.get(navigation);
 		changeUI();
 	}
 	
+	/**
+	 * Affiche un Dialog de réstultat basé sur les infos contenue dans l'objet résultat 
+	 * @param resultat
+	 */
 	private void afficherResultat( Resultat resultat )
 	{
 		dialog = new Dialog( activity );
@@ -660,8 +771,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		for( int i = 0; i < resultat.getListeImage().size(); i++ )
 		{
-			bitmaps[i] = BitmapFactory.decodeFile(Environment.getExternalStoragePublicDirectory(
-					Environment.DIRECTORY_PICTURES) + File.separator + "Inno/" + resultat.getListeImage().get(i) );
+			bitmaps[i] = BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + resultat.getListeImage().get(i) );
 		}
 		
 		Gallery gallery = (Gallery)dialog.findViewById(R.id.gallery1); 
@@ -673,6 +783,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		dialog.show();
 	}
 	
+	/**
+	 * Affiche le dialog d'alerte standard
+	 */
 	private void afficherAlerte()
 	{
 		dialogAlerte = new Dialog( activity );
