@@ -57,3 +57,31 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
         }
     }
 }
+
+void QuestionBDD::enregistrerQuestion(Question * quest) {
+    QDomNode memoire = currentNode;
+    QDomElement question = doc.createElement("question");
+    question.setAttribute("id", "q"+QString::number(quest->getIdentifiant()));
+    question.setAttribute("texte", quest->getQuestion());
+    question.setAttribute("visible", quest->getVisible());
+    currentNode.appendChild(question);
+
+    currentNode = question;
+
+    ListeMedia * lm = quest->getListeMedia();
+    if(lm->size() > 0)  {
+        QDomElement dommed = doc.createElement("media");
+        currentNode.appendChild(dommed);
+        currentNode = dommed;
+        //qDebug()<< currentNode.nodeName();
+    }
+    for(int i = 0; i < lm->size(); i++)   {
+        MediaBDD::enregistrerMedia(lm->at(i));
+    }
+    currentNode = question;
+    ListeReponse * lr = quest->getListeReponse();
+    for(int i = 0; i < lr->size(); i++)   {
+        ReponseBDD::enregistrerReponse(lr->at(i));
+    }
+    currentNode = memoire;
+}

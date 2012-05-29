@@ -173,9 +173,18 @@ void MainWindow::on_actionImporter_XML_triggered()
 
 void MainWindow::on_actionExporter_XML_triggered()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de donnees"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
+    QString fileName = QFileDialog::getOpenFileName(this, tr("Enregistrer le fichier de base de donnees"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
 
-    // il faut ensuite appeler la fonction pour ecrire le fichier XML
+    Categorie * categorie = new Categorie(1);
+    if(maListeQuestions->size() != 0)
+    {
+        categorie->ajouterQuestion(maListeQuestions->at(0));
+        CategorieBDD::enregistrerArbre(categorie, fileName);
+    }
+    else
+    {
+        qDebug() << "Erreur dans l'enregistrement.";
+    }
 }
 
 void MainWindow::on_actionQuitter_triggered()

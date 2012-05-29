@@ -70,7 +70,7 @@ void QuestionBDD::enregistrerQuestion(Question * quest) {
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }
-
+    currentNode = question;
     ListeReponse * lr = quest->getListeReponse();
     for(int i = 0; i < lr->size(); i++)   {
         ReponseBDD::enregistrerReponse(lr->at(i));

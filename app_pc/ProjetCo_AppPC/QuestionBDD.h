@@ -8,7 +8,7 @@
 #include "ReponseBDD.h"
 #include "MediaBDD.h"
 #include "Categorie.h"
-
+#include "ListeMedia.h"
 
 class Question;
 class ListeQuestion;
@@ -19,6 +19,7 @@ class QuestionBDD : public BDD {
 
     public:
         static void listeReponseFromQuestion(Question * quest, bool recursif);
+        static void enregistrerQuestion(Question * quest);
 };
 
 #endif // QuestionBDD_h
