@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Thu 24. May 20:25:38 2012
+** Created: Tue 29. May 09:35:26 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -218,6 +218,7 @@ public:
 
         checkBoxVisibleOeil = new QCheckBox(centralWidget);
         checkBoxVisibleOeil->setObjectName(QString::fromUtf8("checkBoxVisibleOeil"));
+        checkBoxVisibleOeil->setEnabled(false);
         QFont font4;
         font4.setFamily(QString::fromUtf8("DejaVu Sans"));
         font4.setPointSize(10);
@@ -230,6 +231,7 @@ public:
 
         checkBoxVisibleLoupe = new QCheckBox(centralWidget);
         checkBoxVisibleLoupe->setObjectName(QString::fromUtf8("checkBoxVisibleLoupe"));
+        checkBoxVisibleLoupe->setEnabled(false);
         checkBoxVisibleLoupe->setFont(font4);
 
         verticalLayout->addWidget(checkBoxVisibleLoupe);

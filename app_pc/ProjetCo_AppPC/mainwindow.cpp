@@ -376,7 +376,8 @@ void MainWindow::newQuestionFils()
     QModelIndex index = ui->treeViewQuestion->currentIndex();
     QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
 
-    QStandardItem * elem = new QStandardItem(greenIcon, "Ceci est une nouvelle question");
+    //QStandardItem * elem = new QStandardItem(greenIcon, "Ceci est une nouvelle question");
+    QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
 
     // On calcul les coordonnées du noeud courant
     int profondeur = 0;
@@ -401,12 +402,12 @@ void MainWindow::newQuestionFils()
     qDebug() << "PAS RACINE coordonnees2 : " << coordonnees2;
 
     // TODO : attention, lors de l'insertion d'une nouvelle question en mémoire, j'ai l'impression qu'elle n'ai pas prise en compte au prochain passage...
-    Question * q = new Question(1);
-    q->setQuestion("Ceci est une nouvelle question");
-    q->setVisible("true");
-    currentQuestion->getCat()->ajouterQuestion(q);
+    currentQuestion->getCat()->ajouterQuestion(newQuestion);
 
-    mapTreeQuestions.insert(coordonnees2, q);
+    mapTreeQuestions.insert(coordonnees2, newQuestion);
+
+    // On rafraichit le TreeView
+    //model_tvQuestion->
 }
 
 void MainWindow::newQuestionFrere()

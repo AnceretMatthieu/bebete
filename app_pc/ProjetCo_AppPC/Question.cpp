@@ -16,6 +16,17 @@ Question::Question(int id) {
     myCategorie = NULL;
 }
 
+Question::Question(Question * uneQuestion)
+{
+    this->id = uneQuestion->getIdentifiant();
+    this->idleft = uneQuestion->getIdLeft();
+    this->idright = uneQuestion->getIdRight();
+    this->listeReponse = uneQuestion->getListeReponse();
+    this->listeMedia = uneQuestion->getListeMedia();
+    this->texte = uneQuestion->getQuestion();
+    this->myCategorie = uneQuestion->getCat();
+}
+
 void Question::ajouterReponse(Reponse *rep) {
     rep->setPrec(this);
     listeReponse->append(rep);
