@@ -7,6 +7,9 @@
 #include "BDD.h"
 #include "EspeceBDD.h"
 #include "categoriebdd.h"
+#include "MediaBDD.h"
+#include "CategorieBDD.h"
+#include "EspeceBDD.h"
 
 void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
     //qDebug() << "listeFromReponse(" << rep->getIdentifiant() << ", " << recursif << ")";
@@ -82,6 +85,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
 }
 
 void ReponseBDD::enregistrerReponse(Reponse * rep)  {
+    QDomNode memoire = currentNode;
     QDomElement reponse = doc.createElement("reponse");
     reponse.setAttribute("id", "r"+QString::number(rep->getIdentifiant()));
     reponse.setAttribute("texte", rep->getReponse());
@@ -108,4 +112,6 @@ void ReponseBDD::enregistrerReponse(Reponse * rep)  {
     else    {
         //grosse erreur de malade
     }
+
+    currentNode = memoire;
 }

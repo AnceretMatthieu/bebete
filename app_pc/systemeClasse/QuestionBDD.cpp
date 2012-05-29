@@ -51,6 +51,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
 }
 
 void QuestionBDD::enregistrerQuestion(Question * quest) {
+    QDomNode memoire = currentNode;
     QDomElement question = doc.createElement("question");
     question.setAttribute("id", "q"+QString::number(quest->getIdentifiant()));
     question.setAttribute("texte", quest->getQuestion());
@@ -72,5 +73,5 @@ void QuestionBDD::enregistrerQuestion(Question * quest) {
     for(int i = 0; i < lr->size(); i++)   {
         ReponseBDD::enregistrerReponse(lr->at(i));
     }
-
+    currentNode = memoire;
 }

@@ -86,6 +86,7 @@ void CategorieBDD::enregistrerArbre(Categorie *racine)
 }
 
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
+    QDomNode memoire = currentNode;
     QDomElement root = doc.createElement("branche");
     root.setAttribute("id", "b"+QString::number(currentCat->getIdentifiant()));
     root.setAttribute("type", currentCat->getLabel());
@@ -97,6 +98,7 @@ void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
     for(int i = 0; i < lq->size(); i++) {
         QuestionBDD::enregistrerQuestion(lq->at(i));
     }
+    currentNode = memoire;
 }
 
 
