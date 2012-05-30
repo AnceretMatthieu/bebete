@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Tue 29. May 09:35:26 2012
+** Created: Wed 30. May 11:58:29 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -33,10 +33,10 @@ QT_BEGIN_NAMESPACE
 class Ui_MainWindow
 {
 public:
+    QAction *actionImporter_XML;
     QAction *actionExporter_XML;
     QAction *actionQuitter;
-    QAction *actionImporter_XML;
-    QAction *actionA_propos;
+    QAction *actionA_propos_de;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -58,6 +58,7 @@ public:
     QLabel *label;
     QFrame *line_7;
     QHBoxLayout *horizontalLayout_3;
+    QPushButton *button_ajouterComQuestion;
     QPushButton *button_ajouterMediaQuestion;
     QPushButton *button_modifierMediaQuestion;
     QPushButton *button_supprimerMediaQuestion;
@@ -75,7 +76,7 @@ public:
     QSpacerItem *verticalSpacer_2;
     QFrame *line_3;
     QVBoxLayout *verticalLayout_3;
-    QLabel *lblReponse_2;
+    QLabel *labelReponse2;
     QFrame *line_6;
     QLabel *labelImage1;
     QLabel *labelImage2;
@@ -103,14 +104,14 @@ public:
         font.setFamily(QString::fromUtf8("Helvetica Neue"));
         font.setPointSize(14);
         MainWindow->setFont(font);
+        actionImporter_XML = new QAction(MainWindow);
+        actionImporter_XML->setObjectName(QString::fromUtf8("actionImporter_XML"));
         actionExporter_XML = new QAction(MainWindow);
         actionExporter_XML->setObjectName(QString::fromUtf8("actionExporter_XML"));
         actionQuitter = new QAction(MainWindow);
         actionQuitter->setObjectName(QString::fromUtf8("actionQuitter"));
-        actionImporter_XML = new QAction(MainWindow);
-        actionImporter_XML->setObjectName(QString::fromUtf8("actionImporter_XML"));
-        actionA_propos = new QAction(MainWindow);
-        actionA_propos->setObjectName(QString::fromUtf8("actionA_propos"));
+        actionA_propos_de = new QAction(MainWindow);
+        actionA_propos_de->setObjectName(QString::fromUtf8("actionA_propos_de"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
@@ -177,7 +178,7 @@ public:
         QFont font2;
         font2.setPointSize(12);
         treeViewQuestion->setFont(font2);
-        treeViewQuestion->setContextMenuPolicy(Qt::CustomContextMenu);
+        treeViewQuestion->setContextMenuPolicy(Qt::DefaultContextMenu);
         treeViewQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeViewQuestion->setSelectionBehavior(QAbstractItemView::SelectRows);
 
@@ -261,6 +262,12 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setSpacing(6);
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        button_ajouterComQuestion = new QPushButton(centralWidget);
+        button_ajouterComQuestion->setObjectName(QString::fromUtf8("button_ajouterComQuestion"));
+        button_ajouterComQuestion->setFont(font1);
+
+        horizontalLayout_3->addWidget(button_ajouterComQuestion);
+
         button_ajouterMediaQuestion = new QPushButton(centralWidget);
         button_ajouterMediaQuestion->setObjectName(QString::fromUtf8("button_ajouterMediaQuestion"));
         button_ajouterMediaQuestion->setFont(font1);
@@ -355,7 +362,7 @@ public:
         sizePolicy.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
         treeViewReponse->setSizePolicy(sizePolicy);
         treeViewReponse->setFont(font2);
-        treeViewReponse->setContextMenuPolicy(Qt::CustomContextMenu);
+        treeViewReponse->setContextMenuPolicy(Qt::DefaultContextMenu);
 
         verticalLayout_2->addWidget(treeViewReponse);
 
@@ -376,11 +383,11 @@ public:
         verticalLayout_3 = new QVBoxLayout();
         verticalLayout_3->setSpacing(6);
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
-        lblReponse_2 = new QLabel(centralWidget);
-        lblReponse_2->setObjectName(QString::fromUtf8("lblReponse_2"));
-        lblReponse_2->setFont(font2);
+        labelReponse2 = new QLabel(centralWidget);
+        labelReponse2->setObjectName(QString::fromUtf8("labelReponse2"));
+        labelReponse2->setFont(font2);
 
-        verticalLayout_3->addWidget(lblReponse_2);
+        verticalLayout_3->addWidget(labelReponse2);
 
         line_6 = new QFrame(centralWidget);
         line_6->setObjectName(QString::fromUtf8("line_6"));
@@ -449,7 +456,7 @@ public:
         menuFichier->addAction(actionExporter_XML);
         menuFichier->addSeparator();
         menuFichier->addAction(actionQuitter);
-        menuAide->addAction(actionA_propos);
+        menuAide->addAction(actionA_propos_de);
 
         retranslateUi(MainWindow);
 
@@ -459,10 +466,10 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "INNOPHYT Identificateur - Editeur", 0, QApplication::UnicodeUTF8));
+        actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
         actionExporter_XML->setText(QApplication::translate("MainWindow", "Exporter XML", 0, QApplication::UnicodeUTF8));
         actionQuitter->setText(QApplication::translate("MainWindow", "Quitter", 0, QApplication::UnicodeUTF8));
-        actionImporter_XML->setText(QApplication::translate("MainWindow", "Importer XML", 0, QApplication::UnicodeUTF8));
-        actionA_propos->setText(QApplication::translate("MainWindow", "A propos", 0, QApplication::UnicodeUTF8));
+        actionA_propos_de->setText(QApplication::translate("MainWindow", "A propos de", 0, QApplication::UnicodeUTF8));
         button_addQuestionFrere->setText(QApplication::translate("MainWindow", "Ajouter un fr\303\250re", 0, QApplication::UnicodeUTF8));
         button_addQuestionFils->setText(QApplication::translate("MainWindow", "Ajouter un fils", 0, QApplication::UnicodeUTF8));
         button_modifierQuestion->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
@@ -471,14 +478,15 @@ public:
         checkBoxVisibleOeil->setText(QApplication::translate("MainWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
         checkBoxVisibleLoupe->setText(QApplication::translate("MainWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "M\303\251dias", 0, QApplication::UnicodeUTF8));
-        button_ajouterMediaQuestion->setText(QApplication::translate("MainWindow", "Ajouter", 0, QApplication::UnicodeUTF8));
+        button_ajouterComQuestion->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
+        button_ajouterMediaQuestion->setText(QApplication::translate("MainWindow", "Ajouter m\303\251dia", 0, QApplication::UnicodeUTF8));
         button_modifierMediaQuestion->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
         button_supprimerMediaQuestion->setText(QApplication::translate("MainWindow", "Supprimer", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
         button_ajouterReponse->setText(QApplication::translate("MainWindow", "Ajouter", 0, QApplication::UnicodeUTF8));
         button_modifierReponse->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
         button_supprimerReponse->setText(QApplication::translate("MainWindow", "Supprimer", 0, QApplication::UnicodeUTF8));
-        lblReponse_2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
+        labelReponse2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
         labelImage1->setText(QString());
         labelImage2->setText(QString());
         labelImage3->setText(QString());

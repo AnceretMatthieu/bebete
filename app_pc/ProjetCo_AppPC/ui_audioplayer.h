@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'audioplayer.ui'
 **
-** Created: Wed 23. May 23:39:42 2012
+** Created: Tue 29. May 22:08:18 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

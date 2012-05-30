@@ -25,9 +25,11 @@
 #include "ListeMedia.h"
 #include "audioplayer.h"
 #include "videoplayer.h"
+#include "ajoutertexte.h"
+#include "modifreponsewindow.h"
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -51,7 +53,8 @@ class MainWindow : public QMainWindow
         QIcon yellowIcon;
         QIcon redIcon;
 
-        QAction * addQuestion;
+        QAction * addQuestionFils;
+        QAction * addQuestionFrere;
         QAction * modifQuestion;
         QAction * delQuestion;
         QAction * addReponse;
@@ -61,10 +64,13 @@ class MainWindow : public QMainWindow
         ListeQuestion * maListeQuestions;
 
         QMap<QString, Question *> mapTreeQuestions;
+        QMap<QString, Reponse *> mapTreeReponses;
 
-        ModifQuestionWindow * myWindow;
+        ModifQuestionWindow * myWindowQues;
+        ModifReponseWindow * myWindowRep;
         AudioPlayer * myAudioPlayer;
         VideoPlayer * myVideoPlayer;
+        AjouterTexte * myTxtWindow;
 
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
         void createAction();
@@ -77,9 +83,6 @@ class MainWindow : public QMainWindow
         void on_clickTreeViewQuestions(const QModelIndex &index);
         void on_clickTreeViewMediasQuestions(const QModelIndex &index);
         void on_clickTreeViewReponse(const QModelIndex &index);
-
-        void treeQuestionsContextMenu(const QPoint&);
-        void treeReponsesContextMenu(const QPoint&);
 
         void playAudio(QString fileName);
         void playVideo(QString fileName);
@@ -94,6 +97,7 @@ class MainWindow : public QMainWindow
         void modifierReponse();
         void supprimerReponse();
 
+        void newCommentaire();
         void newMedia();
         void modifierMedia();
         void supprimerMedia();

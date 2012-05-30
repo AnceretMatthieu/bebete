@@ -11,6 +11,7 @@ Categorie::Categorie(int identifiant)   {
 void Categorie::ajouterQuestion(Question *rep) {
     rep->setCat(this);
     myQuestion->append(rep);
+    myQuestion->setEstVide(0);
 }
 
 void Categorie::supprimerQuestion(Question *rep) {

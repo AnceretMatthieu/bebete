@@ -12,11 +12,16 @@ class AjouterTexte : public QDialog
     Q_OBJECT
     
 public:
-    explicit AjouterTexte(QWidget *parent = 0);
+    explicit AjouterTexte(QString * unQString, QWidget *parent = 0);
     ~AjouterTexte();
     
+private slots:
+    void on_buttonBox_accepted();
+
 private:
     Ui::AjouterTexte *ui;
+
+    QString * monQString;
 };
 
 #endif // AJOUTERTEXTE_H

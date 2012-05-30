@@ -123,7 +123,7 @@
            </font>
           </property>
           <property name="contextMenuPolicy">
-           <enum>Qt::CustomContextMenu</enum>
+           <enum>Qt::DefaultContextMenu</enum>
           </property>
           <property name="horizontalScrollBarPolicy">
            <enum>Qt::ScrollBarAsNeeded</enum>
@@ -249,6 +249,19 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
+           <widget class="QPushButton" name="button_ajouterComQuestion">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Ajouter commentaire</string>
+            </property>
+           </widget>
+          </item>
+          <item>
            <widget class="QPushButton" name="button_ajouterMediaQuestion">
             <property name="font">
              <font>
@@ -257,7 +270,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Ajouter</string>
+             <string>Ajouter média</string>
             </property>
            </widget>
           </item>
@@ -411,7 +424,7 @@
            </font>
           </property>
           <property name="contextMenuPolicy">
-           <enum>Qt::CustomContextMenu</enum>
+           <enum>Qt::DefaultContextMenu</enum>
           </property>
          </widget>
         </item>
@@ -440,7 +453,7 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QLabel" name="lblReponse_2">
+         <widget class="QLabel" name="labelReponse2">
           <property name="font">
            <font>
             <pointsize>12</pointsize>
@@ -553,7 +566,7 @@
     <property name="title">
      <string>Aide</string>
     </property>
-    <addaction name="actionA_propos"/>
+    <addaction name="actionA_propos_de"/>
    </widget>
    <addaction name="menuFichier"/>
    <addaction name="menuEdition"/>
@@ -561,6 +574,11 @@
    <addaction name="menuOutils"/>
    <addaction name="menuAide"/>
   </widget>
+  <action name="actionImporter_XML">
+   <property name="text">
+    <string>Importer XML</string>
+   </property>
+  </action>
   <action name="actionExporter_XML">
    <property name="text">
     <string>Exporter XML</string>
@@ -571,14 +589,9 @@
     <string>Quitter</string>
    </property>
   </action>
-  <action name="actionImporter_XML">
+  <action name="actionA_propos_de">
    <property name="text">
-    <string>Importer XML</string>
-   </property>
-  </action>
-  <action name="actionA_propos">
-   <property name="text">
-    <string>A propos</string>
+    <string>A propos de</string>
    </property>
   </action>
  </widget>

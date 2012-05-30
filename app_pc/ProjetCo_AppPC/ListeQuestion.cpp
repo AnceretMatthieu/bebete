@@ -3,6 +3,7 @@
 
 ListeQuestion::ListeQuestion()
 {
+    estVide = 1;
 }
 
 Question *ListeQuestion::getElementById(int id)

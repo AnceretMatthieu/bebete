@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifquestionwindow.ui'
 **
-** Created: Thu 24. May 00:39:55 2012
+** Created: Tue 29. May 22:08:18 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

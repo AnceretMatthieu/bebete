@@ -56,7 +56,6 @@ void ModifQuestionWindow::changeEvent(QEvent *e)
 
 void ModifQuestionWindow::on_buttonBox_accepted()
 {
-    // TODO : il faut enregistrer les valeurs des champs dans currentQuestion
     laQuestion->setQuestion(ui->textEdit->toPlainText());
 
     if(ui->checkBox_visibleOeil->checkState() == Qt::Checked && ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
