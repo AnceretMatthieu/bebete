@@ -26,6 +26,7 @@ class ListeMedia : public QVector<Media*> {
         /**
          *  \fn getElementById(int id)
          *  \brief retourne un élément grâce à son identificateur
+         *  \param int id : l'identificateur de l'élément
          *  \return Media*
          */
         Media * getElementById(int id);
@@ -33,6 +34,7 @@ class ListeMedia : public QVector<Media*> {
         /**
          *  \fn getElementByPath(QString path)
          *  \brief retourne un élément grâce à son chemin
+         *  \param QString path : le chemin de l'élément
          *  \return Media*
          */
         Media * getElementByPath(QString path);

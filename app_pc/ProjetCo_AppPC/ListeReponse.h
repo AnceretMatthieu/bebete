@@ -8,14 +8,24 @@ using namespace std;
 
 class Reponse;
 
+/**
+ *  \class ListeReponse
+ *  \file ListeReponse.h
+ *  \brief classe gérant un vecteur de réponse
+ */
 class ListeReponse : public QVector<Reponse*> {
 
     public:
-        ListeReponse();
-
         /**
-         *  Retourne l'Ã©lÃ©ment avec l'identifiant passÃ© en paramÃ¨tre
-         *  NB : est diffÃ©rent de at(int) qui retourne l'Ã©lÃ©ment dans le vecteur Ã  l'indice passÃ© en paramÃ¨tre
+         * \fn ListeReponse()
+         * \brief constructeur par défaut
+         */
+        ListeReponse();
+        /**
+         *  \fn getElementById(int id)
+         *  \brief retourne l'élément grâce à l'identifiant passé en paramètre
+         *  \param int id : l'identificateur de l'élément
+         *  \return Reponse*
          */
         Reponse * getElementById(int id);
 };
