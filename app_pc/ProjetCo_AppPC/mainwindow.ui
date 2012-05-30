@@ -183,6 +183,9 @@
         </item>
         <item>
          <widget class="QCheckBox" name="checkBoxVisibleOeil">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="font">
            <font>
             <family>DejaVu Sans</family>
@@ -201,6 +204,9 @@
         </item>
         <item>
          <widget class="QCheckBox" name="checkBoxVisibleLoupe">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="font">
            <font>
             <family>DejaVu Sans</family>

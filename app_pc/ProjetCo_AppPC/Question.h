@@ -25,6 +25,8 @@ class Question {
 
     public:
         Question(int id);
+        Question(Question *);
+
         int getIdentifiant() { return id; }
         QString getQuestion() { return texte; }
         QString getVisible() { return visible; }
