@@ -1,0 +1,581 @@
+% Cahier de spécification - Projet collectif - Application mobile d'aide à l'identification d'insectes nuisibles
+% version 0.1 du 13/02/2012 : version initiale, synthèse de la 1ère séance de travail
+% auteur de la modification :  Matthieu ANCERET (matthieu.anceret@etu.univ-tours.fr)
+% versions précédentes : ---
+
+\documentclass[twoside,CDS]{EPURapport}% on reprend ici le style EPU rapport étendu au CDS (version du 21/10/2009)
+\input{include.tex}
+
+\usepackage{listings}
+
+\thedocument{Cahier de spécification système \& plan de développement}{Application mobile d'aide à l'identification d'insectes nuisibles}{Projet collectif}
+
+\grade{Département Informatique}
+
+%Liste des versions avec la date et les principales modifications
+\modifications{
+	\version{00} \dateModif{13/02/2012} \description{Version initiale : synthèse de la 1ère séance de travail}
+}
+
+\authors{%non utilisé dans le CDS (remplacé par l'émetteur ci-dessous)
+	\category{Étudiants}{%
+		\name{Matthieu ANCERET - Chef de projet} \mail{matthieu.anceret@etu.univ-tours.fr}
+		\name{Jerome HEISSLER} \mail{jerome.heissler@etu.univ-tours.fr}
+		\name{Simon FAUSSIER} \mail{simon.faussier@etu.univ-tours.fr}
+		\name{Julien TERUEL} \mail{julien.teruel@etu.univ-tours.fr}
+		\name{Mickael PURET} \mail{mickael.puret@etu.univ-tours.fr}
+		\name{Martin DE MEULEMEESTER} \mail{martin.demeulemeester@etu.univ-tours.fr}	
+		\name{Zheng ZHANG} \mail{zheng.zhang@etu.univ-tours.fr}
+		\name{Zhengyi LIU} \mail{zhengyi.liu@etu.univ-tours.fr}
+	}
+	\details{DI4 2011 - 2012}
+}
+
+%l'émetteur remplace ici l'auteur du rapport de PFE
+\emetteur{Matthieu ANCERET}{EPU-DI}
+
+\supervisors{% non utilisés ici (remplacés par les validateurs ci-dessous)
+	\category{Encadrants}{%
+		\name{Nicolas RAGOT} \mail{nicolas.ragot@univ-tours.fr}
+		\name{Gilles VENTURINI} \mail{gilles.venturini@univ-tours.fr}
+	}
+	\details{Université François-Rabelais, Tours}
+}
+\nosupervisors
+
+%Personnes ayant relu le cahier de spécif, avec la date, l'effectivité de la validation et d'éventuels commentaires
+\validators{
+		%\name{N Ragot} \dateValide{20/10/2009} \valide{O} \comment{Ok pour 2009-2010}
+}
+
+\abstracts{Description en français}
+{Mots clés français}
+{Description en anglais}
+{Mots clés en anglais}
+
+\nolistoffigures
+\nolistoftables
+
+\begin{document}
+
+\part*{Cahier de spécification système}
+\addcontentsline{toc}{part}{Cahier de spécification système} 
+\setcounter{chapter}{1} %on n'utilise pas ici de chapitre explicite car un chapitre est sur une page à part (partie=chapitre)
+% en revanche on utilise la numérotation quand même
+\chaptermark{Cahier de spécification système} %pour les headers basé sur les chapitres
+
+	\section{Introduction}
+	Ce document est un cahier de spécification fonctionnelle. Il a pour but de définir clairement toutes les demandes du client. Il permettra, lors de la validation finale, de vérifier que le livrable est conforme à ce que le client avait demandé. \\
+	Notre projet est un projet collectif à 8 personnes dans le cadre de notre cursus à l'école Polytech'Tours. \\
+	Le client de notre projet est l'équipe INNOPHYT, et plus particulièrement la responsable de cette équipe, Ingrid Arnault. Cette équipe fait partie de l'Université François Rabelais de Tours et elle est consacrée aux activités de valorisation et de recherche dans le domaine de la lutte anti-parasitaire durable. \\
+	Notre encadrant de projet est Gilles Venturini. Étant donné qu'il connait bien le projet, il est aussi un interlocuteur privilégié pour les aspects techniques et opérationnels. 
+	
+	\section{Contexte de la réalisation}
+		\subsection{Contexte}
+		L'enjeu du projet est de permettre à l'équipe INNOPHYT d'obtenir un outil performant de reconnaissance d'espèce, et plus précisément, de savoir si une espèce est nuisible ou non. C'est donc un outil d'aide à la décision. Actuellement, l'équipe utilise un fichier Excel qui répertorie les questions à se poser pour arriver à un résultat (sous une forme arborescente). Ce système est quelque peu archaïque et demande un effort important de la part de l'utilisateur. De plus, l'évolution d'un tel système (ajout, modification, suppression d'élément) est compliqué. \\
+		Les futurs utilisateurs de l'application peuvent être aussi bien des ingénieurs ou des spécialistes du domaines (biologiste de terrain, membre de l'équipe INNOPHYT...) que des utilisateurs lambda n'ayant pas de connaissances particulières (agriculteur, passionné des insectes...). 
+		
+		\subsection{Objectifs}
+		Le projet est décomposé en 2 grandes parties : 
+		\begin{itemize}
+			\item Une application mobile qui va permettre à l'utilisateur, directement sur le terrain, de déterminer le type de l'insecte et de décider s'il est nuisible ou non. L'application va poser un certains nombres de questions et déduire des choses à partir des réponses obtenues. Celle-ci proposera à l'utilisateur différents médias (photos, vidéos, animations...) pour l'aider à prendre une décision. 
+			\item Une application sur PC qui va permettre de consulter la base de données (l'arbre de décision) et de la faire évoluer (ajout/modification/suppression d'espèces, de questions, de réponses, de médias...). Cette application sera principalement utilisée par l'équipe INNOPHYT ou éventuellement par des experts du domaine. Elle doit permettre de visualiser rapidement les éléments sur lesquels il manque des informations. 
+		\end{itemize}
+		L'application PC devra permettre d'exporter la base de données pour la mettre à disposition de l'application mobile. L'application mobile devra fournir un rapport des actions effectuées sur celle-ci (espèces inconnues, questions/réponses floues, résultat...) pour permettre à l'équipe INNOPHYT de corriger ou de faire évoluer la base. 
+		
+		\subsection{Hypothèses}
+		Nous allons poser un certains nombres d'hypothèses qui permettront de définir le périmètre du projet : 
+		\begin{itemize}
+			\item On considère que la reconnaissance d'image ne fait pas partie du projet. L'utilisateur se base sur une photo de l'insecte ou un "vrai" insecte pour répondre aux questions. 
+			\item La plateforme pour l'application mobile est fixée : Android. On considère que l'on ne change pas de plateforme en cours de projet. 
+			\item On considère que la tablette ne sera pas forcement connectée à internet, donc pas de synchronisation automatique entre la tablette et l'application PC. 
+			\item On considère que l'application PC sera utilisée sur un seul ordinateur simultanément (pas de gestion de plusieurs bases de données et de la cohérence de la base). 
+			\item On considère que la base de données sera mise à jour manuellement par l'utilisateur, par simple copie standard par exemple (via support USB...). 
+		\end{itemize}
+		
+		\subsection{Bases méthodologiques}
+		Conformément aux "règles" du projet collectif, nous allons utiliser la méthodologie Agile "Scrum". Le principe de cette méthode est de se focaliser sur une partie limitée et maitrisable du projet (un "sprint"). A chaque fin de sprint, l'équipe doit être capable de fournir au client un livrable partiel mais fonctionnel. \\
+		Pour l'application PC, nous allons utiliser le langage C++ avec le framework QT. Nous avons choisi ce langage car nous l'avons déjà utilisé lors de TP-projet à Polytech'Tours. De plus, l'utilisation d'un langage comme le C++ (langage compilé) nous garantis des performances intéressantes pour l'application et une compatibilité avec les principaux systèmes d'exploitation (Windows, Linux et Mac OS). \\
+		Pour l'application mobile, sachant que nous avons une plateforme Android, nous allons utiliser le langage Java (c'est le langage officiel pour le développement sous Android). \\ \\
+		Étant donné que c'est un travail de groupe, nous allons devoir utiliser des outils de travail collaboratif : 
+		\begin{itemize}
+			\item Pour gérer les tâches entre les différentes personnes, nous allons utiliser le site "Wunderkit". Il permet de créer des listes de tâche et de les affecter à une ou plusieurs personnes. Il est possible de classifier ces tâches selon leur avancement ("à faire", "en cours", "à valider", "terminée"...).
+			\item Pour la gestion des sources, nous allons utiliser un dépôt GIT sur Github. 
+		\end{itemize}
+		
+	\section{Description générale}
+
+		\subsection{Environnement du projet}
+		\label{sec:envprojet}
+		Pour ce projet, nous n'avons aucun existant, mis à part l'arbre de décision que nous a fourni l'équipe INNOPHYT (au format Excel). Nous avons donc carte blanche pour définir le format de la base de données et l'architecture de nos deux applications. \\
+		Il existe deux projets qui gravitent autour du notre. Un projet de 5ème année, qui a pour objectif de réaliser une application similaire à la notre sous forme d'application web. Les étudiants concernés par ce projet auront besoin de la structure de notre base de données (fichier XML). Un autre projet, proposé aux 3ème années, a pour but d'étudier un système de modélisation d'insecte en 3D à partir d'un "véritable" insecte.   
+
+		\subsection{Caractéristiques des utilisateurs}
+		Dans cette partie, nous allons lister les différents types d'utilisateur de nos deux applications ainsi que leurs caractéristiques :  
+
+\subsubsection{Utilisateur de l'application PC} 
+	\noindent \textbf{Le biologiste (~ l'équipe INNOPHYT)}
+	\begin{itemize}
+		\item connaissance ou non de l'informatique : niveau bureautique avancé
+		\item expérience de l'application : aucune
+		\item utilisateurs réguliers et/ou occasionnels : régulier
+		\item droits d'accès utilisateurs : complet 
+	\end{itemize}
+
+\subsubsection{Utilisateur de l'application mobile} 
+	\noindent \textbf{Le biologiste}
+		\begin{itemize}
+			\item connaissance ou non de l'informatique : niveau bureautique avancé 
+			\item expérience de l'application : aucune
+			\item utilisateurs réguliers et/ou occasionnels : occasionnel
+			\item droits d'accès utilisateurs : complet
+		\end{itemize}
+	\textbf{L'agriculteur}
+		\begin{itemize}
+			\item connaissance ou non de l'informatique : faible
+			\item expérience de l'application : aucune
+			\item utilisateurs réguliers et/ou occasionnels : utilisation occasionnelle voir nulle
+			\item droits d'accès utilisateurs : complet
+		\end{itemize}
+	\textbf{Le chercheur de terrain (biologiste de terrain)}
+		\begin{itemize}
+			\item connaissance ou non de l'informatique : niveau bureautique avancé
+			\item expérience de l'application : aucune
+			\item utilisateurs réguliers et/ou occasionnels : régulier
+			\item droits d'accès utilisateurs : complet
+		\end{itemize}
+
+	\subsection{Fonctionnalités et structure générale du système}
+	\label{sec:foncgales}
+	Pour exprimer les fonctionnalités de notre système, nous allons utiliser la modélisation UML et plus particulièrement les diagrammes de cas d'utilisation. \\
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/diag_CU_app_PC.png}
+	\caption{Diagramme de cas d'utilisation de l'application PC}
+	\label{diagramme CU appli PC}
+\end{figure}
+Sur le diagramme de cas d'utilisation de l'application PC (\ref{diagramme CU appli PC}), la notation "C/U/D" signifie "Create/Update/Delete" (soit Créer/Modifier/Supprimer). La partie "synchro avec l'application mobile" symbolise un module d'exportation de la base de données dans un fichier (écriture d'un fichier XML). La partie "visionner les retours utilisateurs" ne sera pas forcément traitée par l'application. Elle est malgré tout représentée pour montrer le fait qu'il y a une remontée d'informations de la part de l'application mobile. 
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/diag_CU_app_mobile.png}
+	\caption{Diagramme de cas d'utilisation de l'application mobile}
+	\label{diagramme CU appli mobile}
+\end{figure}
+Sur le diagramme de cas d'utilisation de l'application mobile (\ref{diagramme CU appli mobile}), on remarque que l'on peut créer des campagnes, des sessions et des pièges. Une campagne est composée de une ou plusieurs sessions et une session de un ou plusieurs pièges. Une campagne est représentée par un nom, une date de début et éventuellement une date de fin. Un piège est représentée par un nom, une date et des coordonnées GPS. 
+
+	\subsection{Contraintes de développement, d'exploitation et de maintenance}
+				
+		\subsubsection{Contraintes de développement}
+
+\begin{itemize}
+	\item \textbf{contraintes matérielles :} étant donné que nous allons travailler avec une tablette (Android), nous allons devoir prendre en compte les contraintes d'autonomie et de performance liées à cet type de périphérique. 
+	\item \textbf{langages de programmation :} le développement sous Android nous impose le langage Java. En effet, c'est le langage de référence pour cette plateforme. Pour la partie application PC, nous avons décidé de choisir le langage C++ avec le framework QT. 
+	\item \textbf{logiciels de développement :} Eclipse, qui est l'IDE de référence (et officiel !) pour le développement pour Android. Le temps d'obtenir une véritable tablette, nous allons utiliser les émulateurs fournis avec le SDK Android. Pour la partie PC, nous allons utiliser l'environnement de développement QT Creator. 
+	\item \textbf{délais de réalisation :} le projet doit être terminé pour fin Mai. 
+\end{itemize}
+
+	\section{Description des interfaces externes du logiciel}
+
+		\subsection{Interfaces matériel/logiciel}
+Pour l'application PC, nous développerons une application à destination d'ordinateur sous Windows. Mais notre application sera compatible aussi compatible avec les environnements Linux et Mac OS de part l'utilisation du langage C++ et du framework QT. \\ \\
+Pour l'application mobile, nous allons utiliser une tablette tactile sous Android dont voici les caractéristiques :  
+\begin{itemize}
+ 	\item \textbf{ASUS Eee Pad Transformer Prime}
+ 	\item 10,1" (résolution de 1280 x 800)
+ 	\item Processeur NVidia Tegra 3
+ 	\item 1 Go de RAM
+ 	\item 64 Go de mémoire de stockage 
+ 	\item Webcam façade de 1.2Mpx et webcam arrière de 8Mpx (avec flash)
+ 	\item Wifi + Bluetooth
+ 	\item GPS
+ 	\item Android 3.2 Honeycomb (màj vers Android 4.0 Ice Cream Sandwich disponible)
+ 	\item \textbf{Connectique :}
+ 	\begin{itemize}
+ 		\item 1 micro-HDMI
+ 		\item 1 lecteur de carte SD/micro SD
+ 		\item 1 entrée microphone 
+ 		\item 1 sortie audio jack 
+ 		\item 1 port USB 2.0
+ 	\end{itemize}
+ 	\item Station d'accueil avec clavier intégré 
+\end{itemize}
+
+La liaison entre le PC et la ou les tablette(s) sera, dans un premier temps, fait via un support USB (clé USB, carte SD...). A nous ensuite de réfléchir à une méthode de synchronisation plus souple (Dropbox, serveur...). 
+
+		\subsection{Interfaces homme/machine}
+L'IHM de l'application mobile doit être la plus claire et la plus pratique possible car elle est destinée à des utilisateurs "non-informaticiens". 
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/model.png}
+	\caption{Modèle de l'IHM de l'application mobile}
+	\label{modele IHM mobile}
+\end{figure}
+Notre interface se décompose en 3 grandes parties : 
+\begin{itemize}
+	\item En haut, un fil d'ariane, qui permet à l'utilisateur de se repérer lors de son cheminement dans l'application. Cela lui permet à tout moment de savoir où il se situe. 
+	\item A gauche, une barre de menu, permettant d'accéder aux principales fonctionnalités de l'application (gestion des campagnes, des pièges, des options...). 
+	\item Au centre, la zone principale, permettant d'afficher les informations principales de l'application (les questions, les réponses possibles, l'interface caméra...).
+\end{itemize}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[height=1\textwidth]{images/menu.png}
+	\caption{Menu latéral de l'application mobile}
+	\label{menu lateral}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/ariane.png}
+	\caption{Fil d'ariane de l'application mobile}
+	\label{fil ariane}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/campagnes.png}
+	\caption{Ecran de gestion des campagnes}
+	\label{ecran gestion campagnes}
+\end{figure}
+
+\newpage
+Cette écran (figure \ref{ecran gestion campagnes}) permet de créer/continuer/supprimer une campagne. Pour les pièges, l'écran est similaire. 
+
+ \begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/creer_campagne.png}
+	\caption{Ecran de création d'une nouvelle campagne}
+	\label{ecran creation campagne}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/creer_piege.png}
+	\caption{Ecran de création d'un nouveau piège}
+	\label{ecran creation piege}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/select_campagne.png}
+	\caption{Ecran d'ouverture d'une campagne existante}
+	\label{ecran ouverture campagne}
+\end{figure}
+
+\newpage
+Cet écran (figure \ref{ecran ouverture campagne}) est similaire pour l'ouverture d'un piège existant. 
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/creer_piege.png}
+	\caption{Ecran de création d'un nouveau piège}
+	\label{ecran creation piege}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/question.png}
+	\caption{Ecran de question/réponse}
+	\label{ecran question reponse}
+\end{figure}
+
+\newpage
+Cet écran (figure \ref{ecran question reponse}) propose à l'utilisateur la question à laquelle il doit répondre ainsi que les réponses associées. Si une ressource externe (un média, comme une photo, une vidéo, une animation...) existe pour cette question, elle sera affichée à côté de la question. 
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/camera.png}
+	\caption{Ecran du mode caméra/photo}
+	\label{ecran camera}
+\end{figure}
+
+\newpage
+Cet écran (figure \ref{ecran camera}) permet d'utiliser les fonctionnalités multimédia de la tablette tactile. L'utilisateur peut soit prendre une photo de l'insecte en cours d'étude, soit le filmer et l'afficher en parallèle des questions qui lui sont posées. 
+
+\newpage
+
+		\subsection{Interfaces logiciel/logiciel}
+		
+		\subsubsection{Format du fichier de données}
+Notre base de données est représentée sous la forme d'un fichier XML. Nous avons privilégié ce mode de représentation, par rapport à une base SQL/SQLite par exemple, en raison du fait que notre base n'est pas amenée à grandir démesurément (dans un futur plus ou moins proche en tous cas). De ce fait, l'utilisation d'une base SQL/SQLITE n'était pas pertinente. \\ 
+Nous allons voir la structure de notre fichier XML sur un exemple : 
+\begin{lstlisting}
+<?xml version = '1.0' encoding="UTF8"?> 
+<!DOCTYPE arbre SYSTEM "arbre.dtd">
+
+<arbre>
+<branche id="b1" type="accueil" date="jj/mm/yyy">
+ <question id="q1" texte="Que voyez vous ?" visible="true">
+  <media>
+   <legende>Vous devez nous dire ce que vous avez vue !!!</legende>
+  </media>
+   <reponse id="r1" texte="6 pattes" visible="true">
+    <media>
+     <img id="img1" src="toto6pattes.png" />
+     <legende>c'est toto avec 6 pattes</legende>
+    </media>
+    <branche id="b2">
+     <!-- ... -->
+    </branche>
+   </reponse>
+   <reponse id="r2" texte="8 pattes, ailes et antennes absentes">
+	<branche id="b3" type="Arachnide">
+     <question id="q2" texte="Quelle est la taille de l'arachnide ?">
+	  <reponse id="r3" texte="Supérieur à 5 mm" >
+		<resultat id="res1">
+		 <nom><!-- Nom de la morpho-espèce trouvée --></nom>
+         <type>MEL1</type>
+		 <regimeAlimentaire>Prédateur</regimeAlimentaire>
+		 <informations><!-- Infos complementaires sur la morpho-espèce --></informations>
+		 <media>
+		  <img id"img2" src="coucou.jpg" />
+		 </media>
+	    </resultat>
+      </reponse>
+	  <reponse id="r4" texte="Inférieur à 5 mm">
+	   <!-- ... -->
+      </reponse>
+     </question>
+   </branche>
+ </reponse>
+</question>
+</branche>
+</arbre>
+\end{lstlisting}
+A ce fichier XML, nous avons associés une DTD. Une DTD est en quelque sorte le modèle d'un fichier XML. Elle permet de décrire sa structure logique : nom des éléments, contenu, attributs, nombre d'occurrence autorisée... Voici la DTD de notre fichier XML : 
+\begin{lstlisting}
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT arbre (branche)>
+
+<!ELEMENT branche (question)>
+<!ATTLIST branche id ID #REQUIRED>
+<!ATTLIST branche type CDATA #IMPLIED>
+<!ATTLIST branche date CDATA #IMPLIED>
+
+<!ELEMENT question (reponse+, media*)>
+<!ATTLIST question id ID #REQUIRED>
+<!ATTLIST question texte NMTOKENS #REQUIRED>
+<!ATTLIST question visible NMTOKENS #IMPLIED>
+
+<!ELEMENT reponse ((branche|resultat), media*)>
+<!ATTLIST reponse id ID #REQUIRED>
+<!ATTLIST reponse texte NMTOKENS #REQUIRED>
+<!ATTLIST reponse visible NMTOKENS #IMPLIED>
+
+<!ELEMENT resultat (nom, type, regimeAlimentaire, media*)>
+<!ELEMENT nom (#PCDATA)>
+<!ELEMENT type (#PCDATA)>
+<!ELEMENT regimeAlimentaire (#PCDATA)>
+<!ELEMENT informations (#PCDATA)>
+
+<!ELEMENT media (img+, legende+)>
+<!ELEMENT img EMPTY>
+<!ATTLIST img id ID #REQUIRED>
+<!ATTLIST img src ENTITY #REQUIRED>
+<!ELEMENT legende (#PCDATA)>
+\end{lstlisting}
+
+		\subsubsection{Format du fichier de résultat}
+Nous allons maintenant définir le format du fichier de sortie (le fichier de résultat). Ce fichier sera un fichier CSV, il pourra donc être ouvert et modifié facilement avec un tableur standard type Excel ou OpenOffice. \\
+Il sera composé des colonnes suivantes : 
+\begin{itemize}
+	\item \textbf{Date :} date courante de l'observation
+	\item \textbf{Campagne :} informations relatives à la campagne (nom, date de début...)
+	\item \textbf{Session :} informations relatives à la session
+	\item \textbf{Piège :} informations relatives au piège (coordonnées, nom...)
+	\item \textbf{1 colonne par morpho-espèce :} cette colonne contiendra une valeur dans la case correspondant au résultat de l'observation. 
+\end{itemize}
+
+		\subsubsection{Format du fichier des retours utilisateurs}
+Enfin, nous allons définir le format du fichier des retours utilisateurs. Ce fichier permet de centraliser tous les commentaires relevés par les utilisateurs de l'application mobile (questions incomplète, pas réponse correspondante, nouvelle morpho-espèce...). \\
+Il sera composé des colonnes suivantes : 
+\begin{itemize}
+	\item \textbf{Date :} date de la soumission du commentaire
+	\item \textbf{Historique questions/réponses :} historique complet des questions et des réponses auxquelles l'utilisateur a répondu
+	\item \textbf{Photo insecte :} dans le cas d'une nouvelle morpho-espèce ou si l'utilisateur pense qu'il peut proposer une photo de meilleur qualité que celle proposée
+	\item \textbf{Commentaire :} texte libre pour l'utilisateur 
+\end{itemize}
+
+\newpage
+
+	\section{Architecture générale du système}
+	\label{sec:archi}
+La figure \ref{diag composants} présente le diagramme de composant de notre système. 
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=0.8\textwidth]{images/diag_composants.png}
+	\caption{Diagramme de composants}
+	\label{diag composants}
+\end{figure}
+
+\newpage
+
+	\section{Description des fonctionnalités}
+	\label{sec:fonctions}
+
+	\subsection{Application PC} 
+		
+		\subsubsection{Visualisation de l'arbre}
+Cette fonction permet d'obtenir une représentation graphique de notre arbre XML. Nous allons utiliser un mélange entre l'arborescence classique de type "Windows" et l'arborescence utilisée dans l'explorateur de Mac OS (cf. IHM de l'application PC). 
+
+		\subsubsection{Importer un fichier XML}
+En entrée, nous avons un fichier XML valide. Notre fonction va lire ("parser") le fichier XML puis l'enregistrer en mémoire dans les types de données appropriés.
+
+		\subsubsection{Exporter l'arbre en fichier XML}
+Cette fonction permet d'exporter l'arbre courant présent en mémoire. Cette fonction sera appelée régulièrement pour éviter toute perte de données (et notamment lors de la fermeture de l'application). 
+En entrée, nous avons un arbre XML en mémoire. En sortie, nous devons obtenir un fichier XML valide contenant notre arbre. 
+
+		\subsubsection{Ajouter/modifier/supprimer questions/réponses}
+Cette fonction permet d'ajouter, de supprimer et de modifier une question ou des réponses de l'arbre (soit un élément de l'arbre XML). Cette modification n'est pas réalisé sur le fichier XML "physique" mais est opérée sur la structure en mémoire. 
+
+		\subsubsection{Ajouter/modifier/supprimer morpho-espèce}
+Même principe que pour la fonction précédente, mais opère sur les éléments de type "resultat" (soit les morphos-espèces). 
+
+	\subsubsection{Ajouter/modifier/supprimer médias}
+Même principe que pour la fonction précédente, mais opère sur les éléments de type "media". Cette action sera surement réalisée via "glisser-déplacer" du fichier dans l'interface de l'application. 
+
+	\subsubsection{Déplacer élément de l'arbre}
+Cette fonction n'est pas prioritaire. Elle permettra de déplacer un sous-arbre complet à un autre endroit. Il faudra prendre soin de garder la cohérence des données (réponses orphelines, questions sans réponses...). 
+
+	
+	\subsection{Application mobile}
+	
+	\subsubsection{Créer/modifier/supprimer une campagne}
+
+Une campagne est définie au minimum par un nom et une date de début (par défaut, la date de création de la campagne). Il est possible d'ajouter une date de fin, un lieu et un objectif. \\
+Une campagne va être composée de un ou plusieurs pièges. \\
+Il doit être possible de reprendre une campagne déjà commencé. \\
+
+	\subsubsection{Créer/modifier/supprimer un piège}
+Un piège est défini au minimum par un nom. Il est possible d'ajouter un lieu (sous forme de coordonnées GPS) et une observation. \\
+C'est dans le piège que l'on va stocker les différentes observations d'insectes que l'utilisateur va réaliser.  \\ 
+De la même façon que pour une campagne, il doit être possible de reprendre un piège déjà créé. 
+
+	\subsubsection{Importer un arbre XML}
+Cette fonction permet de lire un fichier XML contenant une base de données d'insectes et de questions/réponses. En entrée, nous avons un fichier XML valide suivant notre DTD. En sortie, nous avons un arbre XML en mémoire. 
+
+	\subsubsection{Voir une question}
+Cette fonction permet d'afficher à l'utilisateur une question de l'arbre et ses réponses associées. 
+
+	\subsubsection{Répondre à une question}
+Cette fonction permet à l'utilisateur de répondre à une question. Selon la réponse qu'il a donné, cela va l'orienter vers la question correspondante dans l'arbre jusqu'à arriver à un élément terminal (morpho-espèce). 
+
+	\subsubsection{Visualisation de l'insecte}
+Cette fonction permet à l'utilisateur de choisir le mode de visualisation de l'insecte. Il a le choix entre : 
+\begin{itemize}
+	\item Mode photo : l'utilisateur prend en photo l'insecte à un instant t. Cette photo est gardée en mémoire et est affiché à l'utilisateur pour lui permettre de répondre aux différentes questions. L'utilisateur a la possibilité à tout moment de reprendre une photo de l'insecte. 
+	\item Mode vidéo : l'utilisateur disposera d'une image en temps réel de l'insecte. Cela lui permettra d'observer l'insecte sous différents angles en déplacement l'insecte ou la tablette. 
+\end{itemize}
+A tout moment, l'utilisateur peut switcher entre ces 2 modes à l'aide d'un interrupteur. 
+
+	\subsubsection{Poster une alerte}
+Cette fonction permet à l'utilisateur de signaler un quelconque problème en relation avec l'application. Ces problèmes peuvent être de différents types : 
+\begin{itemize}
+	\item Problème d'indécision : l'utilisateur n'arrive pas à se déterminer sur la réponse à choisir (soit par manque de compétence ou d'expérience, soit parce que la question ou les réponses ne sont pas assez claires ou précises). Ce problème doit être remonté à l'équipe pour qu'il soit pris en compte (modification de la question ou des réponses). 
+	\item Problème de morpho-espèce inconnu : dans ce cas, le problème doit être remonté à l'équipe pour quelle puisse modifier l'arbre XML pour prendre en compte cette nouvelle morpho-espèce. 
+	\item Problème technique : l'application affiche un message d'erreur ou plante inopinément. Ce bug doit être remonté pour être corrigé par l'équipe technique. 
+\end{itemize}
+
+	\section{Conditions de fonctionnement}
+
+		\subsection{Capacités}
+Au niveau de l'application PC : 
+\begin{itemize}
+	\item nombre max de terminaux : l'application mobile est susceptible d'être installée et utilisée sur plusieurs tablettes, mais de manière indépendante (pas de communication inter-application directe mais seulement via le logiciel PC). 
+	\item capacité max de stockage : la tablette dont nous disposons sera équipée de 64 Go de mémoire de stockage. Cela permettra en grande partie de stocker les différents médias associées à l'application. 
+\end{itemize}
+Au niveau de l'application PC, il n'y aura probablement qu'une seule instance qui fonctionnera de manière indépendante. Donc pour le moment, nous n'aurons pas à gérer les problèmes de cohérence des données entre plusieurs bases de données. 
+
+			\subsection{Contrôlabilité}
+Les actions de l'utilisateur doivent être enregistrées par l'application, d'une part pour faire un feedback à l'équipe INNOPHYT (erreurs, résultats incorrects...) et d'autre part pour assurer un suivi à l'utilisateur de l'application. 
+
+			\subsection{Sécurité}
+Pour le moment, pas de système d'authentification n'est a mettre en place. Les utilisateurs de l'application PC disposent des droits pour tout faire et de même sur l'application mobile.  
+			
+\part*{Plan de développement}
+\addcontentsline{toc}{part}{Plan de développement} 
+\setcounter{chapter}{2}
+\chaptermark{Plan de développement} %pour les headers basé sur les chapitres
+\setcounter{section}{0} % on remet la numérotation des sections à 1 (grâce au préfixe de partie qui est lui à 2)
+
+	\section{Découpage du projet en tâches}
+			
+		\subsection{Rédaction de la modélisation UML}
+			\begin{itemize}
+				\item Réalisation des deux diagrammes de cas d'utilisation : un pour l'application mobile et un autre pour l'application PC
+				\item Réalisation du diagramme de classes
+				\item Réalisation du diagramme de composants
+			\end{itemize}						
+			
+		\subsection{Création du fichier XML et de sa DTD}
+		Réflexion sur l'organisation du fichier XML et les informations à y faire apparaitre (éléments, données, attributs...). \\
+		Suite à cela, rédaction de la DTD associée à ce fichier XML. 
+		Enfin, une fois la structure finale définie et la DTD rédigée, écriture du fichier XML complet relatif à l'arbre qui nous a été fourni par l'équipe INNOPHYT (au format Excel).  
+						
+		\subsection{Application PC}
+		
+			\subsubsection{Réalisation de l'IHM de l'application PC}
+			Réflexion au choix d'un mode de visualisation efficace et performant pour les données (arborescence type Windows, explorateur type MacOS, représentation sous forme de carte...). \\
+
+			\subsubsection{Développement de la classe de lecture/écriture de fichier XML}
+			Les modules sous-jacents sont donc "importer fichier XML" et "exporter fichier XML". 
+			
+			\subsubsection{Développement du module de visualisation de l'arbre}
+			2 types de visualisation : l'arborescence type "Windows" qui reprend les questions et les panneaux type "Mac OS" qui liste les réponses et les médias relatifs à l'élément cliqué dans la 1ère arborescence. 
+			
+			\subsubsection{Développement du module de modification de l'arbre XML}
+			Édition, ajout et suppression de noeud (question, réponse, morpho-espèce...).
+			\begin{itemize}
+				\item Ajouter balise
+				\item Supprimer balise
+				\item Modifier balise
+			\end{itemize}			 
+			
+			\subsubsection{Développement du module de déplacement d'éléments de l'arbre}
+			Un élément seul, un sous-arbre complet... Cette tâche n'est pas prioritaire, elle sera effectuée dans un 2ème temps. 
+			
+			\subsubsection{Développement du module d'ajout de média}
+			Ce module doit permettre à l'utilisateur d'ajouter des médias via un drag and drop du fichier contenu dans son ordinateur vers la fenêtre de notre application. 
+			
+			\subsubsection{Développement du module de visualisation des médias}
+			Permet d'afficher les différents médias associés à un élément (question/réponse/résultat). Ce module doit être adapté à plusieurs types de médias : photos, vidéos, éventuellement animation... Il faut prendre soin de gérer les différents formats possibles pour chaque type de média. 
+			
+			\subsubsection{Développement du module de recherche des informations manquantes}
+			Ce module permet à l'utilisateur de savoir quels sont les éléments où il manque de l'information.
+				
+			
+		\subsection{Application mobile}
+
+			\subsubsection{Prise en main de l'environnement de développement Android}
+			
+			\subsubsection{Réalisation de l'IHM de l'application mobile}
+			Réflexion à la réalisation d'une interface claire et accessible à tout type d'utilisateur (même ceux n'ayant pas l'habitude d'utiliser l'outil informatique). Il faut penser que l'application est amenée à être utilisée dans un cadre parfois peu idéal (en extérieur, luminosité forte, gants de travail...). 
+			
+			\subsubsection{Développement des IHM en Java}
+			
+			\subsubsection{Développement de la logique de l'application}
+			\begin{itemize}
+				\item Gestion des campagnes (création/modification/suppression)
+				\item Gestion des sessions (création/modification/suppression)
+				\item Gestion des pièges (création/modification/suppression)
+				\item Affichage et parcours des questions/réponses 
+			\end{itemize}
+			
+			\subsubsection{Développement du module de log}
+			Permet d'obtenir le fichier des retours utilisateurs comme défini dans "Interfaces logiciel/logiciel". 
+	
+
+		\section{Planning}
+Étant donné que nous utilisons la méthodologie Agile "Scrum", nous n'avons pas à faire de diagramme de Gantt pour le moment. Il sera réalisé au fur et à mesure du projet. 
+\begin{itemize}
+	\item \textbf{Sprint 0 : } nous avons fait l'inventaire des différentes "User-stories" du projet. Pour chacune d'elle, nous avons détaillés les tâches à réaliser. Nous avons ensuite reparti ces tâches entre les différents membres de l'équipe. 
+	\item \textbf{Sprint 1 : } nous avons préciser, avec l'aide de notre encadrant, le format du fichier XML contenant notre base de données. Nous avons aussi validé les différentes IHM de nos applications PC et mobile. Ce sprint 1 a aussi été l'occasion de prendre en main les environnements de développement et les technologies associées avec Android et QT. 
+\end{itemize}
+Le prochain sprint sonnera le début d'une première phase de développement. Nous avons divisé l'équipe en 2 sous-équipe : l'une d'elle travaillera sur la partie mobile et l'autre sur la partie PC. A la fin de ce sprint, nous devrions pouvoir fournir 2 applications fonctionnelles. 
+
+\annexes{}
+
+\end{document}
