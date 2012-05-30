@@ -53,14 +53,6 @@ class MainWindow : public QMainWindow
         QIcon yellowIcon;
         QIcon redIcon;
 
-        QAction * addQuestionFils;
-        QAction * addQuestionFrere;
-        QAction * modifQuestion;
-        QAction * delQuestion;
-        QAction * addReponse;
-        QAction * modifReponse;
-        QAction * delReponse;
-
         ListeQuestion * maListeQuestions;
 
         QMap<QString, Question *> mapTreeQuestions;
@@ -72,8 +64,9 @@ class MainWindow : public QMainWindow
         VideoPlayer * myVideoPlayer;
         AjouterTexte * myTxtWindow;
 
-        void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere);
+        void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere, QString coordPere);
         void createAction();
+        QString calculerCoordonnees(QModelIndex index);
 
     private slots:
         void on_actionQuitter_triggered();
