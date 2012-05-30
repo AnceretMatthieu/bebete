@@ -5,9 +5,14 @@
 \contentsline {section}{\numberline {3.2}Fichier XML final + DTD}{8}{section.9}
 \contentsline {chapter}{\numberline {4}Application PC}{11}{chapter.10}
 \contentsline {chapter}{\numberline {5}Application mobile}{12}{chapter.11}
-\contentsline {chapter}{\numberline {6}Aspect gestion de projet}{13}{chapter.12}
-\contentsline {section}{\numberline {6.1}Compétences acquises}{13}{section.13}
-\contentsline {section}{\numberline {6.2}Calendrier prévisionnel et calendrier réel}{13}{section.14}
-\contentsline {section}{\numberline {6.3}Erreurs commises et problèmes rencontrés}{13}{section.15}
-\contentsline {chapter}{\numberline {7}Futur du projet}{14}{chapter.16}
-\contentsline {chapter}{\numberline {8}Conclusion}{15}{chapter.17}
+\contentsline {section}{\numberline {5.1}Fonctionalitées}{12}{section.13}
+\contentsline {section}{\numberline {5.2}La zone d'affichage}{13}{section.14}
+\contentsline {section}{\numberline {5.3}La caméra}{13}{section.21}
+\contentsline {section}{\numberline {5.4}Les bitmaps}{16}{section.27}
+\contentsline {section}{\numberline {5.5}L'historique}{16}{section.29}
+\contentsline {chapter}{\numberline {6}Aspect gestion de projet}{18}{chapter.34}
+\contentsline {section}{\numberline {6.1}Compétences acquises}{18}{section.35}
+\contentsline {section}{\numberline {6.2}Calendrier prévisionnel et calendrier réel}{18}{section.36}
+\contentsline {section}{\numberline {6.3}Erreurs commises et problèmes rencontrés}{18}{section.37}
+\contentsline {chapter}{\numberline {7}Futur du projet}{19}{chapter.38}
+\contentsline {chapter}{\numberline {8}Conclusion}{20}{chapter.39}

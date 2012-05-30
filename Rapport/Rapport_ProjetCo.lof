@@ -4,6 +4,12 @@
 \contentsline {figure}{\numberline {3.1}{\ignorespaces Diagramme de classes de l'application PC}}{8}{figure.8}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Interface d'identification d'un insecte - application mobile}}{12}{figure.12}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Schéma explicatif du fonctionnement des fragments}}{14}{figure.15}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Code permettant d'éviter les problèmes liés à la caméra}}{15}{figure.22}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Mise à jour de l'objet caméra et rafraichissement de la zone de visualisation de la classe CameraPreview}}{16}{figure.26}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Destructeur de la classe ImageAdapter}}{16}{figure.28}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Code pour passer à la question suivante}}{17}{figure.33}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }

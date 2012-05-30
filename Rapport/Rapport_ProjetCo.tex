@@ -172,7 +172,123 @@ Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteri
 %Penser aux captures d'écrans
 	
 \chapter{Application mobile}
-%Penser aux captures d'écrans
+L'application tablette doit permettre d'exploiter le fichier XML conçu via le logiciel bureau. Un utilisateur doit pouvoir, via une série de questions, associer l'insecte qu'il observe sous la caméra avec une morpho espèce de notre base de données. Pour cela il dispose d'aide textuelle, ou visuelle lui permettant de repérer des points clés sur les insectes permettant leurs identifications.L'application tablette est destinée à des personnes non scientifiques. Ceci a été très important pour nous puisqu'il a fallu concevoir une interface graphique adapté simple, sans terme technique particulier et tout en gardant en tête que la personne devait pouvoir se retrouver facilement sans aucune connaissance pré requises.
+\\
+Les croquis de base de l'interface d'identification ont constamment évolué au cours du développement de l'application. En effet,  nos manipulations fréquentes nous ont permis de nous rendre compte de certaines choses non pratiques notamment en temps de réponse, comme par exemple l'acquisition de la caméra. Les remarques de l'équipe Innophyt ainsi que de Mr Venturini, nous ont aussi poussées à constamment modifier notre maquette.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image1.png}
+	\caption{Interface d'identification d'un insecte - application mobile}
+	\label{app mobile ident insecte}
+\end{figure}
+
+
+\section{Fonctionalitées}
+
+La partie identification de la tablette possède un certain nombre de fonctionnalités requises que nous allons détailler.
+\\
+L'utilisateur voit directement dans une zone assez grande le flux vidéo en direct de la caméra arrière de l'appareil. Par une simple pression sur cette zone celui-ci sauvegarde l'image, pour pouvoir la comparer à d'autres photos par la suite. Juste au-dessus de cette zone, ce trouve la question de base de l'arbre XML avec une aide visuelle et textuelle au besoin. Sur la droite de l'application se situe la zone des réponses. Chaque réponse peut contenir une galerie de média, pouvant être scroller de droite à gauche et comparer à l'image sauvegardée via un long clique sur une des images de la galerie. Si l'espace occupé verticalement par les réponses est trop grand la zone sera rendu scrollable et pourra contenir autant de réponses que l'on souhaite.Le changement de questions et donc l'avancer dans l'arbre d'identification s'effectue en cochant une des réponses. Dans le cas où la question suivante de conviendrai pas à l'utilisateur, un historique permet de revenir en arrière sur ses choix.Lors de la mise en veille ou en arrière-plan de l'application celle-ci est sauvegarder dans son état et sera restaurer avec l'historique dans l'état dans lequel elle était. On peut quitter et reprendre l'identification à son aise.Lorsque nous sommes dans la partie identification un bouton d'alerte triangulaire orange apparait dans la barre d'action, permettant à tout moment de signaler que nous sommes bloqués dans le processus d'identification. Cela génère un rapport contenant des informations utiles comme un screen de l'écran utilisateur ou ses commentaires, pour analyse ultérieur.
+\\
+ Ceci est une présentation sommaire des fonctionnalités offertes, dans la prochaine partie nous allons rentrer plus en détails dans la partie technique.
+
+\section{La zone d'affichage}
+
+L'application possède deux zones importantes, l'action barre contenant un menu fixe, et le reste de l'écran en dessous qui change en fonction du besoin que l'on a. Cette dernière zone est gérée via des fragments. Un fragment est un bout d'interface graphique qui a son propre cycle de vie et qui peut être réutilisés et dupliquer en plusieurs objet différents. Ceci est plus complexe à gérer qu'un simple changement d'interface, mais est plus optimisé, stable, propre et très fortement recommandé par la documentation Android pour les applications sérieuses.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[height=1\textwidth, keepaspectratio=false]{images/image2.png}
+	\caption{Schéma explicatif du fonctionnement des fragments}
+	\label{app mobile schema fragment}
+\end{figure}
+
+Voici quelques conseils et considérations sur l'utilisation des fragments :
+
+\begin{enumerate}
+\item  Lors du onAttach conserver dans votre fragment une référence sur l'activity. Cela est essentiel notamment pour retrouver le fragentManager de l'activity dans notre QuestionFragment.
+
+\item  On ne peut accéder aux éléments définie dans un fichier de layout XML personnalisée que lors du onActivityCreated pas avant, difficilement après.
+
+\item  La veille via le bouton retour de l'application détruit le fragment contrairement à celle du menu home qui la met en pause et au bouton d'alimentation qui la met en position stop.
+
+\item  Un système de log complet à était mis en place il est très utile pour savoir ce qu'il se passe, penser à l'utiliser et le compléter au besoin.
+
+\item  Lors de l'ajout de plusieurs fragment à la suite via le code, il faut bien penser qu'un fragment doit obligatoirement être contenue dans un layout.
+\end{enumerate}
+
+Au moment où l'on accède à l'interface d'identification nous chargeons dans l'espace principale le Fragment QuestionFragment. Celui-ci est responsable de beaucoup de chose~:- Il récupère l'accès à la camera - Lit la question dont il a besoin dans le XML- Gère l'historique des questions parcourue
+
+\section{La caméra}
+
+La gestion de la caméra est assez délicate. En effet, si l'on passe outre l'intent de base fournie par Android, il faut tout redévelopper à la main. Ce que nous avons fait, il faut garder à l'esprit que la zone d'affichage quand elle est mise en pause ou détruite doit rendre l'accès à la caméra sinon, elle n'arrivera pas à la récupérer lors de sa sortie du mode pause. Et plus important aucunes autres applications, dont l'appareil photo de la tablette, ne pourront plus utiliser la caméra. \textbf{En cas de plantage de l'application sur l'acquisition de la caméra lors de test, killer l'application puis attendre un petit moment et essayer de lancer l'appareil photo de la tablette si celle-ci y arrive, reprendre les tests, sinon il faut redémarrer la tablette avant de continuer}.L'exemple fourni dans la documentation Android ne nous suffisait pas et faisait fréquemment planter l'application. Pour éviter cela nous avons ajouté un booléen couplé avec l'acquisition de la caméra pour ne pas pouvoir la rendre ou la capturer deux fois au système, ce qui causait ces crashs. Une fois ce problème d'acquisition résolue nous avons pu nous consacrer à la libération de la caméra. Quel que soit la mise en veille ou action tuant notre fragment ils passeront tous par l'étape en onPause du cycle de vie du fragment, c'est pourquoi la libération de la caméra s'effectue à cet endroit. Même raisonnement pour le retour de mise en veille et la création du fragment ils passent tous par l'étape onResume c'est donc là que nous faisons notre acquisition de la caméra. 
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image3.png}
+	\caption{Code permettant d'éviter les problèmes liés à la caméra}
+	\label{app mobile code gestion camera}
+\end{figure}
+
+La caméra récupérer est maintenant récupérée et affichée, seulement l'image n'était pas bonne du tout, et cela est normale puisque nous gérons la caméra d'un point de vue bas niveau il faut lui spécifier dans ses paramètres tous les modules que nous voulons activer. Cela s'effectue au niveau de la fonction d'acquisition de la caméra.Nous avons activé trois modules~:
+
+\begin{enumerate}
+\item  La balance automatique des blancs
+
+\item  La mise au point automatique
+
+\item  Et l'antibanding qui essaye d'atténuer l'effet de bande horizontal, comme lorsque qu'on filme un écran de télé avec un caméscope.
+\end{enumerate}
+
+Maintenant reste à expliquer un point qui fût particulièrement problématique. Lors de la mise en veille, via la touche power, de la tablette et de sa remise en route nous retrouvions l'application dans l'exact même état qu'avant à l'exception de la zone vidéo qui était figée sur la dernière image, vue avant la mise en veille.Nous avons cherchons longtemps, en partant notamment sur des fausses pistes comme une mauvaise acquisition ou libération de la caméra, finalement cela venait du bout de code donner par Android pour commencer. En effet, nous devons définir un nouveau type de zone pour pouvoir afficher le flux de la caméra sur cette zone. Ce bout de code nous est fournie par la documentation Android et nous l'avons considérer trop longtemps comme acquis sans y regarder de plus près. Et lorsque nous l'avons fait nous nous sommes rendu compte qu'il manquait tout simplement une fonction de rafraîchissement de cette zone. Pourquoi il y a besoin de rafraîchir la zone uniquement lors de la mise en veille de la tablette et non lors de la mise en veille de l'application cela reste pour le moment un mystère.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=0.8\textwidth, keepaspectratio=false]{images/image4.png}
+	\caption{Mise à jour de l'objet caméra et rafraichissement de la zone de visualisation de la classe CameraPreview}
+	\label{app mobile maj camera}
+\end{figure}
+
+\section{Les bitmaps}
+
+Toutes les images affichées dynamiquement dans l'interface graphique sont des bitmaps. Cela soulève plusieurs problèmes. La taille des images chargées provoque quasi instantanément un dépassement mémoire, provoquant un segfault lors de l'affichage de l'image suivante. Ce problème nous a demandé beaucoup de travail, car il est plus ou moins rapide à survenir. Au départ le chargement d'une seule image provoquait l'erreur, puis au bout de cinq ou plus. Nous avons mis en place deux procédures pour éviter ce problème. Nous libérons dès que possible les objets de type bitmap pour éviter de surcharger le système. Cela se fait via l'appel à la fonction recycle des objets de type bitmap. Conséquence direct de cette procédure nous avons dû rajouter dans la classe ImageAdapter un «~destructeur~», ce qui normalement ne se fait pas en java.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=0.6\textwidth, keepaspectratio=false]{images/image5.png}
+	\caption{Destructeur de la classe ImageAdapter}
+	\label{app mobile destructeur imageadapter}
+\end{figure}
+
+Nous avons aussi dû demander au système de réduire la taille des images enregistrées en mémoire d'un facteur de 1/8 (valeur recommandé par plusieurs utilisateurs ayant rencontrés le même problème et confirmer par nos soins) diminuant ainsi grandement les chances de dépassement mémoire.
+
+\section{L'historique}
+
+La gestion de l'historique des questions n'a pas posé de problème mais nécessite d'être expliqué.Au démarrage du fragment, le parsage du fichier XML est lancé, il nous renvoie la première question que nous stockons dans la classe sous le nom de currentQuestion. Une fois cette question récupérer nous appelons la fonction changeUI qui adapte l'interface graphique du fragment à la currentQuestion. Le but du jeu est donc de changer en fonction de la position dans l'historique la currentQuestion et de rappeler changeUI. Pour cela nous avons trois éléments~:
+
+\begin{enumerate}
+\item  Un vecteur contenant toutes les questions vues par l'utilisateur listQuestion
+
+\item  Un vecteur contenant toutes les réponses choisies par l'utilisateur listReponseChoisi
+
+\item  Un int navigation qui indique la position dans le vecteur listQuestion de l'historique
+\end{enumerate}
+
+Nous pouvons en déduire que lorsque navigation = listQuestion.size()-1 nous sommes à la fn du vecteur listQuestion est donc nous sommes sur la dernière question vue pas l'utilisateur, une question à laquelle il n'a pas encore répondue.Nous devons donc activer la flèche de retour en arrière tant que navigation~!= listQuestion.size()-1 et navigation $>$= 0. Si navigation atteint 0 c'est que nous sommes au début de l'historique il faut désactiver la flèche de retour dans l'historique.Même principe pour la flèche suivant de l'action barre, si navigation $>$= 0 et navigation~!= listQuestion.size()-1 alors il faut activer la flèche sinon la désactiver0.
+\\
+Pour obtenir la question suivant de la question actuelle il suffit d'utiliser la classe ReacherQR responsable du parsing du fichier XML.Dans le cas où la question n'est pas une question finale, et mène donc à une autre question cela ce résume à~:
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image6.png}
+	\caption{Code pour passer à la question suivante}
+	\label{app mobile code question suivante}
+\end{figure}
+
+Il faut bien penser à gérer le cas où l'utilisateur revient en arrière dans l'historique et fait un choix différent. Dans ce cas il faut supprimer toute la suite de l'historique à partir du point changé.
+\\
+Maintenant il faut pouvoir retrouver et cocher la checkbox de l'ancienne réponse que l'utilisateur a choisie, parmi toutes les réponses que possède la question. Pour cela nous conservons toutes les réponses à la currentQuestion dans un vecteur listReponseFragment. Cela nous permet de le parcourir et par comparaison de retrouver et de cocher la checkbox de l'ancienne réponse coché.
+\\
 
 \chapter{Aspect gestion de projet}
 Pour coller au mieux aux attentes du client, nous avons essayé d'organiser le plus souvent possible des réunions de travail avec le client. Ces réunions avaient pour but de discuter des choix d'ergonomie des applications et de présenter notre travail. Cela a permis à l'équipe INNOPHYT de suivre notre travail au plus près, et de relever les erreurs ou les incohérences au plus tôt, afin que nous puissions les corriger au plus vite. 
