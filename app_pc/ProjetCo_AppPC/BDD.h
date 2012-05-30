@@ -12,11 +12,6 @@ class BDD {
     public:
         BDD();
 
-        /*virtual bool insert();
-        virtual bool update();
-        virtual bool delete();*/
-
-        //QDomDocument currentNode;
          static QDomNode currentNode;
          static QDomDocument doc;
 };

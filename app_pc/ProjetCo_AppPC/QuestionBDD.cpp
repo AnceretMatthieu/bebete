@@ -73,8 +73,8 @@ void QuestionBDD::enregistrerQuestion(Question * quest) {
         QDomElement dommed = doc.createElement("media");
         currentNode.appendChild(dommed);
         currentNode = dommed;
-        //qDebug()<< currentNode.nodeName();
-    }
+
+        }
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }

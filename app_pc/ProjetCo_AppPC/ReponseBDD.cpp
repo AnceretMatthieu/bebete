@@ -39,7 +39,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif)
 
             for(int j = 0; j < lstMedia.size(); j++)
             {
-                tempm = new Media(0); // TODO : il faut récupérer l'ID présent dans le fichier XML ; il faudra probablement changer le type "int" par "QString"
+                tempm = new Media(0);
                 if(lstMedia.at(j).nodeName() == "video") {
                     tempm->setType(MEDIA_TYPE_VIDEO);
                     tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
@@ -62,23 +62,18 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif)
         else if(tempNode.nodeName() == "resultat")
         {
             tempe = new Espece(tempNode.toElement().attribute("id").left(3).toInt());
-            /*
-                <nom>nom</nom>
-                <type>MEL1</type>
-                <regimeAlimentaire>Prédateur</regimeAlimentaire>
-                <informations>infos</informations>
-            */
-            QDomNodeList toto = tempNode.childNodes();
-            for(int p = 0; p < toto.size(); p++ )
+
+            QDomNodeList lstResultat = tempNode.childNodes();
+            for(int p = 0; p < lstResultat.size(); p++ )
             {
-                if(toto.at(p).nodeName() == "nom")
-                    tempe->setNom(toto.at(p).toElement().text());
-                else if(toto.at(p).nodeName() == "type")
-                    tempe->setType(toto.at(p).toElement().text());
-                else if (toto.at(p).nodeName() == "regimeAlimentaire")
-                    tempe->setRegimeAlimentaire(toto.at(p).toElement().text());
-                else if (toto.at(p).nodeName() == "informations")
-                    tempe->setInformation(toto.at(p).toElement().text());
+                if(lstResultat.at(p).nodeName() == "nom")
+                    tempe->setNom(lstResultat.at(p).toElement().text());
+                else if(lstResultat.at(p).nodeName() == "type")
+                    tempe->setType(lstResultat.at(p).toElement().text());
+                else if (lstResultat.at(p).nodeName() == "regimeAlimentaire")
+                    tempe->setRegimeAlimentaire(lstResultat.at(p).toElement().text());
+                else if (lstResultat.at(p).nodeName() == "informations")
+                    tempe->setInformation(lstResultat.at(p).toElement().text());
             }
 
             rep->setTypeSuiv(TYPE_ESPECE);
@@ -112,7 +107,7 @@ void ReponseBDD::enregistrerReponse(Reponse * rep)  {
         EspeceBDD::enregistrerEspece((Espece*)rep->getSuiv());
     }
     else    {
-        //grosse erreur de malade
+        QMessageBox::warning(0, "Erreur", "Erreur dans la fonction ReponseBDD:enregistrerReponse");
     }
 
     currentNode = memoire;

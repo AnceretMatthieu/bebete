@@ -412,15 +412,15 @@ void MainWindow::newQuestionFils()
 
     // TODO : attention, lors de l'insertion d'une nouvelle question en mémoire, j'ai l'impression qu'elle n'ai pas prise en compte au prochain passage...
     currentQuestion->getCat()->ajouterQuestion(newQuestion);
-<<<<<<< HEAD
+
 
     mapTreeQuestions.insert(coordonnees2, newQuestion);
 
-=======
+
 
     mapTreeQuestions.insert(coordonnees2, newQuestion);
 
->>>>>>> 84d0423
+
     // On rafraichit le TreeView
     //model_tvQuestion->
 }

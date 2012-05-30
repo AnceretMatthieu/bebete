@@ -7,6 +7,7 @@
 #include "Question.h"
 #include "Media.h"
 #include "EspeceBDD.h"
+#include <QMessageBox>
 
 class Reponse;
 class ListeReponse;
