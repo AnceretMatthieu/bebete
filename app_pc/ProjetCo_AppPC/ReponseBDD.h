@@ -23,6 +23,7 @@ class ReponseBDD : public BDD {
 
     public:
         /** \brief Constructeur par défaut de la classe ReponseBDD
+        *
         */
         ReponseBDD();
         static void listeFromReponse(Reponse * rep, bool recursif);
