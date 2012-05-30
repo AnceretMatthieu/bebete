@@ -23,9 +23,12 @@ class ReponseBDD : public BDD {
 
     public:
         /** \brief Constructeur par défaut de la classe ReponseBDD
-        *
-        */
+         */
         ReponseBDD();
+
+        /** \fn ListeFromReponse
+         * \param rep On récupère un pointeur sur une réponse
+         * \param recursif Booléen afin de savoir si on a une réponse par la suite
         static void listeFromReponse(Reponse * rep, bool recursif);
         static void enregistrerReponse(Reponse * rep);
 };
