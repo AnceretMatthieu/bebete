@@ -1,3 +1,7 @@
+/**
+  * \file videoplayer.cpp
+  * \brief Conteneur de la classe videoplayer.
+ */
 #include "videoplayer.h"
 #include "ui_videoplayer.h"
 
@@ -22,6 +26,7 @@ VideoPlayer::VideoPlayer(QString filePath, QWidget *parent) :
 
     // On initialise l'affichage du LCD Number
     ui->lcdNumber_2->display("00:00");
+
     // Création des barres d'avancement et de volume
     // on cree la seek slider
     barreAvancement = new Phonon::SeekSlider(this);
@@ -62,12 +67,7 @@ VideoPlayer::~VideoPlayer()
     delete ui;
 }
 
-/**
-  * changerTemps()
-  * Cette fonction permet de changer le temps du LCD Number.
-  * On récupère le temps total et le temps restant avant la fin de la video.
-  * Grace a ca, on peut calculer le temps parcouru dans la video et l'afficher dans le LCD Number.
-**/
+//changerTemps()
 void VideoPlayer::changerTemps()
 {
     // Initialisation de la variable temps a 0
@@ -82,28 +82,19 @@ void VideoPlayer::changerTemps()
     ui->lcdNumber_2->display(monTemps.toString("mm:ss"));
 }
 
-/**
-  * playVideo()
-  * Permet de lancer le mediaObject.
-**/
+//playVideo()
 void VideoPlayer::playVideo()
 {
     mediaObjet->play();
 }
 
-/**
-  * pauseVideo()
-  * Met en pause le mediaObject.
-**/
+//pauseVideo()
 void VideoPlayer::pauseVideo()
 {
     mediaObjet->pause();
 }
 
-/**
-  * stopVideo()
-  * Stop le mediaObject (affichage noir + retour au début du media)
-**/
+//stopVideo()
 void VideoPlayer::stopVideo()
 {
     mediaObjet->stop();
