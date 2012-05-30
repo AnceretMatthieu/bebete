@@ -18,16 +18,22 @@ public final class R {
         public static final int alerte=0x7f020000;
         public static final int arrow=0x7f020001;
         public static final int arrowl=0x7f020002;
-        public static final int home=0x7f020003;
-        public static final int ic_launcher=0x7f020004;
-        public static final int image1=0x7f020005;
-        public static final int image2=0x7f020006;
-        public static final int image3=0x7f020007;
-        public static final int image4=0x7f020008;
-        public static final int innophyt=0x7f020009;
-        public static final int loupe=0x7f02000a;
-        public static final int menu=0x7f02000b;
-        public static final int oeil=0x7f02000c;
+        public static final int campaigngps=0x7f020003;
+        public static final int exportgps=0x7f020004;
+        public static final int home=0x7f020005;
+        public static final int ic_launcher=0x7f020006;
+        public static final int image1=0x7f020007;
+        public static final int image2=0x7f020008;
+        public static final int image3=0x7f020009;
+        public static final int image4=0x7f02000a;
+        public static final int innophyt=0x7f02000b;
+        public static final int loupe=0x7f02000c;
+        public static final int loupegps=0x7f02000d;
+        public static final int menu=0x7f02000e;
+        public static final int oeil=0x7f02000f;
+        public static final int plotgps=0x7f020010;
+        public static final int trapgps=0x7f020011;
+        public static final int usergps=0x7f020012;
     }
     public static final class id {
         public static final int RelativeLayout01=0x7f060043;
@@ -37,11 +43,11 @@ public final class R {
         public static final int adresseGPSPiege=0x7f060041;
         public static final int adresseParcelle=0x7f060034;
         public static final int adressePiege=0x7f060040;
-        public static final int aide=0x7f06004d;
+        public static final int aide=0x7f060053;
         public static final int button1=0x7f060010;
         public static final int button2=0x7f060011;
-        public static final int camera_preview=0x7f06004e;
-        public static final int checkBox1=0x7f060050;
+        public static final int camera_preview=0x7f060054;
+        public static final int checkBox1=0x7f060056;
         public static final int creer=0x7f060028;
         public static final int debutCampagne=0x7f06001f;
         public static final int debutParcelle=0x7f060030;
@@ -56,7 +62,7 @@ public final class R {
         public static final int finCampagne=0x7f060021;
         public static final int finParcelle=0x7f060032;
         public static final int finPiege=0x7f06003e;
-        public static final int gallery1=0x7f060051;
+        public static final int gallery1=0x7f060057;
         public static final int gpsCampagne=0x7f060025;
         public static final int gpsParcelle=0x7f060036;
         public static final int gpsPiege=0x7f060042;
@@ -66,9 +72,15 @@ public final class R {
         public static final int image44=0x7f060013;
         public static final int image45=0x7f060014;
         public static final int imageAlerte=0x7f060004;
-        public static final int imageLoupe=0x7f06004a;
-        public static final int imageOeil=0x7f060049;
-        public static final int imageQuestion=0x7f06004c;
+        public static final int imageButton1=0x7f060049;
+        public static final int imageButton2=0x7f06004a;
+        public static final int imageButton3=0x7f06004b;
+        public static final int imageButton4=0x7f06004c;
+        public static final int imageButton5=0x7f06004d;
+        public static final int imageButton6=0x7f06004e;
+        public static final int imageLoupe=0x7f060050;
+        public static final int imageOeil=0x7f06004f;
+        public static final int imageQuestion=0x7f060052;
         public static final int imageView1=0x7f06000b;
         public static final int labAdresseCampagne=0x7f060022;
         public static final int labAdresseParcelle=0x7f060033;
@@ -100,21 +112,21 @@ public final class R {
         public static final int menu_utilisateurs=0x7f060005;
         public static final int modifier=0x7f060029;
         public static final int newUser=0x7f060048;
-        public static final int nom=0x7f060052;
+        public static final int nom=0x7f060058;
         public static final int nomCampagne=0x7f06001b;
         public static final int nomParcelle=0x7f06002c;
         public static final int nomPiege=0x7f060038;
         public static final int nomUtilisateur=0x7f060046;
         public static final int ok_login=0x7f060047;
-        public static final int question=0x7f06004b;
-        public static final int regimeAlimentaire=0x7f060054;
-        public static final int scrollView1=0x7f06004f;
+        public static final int question=0x7f060051;
+        public static final int regimeAlimentaire=0x7f06005a;
+        public static final int scrollView1=0x7f060055;
         public static final int selectionner=0x7f060027;
         public static final int supprimer=0x7f06002a;
         public static final int textView1=0x7f060001;
         public static final int textView2=0x7f060045;
         public static final int titreAcceuil=0x7f060044;
-        public static final int type=0x7f060053;
+        public static final int type=0x7f060059;
     }
     public static final class layout {
         public static final int action_bar_custom=0x7f030000;
@@ -126,9 +138,10 @@ public final class R {
         public static final int gestionpieges=0x7f030006;
         public static final int gestionutilisateur=0x7f030007;
         public static final int main=0x7f030008;
-        public static final int question=0x7f030009;
-        public static final int reponse=0x7f03000a;
-        public static final int resultat=0x7f03000b;
+        public static final int menugps=0x7f030009;
+        public static final int question=0x7f03000a;
+        public static final int reponse=0x7f03000b;
+        public static final int resultat=0x7f03000c;
     }
     public static final class string {
         public static final int Retour=0x7f050010;

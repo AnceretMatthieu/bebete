@@ -1,5 +1,7 @@
 package polytechTours.DI4;
 
+import polytechTours.DI4.GesionIdentification.MenuGPSFragment;
+import polytechTours.DI4.GesionIdentification.QuestionFragment;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.Fragment;
@@ -11,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.ImageButton;
 
 /**
@@ -20,12 +23,14 @@ import android.widget.ImageButton;
  * Elle gère les fragments d'interface graphique en réaction aux clics sur l'action bar
  */
 
-public class BebeteActivity extends Activity 
+public class BebeteActivity extends Activity implements OnClickListener 
 {
 	/**
 	 * Le fragment manager permettant gérer les fragments
 	 */
 	private FragmentManager manager;
+	
+	private ImageButton home;
 	
 	/**
 	 * Rajout du menu droit dans l'action bar via inflation à partir du fichier de layout actionbar.xml 
@@ -64,7 +69,11 @@ public class BebeteActivity extends Activity
         ImageButton droite = (ImageButton)this.findViewById( R.id.histo_droite );
         droite.setEnabled(false);
         
-        GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
+        home = (ImageButton)this.findViewById( R.id.home );
+        home.setOnClickListener(this);
+        
+        //GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
+        MenuGPSFragment menu = new MenuGPSFragment(this);
         
         //**********************Code à enlever par la suite************************
         //Creation d'un piege auto pour test rapide d'insertion sur la BDD
@@ -83,7 +92,7 @@ public class BebeteActivity extends Activity
 		
 		//On mets le fragment de base en place
 		FragmentTransaction transaction = manager.beginTransaction();
-			transaction.add( R.id.linearLayout2, gestionutilisateur, "enCours" );
+			transaction.add( R.id.linearLayout2, menu, "enCours" );
 		transaction.commit();
     }
     
@@ -163,4 +172,18 @@ public class BebeteActivity extends Activity
 			transaction.commit();
 		}
     }
+
+	public void onClick(View arg0) 
+	{
+		if( arg0.getId() == home.getId() )
+		{
+			MenuGPSFragment menu = new MenuGPSFragment(this);
+			
+    		miseAjourAffichage();
+			
+			FragmentTransaction transaction = manager.beginTransaction();
+				transaction.add( R.id.linearLayout2, menu, "enCours" );
+			transaction.commit();
+		}
+	}
 }

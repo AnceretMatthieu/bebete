@@ -22,18 +22,20 @@
         android:layout_height="wrap_content"
         android:text="vi"
         android:visibility="invisible" />
-
+
     <ImageButton
         android:id="@+id/histo_gauche"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrowl" />
-
+        android:src="@drawable/arrowl"
+        android:visibility="invisible" />
+
     <ImageButton
         android:id="@+id/histo_droite"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrow" />
+        android:src="@drawable/arrow"
+        android:visibility="invisible" />
 
     <ImageButton
         android:id="@+id/imageAlerte"
