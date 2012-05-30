@@ -154,19 +154,22 @@ void MainWindow::createAction()
     connect(ui->button_modifierQuestion, SIGNAL(clicked()), this, SLOT(modifierQuestion()));
     connect(ui->button_supprimerQuestion, SIGNAL(clicked()), this, SLOT(supprimerQuestion()));
 
-    /* Affectation des actions aux boutons des réponses */
-    connect(ui->button_ajouterReponse, SIGNAL(clicked()), this, SLOT(newReponse()));
-    connect(ui->button_modifierReponse, SIGNAL(clicked()), this, SLOT(modifierReponse()));
-    connect(ui->button_supprimerReponse, SIGNAL(clicked()), this, SLOT(supprimerReponse()));
-
     /* Affectation des actions aux boutons des médias des questions */
     connect(ui->button_ajouterComQuestion, SIGNAL(clicked()), this, SLOT(newCommentaire()));
     connect(ui->button_ajouterMediaQuestion, SIGNAL(clicked()), this, SLOT(newMedia()));
     connect(ui->button_modifierMediaQuestion, SIGNAL(clicked()), this, SLOT(modifierMedia()));
     connect(ui->button_supprimerMediaQuestion, SIGNAL(clicked()), this, SLOT(supprimerMedia()));
 
+    /* Affectation des actions aux boutons des réponses */
+    connect(ui->button_ajouterReponse, SIGNAL(clicked()), this, SLOT(newReponse()));
+    connect(ui->button_modifierReponse, SIGNAL(clicked()), this, SLOT(modifierReponse()));
+    connect(ui->button_supprimerReponse, SIGNAL(clicked()), this, SLOT(supprimerReponse()));
+
     /* Affectation des actions aux boutons des médias des réponses */
-    // ..
+    connect(ui->button_ajouterComMediaReponse, SIGNAL(clicked()), this, SLOT(newComMediaReponse()));
+    connect(ui->button_ajouterMediaReponse, SIGNAL(clicked()), this, SLOT(newMediaReponse()));
+    connect(ui->button_modifierMediaReponse, SIGNAL(clicked()), this, SLOT(modifierMediaReponse()));
+    connect(ui->button_supprimerMediaReponse, SIGNAL(clicked()), this, SLOT(supprimerMediaReponse()));
 }
 
 void MainWindow::on_actionImporter_XML_triggered()
@@ -334,7 +337,7 @@ void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
                     if(lm->at(i)->getType() == MEDIA_TYPE_IMAGE) // si le média est une image
                     {
                         QString fileName = lm->at(i)->getPath();
-                        QImage * myImg = new QImage(fileName);
+                        QImage * myImg = new QImage("images/" + fileName);
 
                         if(myImg->isNull() != true)
                         {
@@ -534,6 +537,61 @@ void MainWindow::supprimerQuestion()
     tmp->remove(tmp->indexOf(currentQuestion));
 }
 
+void MainWindow::newCommentaire()
+{
+    QString leTxt;
+
+    myTxtWindow = new AjouterTexte(&leTxt, this);
+
+    myTxtWindow->setModal(true);
+    myTxtWindow->exec();
+
+    // Création de l'item avec le texte reçu
+    QStandardItem * elem = new QStandardItem(leTxt);
+    model_tvMediaQuestion->appendRow(elem);
+
+    // TODO : il faut associer le média à la question
+    // ...
+}
+
+void MainWindow::newMedia()
+{
+    QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
+
+    model_tvMediaQuestion->appendRow(new QStandardItem(fileName));
+
+    // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
+    //      SI oui, pas de problème
+    //      SI non, il faut le copier dans le dossier
+}
+
+void MainWindow::modifierMedia()
+{
+    QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
+
+    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
+
+    // On modifie l'item correspondant dans le modèle du TreeView
+    QStandardItem * tmp = model_tvMediaQuestion->itemFromIndex(currentIndex);
+    tmp->setText(fileName);
+    model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+
+    // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
+    //      SI oui, pas de problème
+    //      SI non, il faut le copier dans le dossier
+}
+
+void MainWindow::supprimerMedia()
+{
+    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
+    model_tvMediaQuestion->removeRow(currentIndex.row());
+
+    // TODO : il faut aussi supprimer le média de la question associée
+
+    // TODO : il faut aussi (éventuellement) supprimer le fichier associé
+    //QFile::remove("images/" + model_tvMediaQuestion->itemFromIndex(currentIndex)->text());
+}
+
 void MainWindow::newReponse()
 {
     QStandardItem * elemRep = new QStandardItem("Nouvelle réponse");
@@ -564,7 +622,7 @@ void MainWindow::supprimerReponse()
     model_tvReponse->removeRow(currentIndex.row());
 }
 
-void MainWindow::newCommentaire()
+void MainWindow::newComMediaReponse()
 {
     QString leTxt;
 
@@ -575,42 +633,30 @@ void MainWindow::newCommentaire()
 
     // Création de l'item avec le texte reçu
     QStandardItem * elem = new QStandardItem(leTxt);
-    model_tvMediaQuestion->appendRow(elem);
+    (model_tvMediaQuestion->itemFromIndex(ui->treeViewMediasQuestion->currentIndex()))->appendRow(elem);
 
     // TODO : il faut associer le média à la question
     // ...
 }
 
-void MainWindow::newMedia()
+void MainWindow::newMediaReponse()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"));
 
-    model_tvMediaQuestion->appendRow(new QStandardItem(fileName));
 }
 
-void MainWindow::modifierMedia()
+void MainWindow::modifierMediaReponse()
 {
-    QString fileName = QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"));
 
-    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
-
-    // On modifie l'item correspondant dans le modèle du TreeView
-    QStandardItem * tmp = model_tvMediaQuestion->itemFromIndex(currentIndex);
-    tmp->setText(fileName);
-    model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
 }
 
-void MainWindow::supprimerMedia()
+void MainWindow::supprimerMediaReponse()
 {
-    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
-    model_tvMediaQuestion->removeRow(currentIndex.row());
 
-    // TODO : il faut aussi supprimer le média de la question associée
 }
 
 void MainWindow::playAudio(QString fileName)
 {
-    myAudioPlayer = new AudioPlayer("images/test_audio.wav");
+    myAudioPlayer = new AudioPlayer("images/" + fileName);
 
     myAudioPlayer->setModal(true);
     myAudioPlayer->exec();
@@ -618,7 +664,7 @@ void MainWindow::playAudio(QString fileName)
 
 void MainWindow::playVideo(QString fileName)
 {
-    myVideoPlayer = new VideoPlayer("images/test_video.avi");
+    myVideoPlayer = new VideoPlayer("images/" + fileName);
 
     myVideoPlayer->setModal(true);
     myVideoPlayer->exec();
@@ -637,7 +683,7 @@ void MainWindow::openMedia(QString fileName, int typeMedia)
     {
         txtCurIdx.remove(0, 2);
 
-        QImage * myImg = new QImage(txtCurIdx);
+        QImage * myImg = new QImage("images/" + txtCurIdx);
         if(myImg->isNull() != true)
         {
             // TODO : Réfléchir à comment redimensionner l'image correctement

@@ -109,3 +109,9 @@ void VideoPlayer::stopVideo()
     mediaObjet->stop();
 }
 
+void VideoPlayer::closeEvent(QCloseEvent *event)
+{
+    ui->btnStop_2->click(); // permet d'arrêter la vidéo lorsque l'on ferme la fenêtre
+    close();
+}
+

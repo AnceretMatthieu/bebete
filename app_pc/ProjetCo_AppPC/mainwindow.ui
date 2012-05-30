@@ -378,7 +378,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Ajouter</string>
+             <string>Ajouter réponse</string>
             </property>
            </widget>
           </item>
@@ -391,7 +391,7 @@
              </font>
             </property>
             <property name="text">
-             <string>Modifier</string>
+             <string>Modifier réponse</string>
             </property>
            </widget>
           </item>
@@ -404,7 +404,63 @@
              </font>
             </property>
             <property name="text">
-             <string>Supprimer</string>
+             <string>Supprimer réponse</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_7">
+          <item>
+           <widget class="QPushButton" name="button_ajouterComMediaReponse">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Ajouter commentaire</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_modifierMediaReponse">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Ajouter média</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_supprimerMediaReponse">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Modifier média</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_ajouterMediaReponse">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Supprimer média</string>
             </property>
            </widget>
           </item>

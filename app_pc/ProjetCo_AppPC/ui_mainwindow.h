@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 30. May 11:58:29 2012
+** Created: Wed 30. May 13:01:43 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -72,6 +72,11 @@ public:
     QPushButton *button_ajouterReponse;
     QPushButton *button_modifierReponse;
     QPushButton *button_supprimerReponse;
+    QHBoxLayout *horizontalLayout_7;
+    QPushButton *button_ajouterComMediaReponse;
+    QPushButton *button_modifierMediaReponse;
+    QPushButton *button_supprimerMediaReponse;
+    QPushButton *button_ajouterMediaReponse;
     QTreeView *treeViewReponse;
     QSpacerItem *verticalSpacer_2;
     QFrame *line_3;
@@ -357,6 +362,36 @@ public:
 
         verticalLayout_2->addLayout(horizontalLayout_5);
 
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        button_ajouterComMediaReponse = new QPushButton(centralWidget);
+        button_ajouterComMediaReponse->setObjectName(QString::fromUtf8("button_ajouterComMediaReponse"));
+        button_ajouterComMediaReponse->setFont(font1);
+
+        horizontalLayout_7->addWidget(button_ajouterComMediaReponse);
+
+        button_modifierMediaReponse = new QPushButton(centralWidget);
+        button_modifierMediaReponse->setObjectName(QString::fromUtf8("button_modifierMediaReponse"));
+        button_modifierMediaReponse->setFont(font1);
+
+        horizontalLayout_7->addWidget(button_modifierMediaReponse);
+
+        button_supprimerMediaReponse = new QPushButton(centralWidget);
+        button_supprimerMediaReponse->setObjectName(QString::fromUtf8("button_supprimerMediaReponse"));
+        button_supprimerMediaReponse->setFont(font1);
+
+        horizontalLayout_7->addWidget(button_supprimerMediaReponse);
+
+        button_ajouterMediaReponse = new QPushButton(centralWidget);
+        button_ajouterMediaReponse->setObjectName(QString::fromUtf8("button_ajouterMediaReponse"));
+        button_ajouterMediaReponse->setFont(font1);
+
+        horizontalLayout_7->addWidget(button_ajouterMediaReponse);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_7);
+
         treeViewReponse = new QTreeView(centralWidget);
         treeViewReponse->setObjectName(QString::fromUtf8("treeViewReponse"));
         sizePolicy.setHeightForWidth(treeViewReponse->sizePolicy().hasHeightForWidth());
@@ -483,9 +518,13 @@ public:
         button_modifierMediaQuestion->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
         button_supprimerMediaQuestion->setText(QApplication::translate("MainWindow", "Supprimer", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
-        button_ajouterReponse->setText(QApplication::translate("MainWindow", "Ajouter", 0, QApplication::UnicodeUTF8));
-        button_modifierReponse->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
-        button_supprimerReponse->setText(QApplication::translate("MainWindow", "Supprimer", 0, QApplication::UnicodeUTF8));
+        button_ajouterReponse->setText(QApplication::translate("MainWindow", "Ajouter r\303\251ponse", 0, QApplication::UnicodeUTF8));
+        button_modifierReponse->setText(QApplication::translate("MainWindow", "Modifier r\303\251ponse", 0, QApplication::UnicodeUTF8));
+        button_supprimerReponse->setText(QApplication::translate("MainWindow", "Supprimer r\303\251ponse", 0, QApplication::UnicodeUTF8));
+        button_ajouterComMediaReponse->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
+        button_modifierMediaReponse->setText(QApplication::translate("MainWindow", "Ajouter m\303\251dia", 0, QApplication::UnicodeUTF8));
+        button_supprimerMediaReponse->setText(QApplication::translate("MainWindow", "Modifier m\303\251dia", 0, QApplication::UnicodeUTF8));
+        button_ajouterMediaReponse->setText(QApplication::translate("MainWindow", "Supprimer m\303\251dia", 0, QApplication::UnicodeUTF8));
         labelReponse2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
         labelImage1->setText(QString());
         labelImage2->setText(QString());

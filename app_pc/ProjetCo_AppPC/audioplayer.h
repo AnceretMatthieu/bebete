@@ -17,6 +17,8 @@ class AudioPlayer : public QDialog
         explicit AudioPlayer(QString filePath, QWidget *parent = 0);
         ~AudioPlayer();
 
+        void closeEvent(QCloseEvent *event);
+
     public slots:
         void changerTemps();
         void changerSourceVolume();

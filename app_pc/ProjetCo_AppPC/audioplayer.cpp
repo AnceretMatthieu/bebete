@@ -84,7 +84,8 @@ void AudioPlayer::changerSourceAvancement()
     barreAvancement->setMediaObject(mediaObjet);
 }
 
-void AudioPlayer::on_AudioPlayer_destroyed()
+void AudioPlayer::closeEvent(QCloseEvent *event)
 {
+    ui->btnStop->click(); // permet d'arrêter le son lorsque l'on ferme la fenêtre
     close();
 }

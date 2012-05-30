@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'audioplayer.h'
 **
-** Created: Tue 29. May 22:08:27 2012
+** Created: Wed 30. May 12:42:49 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -54,7 +54,6 @@ void AudioPlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 0: _t->changerTemps(); break;
         case 1: _t->changerSourceVolume(); break;
         case 2: _t->changerSourceAvancement(); break;
-        case 3: _t->on_AudioPlayer_destroyed(); break;
         default: ;
         }
     }

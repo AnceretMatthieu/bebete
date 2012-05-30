@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed 30. May 11:58:34 2012
+** Created: Wed 30. May 13:01:48 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_MainWindow[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-      21,   14, // methods
+      25,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -46,12 +46,16 @@ static const uint qt_meta_data_MainWindow[] = {
      381,   11,   11,   11, 0x08,
      400,   11,   11,   11, 0x08,
      420,   11,   11,   11, 0x08,
-     433,   11,   11,   11, 0x08,
-     451,   11,   11,   11, 0x08,
-     470,   11,   11,   11, 0x08,
-     487,   11,   11,   11, 0x08,
-     498,   11,   11,   11, 0x08,
-     514,   11,   11,   11, 0x08,
+     437,   11,   11,   11, 0x08,
+     448,   11,   11,   11, 0x08,
+     464,   11,   11,   11, 0x08,
+     481,   11,   11,   11, 0x08,
+     494,   11,   11,   11, 0x08,
+     512,   11,   11,   11, 0x08,
+     531,   11,   11,   11, 0x08,
+     552,   11,   11,   11, 0x08,
+     570,   11,   11,   11, 0x08,
+     593,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -68,10 +72,12 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "playVideo(QString)\0fileName,typeMedia\0"
     "openMedia(QString,int)\0newQuestionFils()\0"
     "newQuestionFrere()\0modifierQuestion()\0"
-    "supprimerQuestion()\0newReponse()\0"
-    "modifierReponse()\0supprimerReponse()\0"
-    "newCommentaire()\0newMedia()\0modifierMedia()\0"
-    "supprimerMedia()\0"
+    "supprimerQuestion()\0newCommentaire()\0"
+    "newMedia()\0modifierMedia()\0supprimerMedia()\0"
+    "newReponse()\0modifierReponse()\0"
+    "supprimerReponse()\0newComMediaReponse()\0"
+    "newMediaReponse()\0modifierMediaReponse()\0"
+    "supprimerMediaReponse()\0"
 };
 
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -94,13 +100,17 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 11: _t->newQuestionFrere(); break;
         case 12: _t->modifierQuestion(); break;
         case 13: _t->supprimerQuestion(); break;
-        case 14: _t->newReponse(); break;
-        case 15: _t->modifierReponse(); break;
-        case 16: _t->supprimerReponse(); break;
-        case 17: _t->newCommentaire(); break;
-        case 18: _t->newMedia(); break;
-        case 19: _t->modifierMedia(); break;
-        case 20: _t->supprimerMedia(); break;
+        case 14: _t->newCommentaire(); break;
+        case 15: _t->newMedia(); break;
+        case 16: _t->modifierMedia(); break;
+        case 17: _t->supprimerMedia(); break;
+        case 18: _t->newReponse(); break;
+        case 19: _t->modifierReponse(); break;
+        case 20: _t->supprimerReponse(); break;
+        case 21: _t->newComMediaReponse(); break;
+        case 22: _t->newMediaReponse(); break;
+        case 23: _t->modifierMediaReponse(); break;
+        case 24: _t->supprimerMediaReponse(); break;
         default: ;
         }
     }
@@ -138,9 +148,9 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 21)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 21;
+        _id -= 25;
     }
     return _id;
 }

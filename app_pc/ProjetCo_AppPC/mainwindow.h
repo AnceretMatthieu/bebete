@@ -93,14 +93,19 @@ class MainWindow : public QMainWindow
         void modifierQuestion();
         void supprimerQuestion();
 
-        void newReponse();
-        void modifierReponse();
-        void supprimerReponse();
-
         void newCommentaire();
         void newMedia();
         void modifierMedia();
         void supprimerMedia();
+
+        void newReponse();
+        void modifierReponse();
+        void supprimerReponse();
+
+        void newComMediaReponse();
+        void newMediaReponse();
+        void modifierMediaReponse();
+        void supprimerMediaReponse();
 };
 
 #endif // MAINWINDOW_H

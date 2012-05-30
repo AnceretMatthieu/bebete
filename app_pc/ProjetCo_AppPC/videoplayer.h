@@ -17,6 +17,8 @@ class VideoPlayer : public QDialog
         explicit VideoPlayer(QString filepath, QWidget *parent = 0);
         ~VideoPlayer();
 
+        void closeEvent(QCloseEvent *event);
+
     private:
         Ui::VideoPlayer *ui;
 
