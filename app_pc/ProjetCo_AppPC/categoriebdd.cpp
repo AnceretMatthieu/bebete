@@ -1,23 +1,6 @@
 #include "categoriebdd.h"
 #include <QIODevice>
 
-ListeQuestion * CategorieBDD::CreerArbre(QString filePath)
-{
-    QFile fichier(filePath);
-
-    doc.setContent(&fichier);
-    BDD::currentNode = doc.elementsByTagName("arbre").at(0);
-
-    //firstchild = branche
-    currentNode = currentNode.firstChild();
-
-    Categorie * cat = new Categorie(0);
-
-    listeQuestionWithCategorie(cat, true);
-
-    return cat->getListeQuestion();
-}
-
 void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = true)   {
 
     // récupération de la liste de toutes les questions
@@ -41,34 +24,6 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
             QuestionBDD::listeReponseFromQuestion(temp, recursif);
         cat->ajouterQuestion(temp);
     }
-}
-
-void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
-{
-    doc.clear();
-    QDomNode noeud = doc.createProcessingInstruction("xml", "version=\"1.0\"");
-    doc.appendChild(noeud);
-
-    QDomElement arbre = doc.createElement("arbre");
-    doc.appendChild(arbre);
-
-    currentNode = arbre;
-
-    enregistrerCategorie(racine);
-
-    QFile fichier(filePath);
-
-    if ( !fichier.open(QIODevice::WriteOnly) ) {
-        qDebug("Impossible de créer le fichier xml pour sauvegarder les données");
-        return;
-    }
-    else    {
-        QTextStream textStream(&fichier);
-        qDebug() <<"\n Enregistrement dans le fichier";
-        textStream <<  doc.toString();
-    }
-
-   fichier.close();
 }
 
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {

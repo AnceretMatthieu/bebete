@@ -4,7 +4,7 @@
 Categorie::Categorie(int identifiant)   {
     this->id = identifiant;
     myQuestion = new ListeQuestion();
-    pere = NULL;
+    this->myReponsePere = NULL;
 }
 
 

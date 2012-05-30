@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Si ce n'est pas le cas, le faire.
 
     // TODO : à supprimer ; se trouve désormais dans la fonction du menu "Importer XML"
-    maListeQuestions = CategorieBDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
+    maListeQuestions = BDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
 
     /* Peuplement des TreeView */
     // TODO : il faudrait que le TreeView des réponses et celui des médiasQuestions soient composés de 2 colonnes : une pour le type et l'autre pour le contenu
