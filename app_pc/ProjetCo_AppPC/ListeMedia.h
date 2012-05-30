@@ -8,12 +8,33 @@ using namespace std;
 
 class Media;
 
+/**
+ *  \class ListeMedia
+ *  \file ListeMedia.h
+ *  \brief classe gérant un vecteur de média
+ */
 class ListeMedia : public QVector<Media*> {
 
     public:
+
+        /**
+         * \fn ListeMedia()
+         * \brief constructeur par défaut
+         */
         ListeMedia();
 
+        /**
+         *  \fn getElementById(int id)
+         *  \brief retourne un élément grâce à son identificateur
+         *  \return Media*
+         */
         Media * getElementById(int id);
+
+        /**
+         *  \fn getElementByPath(QString path)
+         *  \brief retourne un élément grâce à son chemin
+         *  \return Media*
+         */
         Media * getElementByPath(QString path);
 };
 
