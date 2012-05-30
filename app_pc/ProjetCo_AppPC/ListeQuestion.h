@@ -24,15 +24,12 @@ class ListeQuestion : public QVector<Question*> {
          */
         ListeQuestion();
 
-<<<<<<< HEAD
-=======
         /**
          *  \fn getElementById(int id)
          *  \brief retourne un élément grâce à son identificateur
          *  \param int id : l'identificateur de l'élément
          *  \return Question*
          */
->>>>>>> 5ebf339b631df3dffe1406581b70ea8315e152c7
         Question * getElementById(int id);
 
         int getEstVide() { return estVide; }

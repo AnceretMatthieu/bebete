@@ -20,7 +20,7 @@
 
 #include "aboutwindow.h"
 #include "modifquestionwindow.h"
-#include "categoriebdd.h"
+#include "CategorieBDD.h"
 #include "Reponse.h"
 #include "ListeMedia.h"
 #include "audioplayer.h"

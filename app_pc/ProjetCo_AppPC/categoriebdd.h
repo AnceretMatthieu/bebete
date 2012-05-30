@@ -30,12 +30,19 @@ public:
     static void listeQuestionWithCategorie(Categorie * cat, bool recursif);
 
     /**
+     *  \fn static void enregistrerArbre(Categorie *racine, QString filePath);
+     *  \brief permet de sauvegarder l'arbre en mémoire dans un fichier XML
+     *  \param Categorie * racine : la categorie à remplir
+     *  \param QString filePath : chemin du fichier XML à produire
+     */
+    static void enregistrerArbre(Categorie *racine, QString filePath);
+
+    /**
      *  \fn static void enregistrerCategorie(Categorie * currentCat)
-     *  \brief enregistre la categorie passÃ© en paramÃ¨tre dans le noeud courrant
+     *  \brief enregistre la categorie passée en parametre dans le noeud courrant
      *  \param Categorie * currentCat : la categorie Ã  enregistrer
      */
     static void enregistrerCategorie(Categorie * currentCat);
-
 };
 
 #endif // CATEGORIEBDD_H

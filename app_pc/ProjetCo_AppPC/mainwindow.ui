@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1024</width>
+    <width>1150</width>
     <height>768</height>
    </rect>
   </property>
@@ -24,6 +24,10 @@
   </property>
   <property name="windowTitle">
    <string>INNOPHYT Identificateur - Editeur</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>images/innophyt.jpg</normaloff>images/innophyt.jpg</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="enabled">
@@ -92,6 +96,10 @@
             <property name="text">
              <string>Modifier</string>
             </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_modifier.png</normaloff>images/icon_modifier.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -104,6 +112,10 @@
             </property>
             <property name="text">
              <string>Supprimer</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_supprimer.png</normaloff>images/icon_supprimer.png</iconset>
             </property>
            </widget>
           </item>
@@ -247,33 +259,49 @@
          </widget>
         </item>
         <item>
+         <layout class="QVBoxLayout" name="verticalLayout_6">
+          <item>
+           <layout class="QHBoxLayout" name="horizontalLayout_10">
+            <item>
+             <widget class="QPushButton" name="button_ajouterMediaQuestion">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ajouter média</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>images/icon_ajouter_media.png</normaloff>images/icon_ajouter_media.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_ajouterComQuestion">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ajouter commentaire</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>images/icon_ajouter_commentaire.png</normaloff>images/icon_ajouter_commentaire.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QPushButton" name="button_ajouterComQuestion">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Ajouter commentaire</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="button_ajouterMediaQuestion">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Ajouter média</string>
-            </property>
-           </widget>
-          </item>
           <item>
            <widget class="QPushButton" name="button_modifierMediaQuestion">
             <property name="font">
@@ -284,6 +312,10 @@
             </property>
             <property name="text">
              <string>Modifier</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_modif_media.png</normaloff>images/icon_modif_media.png</iconset>
             </property>
            </widget>
           </item>
@@ -297,6 +329,10 @@
             </property>
             <property name="text">
              <string>Supprimer</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_suppr_media.png</normaloff>images/icon_suppr_media.png</iconset>
             </property>
            </widget>
           </item>
@@ -380,6 +416,10 @@
             <property name="text">
              <string>Ajouter réponse</string>
             </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_ajouter.png</normaloff>images/icon_ajouter.png</iconset>
+            </property>
            </widget>
           </item>
           <item>
@@ -392,6 +432,10 @@
             </property>
             <property name="text">
              <string>Modifier réponse</string>
+            </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_modifier.png</normaloff>images/icon_modifier.png</iconset>
             </property>
            </widget>
           </item>
@@ -406,63 +450,98 @@
             <property name="text">
              <string>Supprimer réponse</string>
             </property>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_supprimer.png</normaloff>images/icon_supprimer.png</iconset>
+            </property>
            </widget>
           </item>
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7">
+         <widget class="Line" name="line_9">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
           <item>
-           <widget class="QPushButton" name="button_ajouterComMediaReponse">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Ajouter commentaire</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_8">
+            <item>
+             <widget class="QPushButton" name="button_modifierMediaReponse">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ajouter média</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>images/icon_ajouter_media.png</normaloff>images/icon_ajouter_media.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_ajouterComMediaReponse">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Ajouter commentaire</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>images/icon_ajouter_commentaire.png</normaloff>images/icon_ajouter_commentaire.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
           <item>
-           <widget class="QPushButton" name="button_modifierMediaReponse">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Ajouter média</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="button_supprimerMediaReponse">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Modifier média</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="button_ajouterMediaReponse">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Supprimer média</string>
-            </property>
-           </widget>
+           <layout class="QHBoxLayout" name="horizontalLayout_7">
+            <item>
+             <widget class="QPushButton" name="button_supprimerMediaReponse">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Modifier média</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>images/icon_modif_media.png</normaloff>images/icon_modif_media.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="button_ajouterMediaReponse">
+              <property name="font">
+               <font>
+                <family>MS Shell Dlg 2</family>
+                <pointsize>10</pointsize>
+               </font>
+              </property>
+              <property name="text">
+               <string>Supprimer média</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>images/icon_suppr_media.png</normaloff>images/icon_suppr_media.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
           </item>
          </layout>
         </item>
@@ -585,7 +664,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1024</width>
+     <width>1150</width>
      <height>23</height>
     </rect>
    </property>
@@ -603,21 +682,6 @@
     <addaction name="separator"/>
     <addaction name="actionQuitter"/>
    </widget>
-   <widget class="QMenu" name="menuEdition">
-    <property name="title">
-     <string>Edition</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuAffichage">
-    <property name="title">
-     <string>Affichage</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuOutils">
-    <property name="title">
-     <string>Outils</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuAide">
     <property name="title">
      <string>Aide</string>
@@ -625,9 +689,6 @@
     <addaction name="actionA_propos_de"/>
    </widget>
    <addaction name="menuFichier"/>
-   <addaction name="menuEdition"/>
-   <addaction name="menuAffichage"/>
-   <addaction name="menuOutils"/>
    <addaction name="menuAide"/>
   </widget>
   <action name="actionImporter_XML">

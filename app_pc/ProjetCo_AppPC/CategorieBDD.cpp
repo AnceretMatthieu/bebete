@@ -26,7 +26,6 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
     }
 }
 
-<<<<<<< HEAD:app_pc/ProjetCo_AppPC/CategorieBDD.cpp
 void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
 {
     doc.clear();
@@ -55,8 +54,6 @@ void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
     fichier.close();
 }
 
-=======
->>>>>>> 5ebf339b631df3dffe1406581b70ea8315e152c7:app_pc/ProjetCo_AppPC/categoriebdd.cpp
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
     QDomNode memoire = currentNode;
     QDomElement root = doc.createElement("branche");

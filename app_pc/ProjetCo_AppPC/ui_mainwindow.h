@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 30. May 13:01:43 2012
+** Created: Wed 30. May 21:07:34 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -57,9 +57,11 @@ public:
     QFrame *line_8;
     QLabel *label;
     QFrame *line_7;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *button_ajouterComQuestion;
+    QVBoxLayout *verticalLayout_6;
+    QHBoxLayout *horizontalLayout_10;
     QPushButton *button_ajouterMediaQuestion;
+    QPushButton *button_ajouterComQuestion;
+    QHBoxLayout *horizontalLayout_3;
     QPushButton *button_modifierMediaQuestion;
     QPushButton *button_supprimerMediaQuestion;
     QTreeView *treeViewMediasQuestion;
@@ -72,9 +74,12 @@ public:
     QPushButton *button_ajouterReponse;
     QPushButton *button_modifierReponse;
     QPushButton *button_supprimerReponse;
-    QHBoxLayout *horizontalLayout_7;
-    QPushButton *button_ajouterComMediaReponse;
+    QFrame *line_9;
+    QVBoxLayout *verticalLayout_5;
+    QHBoxLayout *horizontalLayout_8;
     QPushButton *button_modifierMediaReponse;
+    QPushButton *button_ajouterComMediaReponse;
+    QHBoxLayout *horizontalLayout_7;
     QPushButton *button_supprimerMediaReponse;
     QPushButton *button_ajouterMediaReponse;
     QTreeView *treeViewReponse;
@@ -90,16 +95,13 @@ public:
     QSpacerItem *verticalSpacer_3;
     QMenuBar *menuBar;
     QMenu *menuFichier;
-    QMenu *menuEdition;
-    QMenu *menuAffichage;
-    QMenu *menuOutils;
     QMenu *menuAide;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(1024, 768);
+        MainWindow->resize(1150, 768);
         QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -109,6 +111,9 @@ public:
         font.setFamily(QString::fromUtf8("Helvetica Neue"));
         font.setPointSize(14);
         MainWindow->setFont(font);
+        QIcon icon;
+        icon.addFile(QString::fromUtf8("images/innophyt.jpg"), QSize(), QIcon::Normal, QIcon::Off);
+        MainWindow->setWindowIcon(icon);
         actionImporter_XML = new QAction(MainWindow);
         actionImporter_XML->setObjectName(QString::fromUtf8("actionImporter_XML"));
         actionExporter_XML = new QAction(MainWindow);
@@ -164,12 +169,18 @@ public:
         button_modifierQuestion = new QPushButton(centralWidget);
         button_modifierQuestion->setObjectName(QString::fromUtf8("button_modifierQuestion"));
         button_modifierQuestion->setFont(font1);
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8("images/icon_modifier.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_modifierQuestion->setIcon(icon1);
 
         horizontalLayout_4->addWidget(button_modifierQuestion);
 
         button_supprimerQuestion = new QPushButton(centralWidget);
         button_supprimerQuestion->setObjectName(QString::fromUtf8("button_supprimerQuestion"));
         button_supprimerQuestion->setFont(font1);
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8("images/icon_supprimer.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_supprimerQuestion->setIcon(icon2);
 
         horizontalLayout_4->addWidget(button_supprimerQuestion);
 
@@ -264,30 +275,54 @@ public:
 
         verticalLayout->addWidget(line_7);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        button_ajouterComQuestion = new QPushButton(centralWidget);
-        button_ajouterComQuestion->setObjectName(QString::fromUtf8("button_ajouterComQuestion"));
-        button_ajouterComQuestion->setFont(font1);
-
-        horizontalLayout_3->addWidget(button_ajouterComQuestion);
-
+        verticalLayout_6 = new QVBoxLayout();
+        verticalLayout_6->setSpacing(6);
+        verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        horizontalLayout_10 = new QHBoxLayout();
+        horizontalLayout_10->setSpacing(6);
+        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
         button_ajouterMediaQuestion = new QPushButton(centralWidget);
         button_ajouterMediaQuestion->setObjectName(QString::fromUtf8("button_ajouterMediaQuestion"));
         button_ajouterMediaQuestion->setFont(font1);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8("images/icon_ajouter_media.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_ajouterMediaQuestion->setIcon(icon3);
 
-        horizontalLayout_3->addWidget(button_ajouterMediaQuestion);
+        horizontalLayout_10->addWidget(button_ajouterMediaQuestion);
 
+        button_ajouterComQuestion = new QPushButton(centralWidget);
+        button_ajouterComQuestion->setObjectName(QString::fromUtf8("button_ajouterComQuestion"));
+        button_ajouterComQuestion->setFont(font1);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8("images/icon_ajouter_commentaire.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_ajouterComQuestion->setIcon(icon4);
+
+        horizontalLayout_10->addWidget(button_ajouterComQuestion);
+
+
+        verticalLayout_6->addLayout(horizontalLayout_10);
+
+
+        verticalLayout->addLayout(verticalLayout_6);
+
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         button_modifierMediaQuestion = new QPushButton(centralWidget);
         button_modifierMediaQuestion->setObjectName(QString::fromUtf8("button_modifierMediaQuestion"));
         button_modifierMediaQuestion->setFont(font1);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8("images/icon_modif_media.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_modifierMediaQuestion->setIcon(icon5);
 
         horizontalLayout_3->addWidget(button_modifierMediaQuestion);
 
         button_supprimerMediaQuestion = new QPushButton(centralWidget);
         button_supprimerMediaQuestion->setObjectName(QString::fromUtf8("button_supprimerMediaQuestion"));
         button_supprimerMediaQuestion->setFont(font1);
+        QIcon icon6;
+        icon6.addFile(QString::fromUtf8("images/icon_suppr_media.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_supprimerMediaQuestion->setIcon(icon6);
 
         horizontalLayout_3->addWidget(button_supprimerMediaQuestion);
 
@@ -344,53 +379,81 @@ public:
         button_ajouterReponse = new QPushButton(centralWidget);
         button_ajouterReponse->setObjectName(QString::fromUtf8("button_ajouterReponse"));
         button_ajouterReponse->setFont(font1);
+        QIcon icon7;
+        icon7.addFile(QString::fromUtf8("images/icon_ajouter.png"), QSize(), QIcon::Normal, QIcon::Off);
+        button_ajouterReponse->setIcon(icon7);
 
         horizontalLayout_5->addWidget(button_ajouterReponse);
 
         button_modifierReponse = new QPushButton(centralWidget);
         button_modifierReponse->setObjectName(QString::fromUtf8("button_modifierReponse"));
         button_modifierReponse->setFont(font1);
+        button_modifierReponse->setIcon(icon1);
 
         horizontalLayout_5->addWidget(button_modifierReponse);
 
         button_supprimerReponse = new QPushButton(centralWidget);
         button_supprimerReponse->setObjectName(QString::fromUtf8("button_supprimerReponse"));
         button_supprimerReponse->setFont(font1);
+        button_supprimerReponse->setIcon(icon2);
 
         horizontalLayout_5->addWidget(button_supprimerReponse);
 
 
         verticalLayout_2->addLayout(horizontalLayout_5);
 
-        horizontalLayout_7 = new QHBoxLayout();
-        horizontalLayout_7->setSpacing(6);
-        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
-        button_ajouterComMediaReponse = new QPushButton(centralWidget);
-        button_ajouterComMediaReponse->setObjectName(QString::fromUtf8("button_ajouterComMediaReponse"));
-        button_ajouterComMediaReponse->setFont(font1);
+        line_9 = new QFrame(centralWidget);
+        line_9->setObjectName(QString::fromUtf8("line_9"));
+        line_9->setFrameShape(QFrame::HLine);
+        line_9->setFrameShadow(QFrame::Sunken);
 
-        horizontalLayout_7->addWidget(button_ajouterComMediaReponse);
+        verticalLayout_2->addWidget(line_9);
 
+        verticalLayout_5 = new QVBoxLayout();
+        verticalLayout_5->setSpacing(6);
+        verticalLayout_5->setObjectName(QString::fromUtf8("verticalLayout_5"));
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setSpacing(6);
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
         button_modifierMediaReponse = new QPushButton(centralWidget);
         button_modifierMediaReponse->setObjectName(QString::fromUtf8("button_modifierMediaReponse"));
         button_modifierMediaReponse->setFont(font1);
+        button_modifierMediaReponse->setIcon(icon3);
 
-        horizontalLayout_7->addWidget(button_modifierMediaReponse);
+        horizontalLayout_8->addWidget(button_modifierMediaReponse);
 
+        button_ajouterComMediaReponse = new QPushButton(centralWidget);
+        button_ajouterComMediaReponse->setObjectName(QString::fromUtf8("button_ajouterComMediaReponse"));
+        button_ajouterComMediaReponse->setFont(font1);
+        button_ajouterComMediaReponse->setIcon(icon4);
+
+        horizontalLayout_8->addWidget(button_ajouterComMediaReponse);
+
+
+        verticalLayout_5->addLayout(horizontalLayout_8);
+
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setSpacing(6);
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
         button_supprimerMediaReponse = new QPushButton(centralWidget);
         button_supprimerMediaReponse->setObjectName(QString::fromUtf8("button_supprimerMediaReponse"));
         button_supprimerMediaReponse->setFont(font1);
+        button_supprimerMediaReponse->setIcon(icon5);
 
         horizontalLayout_7->addWidget(button_supprimerMediaReponse);
 
         button_ajouterMediaReponse = new QPushButton(centralWidget);
         button_ajouterMediaReponse->setObjectName(QString::fromUtf8("button_ajouterMediaReponse"));
         button_ajouterMediaReponse->setFont(font1);
+        button_ajouterMediaReponse->setIcon(icon6);
 
         horizontalLayout_7->addWidget(button_ajouterMediaReponse);
 
 
-        verticalLayout_2->addLayout(horizontalLayout_7);
+        verticalLayout_5->addLayout(horizontalLayout_7);
+
+
+        verticalLayout_2->addLayout(verticalLayout_5);
 
         treeViewReponse = new QTreeView(centralWidget);
         treeViewReponse->setObjectName(QString::fromUtf8("treeViewReponse"));
@@ -468,24 +531,15 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 1024, 23));
+        menuBar->setGeometry(QRect(0, 0, 1150, 23));
         menuBar->setFont(font5);
         menuFichier = new QMenu(menuBar);
         menuFichier->setObjectName(QString::fromUtf8("menuFichier"));
-        menuEdition = new QMenu(menuBar);
-        menuEdition->setObjectName(QString::fromUtf8("menuEdition"));
-        menuAffichage = new QMenu(menuBar);
-        menuAffichage->setObjectName(QString::fromUtf8("menuAffichage"));
-        menuOutils = new QMenu(menuBar);
-        menuOutils->setObjectName(QString::fromUtf8("menuOutils"));
         menuAide = new QMenu(menuBar);
         menuAide->setObjectName(QString::fromUtf8("menuAide"));
         MainWindow->setMenuBar(menuBar);
 
         menuBar->addAction(menuFichier->menuAction());
-        menuBar->addAction(menuEdition->menuAction());
-        menuBar->addAction(menuAffichage->menuAction());
-        menuBar->addAction(menuOutils->menuAction());
         menuBar->addAction(menuAide->menuAction());
         menuFichier->addAction(actionImporter_XML);
         menuFichier->addAction(actionExporter_XML);
@@ -513,16 +567,16 @@ public:
         checkBoxVisibleOeil->setText(QApplication::translate("MainWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
         checkBoxVisibleLoupe->setText(QApplication::translate("MainWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
         label->setText(QApplication::translate("MainWindow", "M\303\251dias", 0, QApplication::UnicodeUTF8));
-        button_ajouterComQuestion->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
         button_ajouterMediaQuestion->setText(QApplication::translate("MainWindow", "Ajouter m\303\251dia", 0, QApplication::UnicodeUTF8));
+        button_ajouterComQuestion->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
         button_modifierMediaQuestion->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
         button_supprimerMediaQuestion->setText(QApplication::translate("MainWindow", "Supprimer", 0, QApplication::UnicodeUTF8));
         lblReponse->setText(QApplication::translate("MainWindow", "R\303\251ponses", 0, QApplication::UnicodeUTF8));
         button_ajouterReponse->setText(QApplication::translate("MainWindow", "Ajouter r\303\251ponse", 0, QApplication::UnicodeUTF8));
         button_modifierReponse->setText(QApplication::translate("MainWindow", "Modifier r\303\251ponse", 0, QApplication::UnicodeUTF8));
         button_supprimerReponse->setText(QApplication::translate("MainWindow", "Supprimer r\303\251ponse", 0, QApplication::UnicodeUTF8));
-        button_ajouterComMediaReponse->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
         button_modifierMediaReponse->setText(QApplication::translate("MainWindow", "Ajouter m\303\251dia", 0, QApplication::UnicodeUTF8));
+        button_ajouterComMediaReponse->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
         button_supprimerMediaReponse->setText(QApplication::translate("MainWindow", "Modifier m\303\251dia", 0, QApplication::UnicodeUTF8));
         button_ajouterMediaReponse->setText(QApplication::translate("MainWindow", "Supprimer m\303\251dia", 0, QApplication::UnicodeUTF8));
         labelReponse2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
@@ -531,9 +585,6 @@ public:
         labelImage3->setText(QString());
         labelImage4->setText(QString());
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0, QApplication::UnicodeUTF8));
-        menuEdition->setTitle(QApplication::translate("MainWindow", "Edition", 0, QApplication::UnicodeUTF8));
-        menuAffichage->setTitle(QApplication::translate("MainWindow", "Affichage", 0, QApplication::UnicodeUTF8));
-        menuOutils->setTitle(QApplication::translate("MainWindow", "Outils", 0, QApplication::UnicodeUTF8));
         menuAide->setTitle(QApplication::translate("MainWindow", "Aide", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
