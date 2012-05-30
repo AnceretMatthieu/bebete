@@ -1,8 +1,13 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'audioplayer.h'
 **
+<<<<<<< HEAD
 ** Created: Wed 30. May 12:42:49 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
+=======
+** Created: Wed 30. May 11:26:41 2012
+**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
+>>>>>>> 5ebf339b631df3dffe1406581b70ea8315e152c7
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -11,7 +16,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'audioplayer.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.1. It"
+#error "This file was generated using the moc from 4.8.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif

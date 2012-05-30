@@ -1,40 +1,19 @@
 #include "categoriebdd.h"
 #include <QIODevice>
 
-ListeQuestion * CategorieBDD::CreerArbre(QString filePath)
-{
-    QFile fichier(filePath);
-
-    doc.setContent(&fichier);
-    BDD::currentNode = doc.elementsByTagName("arbre").at(0);
-
-    //firstchild = branche
-    currentNode = currentNode.firstChild();
-
-    Categorie * cat = new Categorie(0);
-
-    listeQuestionWithCategorie(cat, true);
-
-    return cat->getListeQuestion();
-}
-
 void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = true)   {
 
     // récupération de la liste de toutes les questions
     QDomNodeList lstBaliseQuestion = BDD::currentNode.childNodes(); // ==> renvoi "question"
-    //qDebug() << "In listeQuestionWithCategorie(" << cat->getIdentifiant() << ", " << recursif << ")";
-    //qDebug() << "nombre de question " << lstBaliseQuestion.size();
 
     int i;
     Question * temp;
     for(i=0; i<lstBaliseQuestion.size(); i++)  {
-        //qDebug() << "Question " << i;
+
         //découpage du q devant l'id
         temp = new Question(lstBaliseQuestion.at(i).toElement().attribute("id").left(1).toInt());
         temp->setQuestion(lstBaliseQuestion.at(i).toElement().attribute("texte"));
         temp->setVisible(lstBaliseQuestion.at(i).toElement().attribute("visible"));
-        //qDebug() << "Visible" << temp->getVisible();
-        //qDebug() << "Question " << temp->getIdentifiant() << " : " << temp->getQuestion();
 
         if(i > 0)   {
              cat->getListeQuestion()->at(i-1)->setIdRight(temp->getIdentifiant());
@@ -47,6 +26,7 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
     }
 }
 
+<<<<<<< HEAD:app_pc/ProjetCo_AppPC/CategorieBDD.cpp
 void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
 {
     doc.clear();
@@ -75,6 +55,8 @@ void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
     fichier.close();
 }
 
+=======
+>>>>>>> 5ebf339b631df3dffe1406581b70ea8315e152c7:app_pc/ProjetCo_AppPC/categoriebdd.cpp
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
     QDomNode memoire = currentNode;
     QDomElement root = doc.createElement("branche");
@@ -90,12 +72,3 @@ void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
     }
     currentNode = memoire;
 }
-
-
-//initialisation (doc type et arbre) => 1ere fonction
-    //création des noeuds branche (fonction indépendante qui prend en param catégorie)  ==> 2eme fonction
-    // cherche liste question (Listequestion de cette catégorie)        ==> 2eme fonction
-        //créer balise pour chaque question (dans une autre fonction qui prend en param la liste de question)==> 3eme fonction
-        //cherche liste des réponse ==> 3eme fonction
-            //(dans une autre fct) traité les réponses  ==> 4eme fonction
-            //créer les balises espece, et si nouvelle branche on rapelle ligne 101 ==> 4eme fonction

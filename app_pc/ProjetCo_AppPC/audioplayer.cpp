@@ -1,3 +1,7 @@
+/**
+  * \file audioplayer.cpp
+  * \brief Corps des méthodes du lecteur audio
+ */
 #include "audioplayer.h"
 #include "ui_audioplayer.h"
 
@@ -7,7 +11,7 @@ AudioPlayer::AudioPlayer(QString filePath, QWidget *parent) :
 {    
     ui->setupUi(this);
 
-    // On initialise les attributs utilises par la classe
+    //On initialise les attributs utilises par la classe
     sortie = new Phonon::AudioOutput(Phonon::MusicCategory, this);
     mediaObjet = new Phonon::MediaObject(this);
 
@@ -30,6 +34,7 @@ AudioPlayer::AudioPlayer(QString filePath, QWidget *parent) :
     // on donne le chemin pour les médias
     Phonon::createPath(mediaObjet, sortie);
 
+    // Connexion des signaux des boutons PLAY, PAUSE et STOP avec leurs actions sur le MediaObject
     connect(ui->btnPlay, SIGNAL(clicked()), mediaObjet, SLOT(play()));
     connect(ui->btnPause, SIGNAL(clicked()), mediaObjet, SLOT(pause()));
     connect(ui->btnStop, SIGNAL(clicked()), mediaObjet, SLOT(stop()));
@@ -37,6 +42,8 @@ AudioPlayer::AudioPlayer(QString filePath, QWidget *parent) :
     // on relie le media au LCD (temps)
     connect(mediaObjet, SIGNAL(tick(qint64)), this, SLOT(changerTemps()));
 
+    // Modification de la source pour la VolumeSlider et la SeekSlider dès qu'elle est modifée dans l'objet
+    // de type MediaSource (dans MediaObject)
     connect(mediaObjet,SIGNAL(currentSourceChanged(Phonon::MediaSource)), this, SLOT(changerSourceVolume()));
     connect(mediaObjet,SIGNAL(currentSourceChanged(Phonon::MediaSource)), this, SLOT(changerSourceAvancement()));
 }
@@ -46,13 +53,9 @@ AudioPlayer::~AudioPlayer()
     delete ui;
 }
 
-/**
-  * changerTemps()
-  * permet d'afficher le temps passe sur le media courant
-**/
+//void AudioPlayer::changerTemps()
 void AudioPlayer::changerTemps()
 {
-    qDebug() << "changerTemps()";
     qint64 temps = 0;
 
     temps = mediaObjet->totalTime() - mediaObjet->remainingTime();
@@ -64,23 +67,15 @@ void AudioPlayer::changerTemps()
     ui->lcdNumber->display(monTemps.toString("mm:ss"));
 }
 
-/**
-  * changerSourceVolume()
-  * change la source de la volume Slider
-**/
+//changerSourceVolume()
 void AudioPlayer::changerSourceVolume()
 {
-    qDebug() << "changerSourceVolume()";
     barreVolume->setAudioOutput(sortie);
 }
 
-/**
-  * changerSourceAvancement()
-  * change la source de la seek slider
-**/
+//changerSourceAvancement()
 void AudioPlayer::changerSourceAvancement()
 {
-    qDebug() << "changerSourceAvancement()";
     barreAvancement->setMediaObject(mediaObjet);
 }
 
