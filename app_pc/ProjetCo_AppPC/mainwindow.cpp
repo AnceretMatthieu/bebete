@@ -383,8 +383,6 @@ void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
     }
 }
 
-// TODO : valable pour newQuestionFils() et newQuestionFrere() :
-// si l'on fait "Annuler" dans la fenêtre de création d'une nouvelle question, la question est quand même ajoutée mais vide...
 void MainWindow::newQuestionFils()
 {
     // Permet d'ajouter une question en tant que fils de la question courante
@@ -395,28 +393,27 @@ void MainWindow::newQuestionFils()
     myWindowQues->setModal(true);
     myWindowQues->exec();
 
-    QModelIndex index = ui->treeViewQuestion->currentIndex();
-    QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
+    if(newQuestion->getQuestion() != "") // si la question possède un contenu texte, on considère que l'utilisateur a cliqué sur "Annuler"
+    {
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
 
-    QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
+        QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
 
-    // On calcul les coordonnées du noeud courant
-    QString coordonnees = calculerCoordonnees(index);
-    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+        // On calcul les coordonnées du noeud courant
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-    // On récupère le nombre de frère de la question
-    //int nbFils = currentQuestion->getListeReponse()->size();
+        // On ajoute l'élément en tant que fils de l'élément courant
+        currentSelection->appendRow(elem);
 
-    // On ajoute l'élément en tant que fils de l'élément courant
-    currentSelection->appendRow(elem);
+        // On calcul les coordonnées du nouveau noeud
+        QString coordonnees2 = calculerCoordonnees(elem->index());
+        qDebug() << "FILS - coordonnees question ajoutée : " << coordonnees2;
 
-    // On calcul les coordonnées du nouveau noeud
-    QString coordonnees2 = calculerCoordonnees(elem->index());
-    qDebug() << "FILS - coordonnees question ajoutée : " << coordonnees2;
-
-    // TODO : attention, lors de l'insertion d'une nouvelle question en mémoire, j'ai l'impression qu'elle n'ai pas prise en compte au prochain passage...
-    currentQuestion->getCat()->ajouterQuestion(newQuestion);
-    mapTreeQuestions.insert(coordonnees2, newQuestion);
+        currentQuestion->getCat()->ajouterQuestion(newQuestion);
+        mapTreeQuestions.insert(coordonnees2, newQuestion);
+    }
 }
 
 void MainWindow::newQuestionFrere()
@@ -429,38 +426,36 @@ void MainWindow::newQuestionFrere()
     myWindowQues->setModal(true);
     myWindowQues->exec();
 
-    QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
-    QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index); // on récupère l'item de la selection
-
-    QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
-
-    // On calcul les coordonnées du noeud courant
-    QString coordonnees = calculerCoordonnees(index);
-    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
-
-    // On récupère le nombre de frère de la question
-    int nbFrere = currentQuestion->getCat()->getListeQuestion()->size();
-
-    if (currentSelection->parent() != 0) // si l'élément selectionné n'est pas un élément racine
+    if(newQuestion->getQuestion() != "")
     {
-        currentSelection->parent()->appendRow(elem);
+        QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
+        QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index); // on récupère l'item de la selection
+
+        QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
 
         // On calcul les coordonnées du noeud courant
-        QString coordonnees = calculerCoordonnees(elem->index());
-        // On ajoute la question en mémoire
-        currentQuestion->getCat()->ajouterQuestion(newQuestion);
-        // On ajoute la question à la map des questions
-        mapTreeQuestions.insert(coordonnees, newQuestion);
-    }
-    else // l'élément selectionné est à la racine du TreeView
-    {
-        // TODO : l'ajout de frère à la racine ne fonctionne pas...
-        //model_tvQuestion->insertRow(nbFrere, elem);
-        model_tvQuestion->appendRow(elem);
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-        QString coordonnees2 = calculerCoordonnees(elem->index());
-        currentQuestion->getCat()->ajouterQuestion(newQuestion);
-        mapTreeQuestions.insert(coordonnees2, newQuestion);
+        if (currentSelection->parent() != 0) // l'élément selectionné n'est pas un élément racine
+        {
+            currentSelection->parent()->appendRow(elem);
+
+            // On calcul les coordonnées du noeud courant
+            QString coordonnees = calculerCoordonnees(elem->index());
+            // On ajoute la question en mémoire
+            currentQuestion->getCat()->ajouterQuestion(newQuestion);
+            // On ajoute la question à la map des questions
+            mapTreeQuestions.insert(coordonnees, newQuestion);
+        }
+        else // l'élément selectionné est à la racine
+        {
+            model_tvQuestion->appendRow(elem);
+
+            QString coordonnees2 = calculerCoordonnees(elem->index());
+            currentQuestion->getCat()->ajouterQuestion(newQuestion);
+            mapTreeQuestions.insert(coordonnees2, newQuestion);
+        }
     }
 }
 
@@ -499,6 +494,7 @@ void MainWindow::supprimerQuestion()
     model_tvQuestion->removeRow(index.row(), index.parent());
 
     // On supprime la question de la mémoire
+    // TODO : il faut penser à supprimer tous les fils de la question, les réponses et les médias associés
     ListeQuestion * tmp = currentQuestion->getCat()->getListeQuestion();
     tmp->remove(tmp->indexOf(currentQuestion));
 }

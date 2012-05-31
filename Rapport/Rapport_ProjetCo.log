@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  30 MAY 2012 19:03
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  31 MAY 2012 09:27
 entering extended mode
 **Rapport_ProjetCo.tex
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.tex
@@ -490,20 +490,20 @@ Chapter 4.
 
 ]
 Chapter 5.
-<images/image1.png, id=185, 452.69125pt x 282.05376pt>
-File: images/image1.png Graphic file (type png)
- <use images/image1.png>
-Package pdftex.def Info: images/image1.png used on input line 181.
-(pdftex.def)             Requested size: 483.69685pt x 301.37276pt.
+<images/image1.jpg, id=185, 1284.8pt x 803.0pt>
+File: images/image1.jpg Graphic file (type jpg)
+ <use images/image1.jpg>
+Package pdftex.def Info: images/image1.jpg used on input line 181.
+(pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
 
 [12
 
- <D:/Programmation/GitHub/bebete/Rapport/images/image1.png (PNG copy)>]
-<images/image2.png, id=192, 170.6375pt x 446.66875pt>
+ <D:/Programmation/GitHub/bebete/Rapport/images/image1.jpg>]
+<images/image2.png, id=192, 328.22626pt x 860.21375pt>
 File: images/image2.png Graphic file (type png)
  <use images/image2.png>
 Package pdftex.def Info: images/image2.png used on input line 201.
-(pdftex.def)             Requested size: 184.78564pt x 483.69685pt.
+(pdftex.def)             Requested size: 184.5617pt x 483.69685pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -511,42 +511,42 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 [13]
 Underfull \vbox (badness 3333) has occurred while \output is active []
 
- [14 <D:/Programmation/GitHub/bebete/Rapport/images/image2.png (PNG copy)>]
-<images/image3.png, id=209, 452.69125pt x 299.1175pt>
+ [14 <D:/Programmation/GitHub/bebete/Rapport/images/image2.png>]
+<images/image3.png, id=210, 584.1825pt x 387.24675pt>
 File: images/image3.png Graphic file (type png)
  <use images/image3.png>
 Package pdftex.def Info: images/image3.png used on input line 228.
-(pdftex.def)             Requested size: 483.69685pt x 319.60527pt.
+(pdftex.def)             Requested size: 483.69685pt x 320.64655pt.
 
-<images/image4.png, id=211, 404.51125pt x 169.63374pt>
+<images/image4.png, id=212, 405.31425pt x 170.43675pt>
 File: images/image4.png Graphic file (type png)
  <use images/image4.png>
 Package pdftex.def Info: images/image4.png used on input line 247.
-(pdftex.def)             Requested size: 386.95895pt x 162.27708pt.
+(pdftex.def)             Requested size: 386.95895pt x 162.71758pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[15 <D:/Programmation/GitHub/bebete/Rapport/images/image3.png (PNG copy)>]
-<images/image5.png, id=221, 263.98625pt x 86.3225pt>
+[15 <D:/Programmation/GitHub/bebete/Rapport/images/image3.png>]
+<images/image5.png, id=223, 264.99pt x 86.724pt>
 File: images/image5.png Graphic file (type png)
  <use images/image5.png>
 Package pdftex.def Info: images/image5.png used on input line 258.
-(pdftex.def)             Requested size: 290.22105pt x 94.90628pt.
+(pdftex.def)             Requested size: 290.22105pt x 94.98776pt.
 
-[16 <D:/Programmation/GitHub/bebete/Rapport/images/image4.png (PNG copy)> <D:/P
-rogrammation/GitHub/bebete/Rapport/images/image5.png (PNG copy)>]
-<images/image6.png, id=229, 434.62375pt x 31.11626pt>
+[16 <D:/Programmation/GitHub/bebete/Rapport/images/image4.png> <D:/Programmatio
+n/GitHub/bebete/Rapport/images/image5.png>]
+<images/image6.png, id=233, 434.8245pt x 31.317pt>
 File: images/image6.png Graphic file (type png)
  <use images/image6.png>
 Package pdftex.def Info: images/image6.png used on input line 283.
-(pdftex.def)             Requested size: 483.69685pt x 34.63155pt.
+(pdftex.def)             Requested size: 483.69685pt x 34.83728pt.
 
 Underfull \hbox (badness 10000) in paragraph at lines 288--292
 
  []
 
-[17 <D:/Programmation/GitHub/bebete/Rapport/images/image6.png (PNG copy)>]
+[17 <D:/Programmation/GitHub/bebete/Rapport/images/image6.png>]
 Chapter 6.
 [18
 
@@ -578,8 +578,8 @@ Package rerunfilecheck Info: File `Rapport_ProjetCo.out' has not changed.
  )
 (\end occurred when \iffalse on line 335 was incomplete) 
 Here is how much of TeX's memory you used:
- 6862 strings out of 494045
- 97054 string characters out of 3148379
+ 6863 strings out of 494045
+ 97058 string characters out of 3148379
  205997 words of memory out of 3000000
  9953 multiletter control sequences out of 15000+200000
  53468 words of font info for 40 fonts, out of 3000000 for 9000
@@ -594,9 +594,9 @@ s/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
 lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Pr
 ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiK
 TeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Rapport_ProjetCo.pdf (22 pages, 599890 bytes).
+Output written on Rapport_ProjetCo.pdf (22 pages, 821489 bytes).
 PDF statistics:
- 324 PDF objects out of 1000 (max. 8388607)
+ 329 PDF objects out of 1000 (max. 8388607)
  67 named destinations out of 1000 (max. 500000)
  221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
