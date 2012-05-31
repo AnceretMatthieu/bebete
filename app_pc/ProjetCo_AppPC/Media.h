@@ -12,6 +12,11 @@
 class Reponse;
 class Question;
 
+/**
+ *  \class Media
+ *  \file Media.h
+ *  \brief classe gÃ©rant un  média avec sa description
+ */
 class Media {
 
     protected:
@@ -23,6 +28,10 @@ class Media {
         Question *myQuestion;
 
     public:
+        /**
+         * \fn Media(int identifiant)
+         * \brief constructeur
+         */
         Media(int identifiant);
 
         int getIdentifiant() {
