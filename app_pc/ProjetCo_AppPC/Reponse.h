@@ -58,21 +58,88 @@ class Reponse {
          */
         QString getReponse() {  return texte;   }
 
-
+        /**
+         * \fn setSuiv(void* suiv)
+         * \brief Permet de mettre le pointeur sur le suivant
+         * \param void * suiv
+         */
         void setSuiv(void * suiv);
+
+        /**
+         * \fn getSuiv()
+         * \brief Permet de récuperer le pointeur sur le suivant
+         * \return void *
+         */
         void * getSuiv();
+
+        /**
+         * \fn setPrec(void* prec)
+         * \brief Permet de mettre le pointeur sur le précédent
+         * \param void * prec
+         */
         void setPrec(void * prec);
+
+        /**
+         * \fn getPrec()
+         * \brief Permet de récuperer le pointeur sur le précédent
+         * \return void *
+         */
         void * getPrec();
 
+        /**
+         * \fn setTypeSuiv(int type)
+         * \brief Permet de changer le type du suivant
+         * \param int type : on définit l'int du nouveau type
+         */
         void setTypeSuiv(int type);
+
+        /**
+         * \fn getTypeSuiv()
+         * \brief Permet de récupérer le type du suivant
+         * \return int typeFils : on récupère le type du fils
+         */
         int getTypeSuiv()   {return typeFils;}
 
+        /**
+         * \fn setTypePrec(int type)
+         * \brief Permet de changer le type du précédent
+         * \param int type : on définit l'int du nouveau type
+         */
         void setTypePrec(int type);
+
+        /**
+         * \fn getTypePrec()
+         * \brief Permet de récupérer le type du précédent
+         * \return int typeFils : on récupère le type du père
+         */
         int getTypePrec()   {return typePere;}
 
+        /**
+         *  \fn void setIdLeft(int id)
+         *  \brief change l'Id de celui de gauche
+         *  \param int id
+         */
         void setIdLeft(int id)  {idleft = id;}
+
+        /**
+         *  \fn void setIdRight(int id)
+         *  \brief change l'Id de celui de droite
+         *  \param int id
+         */
         void setIdRight(int id)  {idright = id;}
+
+        /**
+         *  \fn int getIdLeft()
+         *  \brief récupère l'Id de celui de gauche
+         *  \return int idleft
+         */
         int getIdLeft()  {return idleft;}
+
+        /**
+         *  \fn int getIdRight()
+         *  \brief récupère l'Id de celui de droite
+         *  \return int idright
+         */
         int getIdRight()  {return idright;}
 
         /**
