@@ -1,20 +1,33 @@
-\contentsline {chapter}{\numberline {1}Introduction}{6}{chapter.4}
-\contentsline {chapter}{\numberline {2}Présentation du projet}{7}{chapter.5}
-\contentsline {chapter}{\numberline {3}Analyse complémentaires}{8}{chapter.6}
-\contentsline {section}{\numberline {3.1}Modélisation UML}{8}{section.7}
-\contentsline {section}{\numberline {3.2}Fichier XML final + DTD}{8}{section.9}
-\contentsline {chapter}{\numberline {4}Application PC}{11}{chapter.10}
-\contentsline {chapter}{\numberline {5}Application mobile}{12}{chapter.11}
-\contentsline {section}{\numberline {5.1}Fonctionnalités}{12}{section.13}
-\contentsline {section}{\numberline {5.2}La zone d'affichage}{13}{section.14}
-\contentsline {section}{\numberline {5.3}La caméra}{13}{section.21}
-\contentsline {section}{\numberline {5.4}Les bitmaps}{16}{section.27}
-\contentsline {section}{\numberline {5.5}L'historique}{16}{section.29}
-\contentsline {section}{\numberline {5.6}JDom}{17}{section.34}
-\contentsline {chapter}{\numberline {6}Aspect gestion de projet}{18}{chapter.35}
-\contentsline {section}{\numberline {6.1}"Feedback" sur le projet}{18}{section.36}
-\contentsline {section}{\numberline {6.2}Compétences acquises}{19}{section.37}
-\contentsline {section}{\numberline {6.3}Calendrier prévisionnel et calendrier réel}{19}{section.38}
-\contentsline {section}{\numberline {6.4}Erreurs commises et problèmes rencontrés}{19}{section.39}
-\contentsline {chapter}{\numberline {7}Futur du projet}{20}{chapter.40}
-\contentsline {chapter}{\numberline {8}Conclusion}{21}{chapter.41}
+\contentsline {chapter}{\numberline {1}Introduction}{5}{chapter.3}
+\contentsline {chapter}{\numberline {2}Présentation du projet}{6}{chapter.4}
+\contentsline {chapter}{\numberline {3}Analyse complémentaires}{7}{chapter.5}
+\contentsline {section}{\numberline {3.1}Modélisation UML}{7}{section.6}
+\contentsline {section}{\numberline {3.2}Le fichier XML et sa DTD}{7}{section.8}
+\contentsline {subsubsection}{Balise <!ELEMENT>}{10}{section*.11}
+\contentsline {subsubsection}{Balise <!ATTLIST>}{11}{section*.12}
+\contentsline {section}{\numberline {3.3}Résultats et statistiques}{11}{section.13}
+\contentsline {chapter}{\numberline {4}Application PC}{12}{chapter.14}
+\contentsline {section}{\numberline {4.1}Interface et utilisation}{12}{section.15}
+\contentsline {section}{\numberline {4.2}Module de lecture/écriture XML}{13}{section.19}
+\contentsline {section}{\numberline {4.3}Mécanisme d'affichage des arborescences}{14}{section.20}
+\contentsline {section}{\numberline {4.4}Visualisation des médias}{14}{section.21}
+\contentsline {subsection}{\numberline {4.4.1}Visualisation des images}{14}{subsection.22}
+\contentsline {subsection}{\numberline {4.4.2}Lecteur audio}{14}{subsection.24}
+\contentsline {subsection}{\numberline {4.4.3}Lecteur vidéo}{15}{subsection.26}
+\contentsline {section}{\numberline {4.5}Algorithme de coloration des questions}{16}{section.28}
+\contentsline {chapter}{\numberline {5}Application mobile}{18}{chapter.30}
+\contentsline {section}{\numberline {5.1}Fonctionnalités}{18}{section.32}
+\contentsline {section}{\numberline {5.2}La zone d'affichage}{19}{section.33}
+\contentsline {section}{\numberline {5.3}La caméra}{19}{section.40}
+\contentsline {section}{\numberline {5.4}Les bitmaps}{22}{section.46}
+\contentsline {section}{\numberline {5.5}L'historique}{22}{section.48}
+\contentsline {section}{\numberline {5.6}JDom}{23}{section.53}
+\contentsline {chapter}{\numberline {6}Aspect gestion de projet}{24}{chapter.54}
+\contentsline {section}{\numberline {6.1}Témoignage de l'équipe}{24}{section.55}
+\contentsline {section}{\numberline {6.2}Calendrier prévisionnel et calendrier réel}{25}{section.56}
+\contentsline {section}{\numberline {6.3}Erreurs commises et problèmes rencontrés}{26}{section.59}
+\contentsline {chapter}{\numberline {7}Futur du projet}{29}{chapter.60}
+\contentsline {chapter}{\numberline {8}Conclusion}{30}{chapter.61}
+\contentsline {chapter}{\numberline {A}Documentation Doxygen}{31}{appendix.62}
+\contentsline {chapter}{\numberline {B}Documentation utilisateur (manuel d'utilisation)}{32}{appendix.63}
+\contentsline {chapter}{\numberline {C}Quelques éléments techniques bien précis}{33}{appendix.64}

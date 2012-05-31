@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifreponsewindow.ui'
 **
-** Created: Wed 30. May 11:24:21 2012
+** Created: Fri 1. Jun 00:40:16 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

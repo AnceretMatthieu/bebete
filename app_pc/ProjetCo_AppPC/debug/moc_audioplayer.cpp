@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'audioplayer.h'
 **
-** Created: Wed 30. May 20:46:19 2012
+** Created: Fri 1. Jun 00:40:49 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!

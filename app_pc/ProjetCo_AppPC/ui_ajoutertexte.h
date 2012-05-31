@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'ajoutertexte.ui'
 **
-** Created: Tue 29. May 22:08:18 2012
+** Created: Fri 1. Jun 00:40:16 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

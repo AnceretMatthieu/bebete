@@ -374,13 +374,15 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
                     ui->labelReponse2->setText("Pas de question suivante...");
                 }
             }
-            else
+            else // si la liste des questions est vide, cela veut dire qu'il y a un résultat
             {
                 ui->labelReponse2->setText("Pas de question suivante...");
                 Espece * currentResult = ((Espece *)r->getSuiv());
                 qDebug() << "RESULTAT";
                 qDebug() << "Nom : " << currentResult->getNom();
+                qDebug() << "Type : " << currentResult->getType();
                 qDebug() << "Regime alimentaire : " << currentResult->getRegimeAlimentaire();
+                qDebug() << "Informations : " << currentResult->getInformation();
             }
         }
     }

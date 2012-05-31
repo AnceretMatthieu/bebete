@@ -1,20 +1,31 @@
-\BOOKMARK [0][]{chapter.4}{1 Introduction}{}% 1
-\BOOKMARK [0][]{chapter.5}{2 Présentation du projet}{}% 2
-\BOOKMARK [0][]{chapter.6}{3 Analyse complémentaires}{}% 3
-\BOOKMARK [1][]{section.7}{3.1 Modélisation UML}{chapter.6}% 4
-\BOOKMARK [1][]{section.9}{3.2 Fichier XML final + DTD}{chapter.6}% 5
-\BOOKMARK [0][]{chapter.10}{4 Application PC}{}% 6
-\BOOKMARK [0][]{chapter.11}{5 Application mobile}{}% 7
-\BOOKMARK [1][]{section.13}{5.1 Fonctionnalités}{chapter.11}% 8
-\BOOKMARK [1][]{section.14}{5.2 La zone d'affichage}{chapter.11}% 9
-\BOOKMARK [1][]{section.21}{5.3 La caméra}{chapter.11}% 10
-\BOOKMARK [1][]{section.27}{5.4 Les bitmaps}{chapter.11}% 11
-\BOOKMARK [1][]{section.29}{5.5 L'historique}{chapter.11}% 12
-\BOOKMARK [1][]{section.34}{5.6 JDom}{chapter.11}% 13
-\BOOKMARK [0][]{chapter.35}{6 Aspect gestion de projet}{}% 14
-\BOOKMARK [1][]{section.36}{6.1 "Feedback" sur le projet}{chapter.35}% 15
-\BOOKMARK [1][]{section.37}{6.2 Compétences acquises}{chapter.35}% 16
-\BOOKMARK [1][]{section.38}{6.3 Calendrier prévisionnel et calendrier réel}{chapter.35}% 17
-\BOOKMARK [1][]{section.39}{6.4 Erreurs commises et problèmes rencontrés}{chapter.35}% 18
-\BOOKMARK [0][]{chapter.40}{7 Futur du projet}{}% 19
-\BOOKMARK [0][]{chapter.41}{8 Conclusion}{}% 20
+\BOOKMARK [0][]{chapter.3}{1 Introduction}{}% 1
+\BOOKMARK [0][]{chapter.4}{2 Présentation du projet}{}% 2
+\BOOKMARK [0][]{chapter.5}{3 Analyse complémentaires}{}% 3
+\BOOKMARK [1][]{section.6}{3.1 Modélisation UML}{chapter.5}% 4
+\BOOKMARK [1][]{section.8}{3.2 Le fichier XML et sa DTD}{chapter.5}% 5
+\BOOKMARK [1][]{section.13}{3.3 Résultats et statistiques}{chapter.5}% 6
+\BOOKMARK [0][]{chapter.14}{4 Application PC}{}% 7
+\BOOKMARK [1][]{section.15}{4.1 Interface et utilisation}{chapter.14}% 8
+\BOOKMARK [1][]{section.19}{4.2 Module de lecture/écriture XML}{chapter.14}% 9
+\BOOKMARK [1][]{section.20}{4.3 Mécanisme d'affichage des arborescences}{chapter.14}% 10
+\BOOKMARK [1][]{section.21}{4.4 Visualisation des médias}{chapter.14}% 11
+\BOOKMARK [2][]{subsection.22}{4.4.1 Visualisation des images}{section.21}% 12
+\BOOKMARK [2][]{subsection.24}{4.4.2 Lecteur audio}{section.21}% 13
+\BOOKMARK [2][]{subsection.26}{4.4.3 Lecteur vidéo}{section.21}% 14
+\BOOKMARK [1][]{section.28}{4.5 Algorithme de coloration des questions}{chapter.14}% 15
+\BOOKMARK [0][]{chapter.30}{5 Application mobile}{}% 16
+\BOOKMARK [1][]{section.32}{5.1 Fonctionnalités}{chapter.30}% 17
+\BOOKMARK [1][]{section.33}{5.2 La zone d'affichage}{chapter.30}% 18
+\BOOKMARK [1][]{section.40}{5.3 La caméra}{chapter.30}% 19
+\BOOKMARK [1][]{section.46}{5.4 Les bitmaps}{chapter.30}% 20
+\BOOKMARK [1][]{section.48}{5.5 L'historique}{chapter.30}% 21
+\BOOKMARK [1][]{section.53}{5.6 JDom}{chapter.30}% 22
+\BOOKMARK [0][]{chapter.54}{6 Aspect gestion de projet}{}% 23
+\BOOKMARK [1][]{section.55}{6.1 Témoignage de l'équipe}{chapter.54}% 24
+\BOOKMARK [1][]{section.56}{6.2 Calendrier prévisionnel et calendrier réel}{chapter.54}% 25
+\BOOKMARK [1][]{section.59}{6.3 Erreurs commises et problèmes rencontrés}{chapter.54}% 26
+\BOOKMARK [0][]{chapter.60}{7 Futur du projet}{}% 27
+\BOOKMARK [0][]{chapter.61}{8 Conclusion}{}% 28
+\BOOKMARK [0][]{appendix.62}{A Documentation Doxygen}{}% 29
+\BOOKMARK [0][]{appendix.63}{B Documentation utilisateur \(manuel d'utilisation\)}{}% 30
+\BOOKMARK [0][]{appendix.64}{C Quelques éléments techniques bien précis}{}% 31

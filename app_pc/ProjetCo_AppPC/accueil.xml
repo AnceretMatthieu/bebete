@@ -17,21 +17,32 @@
 					<legende>Exemple d'insecte à 6 pattes</legende>
 				</media>
 				<branche id="b2">
-					<question id="q3" texte="Encore des questions pour cet exemple test" visible="false">
-						<reponse id="r3" texte="Réponse numéro 1" >
+					<question id="q3" texte="Combien d'ailes possède l'animal ?" visible="false">
+						<reponse id="r3" texte="4 ailes" >
 							<resultat id="res1">
-								<nom>Résultat 1</nom>
-								<type>MEL1</type>
-								<regimeAlimentaire>Prédateur</regimeAlimentaire>
-								<informations>Les informations</informations>
+								<nom>Espèces résultat</nom>
+								<type>Type</type>
+								<regimeAlimentaire>Régime alimentaire</regimeAlimentaire>
+								<informations>Des informations</informations>
 							</resultat>
 						</reponse>
-						<reponse id="r4" texte="Réponse numéro 2">
+						<reponse id="r4" texte="2 ailes">
 							<resultat id="res2">
-								<nom>Résultat 2</nom>
-								<type>MEL1</type>
+								<nom>Diptères</nom>
+								<type>Type</type>
 								<regimeAlimentaire>Non prédateur</regimeAlimentaire>
-								<informations>Informations sur résultat 2</informations>
+								<informations>Informations</informations>
+								<media>
+									<img id="img2" src="insecte.jpg" />
+								</media>
+							</resultat>
+						</reponse>
+						<reponse id="r5" texte="Pas d'ailes">
+							<resultat id="res2">
+								<nom>Espèce 4</nom>
+								<type>MEQ</type>
+								<regimeAlimentaire>Phytophages</regimeAlimentaire>
+								<informations>Informations</informations>
 								<media>
 									<img id="img2" src="insecte.jpg" />
 								</media>
@@ -49,7 +60,7 @@
 				<question id="q2" texte="Quelle est la taille de l'arachnide ?" visible="true">
 					<reponse id="r3" texte="Supérieur à 5 mm" >
 					    <resultat id="res1">
-							<nom>nom</nom>
+							<nom>Espèce 1</nom>
 							<type>MEL1</type>
 							<regimeAlimentaire>Prédateur</regimeAlimentaire>
 							<informations>infos</informations>
@@ -60,22 +71,22 @@
 					</reponse>
 					<reponse id="r4" texte="Inférieur à 5 mm">
 						<branche id="b2">
-							<question id="q6" texte="Plus de question pour cet exemple test" visible="both">
+							<question id="q6" texte="Quelle est la couleur de l'arachnide ?" visible="both">
 								<media>
 									<video id="vid1" src="test_video.avi" />
 								</media>
-								<reponse id="r3" texte="Ceci est une réponse" >
+								<reponse id="r3" texte="Couleurs vives, vermiforme, aplati, globuleux" >
 									<resultat id="res1">
-										<nom>Ceci est un résultat</nom>
-										<type>MEL1</type>
-										<regimeAlimentaire>Prédateur</regimeAlimentaire>
+										<nom>Espèce 2</nom>
+										<type>MEL2</type>
+										<regimeAlimentaire>Phytophage</regimeAlimentaire>
 										<informations>infos</informations>
 									</resultat>
 								</reponse>
-								<reponse id="r3" texte="C'est aussi une réponse" >
+								<reponse id="r3" texte="Blanchatre à marron clair, couleur pale, pyriforme" >
 									<resultat id="res1">
-										<nom>C'est aussi un résultat</nom>
-										<type>MEL1</type>
+										<nom>Espèce 3</nom>
+										<type>MEL3</type>
 										<regimeAlimentaire>Prédateur</regimeAlimentaire>
 										<informations>infos</informations>
 										<media>

@@ -70,8 +70,10 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif)
                     tempe->setNom(lstResultat.at(p).toElement().text());
                 else if(lstResultat.at(p).nodeName() == "type")
                     tempe->setType(lstResultat.at(p).toElement().text());
-                else if (lstResultat.at(p).nodeName() == "regimeAlimentaire")
+                else if(lstResultat.at(p).nodeName() == "regimeAlimentaire") {
+                    qDebug() << "regime alimentaire : " << lstResultat.at(p).toElement().text();
                     tempe->setRegimeAlimentaire(lstResultat.at(p).toElement().text());
+                }
                 else if (lstResultat.at(p).nodeName() == "informations")
                     tempe->setInformation(lstResultat.at(p).toElement().text());
             }

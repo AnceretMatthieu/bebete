@@ -3,7 +3,6 @@
 
 \thedocument{Rapport projet collectif}{Application d'aide à l'identification d'insectes nuisibles}{Aide à l'identification d'insectes}
 
-%\grade{Département Informatique\\ 4\ieme{} année\\ 2011 - 2012}
 \grade{Département Informatique \\ 4ieme année \\ 2011 - 2012}
 
 \authors{%
@@ -34,7 +33,9 @@
 	\details{Équipe CETU INNOPHYT}
 }
 
-\abstracts{Description en français}
+\nolistoftables
+
+\abstracts{Blabla de présentation du sujet (cf. intro + présentation). Ce rapport est la synthèse de tout le projet, des phases de modélisation aux phases de tests en passant par les phases de développement et les parties gestion de projet. Ce rapport est un guide technique, qui pourra servir à un développeur désireux de reprendre et de comprendre les applications existantes, mais aussi un guide utilisateur, qui permettra à l'usager de trouver les réponses à ses questions à propos du fonctionnement des logiciels.}
 {Mots clés français}
 {Description en anglais}
 {Mots clés en anglais}
@@ -43,142 +44,200 @@
 
 \chapter{Introduction}
 Notre projet est un projet collectif à 8 personnes dans le cadre de notre cursus à Polytech'Tours. Le client de notre projet est l'équipe INNOPHYT, et plus particulièrement la responsable de cette équipe, Ingrid Arnault. Cette équipe fait partie de l'Université François Rabelais de Tours et elle est consacrée aux activités de valorisation et de recherche dans le domaine de la lutte anti-parasitaire durable. Gilles Venturini, professeur au sein de l'école Polytech'Tours, est notre encadrant de projet. De part sa bonne connaissance du projet, il est aussi un interlocuteur privilégié pour les aspectes techniques et opérationnels. 
+Ce rapport est un guide technique, qui pourra servir à un développeur désireux de reprendre et de comprendre les applications existantes, mais aussi un guide utilisateur, qui permettra à l'usager de trouver les réponses à ses questions à propos du fonctionnement des logiciels.
 
 \chapter{Présentation du projet}
-L'objectif du projet est de réaliser deux applications : une application PC et une application mobile. L'application mobile permet, à partir du visuel d'un insecte, de déterminer grâce à une succession de question si celui-ci est nuisible ou non. L'application PC permet quand a elle de consulter et de modifier la base de données associées à l'application mobile, c'est-à-dire les questions, les réponses et les médias. 
+L'objectif du projet est de réaliser deux applications : une application PC et une application mobile. L'application mobile permet, à partir du visuel d'un insecte, de déterminer grâce à une succession de question si celui-ci est nuisible ou non. L'application PC permet quand a elle de consulter et de modifier la base de données associée à l'application mobile, c'est-à-dire les questions, les réponses et les médias. 
+<!-- à compléter... -->
 
 \chapter{Analyse complémentaires}
-Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteriori du cahier de spécifications.  
+Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteriori du cahier de spécifications. En effet, lors de la rédaction du cahier de spécification, nous n'avions pas encore modélisé la partie "intelligence" des applications.  
 	
 	\section{Modélisation UML}		
 	Avant de développer l'application PC, nous avons pris soin de modéliser une structure fiable et efficace à même de réaliser toutes les fonctionnalités demandées et de pouvoir évoluer de façon simple. 
-	%diagramme de classe de l'application PC 
+	%à voir comment améliorer l'affichage du diagramme de classe 
 	
-	\begin{figure}[!h]
+\begin{figure}[!h]
 	\centering	
 	\includegraphics[width=1\textwidth]{images/diag_classes_app_PC.png}
 	\caption{Diagramme de classes de l'application PC}
 	\label{diagramme classes appli PC}
-	\end{figure}
+\end{figure}
 	
-	\section{Fichier XML final + DTD}
+	\section{Le fichier XML et sa DTD}
 	Notre base de données est représentée sous la forme d'un fichier XML. Ce format a été privilégié car il est relativement simple à manipuler et assez performant pour de petites bases, comparativement à une base SQL/SQLite par exemple. N'ayant de toutes manières pas besoin de relation, d'intégrité et d'indexation, la choix du XML s'est imposé de lui-même. 
 	
 	En raison de nouveaux éléments apparus tout au long du projet (après la rédaction du cahier de spécification), la structure du fichier XML de données a évoluée. Par exemple, nous avons inséré un nouvel attribut "visible" sur les questions et les réponses suite à la demande du client de voir apparaitre ce critère dans l'interface (dans le but d'aider l'utilisateur de l'application).
 	De plus, au fur et à mesure de l'avancement du projet, nous nous sommes rendus compte de quelques erreurs ou incohérence dans le fichier XML. Nous avons donc du corriger ces problèmes, ce qui a engendré des modifications au niveau du code C++ de traitement du fichier XML. 	
 	
-	Nous allons donc exposer la version finale du fichier XML : 
-	\begin{verbatim}
-<?xml version = '1.0' encoding="UTF-8"?> 
-<!DOCTYPE arbre SYSTEM "arbre.dtd">
-
-<arbre>
-	<branche id="b1" type="accueil" date="01/06/2012">
-		<question id="q1" texte="Première question ?" visible="true">
-			<media>
-				<legende>Astuces : regarder attentivement l'insecte</legende>
-				<img src="images/insecte.jpg" />
-				<audio id="aud1" src="images/test_audio.wav" />
-			</media>
-			<reponse id="r1" texte="Réponse 1">
-				<media>
-					<img id="img1" src="images/insecte2.jpg" />
-					<img id="img1" src="images/insecte3.jpg" />
-					<legende>Ceci est le texte de la réponse 1</legende>
-				</media>
-				<branche id="b2">
-					<question id="q3" texte="Autre question" visible="false">
-						...
-					</question>
-				</branche>
-			</reponse>
-			<reponse id="r2" texte="Réponse 2">
-			<media>
-					<img id="img1" src="images/insecte2.jpg" />
-					<legende>Ceci est le texte de la réponse 2</legende>
-			</media>
-				<branche id="b3" type="Arachnide">
-					<question id="q2" texte="Deuxième question ?" visible="true">
-						<reponse id="r3" texte="Réponse 3">
-							<resultat id="res1">
-								<nom>Insecte 1</nom>
-								<type>MEL1</type>
-								<regimeAlimentaire>Prédateur</regimeAlimentaire>
-								<informations>Informations insecte 1</informations>
-								<media>
-									<img id="img2" src="images/insecte.jpg" />
-								</media>
-							</resultat>
-						</reponse>
-						<reponse id="r4" texte="Réponse 4">
-							<branche id="b2">
-								<question id="q6" texte="Encore une question ?" visible="both">
-									...
-								</question>
-							</branche>
-						</reponse>
-					</question>
-				</branche>
-			</reponse>
-		</question>
-	</branche>
-</arbre>
-	\end{verbatim}
+	Le fichier XML final est représenté sur la figure \ref{fichier xml}.
+	\newpage	
+		
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/fichier_xml.png}
+	\caption{Version finale du fichier XML}
+	\label{fichier xml}
+\end{figure}
 	
-	Nous avons bien sur corrigé la DTD associée à ce fichier XML. Cette DTD est le modèle du fichier XML et permet donc de le valider. 
-	\begin{verbatim}
-	<?xml version="1.0" encoding="UTF-8"?>
-
-<!ELEMENT arbre (branche)>
-<!ATTLIST branche date CDATA #IMPLIED>
-
-<!ELEMENT branche (question)>
-<!ATTLIST branche id ID #REQUIRED>
-<!ATTLIST branche type CDATA #IMPLIED>
-
-<!ELEMENT question (reponse+, media*)>
-<!ATTLIST question id ID #REQUIRED>
-<!ATTLIST question texte NMTOKENS #REQUIRED>
-<!ATTLIST question visible NMTOKENS #IMPLIED>
-
-<!ELEMENT reponse ((branche|resultat), media*)>
-<!ATTLIST reponse id ID #REQUIRED>
-<!ATTLIST reponse texte NMTOKENS #REQUIRED>
-<!ATTLIST reponse visible NMTOKENS #IMPLIED>
-
-<!ELEMENT resultat (nom, type, regimeAlimentaire, informations, media*)>
-<!ELEMENT nom (#PCDATA)>
-<!ELEMENT type (#PCDATA)>
-<!ELEMENT regimeAlimentaire (#PCDATA)>
-<!ELEMENT informations (#PCDATA)>
-
-<!ELEMENT media (img+, video+, audio+, legende+)>
-<!ELEMENT img EMPTY>
-<!ATTLIST img id ID #REQUIRED>
-<!ATTLIST img src ENTITY #REQUIRED>
-<!ELEMENT video EMPTY>
-<!ATTLIST video id ID #REQUIRED>
-<!ATTLIST video src ENTITY #REQUIRED>
-<!ELEMENT audio EMPTY>
-<!ATTLIST audio id ID #REQUIRED>
-<!ATTLIST audio src ENTITY #REQUIRED>
-<!ELEMENT legende (#PCDATA)>
-	\end{verbatim}
+	Nous avons bien sur corrigé la DTD associée à ce fichier XML. Cette DTD est le modèle, la grammaire, du fichier XML et permet donc de le valider. Elle indique les propriétés de chaque balise ainsi que l'arborescence de notre fichier : 
 	
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/dtd.png}
+	\caption{DTD de notre fichier XML}
+	\label{dtd}
+\end{figure}
+
+	Nous allons passer en revue les différentes balises utilisées dans cette DTD : 
+	
+	\subsubsection{Balise <!ELEMENT>}
+	La balise de type ELEMENT nous indique que nous aurons une nouvelle balise dans notre fichier XML. C'est ce que l'on appel un élément.
+\begin{itemize}
+	\item \textbf{(question) :} cet opérateur nous indique que élément contiendra forcément un unique élément question				
+	\item \textbf{(reponse+) :} cet opérateur nous indique que l'élément contiendra au moins un élément reponse
+	\item \textbf{(branche|resultat) :} cet opérateur nous indique que l'élément contiendra un élément branche ou d'un élément résultat
+	\item \textbf{(nom, type) :} cet opérateur nous indique que l'élément contiendra un élément nom et d'un élément type
+	\item \textbf{(media*) :} cet opérateur nous indique que l'élément contiendra 0 ou plusieurs éléments media
+	\item \textbf{(\#PCDATA) :} cet opérateur indique que l'élément contiendra une donnée, généralement un texte en relation avec le nom utilisé par l'élément
+	\item \textbf{ANY :} cet opérateur indique que tout type d'élément est autorisé
+	\end{itemize}
+
+	\subsubsection{Balise <!ATTLIST>}
+	La balise ATTLIST nous indique que l'élément qui lui est relié aura des attributs. Les attributs sont des données indiquées à l'intérieur des balises dans le fichier XML. Elles donnent généralement des détails sur l'élément qui ne seront pas considérés comme des données.
+\begin{itemize}
+	\item \textbf{ \#IMPLIED :} indique que l'attribut est facultatif pour l'élément
+	\item \textbf{\#REQUIRED :} indique que l'attribut est obligatoire pour l'élément
+	\item \textbf{CDATA :} indique que l'attribut sera une chaine de caractères
+	\item \textbf{NMTOKENS :} indique que l'attribut sera une chaine de caractères réduite (seul une partie des caractères sont autorisés)
+	\item \textbf{ENTITY :} indique que l'attribut sera une entité externe qui ne sera pas analysée
+\end{itemize}	
+
+	\section{Résultats et statistiques}
 	Nous avons aussi, suite à plusieurs discussions avec le client, modifié le format de sortie des résultats. 
-	%mettre le nouveau format des données + explications
+	<!-- mettre le nouveau format des données + explications -->
 
 \chapter{Application PC}
-%Penser aux captures d'écrans
+
+\section{Interface et utilisation}
+- Pseudo mode d'emploi / guide utilisateur de la partie PC
+- Explication de l'interface
+- Explication des boutons
+
+Nous devions afficher une grande quantité de données à l'écran (questions, réponses, résultats et médias), sous une forme pas forcément évidente (arborescence). Nous avons donc conçu une interface sous forme de  4 bandeaux verticaux contenant chacun un type d'information. Cette disposition permet d'avoir accès à toutes les informations nécessaires en même temps à l'écran. 
+
+La figure \ref{pc vide} permet de voir l'interface principale de l'application au démarrage (les questions ne sont pas déroulées). On remarque les 4 bandeaux, qui, de gauche à droite, servent à : gérer les questions, gérer les médias associés à la question courante, gérer les réponses et les médias des réponses de la question courante et enfin d'afficher les images et les résultats. 
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/pc_vide.png}
+	\caption{Interface principale de l'application au démarrage}
+	\label{pc vide}
+\end{figure}
+
+Sur la figure \ref{pc select question}, on peut voir que les bandeaux sont remplis. En effet, l'utilisateur ayant sélectionné une question, les médias et les réponses associés à cette question vont venir remplir les bandeaux correspondants. De plus, on voit qu'une image apparait dans la bandeau le plus à droite. C'est le résultat du clic sur le media "insecte.jpg" dans le bandeau des médias de la question. 
+<!-- Descriptif des boutons de l'interface -->
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/pc_select_question.png}
+	\caption{Interface principale après avoir sélectionné une question}
+	\label{pc select question}
+\end{figure}
+
+Lorsque l'utilisateur veut créer/modifier une question, il aura affaire à la fenêtre présente sur la figure \ref{pc new question}. Cette fenêtre lui permet d'écrire le texte de la question et de choisir si cette question est visible à l'oeil nu, à la loupe ou les deux via les checkbox. En validant la fenêtre, il crée/modifie la question sélectionnée. 
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/pc_new_question.png}
+	\caption{Boite de dialogue lorsque l'on veut créer/modifier une question}
+	\label{pc new question}
+\end{figure}
+
+\section{Module de lecture/écriture XML}
+Partie de Martin et Jérome
+
+\section{Mécanisme d'affichage des arborescences}
+Expliquer comment fonctionne les TreeView : mécanisme d'index, de coordonnées...
 
 \section{Visualisation des médias}
-cf. rapport Simon
+Les questions, réponses et résultats de notre arborescence peuvent être accompagnés de médias pour aider l'utilisateur à se déterminer. Les 3 principaux formats de médias retenus sont les images, les sons et les vidéos. Nous avons donc développer 3 méthodes pour afficher ces médias. 
 
 	\subsection{Visualisation des images}
+	Le média le plus utilisé et donc le plus important sera l'image. Pour intégrer une image dans une application Qt, il nous faut posséder son chemin (le "path"). Ce chemin est stocké dans les objets "Media" (attribut "path"). A partir de ce chemin, on peut créer un objet QImage. Pour vérifier que le chemin est correct et qu'il existe bien un fichier image à cet emplacement, il faut s'assurer que l'objet QImage obtenu n'est pas NULL. Ensuite, on peut éventuellement redimensionner  notre image à la bonne taille avant de la convertir en QPixmap. Il suffit désormais d'utiliser cet objet QPixmap dans un QLabel pour voir s'afficher notre image dans l'interface de l'application PC. 
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=1\textwidth]{images/lecteur_image.png}
+	\caption{Code permettant d'afficher une image}
+	\label{lecteur image}
+\end{figure}
 
 	\subsection{Lecteur audio}
-	
+	L'objectif était de pouvoir lire plusieurs types de médias et donc, parmi eux, se trouvaient les fichiers audio.
+Nous avons donc choisi de créer un lecteur intégré à l'application pour ne pas avoir à dépendre du système d'exploitation sur lequel on l'installera.
+Le lecteur est très simple. Il est constitué de 6 éléments : 
+\begin{itemize}
+	\item Un bouton PLAY,
+	\item Un bouton PAUSE,
+	\item Un bouton STOP,
+	\item Une barre de défilement du temps,
+	\item L'affichage numérique du temps actuel du média,
+	\item Une barre de volume.
+\end{itemize}
+
+Après quelques recherches sur les librairies Qt permettant de gérer mes fichiers audio, nous avons choisi d'utiliser Phonon, une librairie qui permettait à la fois de gérer les fichiers audio et vidéo.
+
+Pour programmer notre lecteur audio nous utiliseront différents objets de la librairie. 
+Tout d'abord le "MediaObject" qui permet de recueillir toutes les informations du média entré en paramètre. Il sera donc l'origine de notre lecteur.
+Nous aurons ensuite les objets "SeekSlider" et "VolumeSlider" permettant de gérer, pour la première, le déroulement du temps grâce à une barre avec un curseur en mouvement et, pour la seconde, gérer le volume grâce à une barre similaire.
+
+Après avoir relié ces trois objets entre eux dans le constructeur de notre classe "mainwindow", il nous suffit de connecter grâce à la méthode "connect()" l'action "clicked" des boutons aux actions "play()", "pause()" et "stop()" qui respectivement mettent le média en lecture, pause ou l'arrête en le réinitialisant au début.
+Il est aussi nécessaire de connecter le signal de changement de média, "currentSourceChanged(Phonon::MediaSource)" où "MediaSource" est le média entré en paramètre dans le "MediaObject", avec les slot "changerSourceVolume()", qui permet de modifier le volume du média en fonction de la barre de volume, ainsi que "changerSourceAvancement()" permettant de modifier la source de la barre d'avancement.
+
+Enfin, il faut utiliser le signal « tick() » qui permet d'envoyer un signal à un temps régulier pour pouvoir actualiser le temps du média sur la barre ainsi que sur l'affichage LCD qui nous permet de visualiser le temps de la vidéo.
+Nous avons laissé le temps d'actualisation à sa valeur par défaut qui est d'une seconde soit 1000 millisecondes car le paramètre d'entrée de cette fonction doit être donné dans cette unité de temps.
+Grâce à ce signal envoyé toutes les secondes, nous pourrons effectuer le calcul du temps qui s'est écoulé dans le média grâce à une soustraction, effectuée dans la fonction "changerTemps()" entre le temps total, donné par la fonction "totalTime()" du MediaObject, et la durée restante, donnée par la fonction "remainingTime()" de ce même objet.
+Il ne nous reste plus qu'à faire un calcul pour passer cette durée en heures, minutes et secondes tout en rentrant ces données dans un objet QTime.
+On affiche alors le résultat dans le "LCD Number".
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=0.7\textwidth]{images/lecteur_audio.png}
+	\caption{Capture d'écran du lecteur audio}
+	\label{lecteur audio}
+\end{figure}
+
 	\subsection{Lecteur vidéo}
+	Tout comme le lecteur audio, le lecteur vidéo devait comporter des boutons ainsi que des barres pour pouvoir gérer le média en lecture. Dans le cadre ce lecteur, nous avons simplement ajouté la gestion de la vidéo grâce à un écran pour visualiser les images.
+	
+	Le lecteur vidéo gère les actions sur les médias de la même façon que le lecteur audio. Cependant, il faut lui ajouter la gestion des images.
+	Pour cela, nous utilisons un objet "Phonon::VideoWidget". Celui-ci permet de créer une zone de visualisation de la vidéo. Il faudra ensuite relier notre MediaObject à notre VideoWidget ainsi qu'à notre sortie audio (AudioOutput) grâce à la fonction "Phonon::createPath()" prenant en paramètre le MediaObject ainsi que la sortie. Il faudra donc utiliser cette fonction deux fois dans notre cas, une fois pour le son et une fois pour l'image.
+
+	Il est ensuite possible de paramétrer son lecteur vidéo avec différents paramètres pour modifier l'aspect de la zone l'affichage comme ajouter un filtre sur l'image. Dans notre cas, nous avons choisis de garder le filtre normal de toute notre fenêtre.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=0.7\textwidth]{images/lecteur_video.png}
+	\caption{Capture d'écran du lecteur vidéo}
+	\label{lecteur video}
+\end{figure}
+	
+	\section{Algorithme de coloration des questions}
+	L'objectif de cette fonction était de modifier la petite bulle de couleur permettant de savoir s'il y a un nombre d'informations suffisantes ou non. Notre code couleur fut le suivant : 
+\begin{itemize}
+	\item Rouge : aucune information,
+	\item Jaune : une information ou média,
+	\item Vert : au moins deux informations ou médias.
+\end{itemize}
+
+	L'algorithme de ce programme est directement inséré dans la fonction "peuplerListeQuestionsXML()" qui permet de ressortir toute la liste des questions.
+Dès qu'une question est récupérée du fichier XML, nous regardons le nombre de médias et informations insérés dans sa "listeMedia". L'objet "listeMedia" étant une liste chainée, il nous suffit de récupérer sa taille pour déterminer son nombre d'éléments.
+Ensuite nous effectuons des tests suivant le nombre d'éléments détectés puis de modifier la couleur du "QStandardItem" correspondant à la question courante.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics[width=0.7\textwidth]{images/coloration_questions.png}
+	\caption{Coloration des questions selon la quantité d'informations présentes}
+	\label{coloration questions}
+\end{figure}
 	
 \chapter{Application mobile}
 L'application tablette doit permettre d'exploiter le fichier XML conçu via le logiciel bureau. Un utilisateur doit pouvoir, via une série de questions, associer l'insecte qu'il observe sous la caméra avec une morpho espèce de notre base de données. Pour cela il dispose d'aide textuelle, ou visuelle lui permettant de repérer des points clés sur les insectes permettant leurs identifications.L'application tablette est destinée à des personnes non scientifiques. Ceci a été très important pour nous puisqu'il a fallu concevoir une interface graphique adapté simple, sans terme technique particulier et tout en gardant en tête que la personne devait pouvoir se retrouver facilement sans aucune connaissance pré requises.
@@ -310,11 +369,15 @@ Pour les aspects plus techniques, nous organisions des bilans réguliers avec not
 
 Enfin, au sein même de l'équipe, nous avons essayé d'organiser des points le plus régulièrement possible. Ces points permettaient de partager les difficultés rencontrées, de connaitre l'avancement des membres, de savoir ce qu'il restait à faire... Nous faisions un point par semaine, de préférence en début, qui durait en moyenne 10 à 15 minutes. 
 
-	\section{"Feedback" sur le projet}
-	<!-- Une citation par membre de l'équipe (environ 10-15 lignes) revenant sur le déroulement du projet -->
+	\section{Témoignage de l'équipe}
+Ayant voulu exprimer au mieux l'ambiance de l'équipe ainsi que le ressenti de chacun à propos du projet, nous avons décidé de publier un florilège des témoignages de chaque membre de l'équipe. Ceci est plus complet qu'un bilan synthétique écrit par une seule personne tout en restant assez informel et quelque peu personnel. En complément de ces 8 témoignages, vous trouverez aussi les fiches d'auto-évaluation qui ont été remplis personnellement par chacun (fiche manuscrite qui seront remises lors de la soutenance).  
 	
 	\begin{quotation}
-	blabla...
+	Dans un premier temps, je trouve que ce projet a été correctement mené. Pour notre premier projet avec une équipe de huit personnes, c'est vraiment correct et digne d'un projet de futur ingénieur. On se rend compte des problèmes qui nous arriveront dans notre future vie professionnelle. On remarque que les personnes peuvent s'investir plus ou moins, que les retards sont fréquent... C'est donc une très bonne expérience.
+	Cependant, je suis un peu déçu du travail que j'ai pu fournir et de ce que j'ai pu apprendre. En effet, la majorité du projet, j'ai dû travailler avec Jérôme. C'est quelqu'un d'intelligent et de bon. Malgré cela, je pensais pouvoir en apprendre de lui mais malheureusement cela ne s'est pas passé ainsi. De ce fait, j'ai du me débrouiller avec ce qu'il faisait quand il le voulait, et je ne pouvais pas vraiment avancer. Il aurait fallut tout reprendre mais c'était trop tard pour tout recommencer. Avec le recul, il aurait fallut que je sois seul sur une partie, et avancer par moi-même. 
+	Je retiens ainsi de cette petite histoire pas mal de choses. En effet, cela nous permet de voir qu'il est souvent difficile de s'adapter à la personne avec qui l'on travaille. Il faut prendre des décisions, rapidement, et elles doivent être bonnes.
+	Pour conclure, je retiendrais une bonne expérience tout de même étant donné que ce projet m'aura permis de voir  comment se passe un projet avec un nombre de personne assez élevé. 
+Je tiens à féliciter Matthieu qui je trouve a bien géré la situation, ce qui n'est pas évident. Nous avons au final une application fonctionnelle et vraiment agréable. 
 	\end{quotation}
 	Martin DEMEULEMEESTER --- \textsl{statut}.
 	
@@ -329,8 +392,9 @@ Enfin, au sein même de l'équipe, nous avons essayé d'organiser des points le plu
 	Mickael PURET --- \textsl{statut}.
 	
 	\begin{quotation}
-	J?ai eu des difficultés quand à l?utilisation de Qt sous Linux car nous travaillons sous différents systèmes d?exploitation et ma version n?avait pas les paquets à jour. Je suis donc passé sous Windows 7 pour continuer le projet.
-	Ma seconde difficulté fut l?utilisation de Git. J?ai effectivement eu beaucoup de mal à comprendre le fonctionnement des dépôts ainsi que de l?utilisation de Git. J?ai eu différents problèmes à plusieurs moments du projet.
+	Ce projet a été très constructif pour moi. Il m'a permit de découvrir de nouvelles technologies comme la gestion de différents types de médias sous Qt grâce à la librairie Phonon. Il m'a aussi fait de réutiliser des connaissances déjà acquises auparavant comme la création de fichiers XML et d'une DTD.
+	Ce projet nous a mis dans des conditions réelles de projet, avec un client, des objectifs précis, un cahier des charges ainsi qu'une équipe de développement contenant un chef de projet. Celui-ci s'est très bien débrouillé en créant différentes tâches en fonction du cahier des charges et en les répartissant en équipes de deux personnes.
+Grâce à ces conditions, nous avons aussi pu réaliser les diverses difficultés d'un projet d'équipe comme les délais à respecter ainsi que d'apprendre de nouvelles technologies indispensables au projet.
 	\end{quotation}
 	Simon FAUSSIER --- \textsl{statut}.
 	
@@ -353,43 +417,62 @@ Enfin, au sein même de l'équipe, nous avons essayé d'organiser des points le plu
 	Zheng ZHANG --- \textsl{statut}.	
 	
 	\begin{quotation}
-	blabla...
+	Ce projet m'a permis d'acquérir une première expérience de "chef de projet". J'ai été confronté aux difficultés de gérer une équipe sur une équipe assez longue (environ 3 mois) et de gérer les demandes parfois fluctuantes du client. 
+	C'était un projet très intéressant. Il m'a permis d'allier du développement d'application "desktop" en C++ et du développement d'application mobile en Java, domaine et langage qui me passionne. Je suis juste un peu déçu ne pas avoir pu consacrer plus de temps sur la partie mobile, en cause, les retards et les soucis rencontrés sur la partie PC qui m'ont contraints à travailler en particulier sur cette partie là. 
+	Au niveau du groupe, nous avions une équipe très intéressante, composée de personnes toutes douées dans un domaine différent. Je suis très content du fort taux de présence lors des séances de projet. Il témoigne de l'intérêt de l'équipe à s'investir dans le projet. 
+	... % à compléter
 	\end{quotation}
 	Matthieu ANCERET --- \textsl{chef de projet}.
 
-	\section{Compétences acquises}
-	Parler des compétences acquises grâce à ce projet. 
-	
-	%personnelement, ce projet m'a permis d'obtenir une "première expérience" de "chef de projet"
-	%il m'a confronté aux difficultés de gérer une équipe dans le temps (durée assez longue d'ailleurs)
-	%aux difficultés de gérer les demandes d'un client 
-	%aux difficultés de gérer le temps, le travail effectué, le travail restant...
-	%à la pression de terminer le projet en temps et en heure ^^
-
 	\section{Calendrier prévisionnel et calendrier réel} 
-	%expliquer les différences existantes entre prévisionnel et réel
+	<!-- expliquer les différences existantes entre prévisionnel et réel
+	éventuellement, produire un diagramme avec les tâches critiques, les tâches en retard... -->
+	
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/calendrier_previsionnel_taches.png}
+	\caption{Calendrier prévisionnel par tâches}
+	\label{calendrier previsionnel}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/calendrier_reel_taches.png}
+	\caption{Calendrier réel par tâches}
+	\label{calendrier reel}
+\end{figure}
 
 	\section{Erreurs commises et problèmes rencontrés}
 	+ parler des solutions mises en place
+	Cette partie est en relation avec la partie calendrier. En effet, les retards du calendrier réel sont dus aux erreurs qui seront reportés ici. 
 	
 \chapter{Futur du projet}
-Globalement, le projet est utilisable en l'état actuel. Il reste malgré tout plusieurs éléments à terminer ou à compléter : 
+Globalement, le projet est utilisable en l'état actuel. Il reste malgré tout plusieurs éléments à terminer ou à compléter, que ce soit par manque de temps ou parce que ces fonctionnalités ne faisaient pas partis du périmètre du projet. En voici une liste détaillée :  
 \begin{itemize}
-	\item Re-travailler l'ergonomie de l'application PC, notamment pour la partie faisant le lien entre une réponse et sa question associée. 
-	\item Re-organiser le dossier contenant les différents médias (par exemple, un dossier par morpho-espèce ou un dossier par branche de l'arbre)
-	\item 
+	\item Avec le recul, nous avons remarqué quelques points perfectibles dans l'interface de l'application PC. Ces points nuisent à l'ergonomie de l'application. Notamment, comment symboliser le lien entre une réponse et la question suivante. Nous avons choisi de séparer l'affichage des questions de celui des réponses. Nous avons donc symbolisé la question suivante en affichant son nom lors du clic sur une réponse. Ce nom permettant de se repérer dans l'arborescence des questions. 
+	Représenter clairement et lisiblement une arborescence XML complexe dans une interface est assez compliqué. Nous avons choisi une méthode, peut-être pas la meilleure, car il en existe d'autre. 
+	 
+	\item Actuellement, nous stockons tous les fichiers des médias dans un seul et unique dossier. Il pourrait être intéressant ce trier ces médias dans une arborescence de dossiers (par exemple, reprenant l'arborescence de l'arbre XML ; ou encore par type de médias : un dossier images, un dossier son, un dossier vidéo...). Ceci pourrait apporter plus de souplesse dans le traitement et l'analyse de ces médias.   
+		
+	\item Au niveau de l'application mobile, il serait intéressant de pouvoir visualiser les résultats et les statistiques directement sur la tablette, via une interface pratique et adaptée. Actuellement, la seule façon de consulter les résultats est de produire un fichier tableur à partir de tablette, de récupérer ce fichier et de l'ouvrir sur un PC avec un logiciel adapté (Excel, OpenOffice...). Pouvoir les consulter directement sur la tablette permettrait d'éviter cette étape d'exportation et de pouvoir gagner du temps dans le cas où l'utilisateur veut simplement vérifier ou consulter certains résultats intermédiaires en cours d'une campagne d'acquisition. 
 	
-	\item Affichage de tous les résultats (pouvoir consulter les stats/résultats directement sur la tablette)
-	\item Pouvoir changer de fichier XML à la volée (via les paramètres)
-	\item Automatiser l'application mobile : via un serveur par exemple, qui viendrait automatiquement vérifier si une nouvelle version du fichier XML existe. Cette nouvelle version serait mise à disposition via l'application PC. 
+	\item Toujours au niveau de l'application mobile, il n'est actuellement pas possible de changer le fichier de données lorsque l'application fonctionne. Il faut arrêter l'application, modifier le fichier XML et son dossier de médias associé et redémarrer l'application. Il serait intéresser de pouvoir changer la base de données (fichier XML + médias) "à la volée", à partir d'un menu de paramètre par exemple. Cela permettrait d'avoir, directement embarquée sur la tablette, plusieurs bases de données (insectes, oiseaux, plantes...) pour étendre les possibilités de l'application. 
+	
+	\item Pour rendre l'application tablette presque entièrement indépendante, il faudrait mettre en place un système de mise à jour automatique des bases de données embarquées. Actuellement, une fois la base modifiée via l'application PC, il faut copier manuellement les fichiers de cette nouvelle base sur la tablette. Une idée pourrait être d'installer un serveur sur lequel serait poussée les mises à jour réalisées par l'application PC et où l'application mobile irait régulièrement chercher les nouvelles informations. Ce mode de fonctionnement permettrait aussi à plusieurs tablettes de récupérer rapidement la dernière version de la base. La seule contrainte étant d'avoir un accès à internet à partir de la tablette (de plus en plus courant). Ce système permettrait aussi d'envoyer sur le serveur (et donc de centraliser) les résultats et les statistiques de chaque tablette. 
 \end{itemize}
 
 \chapter{Conclusion}
+Faire un bilan global sur le projet et une petite ouverture sur son avenir... 
 
-Documentation Doxygen 
+\annexes
 
-Documentation utilisateur (manuel d'utilisation) 
+\chapter{Documentation Doxygen}
+Un lien vers la doc Doxygen ou directement la doc complète au format PDF ? 
 
-Quelques éléments techniques bien précis 
+\chapter{Documentation utilisateur (manuel d'utilisation)} 
+Cette partie sera surement intégré tout au long du rapport en lui-même
+
+\chapter{Quelques éléments techniques bien précis}
+Je ne pense pas que cette partie soit utile, on en parle déjà au fur et mesure dans le rapport
 
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  31 MAY 2012 17:04
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  1 JUN 2012 01:47
 entering extended mode
 **Rapport_ProjetCo.tex
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.tex
@@ -351,21 +351,21 @@ Package pdftex.def Info: logos/Logo_Polytech_Tours.pdf used on input line 516.
 Package hyperref Info: Option `colorlinks' set `true' on input line 17.
 )
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.aux)
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 42.
-LaTeX Font Info:    ... okay on input line 42.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 42.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
+LaTeX Font Info:    ... okay on input line 43.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 43.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmr.fd"
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -390,9 +390,9 @@ Package lastpage Info: Please have a look at the pageslts package at
 (lastpage)             or
 (lastpage)             http://www.ctan.org/tex-archive/ 
 (lastpage)             install/macros/latex/contrib/pageslts.tds.zip
-(lastpage)             ! on input line 42.
+(lastpage)             ! on input line 43.
 \AtBeginShipoutBox=\box28
-Package hyperref Info: Link coloring ON on input line 42.
+Package hyperref Info: Link coloring ON on input line 43.
  ("C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2010/04/30 v2.40 Cross-referencing by name of section
 
@@ -401,14 +401,14 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count117
 )
-LaTeX Info: Redefining \ref on input line 42.
-LaTeX Info: Redefining \pageref on input line 42.
-LaTeX Info: Redefining \nameref on input line 42.
+LaTeX Info: Redefining \ref on input line 43.
+LaTeX Info: Redefining \pageref on input line 43.
+LaTeX Info: Redefining \nameref on input line 43.
 
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.out)
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.out)
 \@outlinefile=\write4
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 42.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 43.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmss.fd"
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -416,9 +416,9 @@ File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 File: logos/Logo_Polytech_Tours.pdf Graphic file (type pdf)
 
 <use logos/Logo_Polytech_Tours.pdf>
-Package pdftex.def Info: logos/Logo_Polytech_Tours.pdf used on input line 42.
+Package pdftex.def Info: logos/Logo_Polytech_Tours.pdf used on input line 43.
 (pdftex.def)             Requested size: 227.62204pt x 70.74208pt.
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 42.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 43.
 
 ("C:\Program Files\MiKTeX 2.9\tex\latex\lm\t1lmtt.fd"
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
@@ -463,142 +463,249 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  [4
 
 ]
-(D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.lot)
-\tf@lot=\write7
- [5
-
-]
 Chapter 1.
-[6
+[5
 
 ]
 Chapter 2.
-[7
+[6
 
 ]
 Chapter 3.
-<images/diag_classes_app_PC.png, id=175, 1786.675pt x 927.465pt>
+<images/diag_classes_app_PC.png, id=246, 1786.675pt x 927.465pt>
 File: images/diag_classes_app_PC.png Graphic file (type png)
 
 <use images/diag_classes_app_PC.png>
-Package pdftex.def Info: images/diag_classes_app_PC.png used on input line 59.
+Package pdftex.def Info: images/diag_classes_app_PC.png used on input line 62.
 (pdftex.def)             Requested size: 483.69685pt x 251.08403pt.
- [8
+ [7
 
- <D:/Programmation/GitHub/bebete/Rapport/images/diag_classes_app_PC.png>] [9] [
-10]
+ <D:/Programmation/GitHub/bebete/Rapport/images/diag_classes_app_PC.png>] [8]
+<images/fichier_xml.png, id=260, 583.42969pt x 739.26187pt>
+File: images/fichier_xml.png Graphic file (type png)
+
+<use images/fichier_xml.png>
+Package pdftex.def Info: images/fichier_xml.png used on input line 78.
+(pdftex.def)             Requested size: 483.69685pt x 612.91039pt.
+ <images/dtd.png, id=261, 615.29875pt x 606.265pt>
+File: images/dtd.png Graphic file (type png)
+
+<use images/dtd.png>
+Package pdftex.def Info: images/dtd.png used on input line 87.
+(pdftex.def)             Requested size: 483.69685pt x 476.60364pt.
+
+Underfull \vbox (badness 4569) has occurred while \output is active []
+
+ [9 <D:/Programmation/GitHub/bebete/Rapport/images/fichier_xml.png (PNG copy)>]
+LaTeX Font Info:    Try loading font information for OMS+lmss on input line 97.
+
+LaTeX Font Info:    No file OMSlmss.fd. on input line 97.
+
+
+LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 97.
+
+[10 <D:/Programmation/GitHub/bebete/Rapport/images/dtd.png>] [11]
 Chapter 4.
-[11
+<images/pc_vide.png, id=279, 1371.1225pt x 723.70375pt>
+File: images/pc_vide.png Graphic file (type png)
 
-]
+<use images/pc_vide.png>
+Package pdftex.def Info: images/pc_vide.png used on input line 132.
+(pdftex.def)             Requested size: 483.69685pt x 255.29886pt.
+
+<images/pc_select_question.png, id=281, 1370.11874pt x 721.69624pt>
+File: images/pc_select_question.png Graphic file (type png)
+
+<use images/pc_select_question.png>
+Package pdftex.def Info: images/pc_select_question.png used on input line 141.
+(pdftex.def)             Requested size: 483.69685pt x 254.77788pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/pc_new_question.png, id=283, 1371.1225pt x 723.70375pt>
+File: images/pc_new_question.png Graphic file (type png)
+
+<use images/pc_new_question.png>
+Package pdftex.def Info: images/pc_new_question.png used on input line 149.
+(pdftex.def)             Requested size: 483.69685pt x 255.29886pt.
+ [12
+
+ <D:/Programmation/GitHub/bebete/Rapport/images/pc_vide.png>] [13 <D:/Programma
+tion/GitHub/bebete/Rapport/images/pc_select_question.png> <D:/Programmation/Git
+Hub/bebete/Rapport/images/pc_new_question.png>] <images/lecteur_image.png, id=2
+96, 644.4075pt x 207.77625pt>
+File: images/lecteur_image.png Graphic file (type png)
+
+<use images/lecteur_image.png>
+Package pdftex.def Info: images/lecteur_image.png used on input line 168.
+(pdftex.def)             Requested size: 483.69685pt x 155.96495pt.
+ [14 <D:/Programmation/GitHub/bebete/Rapport/images/lecteur_image.png>]
+<images/lecteur_audio.png, id=302, 313.17pt x 164.11313pt>
+File: images/lecteur_audio.png Graphic file (type png)
+
+<use images/lecteur_audio.png>
+Package pdftex.def Info: images/lecteur_audio.png used on input line 203.
+(pdftex.def)             Requested size: 338.58632pt x 177.43735pt.
+ [15 <D:/Programmation/GitHub/bebete/Rapport/images/lecteur_audio.png>]
+<images/lecteur_video.png, id=307, 313.17pt x 324.46219pt>
+File: images/lecteur_video.png Graphic file (type png)
+
+<use images/lecteur_video.png>
+Package pdftex.def Info: images/lecteur_video.png used on input line 218.
+(pdftex.def)             Requested size: 338.58632pt x 350.80505pt.
+
+<images/coloration_questions.png, id=308, 240.9pt x 87.32625pt>
+File: images/coloration_questions.png Graphic file (type png)
+
+<use images/coloration_questions.png>
+Package pdftex.def Info: images/coloration_questions.png used on input line 237
+.
+(pdftex.def)             Requested size: 338.58632pt x 122.74893pt.
+ [16 <D:/Programmation/GitHub/bebete/Rapport/images/lecteur_video.png>] [17 <D:
+/Programmation/GitHub/bebete/Rapport/images/coloration_questions.png>]
 Chapter 5.
-<images/image1.jpg, id=195, 1284.8pt x 803.0pt>
+<images/image1.jpg, id=317, 1284.8pt x 803.0pt>
 File: images/image1.jpg Graphic file (type jpg)
  <use images/image1.jpg>
-Package pdftex.def Info: images/image1.jpg used on input line 181.
+Package pdftex.def Info: images/image1.jpg used on input line 249.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
 
-[12
+[18
 
  <D:/Programmation/GitHub/bebete/Rapport/images/image1.jpg>]
-<images/image2.png, id=202, 328.22626pt x 860.21375pt>
+<images/image2.png, id=324, 328.22626pt x 860.21375pt>
 File: images/image2.png Graphic file (type png)
  <use images/image2.png>
-Package pdftex.def Info: images/image2.png used on input line 201.
+Package pdftex.def Info: images/image2.png used on input line 269.
 (pdftex.def)             Requested size: 184.5617pt x 483.69685pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[13]
+[19]
 Underfull \vbox (badness 3333) has occurred while \output is active []
 
- [14 <D:/Programmation/GitHub/bebete/Rapport/images/image2.png>]
-<images/image3.png, id=220, 584.1825pt x 387.24675pt>
+ [20 <D:/Programmation/GitHub/bebete/Rapport/images/image2.png>]
+<images/image3.png, id=342, 584.1825pt x 387.24675pt>
 File: images/image3.png Graphic file (type png)
  <use images/image3.png>
-Package pdftex.def Info: images/image3.png used on input line 228.
+Package pdftex.def Info: images/image3.png used on input line 296.
 (pdftex.def)             Requested size: 483.69685pt x 320.64655pt.
 
-<images/image4.png, id=222, 405.31425pt x 170.43675pt>
+<images/image4.png, id=344, 405.31425pt x 170.43675pt>
 File: images/image4.png Graphic file (type png)
  <use images/image4.png>
-Package pdftex.def Info: images/image4.png used on input line 247.
+Package pdftex.def Info: images/image4.png used on input line 315.
 (pdftex.def)             Requested size: 386.95895pt x 162.71758pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[15 <D:/Programmation/GitHub/bebete/Rapport/images/image3.png>]
-<images/image5.png, id=233, 264.99pt x 86.724pt>
+[21 <D:/Programmation/GitHub/bebete/Rapport/images/image3.png>]
+<images/image5.png, id=355, 264.99pt x 86.724pt>
 File: images/image5.png Graphic file (type png)
  <use images/image5.png>
-Package pdftex.def Info: images/image5.png used on input line 258.
+Package pdftex.def Info: images/image5.png used on input line 326.
 (pdftex.def)             Requested size: 290.22105pt x 94.98776pt.
 
-[16 <D:/Programmation/GitHub/bebete/Rapport/images/image4.png> <D:/Programmatio
+[22 <D:/Programmation/GitHub/bebete/Rapport/images/image4.png> <D:/Programmatio
 n/GitHub/bebete/Rapport/images/image5.png>]
-<images/image6.png, id=243, 434.8245pt x 31.317pt>
+<images/image6.png, id=365, 434.8245pt x 31.317pt>
 File: images/image6.png Graphic file (type png)
  <use images/image6.png>
-Package pdftex.def Info: images/image6.png used on input line 283.
+Package pdftex.def Info: images/image6.png used on input line 351.
 (pdftex.def)             Requested size: 483.69685pt x 34.83728pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 288--292
+Underfull \hbox (badness 10000) in paragraph at lines 356--360
 
  []
 
-[17 <D:/Programmation/GitHub/bebete/Rapport/images/image6.png>]
+[23 <D:/Programmation/GitHub/bebete/Rapport/images/image6.png>]
 Chapter 6.
-[18
+[24
 
-] [19]
+]
+<images/calendrier_previsionnel_taches.png, id=382, 487.8225pt x 685.05937pt>
+File: images/calendrier_previsionnel_taches.png Graphic file (type png)
+
+<use images/calendrier_previsionnel_taches.png>
+Package pdftex.def Info: images/calendrier_previsionnel_taches.png used on inpu
+t line 433.
+(pdftex.def)             Requested size: 483.69685pt x 679.2771pt.
+
+
+LaTeX Warning: Float too large for page by 22.14001pt on input line 436.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<images/calendrier_reel_taches.png, id=384, 493.0922pt x 685.8122pt>
+File: images/calendrier_reel_taches.png Graphic file (type png)
+
+<use images/calendrier_reel_taches.png>
+Package pdftex.def Info: images/calendrier_reel_taches.png used on input line 4
+40.
+(pdftex.def)             Requested size: 483.69685pt x 672.78204pt.
+
+
+LaTeX Warning: Float too large for page by 15.64496pt on input line 443.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[25] [26] [27 <D:/Programmation/GitHub/bebete/Rapport/images/calendrier_previsi
+onnel_taches.png>] [28 <D:/Programmation/GitHub/bebete/Rapport/images/calendrie
+r_reel_taches.png>]
 Chapter 7.
-LaTeX Font Info:    Try loading font information for OMS+lmss on input line 368
-.
-LaTeX Font Info:    No file OMSlmss.fd. on input line 368.
-
-LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
-(Font)              using `OMS/cmsy/m/n' instead
-(Font)              for symbol `textbullet' on input line 368.
-
-[20
+[29
 
 ]
 Chapter 8.
+[30
+
+]
+Appendix A.
+[31
+
+]
+Appendix B.
+[32
+
+]
+Appendix C.
 
 AED: lastpage setting LastPage
-[21
+[33
 
 ] ( FP-DIV ) ( FP-TRUNC ) ( FP-MUL ) ( FP-SUB ) ( FP-TRUNC ) ( FP-ZERO? )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 385.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 478.
 
-[22
+[34
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 385.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 478.
  (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 385.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 385.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 478.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 478.
 Package rerunfilecheck Info: File `Rapport_ProjetCo.out' has not changed.
-(rerunfilecheck)             Checksum: 6F14347F32C17601B377F55ECF816F8B;1281.
+(rerunfilecheck)             Checksum: EE53025E680F58C8EB22558640A70034;2143.
 
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 6876 strings out of 494045
- 97212 string characters out of 3148379
- 205998 words of memory out of 3000000
- 9961 multiletter control sequences out of 15000+200000
- 56530 words of font info for 42 fonts, out of 3000000 for 9000
+ 6987 strings out of 494045
+ 99313 string characters out of 3148379
+ 208167 words of memory out of 3000000
+ 10029 multiletter control sequences out of 15000+200000
+ 62527 words of font info for 44 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 41i,14n,45p,1615b,444s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,14n,45p,1615b,402s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
 iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
@@ -609,9 +716,9 @@ s/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts
 lmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Program Files/Mi
 KTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Rapport_ProjetCo.pdf (22 pages, 855831 bytes).
+Output written on Rapport_ProjetCo.pdf (34 pages, 2100194 bytes).
 PDF statistics:
- 347 PDF objects out of 1000 (max. 8388607)
- 69 named destinations out of 1000 (max. 500000)
- 237 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 506 PDF objects out of 1000 (max. 8388607)
+ 104 named destinations out of 1000 (max. 500000)
+ 392 words of extra memory for PDF output out of 10000 (max. 10000000)
 
