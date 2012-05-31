@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Wed 30. May 21:07:34 2012
+** Created: Wed 30. May 22:25:16 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -37,6 +37,7 @@ public:
     QAction *actionExporter_XML;
     QAction *actionQuitter;
     QAction *actionA_propos_de;
+    QAction *actionRecalculer_couleur;
     QWidget *centralWidget;
     QHBoxLayout *horizontalLayout;
     QHBoxLayout *horizontalLayout_2;
@@ -48,6 +49,7 @@ public:
     QPushButton *button_modifierQuestion;
     QPushButton *button_supprimerQuestion;
     QTreeView *treeViewQuestion;
+    QSpacerItem *verticalSpacer_4;
     QFrame *line;
     QVBoxLayout *verticalLayout;
     QLabel *labelQuestion;
@@ -122,6 +124,8 @@ public:
         actionQuitter->setObjectName(QString::fromUtf8("actionQuitter"));
         actionA_propos_de = new QAction(MainWindow);
         actionA_propos_de->setObjectName(QString::fromUtf8("actionA_propos_de"));
+        actionRecalculer_couleur = new QAction(MainWindow);
+        actionRecalculer_couleur->setObjectName(QString::fromUtf8("actionRecalculer_couleur"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setEnabled(true);
@@ -189,16 +193,29 @@ public:
 
         treeViewQuestion = new QTreeView(centralWidget);
         treeViewQuestion->setObjectName(QString::fromUtf8("treeViewQuestion"));
-        sizePolicy.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
-        treeViewQuestion->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Preferred, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(treeViewQuestion->sizePolicy().hasHeightForWidth());
+        treeViewQuestion->setSizePolicy(sizePolicy2);
         QFont font2;
         font2.setPointSize(12);
         treeViewQuestion->setFont(font2);
         treeViewQuestion->setContextMenuPolicy(Qt::DefaultContextMenu);
+        treeViewQuestion->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeViewQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+        treeViewQuestion->setEditTriggers(QAbstractItemView::NoEditTriggers);
         treeViewQuestion->setSelectionBehavior(QAbstractItemView::SelectRows);
+        treeViewQuestion->setAnimated(true);
+        treeViewQuestion->header()->setVisible(false);
+        treeViewQuestion->header()->setDefaultSectionSize(500);
+        treeViewQuestion->header()->setStretchLastSection(false);
 
         verticalLayout_4->addWidget(treeViewQuestion);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_4);
 
 
         horizontalLayout_2->addLayout(verticalLayout_4);
@@ -331,14 +348,17 @@ public:
 
         treeViewMediasQuestion = new QTreeView(centralWidget);
         treeViewMediasQuestion->setObjectName(QString::fromUtf8("treeViewMediasQuestion"));
-        QSizePolicy sizePolicy2(QSizePolicy::Minimum, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(treeViewMediasQuestion->sizePolicy().hasHeightForWidth());
-        treeViewMediasQuestion->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy3(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(treeViewMediasQuestion->sizePolicy().hasHeightForWidth());
+        treeViewMediasQuestion->setSizePolicy(sizePolicy3);
         treeViewMediasQuestion->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
         treeViewMediasQuestion->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
-        treeViewMediasQuestion->setAnimated(false);
+        treeViewMediasQuestion->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        treeViewMediasQuestion->setAnimated(true);
+        treeViewMediasQuestion->header()->setVisible(false);
+        treeViewMediasQuestion->header()->setDefaultSectionSize(500);
         treeViewMediasQuestion->header()->setMinimumSectionSize(25);
 
         verticalLayout->addWidget(treeViewMediasQuestion);
@@ -461,6 +481,10 @@ public:
         treeViewReponse->setSizePolicy(sizePolicy);
         treeViewReponse->setFont(font2);
         treeViewReponse->setContextMenuPolicy(Qt::DefaultContextMenu);
+        treeViewReponse->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        treeViewReponse->setAnimated(true);
+        treeViewReponse->setHeaderHidden(true);
+        treeViewReponse->header()->setDefaultSectionSize(500);
 
         verticalLayout_2->addWidget(treeViewReponse);
 
@@ -559,6 +583,7 @@ public:
         actionExporter_XML->setText(QApplication::translate("MainWindow", "Exporter XML", 0, QApplication::UnicodeUTF8));
         actionQuitter->setText(QApplication::translate("MainWindow", "Quitter", 0, QApplication::UnicodeUTF8));
         actionA_propos_de->setText(QApplication::translate("MainWindow", "A propos de", 0, QApplication::UnicodeUTF8));
+        actionRecalculer_couleur->setText(QApplication::translate("MainWindow", "Recalculer couleur", 0, QApplication::UnicodeUTF8));
         button_addQuestionFrere->setText(QApplication::translate("MainWindow", "Ajouter un fr\303\250re", 0, QApplication::UnicodeUTF8));
         button_addQuestionFils->setText(QApplication::translate("MainWindow", "Ajouter un fils", 0, QApplication::UnicodeUTF8));
         button_modifierQuestion->setText(QApplication::translate("MainWindow", "Modifier", 0, QApplication::UnicodeUTF8));
