@@ -111,7 +111,7 @@ public class GestionBDD extends SQLiteOpenHelper {
 					COL_NOMBRE + " INTEGER, " +
 					COL_DATE_RECOLTE + " DATE, " +
 					"FOREIGN KEY(" + COL_PIEGE_ID +") REFERENCES " + TABLE_PARCELLE + "(" + COL_ID + ") ON DELETE CASCADE, " +
-					"UNIQUE (" + COL_PIEGE_ID + "," + COL_NOM + "));";
+					"UNIQUE (" + COL_PIEGE_ID + "," + COL_NOM + "," + COL_DATE_RECOLTE + "));";
 	
 	/** Constructeur de GestionBDD en lien avec SQLiteOpenHelper*/
 	public GestionBDD(Context context, String name, CursorFactory factory, int version) {

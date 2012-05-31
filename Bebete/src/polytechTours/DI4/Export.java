@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.Vector;
 
+import polytechTours.DI4.GesionIdentification.FileManager;
 import polytechTours.DI4.bdd.Campagne;
 import polytechTours.DI4.bdd.CampagneBDD;
 import polytechTours.DI4.bdd.Parcelle;
@@ -40,21 +41,15 @@ public class Export {
 		
 		//** création du fichier **//
 		//Chemin de sauvegarde memoire interne : /Pictures/Inno/csv/
-	    File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Inno");
-			
-	    if (! mediaStorageDir.exists()){
-	        if (! mediaStorageDir.mkdirs()){
-	            Log.d("exportCSV", "failed to create directory Inno");
-	            return;
-	        }
-	    }
 	    
-	    File exportCSV = new File(mediaStorageDir.getPath() + File.separator + "export");
+	    File exportCSV = new File( FileManager.getSavePath() + File.separator + "export");
 	    if(!exportCSV.exists())
 		    if(exportCSV.mkdir() == false ){
 		    	Log.d("exportCSV", "failed to create directory export");
 		    	return;
 		    }
+	    
+	    //FileManager.updateFileSystem(exportCSV, activity);
 	    
 	    //Obtient la date actuelle        
 		final Calendar c = Calendar.getInstance();        

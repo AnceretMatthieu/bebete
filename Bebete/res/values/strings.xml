@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="hello">Hello World, BebeteActivity!</string>
@@ -48,8 +48,11 @@
 	<string name="bonjour">Bonjour</string>
 	<string name="identifiezvous">Identifiez vous :</string>
 	<string name="ok">Valider</string>
-	<string name="newUser">Créer un compt</string>
+	<string name="newUser">Créer un compte</string>
 	<string name="utilisatorNameNided">Indiquez un nom d\'utilisateur</string>
 	<string name="creer">créer</string>
 	<string name="adresseGPSCampagne">Localisation GPS de la campagne</string>
+	<string name="alerteText">Je suis bloqué</string>
+	<string name="textAide">Vous êtes bloqué ? Les réponses proposé ne sont pas claires ? L\'aide insuffisante ? Merci de prendre le temps de nous signaler tout problème ou toutes imprécision dans l\'application.</string>
+	<string name="titreDetail">Details :</string>
 </resources>

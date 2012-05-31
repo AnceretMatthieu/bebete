@@ -2,26 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
    		  <item android:id="@+id/menu_utilisateurs"
           android:title="Utilisateurs"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="always" />
           <item android:id="@+id/menu_campagne"
           android:title="Campagnes"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="always" />
    		  <item android:id="@+id/menu_parcelle"
           android:title="Parcelles"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="always" />
 		  <item android:id="@+id/menu_piege"
           android:title="Pièges"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="always" />
 		  <item android:id="@+id/menu_identifier"
           android:title="Identifier"
-          android:showAsAction="ifRoom|withText" />
-		  <item android:id="@+id/menu_fast_count"
-          android:title="Identification rapide"
-          android:showAsAction="ifRoom|withText" />
-		  <item android:id="@+id/menu_exporter"
+          android:showAsAction="always" />
+		  <item android:title="Identification rapide" 
+		  android:showAsAction="always" 
+		  android:id="@+id/menu_fast_count"/>
+		  <item android:id="@+id/menu_parametre"
           android:title="Exporter"
-          android:showAsAction="ifRoom|withText" />
-		  <item android:id="@+id/menu_quitter"
-          android:title="Quitter"
-          android:showAsAction="ifRoom|withText" />
+          android:showAsAction="always" />
+		  
+		  
 </menu>

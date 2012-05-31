@@ -13,15 +13,28 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.Vector;
+import java.util.zip.Inflater;
 
 import polytechTours.DI4.R;
+import polytechTours.DI4.GesionIdentification.FileManager;
+import polytechTours.DI4.GesionIdentification.ReacherQR;
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.View.OnClickListener;
 import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -32,52 +45,62 @@ import android.widget.ScrollView;
 * @brief le Layout principal
 *   
 */ 
-public class Windows extends RelativeLayout {
-
+public class Windows extends RelativeLayout implements OnClickListener
+{
 	private Context mContext;             
-	private static ArrayList<String> paths = new ArrayList<String>();   /**< le path des photos*/
+	private static Vector<String> listChemin = new Vector<String>();   
 	private ScrollView s ;                              /**< le ScrollView ou on met des photos*/
-	
 	public String photoURL;                            /**< l'url des photos*/
-	public RelativeLayout k;                            /**< le Layout ou on met des photos*/
+	public RelativeLayout k;    /**< le Layout ou on met des photos*/
+	private Activity activity;
 	
+	public void setActivity(Activity activity) {
+		this.activity = activity;
+	}
+
 	public Windows(Context context) {
 		super(context);
 		mContext = context;
-		setupViews();
+		try {
+			setupViews();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 
 	public Windows(Context context, AttributeSet attrs)  {
 		super(context, attrs);
 		mContext = context;
-		setupViews();
+		try {
+			setupViews();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 	/**  
      * @brief mettre les photos dans le Layout K 
      *  
      */
-	public void setupViews(){		
-		
+	public void setupViews() throws FileNotFoundException{		
+		 
 		final LayoutInflater mLayoutInflater = LayoutInflater.from(getContext());
 		View v = mLayoutInflater.inflate(R.layout.fast_count_gallery, null);		
-		s=  (ScrollView) v.findViewById(R.id.scrollView1);
+		s = (ScrollView) v.findViewById(R.id.scrollView1);
 		
 		//lire les photos dans maps
 		Map<String,Bitmap> maps = new TreeMap<String, Bitmap>();
-		try {
-			maps = buildThum();
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		maps = buildThum();
 		
 		//base sur le nombre de photos,on crÃ©e un Layout k
-		int li=paths.size()/6;
-		int hi=210*(li+1);
+		int li = listChemin.size()/6;
+		int hi = 210*(li+1);
 		
-		 k=new RelativeLayout(mContext);		
-		RelativeLayout.LayoutParams  rlp = new RelativeLayout.LayoutParams(1500,hi);
+		k = new RelativeLayout(mContext);		
+		RelativeLayout.LayoutParams rlp = new RelativeLayout.LayoutParams(1500,hi);
 		k.setLayoutParams(rlp);
 		
 		
@@ -104,83 +127,60 @@ public class Windows extends RelativeLayout {
 			image.setY(210*line);			
 			
 			image.setImageBitmap(bm);
-			image.setScaleType(ImageView.ScaleType.FIT_XY);
+			image.setScaleType(ImageView.ScaleType.FIT_CENTER);
 			image.setLayoutParams(new Gallery.LayoutParams(200, 200));
 			image.setId(i++);
-			
+			image.setOnClickListener(this);
+			Log.d("LOL", "Image correctement affiché" );
 	        k.addView(image);			
-			image.setOnTouchListener(listener);
 		}
-		
-		addView(v);
+		addView(v); 
 	}	
-	/**  
-     * @brief quand on touche l'image,on transmet l'url d'image a photoURL 
-     *  
-     */
-	OnTouchListener listener = new OnTouchListener() {
-		public boolean onTouch(View v, MotionEvent event) {			
-			
-			if(event.getAction() == MotionEvent.ACTION_DOWN){
-				String path = paths.get(v.getId());
-				photoURL=path;				
-			}
-			return false;
-		}
-	};
-	/**  
-     * @brief   get Absolute Path
-     *  
-     */	
-	private static ArrayList<String> imagePath(File file) {
-		ArrayList<String> list = new ArrayList<String>();
-
-		File[] files = file.listFiles();
-		for (File f : files) {
-			list.add(f.getAbsolutePath());
-		}
-		Collections.sort(list);
-		return list;
-	}
-
+	
 	/**  
      * @brief  lire l'image dans la structure map
      *  
      */	
-	private Map<String,Bitmap> buildThum() throws FileNotFoundException {
-		
-		//le path des images
-		File baseFile = new File("/sdcard/Pictures/Inno");		
+	private Map<String,Bitmap> buildThum()
+	{	
 		Map<String,Bitmap> maps = new TreeMap<String, Bitmap>();
 		
-		if (baseFile != null && baseFile.exists()) {
-			paths = imagePath(baseFile);
-
-			if (!paths.isEmpty()) {				
-				
-				for (int i = 0; i < paths.size(); i++) {
-					
-					String fName=paths.get(i).toString();
-					String end = fName.substring(fName.lastIndexOf(".") + 1, fName.length()).toLowerCase();
-				//si la format du ficher est jpg,gif,png,jpeg,bmp, on le met dans la structure map
-				 if (end.equals("jpg") || end.equals("gif") || end.equals("png")  || end.equals("jpeg") || end.equals("bmp"))
-					 {
-					 BitmapFactory.Options options = new BitmapFactory.Options();
-					 options.inJustDecodeBounds = true;
-					 Bitmap bitmap =BitmapFactory.decodeFile(paths.get(i),options);
-					 
-					 options.inJustDecodeBounds = false;
-					 int be = options.outHeight/100;
-					 if (be <= 0) {  be = 10;  }
-					 
-					 options.inSampleSize = be;
-					 bitmap = BitmapFactory.decodeFile(paths.get(i),options);
-					 maps.put(paths.get(i), bitmap);}
-					 
-				}
-			}
+		ReacherQR reacher = new ReacherQR();
+		listChemin = reacher.listeImageResultat();
+		
+		for( int i = 0; i < listChemin.size(); i++ )
+		{
+			Bitmap bitmap = BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + listChemin.get(i) );
+			maps.put( listChemin.get(i), bitmap );
+			Log.d("LOL", "chemin " + listChemin.get(i) );
 		}
-
 		return maps;
+	}
+
+	public void onClick(View v) 
+	{
+		String path = listChemin.get(v.getId());
+		photoURL=path;			
+		Log.d("LOL", "117 " + path );
+		
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); 
+        int piege_id = (int)preferences.getLong("PIEGE_ID", -1);
+		
+		Info info = new Info( path, piege_id );
+		info.getId();
+		
+		FragmentManager manager = activity.getFragmentManager();
+		Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
+				
+		if( fragmentEnCours != null )
+		{
+			FragmentTransaction transaction = manager.beginTransaction();
+				transaction.remove( fragmentEnCours );
+			transaction.commit();
+		}
+		
+		FragmentTransaction transaction = manager.beginTransaction();
+			transaction.add( R.id.linearLayout2, info, "enCours" );
+		transaction.commit();
 	}
 }

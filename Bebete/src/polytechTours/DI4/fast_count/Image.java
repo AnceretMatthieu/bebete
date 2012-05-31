@@ -8,11 +8,15 @@ package polytechTours.DI4.fast_count;
 */ 
 import polytechTours.DI4.R;
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 
 import android.widget.ScrollView;
@@ -23,50 +27,34 @@ import android.widget.Toast;
 *   
 */ 
 
-public class Image extends Activity {
-    
+public class Image extends Fragment 
+{
 	private Windows w;             /**< le Layout principal*/
 	private ScrollView s;	        /**< le ScrollView ou on met les photos*/
 	private int piege_id;
+	private Activity activity;
 	
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) 
+	public void onAttach(Activity activity)  
 	{
-	    MenuInflater inflater = getMenuInflater();
-	    inflater.inflate( R.layout.actionbar, menu); 
-	    return true;
+        super.onAttach(activity);
+        this.activity = activity; //Sauvegarde de l'activity
 	}
 	
 	@Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fast_count_main);        
-        
-        w = (Windows) findViewById(R.id.windows);
-        s=(ScrollView) findViewById(R.id.scrollView1);        
-        s.addView(w.k);             /**< w.k c'est Layout pour mettre les photos*/
-        
-        //obtenir l'url d'image qui est transmis du WINDOWS
-        Intent intent=getIntent();
-        piege_id = (int) intent.getLongExtra("PIEGE_ID", -1);
-        
-        w.k.setOnClickListener(new OnClickListener() {
-           
-        	
-        	public void onClick(View v) {
-        		//Toast.makeText(Image.this, "111", Toast.LENGTH_SHORT).show();
-            	//quand on click l'image on transmet l'url d'image à l'autre Activity info.class
-            	Intent activInfo=new Intent(Image.this,Info.class);
-            	
-                Bundle bundle=new Bundle(); 
-                bundle.putString("url", w.photoURL);
-                bundle.putLong("PIEGE_ID", piege_id);
-                activInfo.putExtras(bundle);
-                
-                startActivity(activInfo);
-            }
-        });
-        
-      
+    public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
+    {		
+		//Le fragment prend la forme du fichier layout XML passer en parametre, ici reponse.xml
+        return inflater.inflate( R.layout.fast_count_main, container, false); 
     }
+	
+	@Override
+	public void onActivityCreated (Bundle savedInstanceState)
+	{
+		super.onActivityCreated(savedInstanceState);       
+		 w = (Windows) activity.findViewById(R.id.windows);
+		 w.setActivity( activity );
+	     s=(ScrollView) activity.findViewById(R.id.scrollView1);        
+	     s.addView(w.k);        
+	}
+	
 }
