@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  31 MAY 2012 09:27
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  31 MAY 2012 17:04
 entering extended mode
 **Rapport_ProjetCo.tex
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.tex
@@ -347,7 +347,9 @@ File: logos/Logo_Polytech_Tours.pdf Graphic file (type pdf)
 Package pdftex.def Info: logos/Logo_Polytech_Tours.pdf used on input line 516.
 (pdftex.def)             Requested size: 73.97733pt x 22.99023pt.
 )
-(D:\Programmation\GitHub\bebete\Rapport\include.tex)
+(D:\Programmation\GitHub\bebete\Rapport\include.tex
+Package hyperref Info: Option `colorlinks' set `true' on input line 17.
+)
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.aux)
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 42.
 LaTeX Font Info:    ... okay on input line 42.
@@ -475,7 +477,7 @@ Chapter 2.
 
 ]
 Chapter 3.
-<images/diag_classes_app_PC.png, id=165, 1786.675pt x 927.465pt>
+<images/diag_classes_app_PC.png, id=175, 1786.675pt x 927.465pt>
 File: images/diag_classes_app_PC.png Graphic file (type png)
 
 <use images/diag_classes_app_PC.png>
@@ -490,7 +492,7 @@ Chapter 4.
 
 ]
 Chapter 5.
-<images/image1.jpg, id=185, 1284.8pt x 803.0pt>
+<images/image1.jpg, id=195, 1284.8pt x 803.0pt>
 File: images/image1.jpg Graphic file (type jpg)
  <use images/image1.jpg>
 Package pdftex.def Info: images/image1.jpg used on input line 181.
@@ -499,7 +501,7 @@ Package pdftex.def Info: images/image1.jpg used on input line 181.
 [12
 
  <D:/Programmation/GitHub/bebete/Rapport/images/image1.jpg>]
-<images/image2.png, id=192, 328.22626pt x 860.21375pt>
+<images/image2.png, id=202, 328.22626pt x 860.21375pt>
 File: images/image2.png Graphic file (type png)
  <use images/image2.png>
 Package pdftex.def Info: images/image2.png used on input line 201.
@@ -512,13 +514,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 3333) has occurred while \output is active []
 
  [14 <D:/Programmation/GitHub/bebete/Rapport/images/image2.png>]
-<images/image3.png, id=210, 584.1825pt x 387.24675pt>
+<images/image3.png, id=220, 584.1825pt x 387.24675pt>
 File: images/image3.png Graphic file (type png)
  <use images/image3.png>
 Package pdftex.def Info: images/image3.png used on input line 228.
 (pdftex.def)             Requested size: 483.69685pt x 320.64655pt.
 
-<images/image4.png, id=212, 405.31425pt x 170.43675pt>
+<images/image4.png, id=222, 405.31425pt x 170.43675pt>
 File: images/image4.png Graphic file (type png)
  <use images/image4.png>
 Package pdftex.def Info: images/image4.png used on input line 247.
@@ -528,7 +530,7 @@ Package pdftex.def Info: images/image4.png used on input line 247.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [15 <D:/Programmation/GitHub/bebete/Rapport/images/image3.png>]
-<images/image5.png, id=223, 264.99pt x 86.724pt>
+<images/image5.png, id=233, 264.99pt x 86.724pt>
 File: images/image5.png Graphic file (type png)
  <use images/image5.png>
 Package pdftex.def Info: images/image5.png used on input line 258.
@@ -536,7 +538,7 @@ Package pdftex.def Info: images/image5.png used on input line 258.
 
 [16 <D:/Programmation/GitHub/bebete/Rapport/images/image4.png> <D:/Programmatio
 n/GitHub/bebete/Rapport/images/image5.png>]
-<images/image6.png, id=233, 434.8245pt x 31.317pt>
+<images/image6.png, id=243, 434.8245pt x 31.317pt>
 File: images/image6.png Graphic file (type png)
  <use images/image6.png>
 Package pdftex.def Info: images/image6.png used on input line 283.
@@ -550,53 +552,66 @@ Underfull \hbox (badness 10000) in paragraph at lines 288--292
 Chapter 6.
 [18
 
-]
+] [19]
 Chapter 7.
-[19
+LaTeX Font Info:    Try loading font information for OMS+lmss on input line 368
+.
+LaTeX Font Info:    No file OMSlmss.fd. on input line 368.
+
+LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
+(Font)              using `OMS/cmsy/m/n' instead
+(Font)              for symbol `textbullet' on input line 368.
+
+[20
 
 ]
 Chapter 8.
 
 AED: lastpage setting LastPage
-[20
+[21
 
 ] ( FP-DIV ) ( FP-TRUNC ) ( FP-MUL ) ( FP-SUB ) ( FP-TRUNC ) ( FP-ZERO? )
-( FP-SUB ) ( FP-TRUNC ) ( FP-SUB ) ( FP-POS? ) ( FP-SUB ) ( FP-POS? ) [21
-
-]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 335.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 385.
 
 [22
 
+
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 335.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 385.
  (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 335.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 335.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 385.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 385.
 Package rerunfilecheck Info: File `Rapport_ProjetCo.out' has not changed.
-(rerunfilecheck)             Checksum: B77A7A71068DF33DC5E6B8DCCB81F736;1151.
- )
-(\end occurred when \iffalse on line 335 was incomplete) 
+(rerunfilecheck)             Checksum: 6F14347F32C17601B377F55ECF816F8B;1281.
+
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ ) 
 Here is how much of TeX's memory you used:
- 6863 strings out of 494045
- 97058 string characters out of 3148379
- 205997 words of memory out of 3000000
- 9953 multiletter control sequences out of 15000+200000
- 53468 words of font info for 40 fonts, out of 3000000 for 9000
+ 6876 strings out of 494045
+ 97212 string characters out of 3148379
+ 205998 words of memory out of 3000000
+ 9961 multiletter control sequences out of 15000+200000
+ 56530 words of font info for 42 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
  41i,14n,45p,1615b,444s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Program Files/MiKTe
-X 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips
-/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx10.pfb
-><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><C:/Program File
-s/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/MiKTeX 2.9/font
-s/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
-lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmss12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Program Files/MiK
-TeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Rapport_ProjetCo.pdf (22 pages, 821489 bytes).
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
+iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
+lmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Rapport_ProjetCo.pdf (22 pages, 855831 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
- 67 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 347 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 

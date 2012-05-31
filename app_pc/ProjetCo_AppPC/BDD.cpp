@@ -44,6 +44,7 @@ void BDD::enregistrerArbre(Categorie *racine, QString filePath)
         QTextStream textStream(&fichier);
         qDebug() <<"\n Enregistrement dans le fichier";
         textStream <<  doc.toString();
+        qDebug() <<"\n Enregistrement dans le fichier OK";
     }
 
    fichier.close();

@@ -108,16 +108,12 @@ void MainWindow::createAction()
     connect(ui->actionExporter_XML, SIGNAL(triggered()), this, SLOT(on_actionExporter_XML_triggered()));
     connect(ui->actionImporter_XML, SIGNAL(triggered()), this, SLOT(on_actionImporter_XML_triggered()));
     connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(on_actionQuitter_triggered()));
-    connect(ui->actionA_propos_de, SIGNAL(triggered()), this, SLOT(on_actionApropos()));
+    connect(ui->actionA_propos_de, SIGNAL(triggered()), this, SLOT(actionApropos()));
 
     /* Gestion du clic sur les items */
-    connect(ui->treeViewQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewQuestions(QModelIndex)));
-    connect(ui->treeViewReponse, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewReponse(QModelIndex)));
-    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(on_clickTreeViewMediasQuestions(QModelIndex)));
-
-    /* Gestion du clic droit */
-    connect(ui->treeViewQuestion, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeQuestionsContextMenu(const QPoint&)));
-    connect(ui->treeViewReponse, SIGNAL(customContextMenuRequested(const QPoint&)), this, SLOT(treeReponsesContextMenu(const QPoint&)));
+    connect(ui->treeViewQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(clickTreeViewQuestions(QModelIndex)));
+    connect(ui->treeViewReponse, SIGNAL(clicked(QModelIndex)), this, SLOT(clickTreeViewReponse(QModelIndex)));
+    connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(clickTreeViewMediasQuestions(QModelIndex)));
 
     /* Affectation des actions aux boutons des questions */
     connect(ui->button_addQuestionFils, SIGNAL(clicked()), this, SLOT(newQuestionFils()));
@@ -159,6 +155,10 @@ void MainWindow::on_actionImporter_XML_triggered()
 
 void MainWindow::on_actionExporter_XML_triggered()
 {
+    // TODO : l'encodage du fichier de sortie n'est pas bon ; il faudrait être en UTF-8
+    // TODO : la fenêtre de selection du fichier de sortie s'affiche 2 fois...
+    // TODO : une fois les 2 fenêtres apparues, l'application affiche un message d'erreur et plante subitement...
+
     QString fileName = QFileDialog::getSaveFileName(this, tr("Enregistrer le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
 
     Categorie * categorie = new Categorie(1);
@@ -178,7 +178,7 @@ void MainWindow::on_actionQuitter_triggered()
     close();
 }
 
-void MainWindow::on_actionApropos()
+void MainWindow::actionApropos()
 {
     AboutWindow aboutWin;
     aboutWin.exec();
@@ -196,7 +196,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
     }
 }
 
-void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
+void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
 {
     // On commence par vider le contenu des TreeView
     model_tvReponse->clear();
@@ -302,18 +302,22 @@ void MainWindow::on_clickTreeViewQuestions(const QModelIndex &index)
     }
 }
 
-void MainWindow::on_clickTreeViewMediasQuestions(const QModelIndex &index)
+void MainWindow::clickTreeViewMediasQuestions(const QModelIndex &index)
 {
     QString txtCurIdx = model_tvMediaQuestion->itemFromIndex(index)->text();
     openMedia(txtCurIdx, 0);
 }
 
-void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
+void MainWindow::clickTreeViewReponse(const QModelIndex &index)
 {
     ui->labelImage1->clear();
     ui->labelImage2->clear();
     ui->labelImage3->clear();
     ui->labelImage4->clear();
+
+    // TODO : il faut tester si la réponse débouche sur un résultat
+    //      SI c'est le cas, afficher une nouvelle fenêtre (ou dans le panneau de droite) contenant les informations à propos du résultats
+    //      SINON traiter comme d'habitude
 
     if(index.parent() == QModelIndex()) // l'élément courant n'a pas de parent ; on affiche ses 4 premières images
     {
@@ -371,9 +375,13 @@ void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
                 }
             }
             else
-        {
-            ui->labelReponse2->setText("Pas de question suivante...");
-        }
+            {
+                ui->labelReponse2->setText("Pas de question suivante...");
+                Espece * currentResult = ((Espece *)r->getSuiv());
+                qDebug() << "RESULTAT";
+                qDebug() << "Nom : " << currentResult->getNom();
+                qDebug() << "Regime alimentaire : " << currentResult->getRegimeAlimentaire();
+            }
         }
     }
     else
@@ -386,6 +394,11 @@ void MainWindow::on_clickTreeViewReponse(const QModelIndex &index)
 void MainWindow::newQuestionFils()
 {
     // Permet d'ajouter une question en tant que fils de la question courante
+
+    /* TODO : au niveau du fichier XML, cette fonction cause des problèmes...
+      En effet, la question est ajoutée directement en tant que frère de la question père (celle qui est selectionnée)
+      Il faudrait qu'il y ait entre les deux une réponses (voir une branche)
+    */
 
     Question * newQuestion = new Question(0);
 
@@ -511,9 +524,19 @@ void MainWindow::newCommentaire()
     // Création de l'item avec le texte reçu
     QStandardItem * elem = new QStandardItem(leTxt);
     model_tvMediaQuestion->appendRow(elem);
+    // Création de l'objet média en mémoire
+    Media * newMedia = new Media(0);
+    newMedia->setPath(leTxt);
+    newMedia->setType(MEDIA_TYPE_TEXT);
 
-    // TODO : il faut associer le média à la question
-    // ...
+    // On récupère l'index de la question selectionnée dans le TreeView des questions
+    QModelIndex index = ui->treeViewQuestion->currentIndex();
+    // On calcul les coordonnées du noeud courant
+    QString coordonnees = calculerCoordonnees(index);
+    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+
+    // On ajoute le média à la question courante
+    currentQuestion->getListeMedia()->append(newMedia);
 }
 
 void MainWindow::newMedia()

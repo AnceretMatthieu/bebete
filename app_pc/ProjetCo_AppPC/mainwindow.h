@@ -72,10 +72,10 @@ class MainWindow : public QMainWindow
         void on_actionQuitter_triggered();
         void on_actionExporter_XML_triggered();
         void on_actionImporter_XML_triggered();
-        void on_actionApropos();
-        void on_clickTreeViewQuestions(const QModelIndex &index);
-        void on_clickTreeViewMediasQuestions(const QModelIndex &index);
-        void on_clickTreeViewReponse(const QModelIndex &index);
+        void actionApropos();
+        void clickTreeViewQuestions(const QModelIndex &index);
+        void clickTreeViewMediasQuestions(const QModelIndex &index);
+        void clickTreeViewReponse(const QModelIndex &index);
 
         void playAudio(QString fileName);
         void playVideo(QString fileName);

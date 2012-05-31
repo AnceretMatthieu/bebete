@@ -18,6 +18,25 @@
 				</media>
 				<branche id="b2">
 					<question id="q3" texte="Encore des questions pour cet exemple test" visible="false">
+						<reponse id="r3" texte="Réponse numéro 1" >
+							<resultat id="res1">
+								<nom>Résultat 1</nom>
+								<type>MEL1</type>
+								<regimeAlimentaire>Prédateur</regimeAlimentaire>
+								<informations>Les informations</informations>
+							</resultat>
+						</reponse>
+						<reponse id="r4" texte="Réponse numéro 2">
+							<resultat id="res2">
+								<nom>Résultat 2</nom>
+								<type>MEL1</type>
+								<regimeAlimentaire>Non prédateur</regimeAlimentaire>
+								<informations>Informations sur résultat 2</informations>
+								<media>
+									<img id="img2" src="insecte.jpg" />
+								</media>
+							</resultat>
+						</reponse>
 					</question>
 				</branche>
 			</reponse>
@@ -45,6 +64,25 @@
 								<media>
 									<video id="vid1" src="test_video.avi" />
 								</media>
+								<reponse id="r3" texte="Ceci est une réponse" >
+									<resultat id="res1">
+										<nom>Ceci est un résultat</nom>
+										<type>MEL1</type>
+										<regimeAlimentaire>Prédateur</regimeAlimentaire>
+										<informations>infos</informations>
+									</resultat>
+								</reponse>
+								<reponse id="r3" texte="C'est aussi une réponse" >
+									<resultat id="res1">
+										<nom>C'est aussi un résultat</nom>
+										<type>MEL1</type>
+										<regimeAlimentaire>Prédateur</regimeAlimentaire>
+										<informations>infos</informations>
+										<media>
+											<img id="img2" src="insecte.jpg" />
+										</media>
+									</resultat>
+								</reponse>
 							</question>
 						</branche>
 					</reponse>

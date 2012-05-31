@@ -170,6 +170,15 @@ Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteri
 
 \chapter{Application PC}
 %Penser aux captures d'écrans
+
+\section{Visualisation des médias}
+cf. rapport Simon
+
+	\subsection{Visualisation des images}
+
+	\subsection{Lecteur audio}
+	
+	\subsection{Lecteur vidéo}
 	
 \chapter{Application mobile}
 L'application tablette doit permettre d'exploiter le fichier XML conçu via le logiciel bureau. Un utilisateur doit pouvoir, via une série de questions, associer l'insecte qu'il observe sous la caméra avec une morpho espèce de notre base de données. Pour cela il dispose d'aide textuelle, ou visuelle lui permettant de repérer des points clés sur les insectes permettant leurs identifications.L'application tablette est destinée à des personnes non scientifiques. Ceci a été très important pour nous puisqu'il a fallu concevoir une interface graphique adapté simple, sans terme technique particulier et tout en gardant en tête que la personne devait pouvoir se retrouver facilement sans aucune connaissance pré requises.
@@ -184,7 +193,7 @@ Les croquis de base de l'interface d'identification ont constamment évolué au co
 \end{figure}
 
 
-\section{Fonctionalitées}
+\section{Fonctionnalités}
 
 La partie identification de la tablette possède un certain nombre de fonctionnalités requises que nous allons détailler.
 \\
@@ -290,6 +299,10 @@ Il faut bien penser à gérer le cas où l'utilisateur revient en arrière dans l'hi
 Maintenant il faut pouvoir retrouver et cocher la checkbox de l'ancienne réponse que l'utilisateur a choisie, parmi toutes les réponses que possède la question. Pour cela nous conservons toutes les réponses à la currentQuestion dans un vecteur listReponseFragment. Cela nous permet de le parcourir et par comparaison de retrouver et de cocher la checkbox de l'ancienne réponse coché.
 \\
 
+\section{JDom}
+cf. rapport de Zhengyi LIU
+
+
 \chapter{Aspect gestion de projet}
 Pour coller au mieux aux attentes du client, nous avons essayé d'organiser le plus souvent possible des réunions de travail avec le client. Ces réunions avaient pour but de discuter des choix d'ergonomie des applications et de présenter notre travail. Cela a permis à l'équipe INNOPHYT de suivre notre travail au plus près, et de relever les erreurs ou les incohérences au plus tôt, afin que nous puissions les corriger au plus vite. 
 
@@ -297,11 +310,55 @@ Pour les aspects plus techniques, nous organisions des bilans réguliers avec not
 
 Enfin, au sein même de l'équipe, nous avons essayé d'organiser des points le plus régulièrement possible. Ces points permettaient de partager les difficultés rencontrées, de connaitre l'avancement des membres, de savoir ce qu'il restait à faire... Nous faisions un point par semaine, de préférence en début, qui durait en moyenne 10 à 15 minutes. 
 
+	\section{"Feedback" sur le projet}
+	<!-- Une citation par membre de l'équipe (environ 10-15 lignes) revenant sur le déroulement du projet -->
+	
+	\begin{quotation}
+	blabla...
+	\end{quotation}
+	Martin DEMEULEMEESTER --- \textsl{statut}.
+	
+	\begin{quotation}
+	blabla...
+	\end{quotation}
+	Julien TERUEL --- \textsl{statut}.
+	
+	\begin{quotation}
+	blabla...
+	\end{quotation}
+	Mickael PURET --- \textsl{statut}.
+	
+	\begin{quotation}
+	J?ai eu des difficultés quand à l?utilisation de Qt sous Linux car nous travaillons sous différents systèmes d?exploitation et ma version n?avait pas les paquets à jour. Je suis donc passé sous Windows 7 pour continuer le projet.
+	Ma seconde difficulté fut l?utilisation de Git. J?ai effectivement eu beaucoup de mal à comprendre le fonctionnement des dépôts ainsi que de l?utilisation de Git. J?ai eu différents problèmes à plusieurs moments du projet.
+	\end{quotation}
+	Simon FAUSSIER --- \textsl{statut}.
+	
+	\begin{quotation}
+	blabla...
+	\end{quotation}
+	Jerome HEISSLER --- \textsl{statut}.
+	
+	\begin{quotation}
+	blabla...
+	\end{quotation}
+	Zhengyi LIU --- \textsl{statut}.
+	
+	\begin{quotation}
+	Je pense que notre groupe est très bon. Tout les membres ont leurs caractéristiques et peuvent faire les tâches qui correspondent à leurs compétences. Sur les séances de projet, le taux de présence est proche de 99\%. C'est très bon d'avoir fait le projet ensemble. 
+	Pour le chef de projet, il a proposé un bon planning pour notre groupe. Il a bien organisé l'avancement du projet et il a bien communiqué avec l'encadrant, le client et les membres de groupe. Je pense qu'il est un bon chef.
+	Pour ma part, ce projet m'a permis d'apprendre beaucoup de choses : structure d'un ficher XML, gestion du XML en Java (lecture/écriture) et développement sous Android. Je suis très content d'avoir fait un projet dans ce groupe.
+	Je regrette de ne pas avoir communiqué suffisamment avec mes camarades français, à cause de mon français et  de mon caractère timide. C'est un défaut que je dois modifier pour la suite des mes études en France.
+	\end{quotation}
+	Zheng ZHANG --- \textsl{statut}.	
+	
+	\begin{quotation}
+	blabla...
+	\end{quotation}
+	Matthieu ANCERET --- \textsl{chef de projet}.
+
 	\section{Compétences acquises}
 	Parler des compétences acquises grâce à ce projet. 
-	%à voir si cela nécessite une partie à part entière
-	%demander à chacun ce que le projet lui a apporté
-	%peut-être faire un paragraphe pour chaque personne, en citation
 	
 	%personnelement, ce projet m'a permis d'obtenir une "première expérience" de "chef de projet"
 	%il m'a confronté aux difficultés de gérer une équipe dans le temps (durée assez longue d'ailleurs)
@@ -316,15 +373,18 @@ Enfin, au sein même de l'équipe, nous avons essayé d'organiser des points le plu
 	+ parler des solutions mises en place
 	
 \chapter{Futur du projet}
-Ce qu'il reste à faire 
-
-Les priorités 
-
-...
+Globalement, le projet est utilisable en l'état actuel. Il reste malgré tout plusieurs éléments à terminer ou à compléter : 
+\begin{itemize}
+	\item Re-travailler l'ergonomie de l'application PC, notamment pour la partie faisant le lien entre une réponse et sa question associée. 
+	\item Re-organiser le dossier contenant les différents médias (par exemple, un dossier par morpho-espèce ou un dossier par branche de l'arbre)
+	\item 
+	
+	\item Affichage de tous les résultats (pouvoir consulter les stats/résultats directement sur la tablette)
+	\item Pouvoir changer de fichier XML à la volée (via les paramètres)
+	\item Automatiser l'application mobile : via un serveur par exemple, qui viendrait automatiquement vérifier si une nouvelle version du fichier XML existe. Cette nouvelle version serait mise à disposition via l'application PC. 
+\end{itemize}
 
 \chapter{Conclusion}
-
-\annexes
 
 Documentation Doxygen 
 

@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created: Wed 30. May 23:36:36 2012
+** Created: Thu 31. May 10:25:43 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -35,27 +35,27 @@ static const uint qt_meta_data_MainWindow[] = {
       41,   11,   11,   11, 0x08,
       75,   11,   11,   11, 0x08,
      109,   11,   11,   11, 0x08,
-     134,  128,   11,   11, 0x08,
-     173,  128,   11,   11, 0x08,
-     218,  128,   11,   11, 0x08,
-     264,  255,   11,   11, 0x08,
-     283,  255,   11,   11, 0x08,
-     321,  302,   11,   11, 0x08,
-     344,   11,   11,   11, 0x08,
-     362,   11,   11,   11, 0x08,
-     381,   11,   11,   11, 0x08,
-     400,   11,   11,   11, 0x08,
-     420,   11,   11,   11, 0x08,
-     437,   11,   11,   11, 0x08,
-     448,   11,   11,   11, 0x08,
-     464,   11,   11,   11, 0x08,
-     481,   11,   11,   11, 0x08,
-     494,   11,   11,   11, 0x08,
-     512,   11,   11,   11, 0x08,
-     531,   11,   11,   11, 0x08,
-     552,   11,   11,   11, 0x08,
-     570,   11,   11,   11, 0x08,
-     593,   11,   11,   11, 0x08,
+     131,  125,   11,   11, 0x08,
+     167,  125,   11,   11, 0x08,
+     209,  125,   11,   11, 0x08,
+     252,  243,   11,   11, 0x08,
+     271,  243,   11,   11, 0x08,
+     309,  290,   11,   11, 0x08,
+     332,   11,   11,   11, 0x08,
+     350,   11,   11,   11, 0x08,
+     369,   11,   11,   11, 0x08,
+     388,   11,   11,   11, 0x08,
+     408,   11,   11,   11, 0x08,
+     425,   11,   11,   11, 0x08,
+     436,   11,   11,   11, 0x08,
+     452,   11,   11,   11, 0x08,
+     469,   11,   11,   11, 0x08,
+     482,   11,   11,   11, 0x08,
+     500,   11,   11,   11, 0x08,
+     519,   11,   11,   11, 0x08,
+     540,   11,   11,   11, 0x08,
+     558,   11,   11,   11, 0x08,
+     581,   11,   11,   11, 0x08,
 
        0        // eod
 };
@@ -64,10 +64,10 @@ static const char qt_meta_stringdata_MainWindow[] = {
     "MainWindow\0\0on_actionQuitter_triggered()\0"
     "on_actionExporter_XML_triggered()\0"
     "on_actionImporter_XML_triggered()\0"
-    "on_actionApropos()\0index\0"
-    "on_clickTreeViewQuestions(QModelIndex)\0"
-    "on_clickTreeViewMediasQuestions(QModelIndex)\0"
-    "on_clickTreeViewReponse(QModelIndex)\0"
+    "actionApropos()\0index\0"
+    "clickTreeViewQuestions(QModelIndex)\0"
+    "clickTreeViewMediasQuestions(QModelIndex)\0"
+    "clickTreeViewReponse(QModelIndex)\0"
     "fileName\0playAudio(QString)\0"
     "playVideo(QString)\0fileName,typeMedia\0"
     "openMedia(QString,int)\0newQuestionFils()\0"
@@ -89,10 +89,10 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 0: _t->on_actionQuitter_triggered(); break;
         case 1: _t->on_actionExporter_XML_triggered(); break;
         case 2: _t->on_actionImporter_XML_triggered(); break;
-        case 3: _t->on_actionApropos(); break;
-        case 4: _t->on_clickTreeViewQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 5: _t->on_clickTreeViewMediasQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 6: _t->on_clickTreeViewReponse((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 3: _t->actionApropos(); break;
+        case 4: _t->clickTreeViewQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 5: _t->clickTreeViewMediasQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 6: _t->clickTreeViewReponse((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 7: _t->playAudio((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 8: _t->playVideo((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 9: _t->openMedia((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
