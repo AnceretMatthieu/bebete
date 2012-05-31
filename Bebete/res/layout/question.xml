@@ -65,23 +65,23 @@
                 android:id="@+id/linearLayout4"
                 android:layout_width="800dp"
                 android:layout_height="wrap_content" >
-
+
+
+
                 <ImageView
                     android:id="@+id/imageQuestion"
                     android:layout_width="wrap_content"
                     android:layout_height="130dp"
-                    android:scaleType="centerInside"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/menu"
                     android:visibility="visible" />
-
+
                 <EditText
                     android:id="@+id/aide"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:editable="false"
-                    android:gravity="center"
                     android:text="@string/textaide" />
-
             </LinearLayout>
 
             <FrameLayout

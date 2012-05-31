@@ -30,6 +30,29 @@
             </intent-filter>
         </activity>
         
+        <activity
+            android:name=".BebeteActivity"
+            android:label="Innophyt Reconnaissance" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity> 
+        
+         <activity
+            android:name=".fast_count.Image"
+            android:label="Innophyt Reconnaissance"
+            >          
+        </activity>
+        
+         <activity
+            android:name=".fast_count.Info"
+            android:label="Innophyt Reconnaissance"
+             >
+        </activity> 
+        
+    
+        
     </application>
 
 </manifest>

@@ -15,28 +15,25 @@
     <Space
         android:layout_width="wrap_content"
         android:layout_height="match_parent" />
-
+
     <TextView
         android:id="@+id/textView1"
         android:layout_width="15dp"
         android:layout_height="wrap_content"
         android:text="vi"
         android:visibility="invisible" />
-
+
     <ImageButton
         android:id="@+id/histo_gauche"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrowl"
-        android:visibility="invisible" />
-
+        android:src="@drawable/arrowl" />
+
     <ImageButton
         android:id="@+id/histo_droite"
         android:layout_width="65dp"
         android:layout_height="wrap_content"
-        android:src="@drawable/arrow"
-        android:visibility="invisible" />
-
+        android:src="@drawable/arrow" />
     <ImageButton
         android:id="@+id/imageAlerte"
         android:layout_width="50dp"
