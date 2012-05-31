@@ -1,8 +1,17 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
+<<<<<<< HEAD
 ** Created: Fri 1. Jun 00:40:44 2012
+=======
+<<<<<<< HEAD
+** Created: Thu 31. May 10:16:17 2012
+**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
+=======
+** Created: Wed 30. May 23:36:36 2012
+>>>>>>> ed99ca6351cba1554acf4d5a3b48d46d493391f8
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
+>>>>>>> c93afa60a1ce59ea481eef9cf1ef90b48af1bad6
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -11,7 +20,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.1. It"
+#error "This file was generated using the moc from 4.8.0. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
