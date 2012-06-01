@@ -51,6 +51,7 @@ public class Info extends Fragment implements ViewFactory
 	private String nomIndividu;
 	private ImageView InfoSwitcher;   
 	private String cheminImage;
+	private Bitmap bitmap;
 	
 	public Info( String chemin, int id )
 	{
@@ -84,17 +85,7 @@ public class Info extends Fragment implements ViewFactory
         bdd = new RecolteBDD(activity.getBaseContext());
         bdd.open();
         
-        //mettre l'image dans un ImageView
-        BitmapFactory.Options options = new BitmapFactory.Options();
-		options.inJustDecodeBounds = true;
-		
-		
-		options.inJustDecodeBounds = false;
-		int be = options.outHeight/100;
-		if (be <= 0) {  be = 10;  }
-		
-		options.inSampleSize = be;
-		Bitmap bitmap = BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + cheminImage ,options);       
+		bitmap = BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + cheminImage );       
         
         InfoSwitcher.setImageBitmap(bitmap);
         
@@ -116,6 +107,7 @@ public class Info extends Fragment implements ViewFactory
 		final Button bouttonValider= (Button) activity.findViewById(R.id.valider);
 		bouttonValider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            	bitmap.recycle();
                 recolte.setNom(nomIndividu);
                 if(nombreIndividuView.getText().toString() != "")
                 	recolte.setNombre(Integer.parseInt(nombreIndividuView.getText().toString()));
@@ -150,6 +142,8 @@ public class Info extends Fragment implements ViewFactory
 		bouttonAnnuler.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) 
             {        
+            	bitmap.recycle();
+            	
             	Image image = new Image();
             	
         		FragmentManager manager = activity.getFragmentManager();

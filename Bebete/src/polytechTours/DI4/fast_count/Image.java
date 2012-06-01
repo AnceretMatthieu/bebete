@@ -9,18 +9,11 @@ package polytechTours.DI4.fast_count;
 import polytechTours.DI4.R;
 import android.app.Activity;
 import android.app.Fragment;
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.View.OnClickListener;
-
 import android.widget.ScrollView;
-import android.widget.Toast;
 /** 
 * @class Image 
 * @brief L'entrée du programme 
@@ -31,7 +24,6 @@ public class Image extends Fragment
 {
 	private Windows w;             /**< le Layout principal*/
 	private ScrollView s;	        /**< le ScrollView ou on met les photos*/
-	private int piege_id;
 	private Activity activity;
 	
 	public void onAttach(Activity activity)  

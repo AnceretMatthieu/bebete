@@ -27,46 +27,66 @@
                     android:layout_height="wrap_content"
                     android:layout_centerInParent="true"
                     android:orientation="vertical" >
-
-                    <TextView
-                        android:id="@+id/titreAcceuil"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/bonjour"
-                        android:textSize="32px" />
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/identifiezvous"
-                        android:textSize="16px" />
-
-                    <EditText
-                        android:id="@+id/nomUtilisateur"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ems="10" >
-
-                        <requestFocus />
-                    </EditText>
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/titreAcceuil"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="36dp"
+                    android:layout_marginTop="36dp"
+                    android:text="Bienvenue sur l&apos;application d&apos;identification d&apos;insecte"
+                    android:textColor="@color/color_blue"
+                    android:textSize="32px" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/titreAcceuil"
+                    android:layout_below="@+id/titreAcceuil"
+                    android:layout_marginTop="37dp"
+                    android:text="Veuillez commencer par vous identifier"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/nomUtilisateur"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/textView2"
+                    android:layout_alignRight="@+id/textView2"
+                    android:layout_below="@+id/textView2"
+                    android:ems="10"
+                    android:singleLine="true" />
 
                 <Button
                     android:id="@+id/ok_login"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignBottom="@+id/linearLayout3"
-                    android:layout_toRightOf="@+id/linearLayout3"
+                    android:layout_alignBottom="@+id/nomUtilisateur"
+                    android:layout_marginLeft="25dp"
+                    android:layout_toRightOf="@+id/textView2"
                     android:text="@string/ok" />
 
                 <Button
                     android:id="@+id/newUser"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentRight="true"
+                    android:layout_alignRight="@+id/nomUtilisateur"
+                    android:layout_below="@+id/nomUtilisateur"
+                    android:layout_marginRight="76dp"
+                    android:layout_marginTop="44dp"
                     android:text="@string/newUser" />
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@+id/linearLayout3"
+                    android:layout_alignTop="@+id/newUser"
+                    android:src="@drawable/innophyt" />
 
             </RelativeLayout>
 

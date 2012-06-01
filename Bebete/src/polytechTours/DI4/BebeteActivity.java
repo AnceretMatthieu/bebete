@@ -87,17 +87,6 @@ public class BebeteActivity extends Activity implements OnClickListener
         
         //GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
         MenuGPSFragment menu = new MenuGPSFragment(this);
-        
-        //**********************Code à enlever par la suite************************
-        //Creation d'un piege auto pour test rapide d'insertion sur la BDD
-       /* Piege piege = new Piege();
-        piege.setNom("toto");
-        piege.setId(117);
-        
-        PiegeBDD bdd = new PiegeBDD(getApplicationContext());
-        bdd.open();
-        bdd.insertPiege(piege);
-        bdd.close();*/
 		
 		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
 		SharedPreferences.Editor editor = preferences.edit();
@@ -194,20 +183,6 @@ public class BebeteActivity extends Activity implements OnClickListener
 			FragmentTransaction transaction = manager.beginTransaction();
 				transaction.add( R.id.linearLayout2, info, "enCours" );
 			transaction.commit();
-    		
-    		/*if(Securite.valideProjet(this) == true){
-    		
-	    		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); 
-	            int piege_id = (int)preferences.getLong("PIEGE_ID", -1);
-	            
-	    		Intent i =new Intent(BebeteActivity.this,polytechTours.DI4.fast_count.Image.class);     	
-	            
-	    		Bundle bundle=new Bundle(); 
-	            bundle.putLong("PIEGE_ID", piege_id);
-	            i.putExtras(bundle);
-	            
-	            startActivity(i);
-    		}*/
     	}
     	
     	return true;

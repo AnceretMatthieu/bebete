@@ -15,6 +15,8 @@ import polytechTours.DI4.R.id;
 import polytechTours.DI4.R.layout;
 import polytechTours.DI4.bdd.Recolte;
 import polytechTours.DI4.bdd.RecolteBDD;
+import polytechTours.DI4.bdd.Utilisateur;
+import polytechTours.DI4.bdd.UtilisateurBDD;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -519,16 +521,30 @@ public class QuestionFragment extends Fragment implements OnClickListener
 			}
 			else if( dialogVisible && arg0.getId() == boutonEnregistrer.getId() ) //Enregistrer clique dans le dialog de resultat
 			{
-				SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
+				SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); 
+		        int piege_id = (int)preferences.getLong("PIEGE_ID", -1);
 		        
-				//*************Code temporaire*****************************************
-				int piegeID = (int)preferences.getLong("PIEGE_ID", -1);
-		        //int piegeID = 117;
-		        //*********************************************************************
+		        RecolteBDD bdd = new RecolteBDD(activity.getBaseContext());
+		        bdd.open();
+		        
+		        Recolte recolte = bdd.getRecolteWithNOM( resultat.getNom(), piege_id );
 				
-		     
+		        if(recolte == null)
+				{
+					recolte = new Recolte();
+				}
 		        
-		        //Log.d("Resultat", "Bete : " + recolte.getNom() + " nombre : " + recolte.getNombre() );
+		        Date date = new Date();		
+		        recolte.setNom(resultat.getNom());
+                recolte.setNombre( recolte.getNombre() + 1 );
+                recolte.setDate_recolte(date.getDay()+ "/"+ date.getMonth() +1 + "/" + date.getYear() );
+                recolte.setPege_id(piege_id);
+                
+            	bdd.insinsertOrUpdateRecolte(recolte);
+            	
+            	 Log.d("Resultat", "Bete : " + recolte.getNom() + " nombre : " + recolte.getNombre() );
+            	
+            	bdd.close();
 		        
 		        dialog.dismiss();
 		        dialogVisible = false;
