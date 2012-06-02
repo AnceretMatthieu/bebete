@@ -55,7 +55,7 @@ public class Utilisateur {
 	/** Renvoie l'entête des colonnes du format CSV
 	 * @return L'entête des colonnes
 	 */
-	public String headerCSV() {
-		return "id;nom";
+	public static String headerCSV() {
+		return "utilisateur_id;utilisateur_nom";
 	}	
 }

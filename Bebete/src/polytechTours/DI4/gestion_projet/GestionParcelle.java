@@ -38,11 +38,11 @@ import android.widget.EditText;
  */
 public class GestionParcelle extends Fragment
 {
-	private ParcellesButton parcelles;
-	private Activity activity;
-	private ParcelleBDD bdd;
+	private ParcellesButton parcelles = null;
+	private Activity activity = null;
+	private ParcelleBDD bdd = null;
 	private int campagne_id;
-	private RadioGroup radiogroup;
+	private RadioGroup radiogroup = null;
 	
     // On déclare les variables nécessaires pour le GPS
 	private LocationManager locationMgr = null;
@@ -94,19 +94,24 @@ public class GestionParcelle extends Fragment
 			for ( RadioButton radiobt : vect_radioButton) {
 				String btname = radiobt.getText().toString();
 				if(btname.equalsIgnoreCase(name)){
-					alertbox("Attention !", "La parcelle existe déja.");
+					alertbox("Attention !", "La parcelle existe d�j�.");
 					trouve = true;
 					break;
 				}
 			}
 			if(trouve == false){
-				bdd.insertParcelle(parcelle);
-				vect_parcelles.add(parcelle);
-				RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
-				radiobt.setText(parcelle.getNom()); //texte du bouton
-				vect_radioButton.add(radiobt);
-				radiogroup.addView(radiobt);
-				radiobt.setChecked(true);
+				int id = (int)bdd.insertParcelle(parcelle);
+				if(id != -1){
+					parcelle.setId(id);
+					vect_parcelles.add(parcelle);
+					RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
+					radiobt.setText(parcelle.getNom()); //texte du bouton
+					vect_radioButton.add(radiobt);
+					radiogroup.addView(radiobt);
+					radiobt.setChecked(true);
+				}
+				else
+					alertbox("Attention !", "Le pi�ge n'a pas �t� cr��.");
 			}
 		}
 		
@@ -248,6 +253,15 @@ public class GestionParcelle extends Fragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+        /** Récupere l'identifiant de la campagne depuis les paramètres de l'application
+         * Affiche un message en cas de problème et renvoie à la page de sélection des campagnes **/
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupere les paramètres de l'application
+        campagne_id = (int)preferences.getLong("CAMPAGNE_ID", -1);
+        if(campagne_id == -1){
+        	if(!Securite.valideProjet(activity))
+        		return;
+        }
+        
 		/**gestion du gps **/   
 		//(GPS) Gestion des réseaux et du temps de pull
 		locationMgr = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
@@ -257,15 +271,7 @@ public class GestionParcelle extends Fragment
 		/** init variables**/
 		bdd = new ParcelleBDD(activity);
         bdd.open();
-        
-        /** Récupere l'identifiant de la campagne depuis les paramètres de l'application
-         * Affiche un message en cas de problème et renvoie à la page de sélection des campagnes **/
-		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupere les paramètres de l'application
-        campagne_id = (int)preferences.getLong("CAMPAGNE_ID", -1);
-        if(campagne_id == -1){
-        	Securite.valideProjet(activity);
-        }
-        
+               
         /** Zone d'affichage des Parcelles **/
 		radiogroup = new RadioGroup(activity); //groupe d'affichage pour la liste de radiobouton
 		
@@ -386,7 +392,7 @@ public class GestionParcelle extends Fragment
 						transaction.add( R.id.linearLayout2, gestionPiege, "enCours" );
 					transaction.commit();
             	}else
-            		alertbox("Attention !", "Créez une parcelle pour pouvoir la sélectionner");
+            		alertbox("Attention !", "Cr�ez une parcelle pour pouvoir la s�lectionner");
 
             }
         });
@@ -396,9 +402,13 @@ public class GestionParcelle extends Fragment
 		buttonmodifier.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
             	if(parcelles.count() != 0){
-	            	Parcelle parcelle = parcelles.getCurent_parcelle();
+            		EditText nomParcelle = (EditText)activity.findViewById( R.id.nomParcelle );
+            		
+            		if(nomParcelle.getText().toString().compareTo("") == 0){
+            			alertbox("Attention !", "Donner un nom à la parcelle.");
+            		}
+            		Parcelle parcelle = parcelles.getCurent_parcelle();
 	            	
-		        	EditText nomParcelle = (EditText)activity.findViewById( R.id.nomParcelle );
 		        	parcelle.setNom(nomParcelle.getText().toString());
 		    		
 		    		EditText descriptionParcelle = (EditText)activity.findViewById( R.id.descriptionParcelle );
@@ -426,7 +436,7 @@ public class GestionParcelle extends Fragment
 		    		parcelles.updateParcelle(parcelle);
             	}
             	else
-                	alertbox("Attention !", "Créez une parcelle pour pouvoir la modifier");
+                	alertbox("Attention !", "Cr�ez une parcelle pour pouvoir la modifier");
             }
         });
 		
@@ -437,7 +447,7 @@ public class GestionParcelle extends Fragment
 
 	        	EditText nomParcelle = (EditText)activity.findViewById( R.id.nomParcelle );
 	        	
-	        	if(nomParcelle.getText().toString() != ""){
+	        	if(nomParcelle.getText().toString().compareTo("") != 0){
 	            	Parcelle parcelle = new Parcelle();
 	            	
 		        	parcelle.setNom(nomParcelle.getText().toString());
@@ -470,7 +480,7 @@ public class GestionParcelle extends Fragment
 		    		parcelles.insertParcelle(parcelle);
 	        	}
 	        	else{
-	        		alertbox("Attention !", "Donner un nom à votre parcelle");
+	        		alertbox("Attention !", "Donner un nom � votre parcelle");
 	        	}
             }
         });
@@ -503,7 +513,7 @@ public class GestionParcelle extends Fragment
 	        		deleteAlert.show();
             	}
             	else
-                	alertbox("Attention !", "Créez une parcelle pour pouvoir la supprimer");
+                	alertbox("Attention !", "Cr�ez une parcelle pour pouvoir la supprimer");
             	
             }
         });
@@ -527,6 +537,7 @@ public class GestionParcelle extends Fragment
     public void onDestroy ()
     {
     	super.onDestroy();
-    	bdd.close();
+    	if(bdd != null)
+    		bdd.close();
     }
 }

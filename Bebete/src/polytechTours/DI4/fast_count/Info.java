@@ -113,7 +113,7 @@ public class Info extends Fragment implements ViewFactory
                 	recolte.setNombre(Integer.parseInt(nombreIndividuView.getText().toString()));
                 else
                 	recolte.setNombre(0);
-                recolte.setDate_recolte(dateView.getDayOfMonth()+ "/"+ dateView.getMonth() +1 + "/" + dateView.getYear());
+                //recolte.setDate_recolte(dateView.getDayOfMonth()+ "/"+ dateView.getMonth() +1 + "/" + dateView.getYear());
                 recolte.setPege_id(piege_id);
                 
             	bdd.insinsertOrUpdateRecolte(recolte);

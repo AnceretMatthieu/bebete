@@ -5,11 +5,14 @@ import java.util.TimeZone;
 import java.util.Vector;
 
 import polytechTours.DI4.R;
+import polytechTours.DI4.GesionIdentification.QuestionFragment;
 import polytechTours.DI4.bdd.Piege;
 import polytechTours.DI4.bdd.PiegeBDD;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.DatePickerDialog.OnDateSetListener;
 import android.app.Fragment;
 import android.content.Context;
@@ -36,11 +39,11 @@ import android.widget.EditText;
  */
 public class GestionPiege extends Fragment
 {
-	private PiegesButton pieges;
-	private Activity activity;
-	private PiegeBDD bdd;
+	private PiegesButton pieges = null;
+	private Activity activity = null;
+	private PiegeBDD bdd = null;
 	private int parcelle_id;
-	private RadioGroup radiogroup;
+	private RadioGroup radiogroup = null;
 	
     // On déclare les variables nécessaires pour le GPS
 	private LocationManager locationMgr = null;
@@ -92,19 +95,24 @@ public class GestionPiege extends Fragment
 			for ( RadioButton radiobt : vect_radioButton) {
 				String btname = radiobt.getText().toString();
 				if(btname.equalsIgnoreCase(name)){
-					alertbox("Attention !", "Le piège existe déja.");
+					alertbox("Attention !", "Le pi�ge existe d�ja.");
 					trouve = true;
 					break;
 				}
 			}
 			if(trouve == false){
-				bdd.insertPiege(piege);
-				vect_pieges.add(piege);
-				RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
-				radiobt.setText(piege.getNom()); //texte du bouton
-				vect_radioButton.add(radiobt);
-				radiogroup.addView(radiobt);
-				radiobt.setChecked(true);
+				int id = (int)bdd.insertPiege(piege);
+				if(id != -1){
+					piege.setId(id);
+					vect_pieges.add(piege);
+					RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
+					radiobt.setText(piege.getNom()); //texte du bouton
+					vect_radioButton.add(radiobt);
+					radiogroup.addView(radiobt);
+					radiobt.setChecked(true);
+				}
+				else
+					alertbox("Attention !", "Le pi�ge n'a pas �t� cr��.");
 			}
 		}
 		
@@ -246,6 +254,14 @@ public class GestionPiege extends Fragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
+        /** Récupère l'identifiant de la parcelle depuis les paramètres de l'application
+         * Affiche un message en cas de problème et renvoie à la page de sélection des campagnes **/
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
+        parcelle_id = (int)preferences.getLong("PARCELLE_ID", -1);
+        if(parcelle_id == -1)
+        	if(!Securite.valideProjet(activity))
+        		return;
+        
 		/**gestion du gps **/   
 		//(GPS) Gestion des réseaux et du temps de pull
 		locationMgr = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
@@ -256,12 +272,6 @@ public class GestionPiege extends Fragment
 		bdd = new PiegeBDD(activity);
         bdd.open();
         
-        /** Récupère l'identifiant de la parcelle depuis les paramètres de l'application
-         * Affiche un message en cas de problème et renvoie à la page de sélection des campagnes **/
-		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
-        parcelle_id = (int)preferences.getLong("PARCELLE_ID", -1);
-        if(parcelle_id == -1)
-        	Securite.valideProjet(activity);
         
         /** Zone d'affichage des Pièges **/
 		radiogroup = new RadioGroup(activity); //groupe d'affichage pour la liste de radiobouton
@@ -372,8 +382,26 @@ public class GestionPiege extends Fragment
 		    		SharedPreferences.Editor editor = preferences.edit();
 		    		editor.putLong("PIEGE_ID", pieges.getCurent_piege().getId()); 
 		    		editor.commit();
+		    		
+		    		//changement de fragment
+		    		FragmentManager manager = activity.getFragmentManager();  
+		    		
+		        	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
+		    		
+		    		if( fragmentEnCours != null )
+		    		{
+		    			FragmentTransaction transaction = manager.beginTransaction();
+		    				transaction.remove( fragmentEnCours );
+		    			transaction.commit();
+		    		}
+		    		QuestionFragment questionView = new QuestionFragment();
+		    		questionView.getId();
+					
+					FragmentTransaction transaction = manager.beginTransaction();
+						transaction.add( R.id.linearLayout2, questionView, "enCours" );
+					transaction.commit();
             	}else
-            		alertbox("Attention !", "Créez un piège pour pouvoir le sélectionner");
+            		alertbox("Attention !", "Cr�ez un pi�ge pour pouvoir le s�lectionner");
 
             }
         });
@@ -384,42 +412,46 @@ public class GestionPiege extends Fragment
             public void onClick(View v) {
             	if(pieges.count() != 0){
             		EditText nomPiege = (EditText)activity.findViewById( R.id.nomPiege );
+            		EditText finPiege = (EditText)activity.findViewById( R.id.finPiege );
             		
-            		if(nomPiege.getText().toString() != ""){
-		            	Piege piege = pieges.getCurent_piege();
-		            	
-			        	piege.setNom(nomPiege.getText().toString());
-			    		
-			    		EditText descriptionPiege = (EditText)activity.findViewById( R.id.descriptionPiege );
-			    		piege.setDescription(descriptionPiege.getText().toString());
-			    		
-			    		EditText debutPiege = (EditText)activity.findViewById( R.id.debutPiege );
-			    		piege.setDate_debut(debutPiege.getText().toString());
-			    		
-			    		EditText finPiege = (EditText)activity.findViewById( R.id.finPiege );
-			    		piege.setDate_fin(finPiege.getText().toString());
-			    		
-			    		EditText gpsPiege = (EditText)activity.findViewById( R.id.gpsPiege);
-			    		String str[] = gpsPiege.getText().toString().trim().split(";");
-			    		if(str.length == 2){
-				    		piege.setLatitude(str[0]);
-				    		piege.setLongitude(str[1]);
-			    		}else{
-				    		piege.setLatitude("pas de valeur");
-				    		piege.setLongitude("pas de valeur");
-			    		}
-			    		System.out.print(piege.getLatitude() + "|" + piege.getLongitude() + "|");
-			    		
-			    		EditText adressePiege = (EditText)activity.findViewById( R.id.adressePiege );
-			    		piege.setAdresse(adressePiege.getText().toString());	
-			    		
-			    		pieges.updatePiege(piege);
-	            	}
-	            	else
-	                	alertbox("Attention !", "Créez un piège pour pouvoir le modifier");
-            	}
-            	else{
-            		alertbox("Attention !", "Donner un nom à votre piége");
+            		if(nomPiege.getText().toString().compareTo("") == 0){
+    	                alertbox("Attention !", "Donner un nom au pi�ge.");
+            		}
+            		else
+            		{
+                		if(finPiege.getText().toString().compareTo("") == 0)
+                		{
+        	                alertbox("Attention !", "Donner une date de fin.");
+                		}
+                		else{
+        	                Piege piege = pieges.getCurent_piege();
+        	            	
+        		        	piege.setNom(nomPiege.getText().toString());
+        		    		
+        		    		EditText descriptionPiege = (EditText)activity.findViewById( R.id.descriptionPiege );
+        		    		piege.setDescription(descriptionPiege.getText().toString());
+        		    		
+        		    		EditText debutPiege = (EditText)activity.findViewById( R.id.debutPiege );
+        		    		piege.setDate_debut(debutPiege.getText().toString());
+        		    		
+        		    		piege.setDate_fin(finPiege.getText().toString());
+        		    		
+        		    		EditText gpsPiege = (EditText)activity.findViewById( R.id.gpsPiege);
+        		    		String str[] = gpsPiege.getText().toString().trim().split(";");
+        		    		if(str.length == 2){
+        			    		piege.setLatitude(str[0]);
+        			    		piege.setLongitude(str[1]);
+        		    		}else{
+        			    		piege.setLatitude("pas de valeur");
+        			    		piege.setLongitude("pas de valeur");
+        		    		}
+        				    		
+        		    		EditText adressePiege = (EditText)activity.findViewById( R.id.adressePiege );
+        		    		piege.setAdresse(adressePiege.getText().toString());	
+        		    		
+        		    		pieges.updatePiege(piege);
+                		}
+            		} 
             	}
             }
         });
@@ -428,38 +460,50 @@ public class GestionPiege extends Fragment
 		final Button buttoncreer = (Button) activity.findViewById(R.id.creer);
 		buttoncreer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-	            	
-            	Piege piege = new Piege();
-            	
 	        	EditText nomPiege = (EditText)activity.findViewById( R.id.nomPiege );
-	        	piege.setNom(nomPiege.getText().toString());
-	    		
-	    		EditText descriptionPiege = (EditText)activity.findViewById( R.id.descriptionPiege );
-	    		piege.setDescription(descriptionPiege.getText().toString());
-	    		
-	    		EditText debutPiege = (EditText)activity.findViewById( R.id.debutPiege );
-	    		piege.setDate_debut(debutPiege.getText().toString());
-	    		
-	    		EditText finPiege = (EditText)activity.findViewById( R.id.finPiege );
-	    		piege.setDate_fin(finPiege.getText().toString());
-	    		
-	    		EditText adressePiege = (EditText)activity.findViewById( R.id.adressePiege );
-	    		piege.setAdresse(adressePiege.getText().toString());	
-	    		
-	    		EditText gpsPiege = (EditText)activity.findViewById( R.id.gpsPiege);
-	    		String str[] = gpsPiege.getText().toString().trim().split(";");
-	    		if(str.length == 2){
-		    		piege.setLatitude(str[0]);
-		    		piege.setLongitude(str[1]);
-	    		}
-	    		else{
-		    		piege.setLatitude("pas de valeur");
-		    		piege.setLongitude("pas de valeur");
-	    		}
-	    		
-	    		piege.setParcelle_id(parcelle_id);
-	    		
-	    		pieges.insertPiege(piege);
+	        	EditText finPiege = (EditText)activity.findViewById( R.id.finPiege );
+	        	
+            	if(nomPiege.getText().toString().compareTo("") == 0){
+	                alertbox("Attention !", "Donner un nom au pi�ge.");
+        		}
+        		else
+        		{
+            		if(finPiege.getText().toString() == "")
+            		{
+    	                alertbox("Attention !", "Donner une date de fin.");
+            		}
+	            		else{
+			            	Piege piege = new Piege();
+			            
+				        	piege.setNom(nomPiege.getText().toString());
+				    		
+				    		EditText descriptionPiege = (EditText)activity.findViewById( R.id.descriptionPiege );
+				    		piege.setDescription(descriptionPiege.getText().toString());
+				    		
+				    		EditText debutPiege = (EditText)activity.findViewById( R.id.debutPiege );
+				    		piege.setDate_debut(debutPiege.getText().toString());
+				    		
+				    		piege.setDate_fin(finPiege.getText().toString());
+				    		
+				    		EditText adressePiege = (EditText)activity.findViewById( R.id.adressePiege );
+				    		piege.setAdresse(adressePiege.getText().toString());	
+				    		
+				    		EditText gpsPiege = (EditText)activity.findViewById( R.id.gpsPiege);
+				    		String str[] = gpsPiege.getText().toString().trim().split(";");
+				    		if(str.length == 2){
+					    		piege.setLatitude(str[0]);
+					    		piege.setLongitude(str[1]);
+				    		}
+				    		else{
+					    		piege.setLatitude("pas de valeur");
+					    		piege.setLongitude("pas de valeur");
+				    		}
+				    		
+				    		piege.setParcelle_id(parcelle_id);
+				    		
+				    		pieges.insertPiege(piege);
+	            		}
+        		}
             }
         });
 		
@@ -473,7 +517,7 @@ public class GestionPiege extends Fragment
 		    		AlertDialog deleteAlert = new AlertDialog.Builder(activity).create();
 		    		deleteAlert.setTitle(R.string.attention);
 		    		//deleteAlert.setMessage(R.string.supprimerPiege);
-		    		deleteAlert.setMessage("Voulez-vous supprimer ce piège ?"); //On ne met pas le texte ainsi, mais la forme précédente rencontre un problème de type qui n'est pas encore résolu
+		    		deleteAlert.setMessage("Voulez-vous supprimer ce pi�ge ?"); //On ne met pas le texte ainsi, mais la forme précédente rencontre un problème de type qui n'est pas encore résolu
 		    		/**si oui**/
 		    		deleteAlert.setButton(DialogInterface.BUTTON_POSITIVE,"Oui", new DialogInterface.OnClickListener(){
 		
@@ -491,7 +535,7 @@ public class GestionPiege extends Fragment
 	        		deleteAlert.show();
             	}
             	else
-                	alertbox("Attention !", "Créez un piège pour pouvoir le supprimer");
+                	alertbox("Attention !", "Cr�ez un pi�ge pour pouvoir le supprimer");
             	
             }
         });
@@ -515,6 +559,7 @@ public class GestionPiege extends Fragment
     public void onDestroy ()
     {
     	super.onDestroy();
-    	bdd.close();
+    	if(bdd != null)
+    		bdd.close();
     }
 }

@@ -156,7 +156,7 @@ public class Parcelle {
 	 * @return la parcelle sous forme texte
 	 */
 	public String toString() {
-		return "Campagne [id=" + id + ", utilisateur_id=" + campagne_id
+		return "Parcelle [id=" + id + ", campagne_id=" + campagne_id
 				+ ", nom=" + nom + ", date_debut=" + date_debut + ", date_fin="
 				+ date_fin + ", adresse=" + adresse + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", description=" + description
@@ -177,7 +177,7 @@ public class Parcelle {
 	 * @return L'entête des colonnes
 	 */
 	public static String headerCSV() {
-		return "id;utilisateur_id;nom;date_debut;date_fin;adresse;latitude;longitude;description";
+		return "parcelle_id;campagne_id;parcelle_nom;parcelle_date_debut;parcelle_date_fin;parcelle_adresse;parcelle_latitude;parcelle_longitude;parcelle_description";
 	}
 	
 	

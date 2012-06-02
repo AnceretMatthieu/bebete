@@ -1,15 +1,19 @@
 package polytechTours.DI4;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+
+import polytechTours.DI4.GesionIdentification.FileManager;
 import polytechTours.DI4.GesionIdentification.MenuGPSFragment;
 import polytechTours.DI4.GesionIdentification.QuestionFragment;
 import polytechTours.DI4.fast_count.Image;
-import polytechTours.DI4.fast_count.Info;
-import polytechTours.DI4.fast_count.Windows;
 import polytechTours.DI4.gestion_projet.GestionCampagne;
 import polytechTours.DI4.gestion_projet.GestionParcelle;
 import polytechTours.DI4.gestion_projet.GestionPiege;
 import polytechTours.DI4.gestion_projet.GestionUtilisateur;
-import polytechTours.DI4.gestion_projet.Securite;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -18,10 +22,11 @@ import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Environment;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -32,21 +37,21 @@ import android.widget.ImageButton;
 /**
  * @author Julien Teruel
  *
- * Classe démarrant l'activité principale de l'application
- * Elle gère les fragments d'interface graphique en réaction aux clics sur l'action bar
+ * Classe dï¿½marrant l'activitï¿½ principale de l'application
+ * Elle gï¿½re les fragments d'interface graphique en rï¿½action aux clics sur l'action bar
  */
 
 public class BebeteActivity extends Activity implements OnClickListener 
 {
 	/**
-	 * Le fragment manager permettant gérer les fragments
+	 * Le fragment manager permettant gï¿½rer les fragments
 	 */
 	private FragmentManager manager;
 	
 	private ImageButton home;
 	
 	/**
-	 * Rajout du menu droit dans l'action bar via inflation à partir du fichier de layout actionbar.xml 
+	 * Rajout du menu droit dans l'action bar via inflation ï¿½ partir du fichier de layout actionbar.xml 
 	 */
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) 
@@ -88,13 +93,18 @@ public class BebeteActivity extends Activity implements OnClickListener
         //GestionUtilisateur gestionutilisateur = new GestionUtilisateur();
         MenuGPSFragment menu = new MenuGPSFragment(this);
 		
-		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
+		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); //rï¿½cupï¿½re les paramï¿½tres de l'application
 		SharedPreferences.Editor editor = preferences.edit();
 		editor.putLong("UTILISATEUR_ID", -1);
 		editor.putLong("CAMPAGNE_ID", -1); 
 		editor.putLong("PARCELLE_ID", -1);
 		editor.putLong("PIEGE_ID", -1); 
 		editor.commit();
+        System.out.println(Environment.getDataDirectory());
+        //*************************************************************************
+        //******* Gestion du 1er lancement ****************************************
+        
+        creerArbo();
         
         //*************************************************************************
 		
@@ -107,8 +117,8 @@ public class BebeteActivity extends Activity implements OnClickListener
     }
     
     /**
-     * Réaction aux clics sur l'action bar -> chargement du fragments nécessaire
-     * Le nouveau fragment est taggé "enCours" pour pouvoir le retrouver et l'enlever par la suite
+     * Rï¿½action aux clics sur l'action bar -> chargement du fragments nï¿½cessaire
+     * Le nouveau fragment est taggï¿½ "enCours" pour pouvoir le retrouver et l'enlever par la suite
      */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) 
@@ -134,7 +144,7 @@ public class BebeteActivity extends Activity implements OnClickListener
 			transaction.commit();
     	}
     	else if( item.getItemId() == R.id.menu_piege )
-    	{
+    	{   		
 			GestionPiege gestionPiege = new GestionPiege();
 			
 			miseAjourAffichage();
@@ -144,7 +154,7 @@ public class BebeteActivity extends Activity implements OnClickListener
 			transaction.commit();
     	}
     	else if( item.getItemId() == R.id.menu_parcelle )
-    	{
+    	{    		
 			GestionParcelle gestionParcelle = new GestionParcelle();
 			
 			miseAjourAffichage();
@@ -154,7 +164,7 @@ public class BebeteActivity extends Activity implements OnClickListener
 			transaction.commit();
     	}
     	else if( item.getItemId() == R.id.menu_identifier )
-    	{
+    	{   		
     		QuestionFragment questionView = new QuestionFragment();
     		questionView.getId();
 			
@@ -169,9 +179,9 @@ public class BebeteActivity extends Activity implements OnClickListener
     		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
             int utilisateur_id = (int)preferences.getLong("UTILISATEUR_ID", -1);
             if(utilisateur_id == -1)
-            	alertbox("Attention !", "Sélectionner un utilisateur");
+            	alertbox("Attention !", "SÃ©lectionner un utilisateur");
             else
-            	Export.Export(getBaseContext(), utilisateur_id);
+            	Export.Export(this, utilisateur_id);
     	}
     	else if( item.getItemId() == R.id.menu_fast_count )
     	{
@@ -189,7 +199,7 @@ public class BebeteActivity extends Activity implements OnClickListener
     }
     
     /**
-     * Fonction pratique qui enlève le fragment actuellement affiché si il y en a un 
+     * Fonction pratique qui enlÃ©ve le fragment actuellement affichÃ© si il y en a un 
      */
     public void miseAjourAffichage()
     {
@@ -228,5 +238,45 @@ public class BebeteActivity extends Activity implements OnClickListener
 		         public void onClick(DialogInterface dialog, int whichButton){}
 		         })
 		      .show();
+	}
+	
+	public void creerArbo()
+	{
+		File dossier = new File( FileManager.getSaveIncidentPath() );
+		FileManager.updateFileSystem( dossier, this );
+	
+		File fichierXML = new File( FileManager.getSavePath() + File.separator + "accueil.xml" );
+		
+		if( !fichierXML.exists() )
+		{
+			try 
+			{
+				FileOutputStream out = new FileOutputStream(fichierXML);
+				
+				try 
+				{
+					out.write( new String( "<?xml version=\"1.0\"?>").getBytes() );
+					out.write( new String( "<arbre><branche id=\"b1\" type=\"accueil\" date=\"jj/mm/yyy\">" ).getBytes() );
+					out.write( new String( "<question id=\"q1\" texte=\"Aucun fichier XML trouver\" observation=\"oeil\">" +
+							"<media><legende>Veuillez vérifier que les fichiers ont bien été copiés dans /Innophyt/</legende>" +
+							"</media> </question> </branche> </arbre>").getBytes() );
+					out.close();
+
+					FileManager.updateFileSystem(fichierXML, this);
+				} 
+				catch (IOException e) 
+				{
+					Log.d("Fichier de base", "Erreur lors de l'écriture du fichier XML de base");
+					e.printStackTrace();
+				}
+				
+			} 
+			catch (FileNotFoundException e) 
+			{
+				Log.d("Fichier de base", "Erreur lors de la création des fichiers de base");
+				e.printStackTrace();
+			}			
+		}
+		
 	}
 }

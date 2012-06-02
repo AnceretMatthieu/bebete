@@ -6,6 +6,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 /** Interaction entre une récolte et la base de données.
  * Met en place les méthodes d'ajout, modification et suppression d'éléments dans la table de récolte*/
@@ -58,18 +59,15 @@ public class RecolteBDD {
 	 * @return Identifiant de la nouvelle récolte en cas de création, le nombre de valeur modifié en cas de mise à jour ou -1 en cas d'échec
 	 */
 	public long insinsertOrUpdateRecolte(Recolte recolte){
-		long value = insertRecolte(recolte);
-		if( value < 0){
-			Vector<Recolte> recoltes = getRecoltes(recolte.getPege_id());
-			for(Recolte tmp : recoltes)
-				if(tmp.getNom().compareTo(recolte.getNom()) == 0){
-					recolte.setId(tmp.getId());
-					value = updateRecolte(recolte);
-					break;
-				}
-				else
-					value = -1;
+		long value = -1;
+		if(recolte.getId() > 0){
+			if((value = updateRecolte(recolte)) < 0)
+				Log.d("dbb","mise a jour de la recolte : echeque");
 		}
+		else
+			if((value = insertRecolte(recolte)) < 0)
+				Log.d("dbb","creation de la recolte : echeque");
+		
 		return value;
 	}
 	

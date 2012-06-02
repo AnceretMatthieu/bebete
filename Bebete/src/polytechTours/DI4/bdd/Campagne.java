@@ -174,6 +174,6 @@ public class Campagne {
 	 * @return L'entête des colonnes
 	 */
 	public static String headerCSV(){
-		return "id;utilisateur_id;nom;date_debut;date_fin;adresse;latitude;longitude;description";
+		return "campagne_id;utilisateur_id;campagne_nom;campagne_date_debut;campagne_date_fin;campagne_adresse;campagne_latitude;campagne_longitude;campagne_description";
 	}
 }

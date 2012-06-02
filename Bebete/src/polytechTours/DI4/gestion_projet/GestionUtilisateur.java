@@ -1,5 +1,6 @@
 package polytechTours.DI4.gestion_projet;
 
+import polytechTours.DI4.BebeteActivity;
 import polytechTours.DI4.R;
 import polytechTours.DI4.bdd.Utilisateur;
 import polytechTours.DI4.bdd.UtilisateurBDD;
@@ -23,10 +24,11 @@ import android.widget.EditText;
  */
 public class GestionUtilisateur extends Fragment
 {
-	private Activity activity;
+	private Bundle savedInstanceState;
+	private BebeteActivity activity;
 	private Utilisateur utilisateur;
     private UtilisateurBDD bdd;
-	
+	   
 	/**message d'alert, seul valider est disponible
 	 * @param title	Titre de l'alerte
 	 * @param mymessage Message de l'alerte*/
@@ -68,6 +70,9 @@ public class GestionUtilisateur extends Fragment
 		FragmentTransaction transaction = manager.beginTransaction();
 			transaction.add( R.id.linearLayout2, gestionCampagne, "enCours" );
 		transaction.commit();
+		
+
+
 	}
 	//****************************************************
 	//*              gestion de l'affichage
@@ -76,7 +81,7 @@ public class GestionUtilisateur extends Fragment
     public void onAttach(Activity activity)  
 	{
         super.onAttach(activity);
-        this.activity = activity;
+        this.activity = (BebeteActivity)activity;
 	}
 	 @Override
     public View onCreateView( LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) 
@@ -89,6 +94,7 @@ public class GestionUtilisateur extends Fragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{    
 		super.onActivityCreated(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
         
 		bdd = new UtilisateurBDD(activity);
 	    bdd.open();
@@ -126,8 +132,10 @@ public class GestionUtilisateur extends Fragment
 			    		if(valeur != -1){
 			    			utilisateur.setId(valeur);
 				    		connect();
-				    		alertbox("Action accomplie !", "Le nouvel utilisateur a bien Ã©tÃ© enregistrÃ©.\nEt il s'est bien connectÃ©.");
+				    		alertbox("Action accomplie !", "Le nouvel utilisateur a bien été enregistré.\nEt il s'est bien connecté.");
 			    		}
+			    		else
+			    			alertbox("Attention !", "Cette utilisateur existe déjà.");
 			    	}
 		    	}
 		    	else{

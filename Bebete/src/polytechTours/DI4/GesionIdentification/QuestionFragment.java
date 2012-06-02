@@ -48,22 +48,22 @@ import android.widget.TextView;
 
 /**
  * @author Julien Teruel
- * Classe la plus conséquente gérant la caméra, les questions, l'affichage, l'historique d'où sa taille conséquente
- * Pour plus de détails sur cette classe se reporter au rapport
+ * Classe la plus consï¿½quente gï¿½rant la camï¿½ra, les questions, l'affichage, l'historique d'oï¿½ sa taille consï¿½quente
+ * Pour plus de dï¿½tails sur cette classe se reporter au rapport
  * Vie de la classe :
  *  Au depart on parse le fichier XML, on obtient la question root de base
- *  currentQuestion est la à afficher, changeUI() adapte l'interface graphique à currentQuestion
+ *  currentQuestion est la ï¿½ afficher, changeUI() adapte l'interface graphique ï¿½ currentQuestion
  */
 public class QuestionFragment extends Fragment implements OnClickListener 
 {
 	//************ Partie Camera *******************
 	/**
-	 * L'objet caméra 
+	 * L'objet camï¿½ra 
 	 */
 	private Camera mCamera;
 	
 	/**
-	 * La zone de preview de la vue caméra
+	 * La zone de preview de la vue camï¿½ra
 	 */
 	private CameraPreview mPreview;
 	
@@ -78,7 +78,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private BebeteActivity activity;
 	
 	/**
-	 * Booléen gérant l'accès concurrent à la caméra
+	 * Boolï¿½en gï¿½rant l'accï¿½s concurrent ï¿½ la camï¿½ra
 	 */
 	private static boolean aquis = false;
 	
@@ -102,12 +102,12 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private Vector<Question> listQuestion = new Vector<Question>();
 	
 	/**
-	 * La liste des reponses choisie par l'utilisateur ( taille - 1 par rapport a listQuestion, l'utilisateur voit une question de plus que ce qu'il a répondue)
+	 * La liste des reponses choisie par l'utilisateur ( taille - 1 par rapport a listQuestion, l'utilisateur voit une question de plus que ce qu'il a rï¿½pondue)
 	 */
 	private Vector<Reponse> listReponseChoisi = new Vector<Reponse>();
 	
 	/**
-	 * La liste des réponse Fragment de la question en cours, nécessaire pour retrouver la réponses choisie par l'utilisateur
+	 * La liste des rï¿½ponse Fragment de la question en cours, nï¿½cessaire pour retrouver la rï¿½ponses choisie par l'utilisateur
 	 */
 	private Vector<ReponseFragment> listReponseFragment = new Vector<ReponseFragment>();
 	
@@ -120,12 +120,12 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	
 	// *********** Partie affichage des Dialog ****************
 	/**
-	 * Le dialog affichant le résultat trouver en fin d'arbre
+	 * Le dialog affichant le rï¿½sultat trouver en fin d'arbre
 	 */
 	private Dialog dialog;
 	
 	/**
-	 * Le dialog d'alerte correspondant à l'appuie sur le bouton d'alerte 
+	 * Le dialog d'alerte correspondant ï¿½ l'appuie sur le bouton d'alerte 
 	 */
 	private Dialog dialogAlerte;
 	
@@ -135,7 +135,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private boolean dialogVisible;
 	
 	/**
-	 * Indique si le dialog d'alerte est visible à l'ecran
+	 * Indique si le dialog d'alerte est visible ï¿½ l'ecran
 	 */
 	private boolean dialogAlerteVisible;
 	
@@ -160,7 +160,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private Button boutonAnnulerAlerte;
 	
 	/**
-	 * Objet resultat contenant toutes les informations nécessaire à afficher
+	 * Objet resultat contenant toutes les informations nï¿½cessaire ï¿½ afficher
 	 */
 	private Resultat resultat;
 	//****************************************************************************
@@ -171,7 +171,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	private ImageButton alerte;
 	
 	/**
-	 * Constructeur par défaut, le XML est parser, l'affichage se modifie pour correspondre à la currentQuestion
+	 * Constructeur par dï¿½faut, le XML est parser, l'affichage se modifie pour correspondre ï¿½ la currentQuestion
 	 */
 	public QuestionFragment()
 	{
@@ -186,8 +186,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		options.inSampleSize = 8;
 	}
 	
-	//******* Les méthodes sont dans l'ordre du cycle de vie d'un fragment pour plus de détails http://developer.android.com/guide/topics/fundamentals/fragments.html *********
-	// Pour plus de détails sur le cycle de vie et leur implications voir le rapport
+	//******* Les mï¿½thodes sont dans l'ordre du cycle de vie d'un fragment pour plus de dï¿½tails http://developer.android.com/guide/topics/fundamentals/fragments.html *********
+	// Pour plus de dï¿½tails sur le cycle de vie et leur implications voir le rapport
 	
     @Override
     public void onAttach(Activity activity)  
@@ -294,7 +294,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
     	alerte.setVisibility(ImageButton.INVISIBLE);
 	}
 	 
-    //********************************* Méthodes pratiques hors du cycle de vie du fragment *******************************************
+    //********************************* Mï¿½thodes pratiques hors du cycle de vie du fragment *******************************************
     
 	//********************* Partie Camera ********************************************
     /** A safe way to get an instance of the Camera object. */
@@ -308,7 +308,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	        {
 	            c = Camera.open();  //Obtention de la camera de base 
 	            
-	            Camera.Parameters params = c.getParameters(); //Activation des paramètres de base de la caméra
+	            Camera.Parameters params = c.getParameters(); //Activation des paramï¿½tres de base de la camï¿½ra
 	    		params.setWhiteBalance( Camera.Parameters.WHITE_BALANCE_AUTO );
 	    		params.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 	    		params.setAntibanding( Camera.Parameters.ANTIBANDING_AUTO );
@@ -325,14 +325,14 @@ public class QuestionFragment extends Fragment implements OnClickListener
     	}
     	else
     	{
-    		Log.d("Camera", "getCameraInstance camera non relaché" );
+    		Log.d("Camera", "getCameraInstance camera non relachï¿½" );
     		
     		return mCamera;
     	}
     }
       
     /**
-     * Release de la camera, si elle a été acquise
+     * Release de la camera, si elle a ï¿½tï¿½ acquise
      */
     private void releaseCamera()
     {
@@ -347,13 +347,13 @@ public class QuestionFragment extends Fragment implements OnClickListener
     }
     
     /**
-     * Gestion de la capture d'image via le flux de la caméra
+     * Gestion de la capture d'image via le flux de la camï¿½ra
      */
     private PictureCallback mPicture = new PictureCallback()  
 	{
 		public void onPictureTaken(byte[] data, Camera camera)
 		{
-			//Test d'appel à l'intent de gestion de photo d'Android considérer trop long mais laissé ici au cas ou
+			//Test d'appel ï¿½ l'intent de gestion de photo d'Android considï¿½rer trop long mais laissï¿½ ici au cas ou
 			/*Uri uri = MediaFile.getOutputMediaFileUri( MediaFile.MEDIA_TYPE_IMAGE );
 			Intent mIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 			mIntent.putExtra( MediaStore.EXTRA_OUTPUT, uri );
@@ -374,6 +374,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	            fos.write(data);
 	            fos.close();
 	            Log.d("tag", "File created : " + pictureFile.getAbsolutePath() );
+	            FileManager.updateFileSystem(pictureFile, activity);
 	        }
 	        catch (FileNotFoundException e) 
 	        {
@@ -389,13 +390,13 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	//************************************************************************************************
 	
 	/**
-	 * Fonction délicate, elle gère tous les clics dans cette interface graphique dense
-	 * On regarde en priorité si une question a été cliqué sinon on regarde si c'est un bouton de gestion d'historique,
+	 * Fonction dï¿½licate, elle gï¿½re tous les clics dans cette interface graphique dense
+	 * On regarde en prioritï¿½ si une question a ï¿½tï¿½ cliquï¿½ sinon on regarde si c'est un bouton de gestion d'historique,
 	 * sinon on regarde finalement si c'est un bouton d'un des deux dialogs, celui de resultat ou d'alerte
 	 */
 	public void onClick(View arg0) 
 	{
-		//*********** Parcour de tous les framgents pour tester si une checkbox a été cocher ******************************
+		//*********** Parcour de tous les framgents pour tester si une checkbox a ï¿½tï¿½ cocher ******************************
 		boolean checkBox = false;
 		
 		for( int i = 0; i < listReponseFragment.size(); i++ )
@@ -415,7 +416,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 					{
 						if( navigation == listQuestion.size()-1 ) //Si c'est une nouvelle question
 						{
-							Log.d("Historique", "Nouvelle question créer");
+							Log.d("Historique", "Nouvelle question crï¿½er");
 							listReponseChoisi.add( reponse );
 							currentQuestion = reacher.findQuestionById( reponse.getIdQuestionSuivante() );
 							listQuestion.add( currentQuestion );  //Rajout dans l'historique de la question 
@@ -424,14 +425,14 @@ public class QuestionFragment extends Fragment implements OnClickListener
 						{
 							if( reponse.getId() == listReponseChoisi.get( navigation ).getId() )//Si on a choisie la meme reponse
 							{
-								Log.d("Historique", "Même réponse selectionner id = " +  reponse.getId() );
+								Log.d("Historique", "Mï¿½me rï¿½ponse selectionner id = " +  reponse.getId() );
 								currentQuestion = listQuestion.get(navigation+1);
 							}
 							else
 							{
-								Log.d("Historique", "Question différente selectionné");
+								Log.d("Historique", "Question diffï¿½rente selectionnï¿½");
 								
-								for( int k = navigation; k < listReponseChoisi.size(); k++ )//nettoie la liste des reponses depuis la question changé
+								for( int k = navigation; k < listReponseChoisi.size(); k++ )//nettoie la liste des reponses depuis la question changï¿½
 								{
 									listReponseChoisi.remove(k);
 								}
@@ -451,7 +452,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 						navigation++;
 						
 						Log.d("Navigation", "nav = " + navigation );
-						//Mise à jour de l'affichage des boutons en fonction des changements dans l'historique
+						//Mise ï¿½ jour de l'affichage des boutons en fonction des changements dans l'historique
 						if( navigation > 0 )
 						{
 							retour.setEnabled(true);
@@ -484,9 +485,9 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		}
 		//****************************************************************************************
 		
-		if( !checkBox ) //Si on rentre ici aucune question n'a été selectionnées
+		if( !checkBox ) //Si on rentre ici aucune question n'a ï¿½tï¿½ selectionnï¿½es
 		{
-			if( arg0.getId() == retour.getId() ) //Retour cliqué dans l'historique
+			if( arg0.getId() == retour.getId() ) //Retour cliquï¿½ dans l'historique
 			{
 				navigation--;
 				
@@ -500,7 +501,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				}
 				changeUIviaHisto();
 			}
-			else if( arg0.getId() == suivant.getId() )  //Suivant cliqué dans l'historique
+			else if( arg0.getId() == suivant.getId() )  //Suivant cliquï¿½ dans l'historique
 			{
 				navigation++;
 				
@@ -514,7 +515,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				}
 				changeUIviaHisto();
 			}
-			else if( dialogVisible && arg0.getId() == boutonAnnuler.getId() )  //Annuler cliqué dans le dialog de resultat
+			else if( dialogVisible && arg0.getId() == boutonAnnuler.getId() )  //Annuler cliquï¿½ dans le dialog de resultat
 			{
 				dialogVisible = false;
 				dialog.dismiss();
@@ -537,7 +538,6 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		        Date date = new Date();		
 		        recolte.setNom(resultat.getNom());
                 recolte.setNombre( recolte.getNombre() + 1 );
-                recolte.setDate_recolte(date.getDay()+ "/"+ date.getMonth() +1 + "/" + date.getYear() );
                 recolte.setPege_id(piege_id);
                 
             	bdd.insinsertOrUpdateRecolte(recolte);
@@ -550,23 +550,23 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		        dialogVisible = false;
 		        
 			}
-			else if( arg0.getId() == alerte.getId() )  //Bouton alerte cliqué dans l'action bar
+			else if( arg0.getId() == alerte.getId() )  //Bouton alerte cliquï¿½ dans l'action bar
 			{
 				if( !dialogAlerteVisible )
 				{
 					afficherAlerte();
 				}
 			}
-			else if( dialogAlerteVisible && arg0.getId() ==  boutonAnnulerAlerte.getId() ) //Bouton annuler cliqué sur le dialog alerte
+			else if( dialogAlerteVisible && arg0.getId() ==  boutonAnnulerAlerte.getId() ) //Bouton annuler cliquï¿½ sur le dialog alerte
 			{
 				dialogAlerte.dismiss();
 				dialogAlerteVisible = false;
 			}
-			else if( dialogAlerteVisible && arg0.getId() == boutonSubmit.getId() )   //Bouton submit cliqué sur le dialog alerte
+			else if( dialogAlerteVisible && arg0.getId() == boutonSubmit.getId() )   //Bouton submit cliquï¿½ sur le dialog alerte
 			{
 				//Enregistrement de l'erreur : un fichier texte contenant le text de l'utilisateur avec la date en haut du fichier
-				// Une capture d'écran utilisateur
-				// La derniere capture camera effectué par l'utilisateur
+				// Une capture d'ï¿½cran utilisateur
+				// La derniere capture camera effectuï¿½ par l'utilisateur
 				EditText detail = (EditText)dialogAlerte.findViewById(R.id.detail);
 				Date date = new Date();				
 				
@@ -604,7 +604,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		                    
 		                    bitmap.recycle();
 		                    
-		                    //Copie de la derniere capture d'ecran effectué par l'utilisateur
+		                    //Copie de la derniere capture d'ecran effectuï¿½ par l'utilisateur
 		                    File screenCap = new File( FileManager.getSaveIncidentPath() + File.separator + "Dernier Screen Utilisateur - " + date.getTime() + ".jpg" );
 		                    File original = new File( FileManager.getSavePath() + File.separator + "temp.jpg" );
 		                    
@@ -638,7 +638,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				else
 				{
 					AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-					builder.setMessage("Veuillez donner une description de votre problème.")
+					builder.setMessage("Veuillez donner une description de votre problï¿½me.")
 						.setCancelable(false)
 						.setPositiveButton("Ok", new DialogInterface.OnClickListener() 
 													  {
@@ -660,7 +660,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	}
 
 	/**
-	 * Fonction qui adapte l'UI de QuestionFragment pour correspondre à la currentQuestion
+	 * Fonction qui adapte l'UI de QuestionFragment pour correspondre ï¿½ la currentQuestion
 	 */
 	private void changeUI( )
 	{	
@@ -748,8 +748,8 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	}
 	
 	/**
-	 * Fonction prévue pour le futur si un traitement différent est requis lors d'un changement via d'UI via l'historique.
-	 * Pour l'instant équivaut à changeUI();
+	 * Fonction prï¿½vue pour le futur si un traitement diffï¿½rent est requis lors d'un changement via d'UI via l'historique.
+	 * Pour l'instant ï¿½quivaut ï¿½ changeUI();
 	 */
 	private void changeUIviaHisto()
 	{
@@ -758,7 +758,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 	}
 	
 	/**
-	 * Affiche un Dialog de réstultat basé sur les infos contenue dans l'objet résultat 
+	 * Affiche un Dialog de rï¿½stultat basï¿½ sur les infos contenue dans l'objet rï¿½sultat 
 	 * @param resultat
 	 */
 	private void afficherResultat( Resultat resultat )
@@ -767,7 +767,7 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		dialog.setOwnerActivity(activity);
 	       
 		dialog.setContentView(R.layout.resultat);
-		dialog.setTitle("Résultat");
+		dialog.setTitle("Rï¿½sultat");
 		dialog.setCancelable(true);
 		dialog.setCanceledOnTouchOutside(true);
 		
@@ -827,4 +827,14 @@ public class QuestionFragment extends Fragment implements OnClickListener
 		
 		dialogAlerte.show();
 	}
+
+	public Camera getmCamera() {
+		return mCamera;
+	}
+
+	public PictureCallback getmPicture() {
+		return mPicture;
+	}
+	
+	
 }

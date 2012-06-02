@@ -173,8 +173,15 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 	 */
 	public void onClick(View arg0) 
 	{
-		resizedBitmap.recycle();
-		resizedBitmap2.recycle();
+		if( resizedBitmap != null  )
+		{
+			resizedBitmap.recycle();
+		}
+		if( resizedBitmap2 != null )
+		{
+			resizedBitmap2.recycle();
+		}
+		
 		dialog.dismiss();
 	}
 
@@ -197,6 +204,16 @@ public class ReponseFragment extends Fragment implements OnItemLongClickListener
 		options.inSampleSize = 8;
 		
 		//Obtention de l'image de la caméra sauvegarder
+		File imageTemp = new File( FileManager.getSavePath() + File.separator + "temp.jpg" );
+		
+		if( !imageTemp.exists() )
+		{
+			frag.getmCamera().takePicture(null, null, frag.getmPicture() );
+			frag.getmCamera().startPreview();
+		}
+		
+		FileManager.updateFileSystem( imageTemp, activity );
+		
 		resizedBitmap = BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + "temp.jpg", options );
 		
 		ImageView image = (ImageView) dialog.findViewById(R.id.image44);

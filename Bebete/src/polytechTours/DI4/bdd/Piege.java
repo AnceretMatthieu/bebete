@@ -156,7 +156,7 @@ public class Piege {
 	 * @return le piège sous forme texte
 	 */
 	public String toString() {
-		return "Campagne [id=" + id + ", parcelle_id=" + parcelle_id
+		return "Piege [id=" + id + ", parcelle_id=" + parcelle_id
 				+ ", nom=" + nom + ", date_debut=" + date_debut + ", date_fin="
 				+ date_fin + ", adresse=" + adresse + ", latitude=" + latitude
 				+ ", longitude=" + longitude + ", description=" + description
@@ -177,7 +177,7 @@ public class Piege {
 	 * @return L'entête des colonnes
 	 */
 	public static String headerCSV(){
-		return "id;utilisateur_id;nom;date_debut;date_fin;adresse;adresse;latitude;longitude;description";
+		return "piege_id;parcelle_id;piege_nom;piege_date_debut;piege_date_fin;piege_adresse;piege_latitude;piege_longitude;piege_description";
 	}
 	
 }

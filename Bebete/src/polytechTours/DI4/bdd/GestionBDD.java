@@ -97,7 +97,7 @@ public class GestionBDD extends SQLiteOpenHelper {
 					COL_LONGITUDE + " VARCHAR(25), " +
 					COL_DESCRIPTION + " VARCHAR(1024), " +
 					"FOREIGN KEY(" + COL_PARCEL_ID +") REFERENCES " + TABLE_PARCELLE + "(" + COL_ID + ") ON DELETE CASCADE, " +
-					"UNIQUE (" + COL_PARCEL_ID + "," + COL_NOM + "));";
+					"UNIQUE (" + COL_PARCEL_ID + "," + COL_NOM + "," + COL_DATE_FIN + "));";
 	
 	/** Commande SQLite pour la création de la table recolte
 	 * @return Commande SQLite au format texte
@@ -111,7 +111,7 @@ public class GestionBDD extends SQLiteOpenHelper {
 					COL_NOMBRE + " INTEGER, " +
 					COL_DATE_RECOLTE + " DATE, " +
 					"FOREIGN KEY(" + COL_PIEGE_ID +") REFERENCES " + TABLE_PARCELLE + "(" + COL_ID + ") ON DELETE CASCADE, " +
-					"UNIQUE (" + COL_PIEGE_ID + "," + COL_NOM + "," + COL_DATE_RECOLTE + "));";
+					"UNIQUE (" + COL_PIEGE_ID + "," + COL_NOM + "));";
 	
 	/** Constructeur de GestionBDD en lien avec SQLiteOpenHelper*/
 	public GestionBDD(Context context, String name, CursorFactory factory, int version) {
@@ -120,6 +120,7 @@ public class GestionBDD extends SQLiteOpenHelper {
 	
 	@Override
 	public void onCreate(SQLiteDatabase db){	
+		db.execSQL("PRAGMA foreign_keys = ON"); //force la contraintes sur les clefs etrangere
 		db.execSQL(CREATE_USER_DB); //création de la table utilisateur
 		db.execSQL(CREATE_CAMPAGNE_DB); //création de la table campagne
 		db.execSQL(CREATE_PARCEL_DB); //création de la table parcelle

@@ -13,7 +13,6 @@ public class Recolte {
 	private int piege_id;
 	private String nom;
 	private int nombre;
-	private String date_recolte;
 	
 	/** Indique l'identifiant de la récolte
 	 * @return 	Identitifiant de la récolte
@@ -71,40 +70,27 @@ public class Recolte {
 	public void setNombre(int nombre) {
 		this.nombre = nombre;
 	}
-	
-	/** Indique la date de la collecte du piège
-	 * @return date de la levée du piège
-	 */
-	public String getDate_recolte() {
-		return date_recolte;
-	}
-	
-	/** Modifie la date de la collecte du piège
-	 * @param date_recolte Date de la levée du piège
-	 */
-	public void setDate_recolte(String date_recolte) {
-		this.date_recolte = date_recolte;
-	}
+		
 	@Override
 	/** Sérialise la récolte
 	 * @return la Recolte sous forme texte
 	 */
 	public String toString() {
 		return "Recolte [id=" + id + ", piege_id=" + piege_id + ", nom=" + nom
-				+ ", nombre=" + nombre + ", date_recolte=" + date_recolte + "]";
+				+ ", nombre=" + nombre + "]";
 	}
 	
 	/** Renvoie les attributs de la Récolte au format CSV avec le point-virgule comme séparateur 
 	 * @return la Recolte sous la forme CSV
 	 */
 	public String toCSV(){
-		return id + ";" + piege_id + ";" + nom + ";" + date_recolte + ";" + nombre;
+		return id + ";" + piege_id + ";" + nom + ";" + nombre;
 	}
 	
 	/** Renvoie l'entête des colonnes du format CSV
 	 * @return L'entête des colonnes
 	 */
 	public static String headerCSV() {
-		return "id;piege_id;nom;nombre;date_recolte";
+		return "insecte_id;piege_id;insecte_nom;insecte_nombre";
 	}
 }
