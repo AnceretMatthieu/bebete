@@ -146,6 +146,15 @@ Maintenant que nous avons identifié les classes que nous allons utiliser, il fau
 	\item \textbf{ENTITY :} indique que l'attribut sera une entité externe qui ne sera pas analysée
 \end{itemize}	
 
+\section{Exportation du résultat de l'application mobile}
+Pour que l'utilisateur puisse donner le résultat de son travail à l'équipe INNOPHYT, nous avons mis en place un système d'exportation de la base de données vers un fichier au format CSV (avec le poing-virgule comme signe de séparation des colonnes). Cette méthode n'exporte que les données de l'utilisateur qui en fait la demande. Le résultat est enregistré dans le dossier innophyt/export. Les informations exportées sont les suivantes :
+\begin{itemize}
+\item L'id et le nom de l'utilisateur
+\item L'id, le nom, la date de début et de fin, l'adresse, les coordonnées (latitude/longitude) et la description de la campagne
+\item Même chose pour les parcelles et les pièges
+\item L'id, le nom et le nombre d'insectes
+\end{itemize}
+
 \chapter{Application PC}
 
 \section{Interface et utilisation}
