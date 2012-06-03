@@ -26,14 +26,14 @@ import android.content.DialogInterface;
 import android.os.Environment;
 import android.util.Log;
 
-/**mÃ©thodes d'export des donnÃ©es de l'application*/
+/**méthodes d'export des données de l'application*/
 public class Export {
 
-	/** Export au format CSV toutes les campagnes, les parcelles, les piÃ¨ges et le nombre d'insectes trouvÃ©s pour un utilisateur
+	/** Export au format CSV toutes les campagnes, les parcelles, les pièges et le nombre d'insectes trouvés pour un utilisateur
 	 * @param context	Contexte de l'application
 	 * @param utilisateur_id	Identifiant de l'utilisateur
-	 * @note Le rÃ©sultat est sauvegardÃ© dans le rÃ©pertoire utilisateur de l'application : /Pictures/Inno/csv/
-	 * son nom est "export_#NOM_DE_L_UTILISATEUR#_ANNEE_MOI_JOUR.csv", les valeurs sont celles courantes Ã  l'export
+	 * @note Le résultat est sauvegardé dans le répertoire utilisateur de l'application : /Pictures/Inno/csv/
+	 * son nom est "export_#NOM_DE_L_UTILISATEUR#_ANNEE_MOI_JOUR.csv", les valeurs sont celles courantes à l'export
 	 */
 	public static void Export(Activity activity, int utilisateur_id){
 		/*declearations*/
@@ -47,7 +47,7 @@ public class Export {
 		Utilisateur utilisateur;
 		File csv = null;
 		
-		//** crÃ©ation du fichier **//
+		//** création du fichier **//
 		//Chemin de sauvegarde memoire interne : /Pictures/Inno/csv/
 	    
 	    File exportCSV = new File( FileManager.getSavePath() + File.separator + "export");
@@ -108,13 +108,13 @@ public class Export {
 			utilisateur = bdd.getUtilisateurWithID(utilisateur_id);
 		bdd.close();
 		
-	    //ouverture en Ã©criture
-	    //Ã©criture des entÃªtes.
+	    //ouverture en écriture
+	    //écriture des entÃªtes.
 	    try {
 			FileWriter fw = new FileWriter(csv, true);
 			BufferedWriter output = new BufferedWriter(fw);
 			
-			//Ã©criture des entÃªtes
+			//écriture des entÃªtes
 			String str = Utilisateur.headerCSV() + ";";
 			str += Campagne.headerCSV() + ";";
 			str += Parcelle.headerCSV() + ";";
@@ -124,7 +124,7 @@ public class Export {
 			output.write(str);
 
 		    
-			/*rÃ©cuperation des campagnes*/
+			/*récuperation des campagnes*/
 			CampagneBDD campagneBDD = new CampagneBDD(context);
 			campagneBDD.open();
 			campagnes = campagneBDD.getCampagnes(utilisateur_id);
@@ -139,7 +139,7 @@ public class Export {
 				
 				if(parcelles != null)
 				for (Parcelle parcelle : parcelles) {
-					/*rÃ©cupÃ©ration des piÃ¨ges*/
+					/*récupération des pièges*/
 					PiegeBDD piegeBDD = new PiegeBDD(context);
 					piegeBDD.open();
 					pieges = piegeBDD.getPieges(parcelle.getId());	
@@ -147,7 +147,7 @@ public class Export {
 					
 					if(pieges != null)
 					for (Piege piege : pieges) {
-						/*rÃ©cupÃ©ration des effectifs*/
+						/*récupération des effectifs*/
 						RecolteBDD recolteBDD = new RecolteBDD(context);
 						recolteBDD.open();
 						recoltes = recolteBDD.getRecoltes(piege.getId());	
@@ -181,7 +181,7 @@ public class Export {
 	/** message d'alerte, seul valider est disponible
 	 * @param title	Titre de l'alerte
 	 * @param mymessage Message de l'alerte*/
-	private static void alertbox(Activity activity, String title, String mymessage){
+	public static void alertbox(Activity activity, String title, String mymessage){
 	   new AlertDialog.Builder(activity)
 	      .setMessage(mymessage)
 	      .setTitle(title)

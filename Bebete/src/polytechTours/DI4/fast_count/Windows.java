@@ -95,7 +95,7 @@ public class Windows extends RelativeLayout implements OnClickListener
 		Map<String,Bitmap> maps = new TreeMap<String, Bitmap>();
 		maps = buildThum();
 		
-		//base sur le nombre de photos,on crÃ©e un Layout k
+		//base sur le nombre de photos,on crée un Layout k
 		int li = listChemin.size()/6;
 		int hi = 210*(li+1);
 		

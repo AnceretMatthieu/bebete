@@ -34,8 +34,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.EditText;
 
-/** Gestion de l'affichage des piÃ¨ges,
- * CrÃ©ation, SÃ©lection, Ã©dition, suppression
+/** Gestion de l'affichage des pièges,
+ * Création, Sélection, édition, suppression
  */
 public class GestionPiege extends Fragment
 {
@@ -45,11 +45,11 @@ public class GestionPiege extends Fragment
 	private int parcelle_id;
 	private RadioGroup radiogroup = null;
 	
-    // On dÃ©clare les variables nÃ©cessaires pour le GPS
+    // On déclare les variables nécessaires pour le GPS
 	private LocationManager locationMgr = null;
 	Location curent_location = null;
 	
-	/**Gestion du GPS pour rÃ©cupÃ©rer la position courante*/
+	/**Gestion du GPS pour récupérer la position courante*/
     private LocationListener onLocationChange = new LocationListener() {
     	 public void onStatusChanged(String provider, int status, Bundle extras) { }
     	 public void onProviderEnabled(String provider) { }
@@ -60,14 +60,14 @@ public class GestionPiege extends Fragment
     	 }
     };
     
-    /** Relation entre l'affichage et les piÃ¨ges*/
+    /** Relation entre l'affichage et les pièges*/
 	private class PiegesButton{
 		private Vector<Piege> vect_pieges = null;
 		private Vector<RadioButton> vect_radioButton = null;
 		private int active_piege = 0;
 		
-		/** CrÃ©ation des boutons en fonction d'une liste de piÃ¨ges
-		 * @param vect_pieges	Vecteur de piÃ¨ges
+		/** Création des boutons en fonction d'une liste de pièges
+		 * @param vect_pieges	Vecteur de pièges
 		 */
 		public PiegesButton(Vector<Piege> vect_pieges){
 			this.vect_pieges = vect_pieges;
@@ -77,7 +77,7 @@ public class GestionPiege extends Fragment
 				this.vect_pieges = new  Vector<Piege>();
 			else{
 				for (Piege piege : vect_pieges) {
-					RadioButton radiobt = new RadioButton(activity); //crÃ©ation d'un radiobouton
+					RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
 					radiobt.setText(piege.getNom()); //texte du bouton
 					vect_radioButton.add(radiobt);
 					radiogroup.addView(radiobt);
@@ -85,8 +85,8 @@ public class GestionPiege extends Fragment
 			}
 		}
 		
-		/** Supprime un piÃ¨ge de l'affichage
-		 * @param piege	PiÃ¨ge supprimÃ©
+		/** Supprime un piège de l'affichage
+		 * @param piege	Piège supprimé
 		 */
 		public void insertPiege(Piege piege){
 			String name = piege.getNom();
@@ -105,7 +105,7 @@ public class GestionPiege extends Fragment
 				if(id != -1){
 					piege.setId(id);
 					vect_pieges.add(piege);
-					RadioButton radiobt = new RadioButton(activity); //crÃ©ation d'un radiobouton
+					RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
 					radiobt.setText(piege.getNom()); //texte du bouton
 					vect_radioButton.add(radiobt);
 					radiogroup.addView(radiobt);
@@ -116,8 +116,8 @@ public class GestionPiege extends Fragment
 			}
 		}
 		
-		/** Met Ã  jour un piÃ¨ge
-		 * @param piege		PiÃ¨ge Ã  modifier
+		/** Met à jour un piège
+		 * @param piege		Piège à modifier
 		 */
 		public void removePiege(Piege piege){
 			int i = 0;
@@ -133,8 +133,8 @@ public class GestionPiege extends Fragment
 			}
 		}
 		
-		/** DÃ©finit le piÃ¨ge actif
-		 * @param piege		NumÃ©ro du piÃ¨ge Ã  activer
+		/** Définit le piège actif
+		 * @param piege		Numéro du piège à activer
 		 */
 		public void updatePiege(Piege piege){
 			int i = 0;
@@ -149,44 +149,44 @@ public class GestionPiege extends Fragment
 			}
 		}
 		
-		/** DÃ©finit le piÃ¨ge actif
-		 * @param active_piege PiÃ¨ge sÃ©lectionnÃ©
+		/** Définit le piège actif
+		 * @param active_piege Piège sélectionné
 		 */
 		public void setActive_piege(int active_piege) {
 			this.active_piege = active_piege;
 		}
 		
-		/** Indique le piÃ¨ge active
-		 * @return PiÃ¨ge sÃ©lectionnÃ©
+		/** Indique le piège active
+		 * @return Piège sélectionné
 		 */
 		public Piege getCurent_piege(){
 			return vect_pieges.elementAt(active_piege);
 		}
 		
-		/** Indique le nombre de piÃ¨ges
-		 * @return Nombre de piÃ¨ges
+		/** Indique le nombre de pièges
+		 * @return Nombre de pièges
 		 */
 		public int count() {
 			return vect_pieges.size();
 		}
 		
-		/** DÃ©finit le piÃ¨ge sÃ©lectionnÃ©
-		 * @param i		Numero du piÃ¨ge Ã  sÃ©lectionner
+		/** Définit le piège sélectionné
+		 * @param i		Numero du piège à sélectionner
 		 */
 		public void setCheck(int i){
 			vect_radioButton.elementAt(i).setChecked(true);
 		}
 	}
     
-	/** affiche une date picker et retourne la date dans le champ passÃ© en paramÃ¨tre
-	 * @param champ 	Champ de l'affichage Ã  modifier*/
+	/** affiche une date picker et retourne la date dans le champ passé en paramètre
+	 * @param champ 	Champ de l'affichage à modifier*/
 	private void datepikerdialog(final EditText champ) throws java.text.ParseException {
 
 		int year = 0;
 		int month = 0;
 		int day = 0;
 		
-		if(champ.getText().toString().length() >= 9){ //une date est composÃ©e d'au moins 9 caractÃ¨res
+		if(champ.getText().toString().length() >= 9){ //une date est composée d'au moins 9 caractères
 			Log.d("debug", "La date est = " + champ.getText().toString()); 
 			String [] date = champ.getText().toString().split("/");
 			year = Integer.parseInt(date[2]);
@@ -254,16 +254,16 @@ public class GestionPiege extends Fragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-        /** RÃ©cupÃ¨re l'identifiant de la parcelle depuis les paramÃ¨tres de l'application
-         * Affiche un message en cas de problÃ¨me et renvoie Ã  la page de sÃ©lection des campagnes **/
-		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //rÃ©cupÃ¨re les paramÃ¨tres de l'application
+        /** Récupère l'identifiant de la parcelle depuis les paramètres de l'application
+         * Affiche un message en cas de problème et renvoie à la page de sélection des campagnes **/
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
         parcelle_id = (int)preferences.getLong("PARCELLE_ID", -1);
         if(parcelle_id == -1)
         	if(!Securite.valideProjet(activity))
         		return;
         
 		/**gestion du gps **/   
-		//(GPS) Gestion des rÃ©seaux et du temps de pull
+		//(GPS) Gestion des réseaux et du temps de pull
 		locationMgr = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
 		locationMgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 0, onLocationChange);
 		locationMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0,onLocationChange);
@@ -273,10 +273,10 @@ public class GestionPiege extends Fragment
         bdd.open();
         
         
-        /** Zone d'affichage des PiÃ¨ges **/
+        /** Zone d'affichage des Pièges **/
 		radiogroup = new RadioGroup(activity); //groupe d'affichage pour la liste de radiobouton
 		
-		/*Gestion de la sÃ©lection d'un piÃ¨ge*/
+		/*Gestion de la sélection d'un piège*/
 		radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			public void onCheckedChanged(RadioGroup rg, int checkedId){
 				for(int i=0; i<rg.getChildCount(); i++) {
@@ -284,7 +284,7 @@ public class GestionPiege extends Fragment
 	                	   pieges.setActive_piege(i);
 	                	   Piege piege = pieges.getCurent_piege();
 	                	   
-					    	/*affichage des Ã©lÃ©ments dans leurs champs respectifs*/
+					    	/*affichage des éléments dans leurs champs respectifs*/
 					    	EditText nomPiege = (EditText)activity.findViewById( R.id.nomPiege );
 							nomPiege.setText(piege.getNom());
 							
@@ -303,9 +303,9 @@ public class GestionPiege extends Fragment
 							EditText adressePiege = (EditText)activity.findViewById( R.id.adressePiege );
 							adressePiege.setText(piege.getAdresse());	
 							
-							SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //rÃ©cupÃ¨re les paramÃ¨tres de l'application
+							SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
 							
-							// stock l'identifiant du piÃ¨ge
+							// stock l'identifiant du piège
 				    		SharedPreferences.Editor editor = preferences.edit();
 				    		editor.putLong("PIEGE_ID", pieges.getCurent_piege().getId()); 
 				    		editor.commit();
@@ -316,19 +316,19 @@ public class GestionPiege extends Fragment
 	        }
 		});
 		
-		/*SÃ©lection du premier piÃ¨ge lors de l'initialisation de la vue*/
+		/*Sélection du premier piège lors de l'initialisation de la vue*/
 		pieges = new PiegesButton(bdd.getPieges(parcelle_id));
         if(pieges.count() != 0)
         	pieges.setCheck(0);
         
-        /** phrase de sÃ©lection du piÃ¨ge **/
+        /** phrase de sélection du piège **/
 		LinearLayout layout_liste = (LinearLayout)activity.findViewById( R.id.linearLayout4 );
         TextView tv = new TextView(activity);
 		tv.setText(R.string.selectionnerPiege);
 		layout_liste.addView(tv);
 		
 		/**date picker**/
-		//date de dÃ©but
+		//date de début
 		final EditText editTextdebutPiege = (EditText) activity.findViewById(R.id.debutPiege);
 		editTextdebutPiege.setOnClickListener(new View.OnClickListener(){
 				public void onClick(View v) {
@@ -357,7 +357,7 @@ public class GestionPiege extends Fragment
 	    );
 		
 		/**GPS**/
-		//rÃ©cupÃ©ration de la position & stockage dans le champ curent_location
+		//récupération de la position & stockage dans le champ curent_location
 		final Button localiserGPS = (Button) activity.findViewById(R.id.localiserGPS);
 		localiserGPS.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
@@ -366,19 +366,19 @@ public class GestionPiege extends Fragment
 		        	gpsPiege.setText(curent_location.getLatitude() + " ; " + curent_location.getLongitude());
 		        }
 		        else
-		        	alertbox("Attention !", "Pas de signale GPS");
+		        	alertbox("Attention !", "Pas de signal GPS");
 		    }
 
 		});
-		/**gestion du bouton sÃ©lectionner**/
+		/**gestion du bouton sélectionner**/
 		final Button buttonselectionner = (Button) activity.findViewById(R.id.selectionner);
 		buttonselectionner.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
             	if(pieges.count() != 0){
-					SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //rÃ©cupÃ¨re les paramÃ¨tres de l'application
+					SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
 	
-					// stock l'identifiant du piÃ¨ge
+					// stock l'identifiant du piège
 		    		SharedPreferences.Editor editor = preferences.edit();
 		    		editor.putLong("PIEGE_ID", pieges.getCurent_piege().getId()); 
 		    		editor.commit();
@@ -456,7 +456,7 @@ public class GestionPiege extends Fragment
             }
         });
 		
-		/**gestion du bouton crÃ©er**/
+		/**gestion du bouton créer**/
 		final Button buttoncreer = (Button) activity.findViewById(R.id.creer);
 		buttoncreer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -513,11 +513,11 @@ public class GestionPiege extends Fragment
             public void onClick(View v) {
             	if(pieges.count() != 0){
                	
-		    		/** crÃ©ation d'une alerte boxe avant la suppression*/
+		    		/** création d'une alerte boxe avant la suppression*/
 		    		AlertDialog deleteAlert = new AlertDialog.Builder(activity).create();
 		    		deleteAlert.setTitle(R.string.attention);
 		    		//deleteAlert.setMessage(R.string.supprimerPiege);
-		    		deleteAlert.setMessage("Voulez-vous supprimer ce piège ?"); //On ne met pas le texte ainsi, mais la forme prÃ©cÃ©dente rencontre un problÃ¨me de type qui n'est pas encore rÃ©solu
+		    		deleteAlert.setMessage("Voulez-vous supprimer ce piège ?"); //On ne met pas le texte ainsi, mais la forme précédente rencontre un problème de type qui n'est pas encore résolu
 		    		/**si oui**/
 		    		deleteAlert.setButton(DialogInterface.BUTTON_POSITIVE,"Oui", new DialogInterface.OnClickListener(){
 		
@@ -528,7 +528,7 @@ public class GestionPiege extends Fragment
 		    		
 	        		deleteAlert.setButton(DialogInterface.BUTTON_NEGATIVE,"Non", new DialogInterface.OnClickListener(){
 	        			public void onClick(DialogInterface dialog, int which) { 
-	        				//rien Ã  faire
+	        				//rien à faire
 	        			}
 	        		});
 	        		

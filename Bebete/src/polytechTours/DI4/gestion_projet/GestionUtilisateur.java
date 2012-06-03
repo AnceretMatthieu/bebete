@@ -20,7 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 /** Gestion de l'affichage des utilisateurs,
- * Création, Sélection
+ * Cr�ation, S�lection
  */
 public class GestionUtilisateur extends Fragment
 {
@@ -45,7 +45,7 @@ public class GestionUtilisateur extends Fragment
 		}
 	
 	private void connect(){
-		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //r�cupère les paramètres de l'application
 		
 		// stock l'identifiant de l'utilisateur
 		SharedPreferences.Editor editor = preferences.edit();
@@ -118,7 +118,7 @@ public class GestionUtilisateur extends Fragment
 		    }
 		});
 		
-		//création utilisateur
+		//cr�ation utilisateur
 		final Button creer = (Button) activity.findViewById(R.id.newUser);
 		creer.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {

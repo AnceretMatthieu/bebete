@@ -525,6 +525,18 @@ public class QuestionFragment extends Fragment implements OnClickListener
 				SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); 
 		        int piege_id = (int)preferences.getLong("PIEGE_ID", -1);
 		        
+		        if(piege_id == -1){
+		     	   new AlertDialog.Builder(activity)
+			 	      .setMessage("Vous n'avez pas séléctionné de piège, vous ne pouvez donc pas enregister.")
+			 	      .setTitle("Attention !")
+			 	      .setCancelable(true)
+			 	      .setNeutralButton(android.R.string.ok,
+			 	         new DialogInterface.OnClickListener() {
+			 	         public void onClick(DialogInterface dialog, int whichButton){}
+			 	         })
+			 	      .show();
+             		return;
+            	}
 		        RecolteBDD bdd = new RecolteBDD(activity.getBaseContext());
 		        bdd.open();
 		        

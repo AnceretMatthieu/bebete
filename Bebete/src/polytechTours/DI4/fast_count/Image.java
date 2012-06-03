@@ -1,7 +1,7 @@
 package polytechTours.DI4.fast_count;
 /** 
 * @file Image.java 
-* @brief  L'entrÃ©e du programme
+* @brief  L'entrée du programme
 * @author zhangzheng
 * @date 2012/5/30  
 * @version 0.1 
@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 /** 
 * @class Image 
-* @brief L'entrÃ©e du programme 
+* @brief L'entrée du programme 
 *   
 */ 
 

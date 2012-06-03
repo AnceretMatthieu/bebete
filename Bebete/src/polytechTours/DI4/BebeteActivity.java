@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 
 import polytechTours.DI4.GesionIdentification.FileManager;
-import polytechTours.DI4.GesionIdentification.MenuGPSFragment;
 import polytechTours.DI4.GesionIdentification.QuestionFragment;
 import polytechTours.DI4.fast_count.Image;
 import polytechTours.DI4.gestion_projet.GestionCampagne;
@@ -174,7 +173,7 @@ public class BebeteActivity extends Activity implements OnClickListener
 				transaction.add( R.id.linearLayout2, questionView, "enCours" );
 			transaction.commit();
     	}
-		else if( item.getItemId() == R.id.menu_parametre )
+		else if( item.getItemId() == R.id.export )
     	{
     		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
             int utilisateur_id = (int)preferences.getLong("UTILISATEUR_ID", -1);
@@ -258,7 +257,7 @@ public class BebeteActivity extends Activity implements OnClickListener
 					out.write( new String( "<?xml version=\"1.0\"?>").getBytes() );
 					out.write( new String( "<arbre><branche id=\"b1\" type=\"accueil\" date=\"jj/mm/yyy\">" ).getBytes() );
 					out.write( new String( "<question id=\"q1\" texte=\"Aucun fichier XML trouver\" observation=\"oeil\">" +
-							"<media><legende>Veuillez vérifier que les fichiers ont bien été copiés dans /Innophyt/</legende>" +
+							"<media><legende>Veuillez vï¿½rifier que les fichiers ont bien ï¿½tï¿½ copiï¿½s dans /Innophyt/</legende>" +
 							"</media> </question> </branche> </arbre>").getBytes() );
 					out.close();
 
@@ -266,14 +265,14 @@ public class BebeteActivity extends Activity implements OnClickListener
 				} 
 				catch (IOException e) 
 				{
-					Log.d("Fichier de base", "Erreur lors de l'écriture du fichier XML de base");
+					Log.d("Fichier de base", "Erreur lors de l'ï¿½criture du fichier XML de base");
 					e.printStackTrace();
 				}
 				
 			} 
 			catch (FileNotFoundException e) 
 			{
-				Log.d("Fichier de base", "Erreur lors de la création des fichiers de base");
+				Log.d("Fichier de base", "Erreur lors de la crï¿½ation des fichiers de base");
 				e.printStackTrace();
 			}			
 		}

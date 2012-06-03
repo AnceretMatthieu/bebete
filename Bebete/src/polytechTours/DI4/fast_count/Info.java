@@ -13,10 +13,12 @@ import polytechTours.DI4.GesionIdentification.FileManager;
 import polytechTours.DI4.bdd.Recolte;
 import polytechTours.DI4.bdd.RecolteBDD;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -47,16 +49,32 @@ public class Info extends Fragment implements ViewFactory
 	private int piege_id;
 	private DatePicker dateView;
 	private EditText nombreIndividuView;
-	private EditText nomIndividuView;
 	private String nomIndividu;
 	private ImageView InfoSwitcher;   
 	private String cheminImage;
 	private Bitmap bitmap;
 	
+	/**message d'alert, seul valider est disponible
+	 * @param title	Titre de l'alerte
+	 * @param mymessage Message de l'alerte*/
+	protected void alertbox(String title, String mymessage){
+		   new AlertDialog.Builder(activity)
+		      .setMessage(mymessage)
+		      .setTitle(title)
+		      .setCancelable(true)
+		      .setNeutralButton(android.R.string.ok,
+		         new DialogInterface.OnClickListener() {
+		         public void onClick(DialogInterface dialog, int whichButton){}
+		         })
+		      .show();
+		}
+	
 	public Info( String chemin, int id )
 	{
 		piege_id = id;
 		cheminImage = chemin;
+
+		nomIndividu = chemin.split("\\.")[0];
 	}
 
 	@Override
@@ -78,42 +96,37 @@ public class Info extends Fragment implements ViewFactory
 		super.onActivityCreated(savedInstanceState);       
         InfoSwitcher = (ImageView) activity.findViewById(R.id.Switcher2);
         
-        SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); 
-        piege_id = (int)preferences.getLong("PIEGE_ID", -1);
-
-        //ouverture de la base de donnÃ©es
+        //ouverture de la base de données
         bdd = new RecolteBDD(activity.getBaseContext());
         bdd.open();
         
 		bitmap = BitmapFactory.decodeFile( FileManager.getSavePath() + File.separator + cheminImage );       
         
         InfoSwitcher.setImageBitmap(bitmap);
-        
-      //rÃ©cupÃ¨re les paramÃ¨tres de l'application
-        dateView = (DatePicker) activity.findViewById(R.id.datePicker1 );
-        nombreIndividuView = (EditText) activity.findViewById(R.id.NombreIndividu );
-        nomIndividuView = (EditText) activity.findViewById(R.id.NomIndividu );
-        nomIndividuView.setText(nomIndividu);
-        	
+               	
         recolte = bdd.getRecolteWithNOM(nomIndividu, piege_id);
 		if(recolte == null)
 			recolte = new Recolte();
 		
+		nombreIndividuView = (EditText) activity.findViewById(R.id.NombreIndividu );
         nombreIndividuView.setText(String.valueOf(recolte.getNombre()));
-        
-        //creation de la recolte
        	
 		/**gestion du bouton valider**/
 		final Button bouttonValider= (Button) activity.findViewById(R.id.valider);
 		bouttonValider.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
+            	if(piege_id == -1){
+            		alertbox("Attention !", "Vous n'avez pas séléctionné de piège, vous ne pouvez donc pas enregister.");
+            		return;
+            	}
             	bitmap.recycle();
                 recolte.setNom(nomIndividu);
+                
                 if(nombreIndividuView.getText().toString() != "")
                 	recolte.setNombre(Integer.parseInt(nombreIndividuView.getText().toString()));
                 else
                 	recolte.setNombre(0);
-                //recolte.setDate_recolte(dateView.getDayOfMonth()+ "/"+ dateView.getMonth() +1 + "/" + dateView.getYear());
+                
                 recolte.setPege_id(piege_id);
                 
             	bdd.insinsertOrUpdateRecolte(recolte);

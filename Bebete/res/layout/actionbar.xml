@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" >
+
    		  <item android:id="@+id/menu_utilisateurs"
           android:title="Utilisateurs"
           android:showAsAction="always" />
@@ -18,7 +20,7 @@
 		  <item android:title="Identification rapide" 
 		  android:showAsAction="always" 
 		  android:id="@+id/menu_fast_count"/>
-		  <item android:id="@+id/menu_parametre"
+		  <item android:id="@+id/export"
           android:title="Exporter"
           android:showAsAction="always" />
 		  

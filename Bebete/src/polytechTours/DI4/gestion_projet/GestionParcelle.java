@@ -34,7 +34,7 @@ import android.widget.TextView;
 import android.widget.EditText;
 
 /** Gestion de l'affichage des parcelles,
- * CrÃ©ation, SÃ©lection, Ã©dition, suppression
+ * Création, Sélection, édition, suppression
  */
 public class GestionParcelle extends Fragment
 {
@@ -44,11 +44,11 @@ public class GestionParcelle extends Fragment
 	private int campagne_id;
 	private RadioGroup radiogroup = null;
 	
-    // On dÃ©clare les variables nÃ©cessaires pour le GPS
+    // On déclare les variables nécessaires pour le GPS
 	private LocationManager locationMgr = null;
 	Location curent_location = null;
 	
-	/**Gestion du GPS pour rÃ©cupÃ©rer la position courante*/
+	/**Gestion du GPS pour récupérer la position courante*/
     private LocationListener onLocationChange = new LocationListener() {
     	 public void onStatusChanged(String provider, int status, Bundle extras) { }
     	 public void onProviderEnabled(String provider) { }
@@ -65,7 +65,7 @@ public class GestionParcelle extends Fragment
 		private Vector<RadioButton> vect_radioButton = null;
 		private int active_parcelle = 0;
 		
-		/** CrÃ©ation des boutons en fonction d'une liste de parcelles
+		/** Création des boutons en fonction d'une liste de parcelles
 		 * @param vect_parcelles	Vecteur de parcelles
 		 */
 		public ParcellesButton(Vector<Parcelle> vect_parcelles){
@@ -76,7 +76,7 @@ public class GestionParcelle extends Fragment
 				this.vect_parcelles = new  Vector<Parcelle>();
 			else{
 				for (Parcelle parcelle : vect_parcelles) {
-					RadioButton radiobt = new RadioButton(activity); //crÃ©ation d'un radiobouton
+					RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
 					radiobt.setText(parcelle.getNom()); //texte du bouton
 					vect_radioButton.add(radiobt);
 					radiogroup.addView(radiobt);
@@ -85,7 +85,7 @@ public class GestionParcelle extends Fragment
 		}
 
 		/** Supprime une parcelle de l'affichage
-		 * @param parcelle	Parcelle supprimÃ©e
+		 * @param parcelle	Parcelle supprimée
 		 */
 		public void insertParcelle(Parcelle parcelle){
 			String name = parcelle.getNom();
@@ -104,7 +104,7 @@ public class GestionParcelle extends Fragment
 				if(id != -1){
 					parcelle.setId(id);
 					vect_parcelles.add(parcelle);
-					RadioButton radiobt = new RadioButton(activity); //crÃ©ation d'un radiobouton
+					RadioButton radiobt = new RadioButton(activity); //création d'un radiobouton
 					radiobt.setText(parcelle.getNom()); //texte du bouton
 					vect_radioButton.add(radiobt);
 					radiogroup.addView(radiobt);
@@ -132,7 +132,7 @@ public class GestionParcelle extends Fragment
 			}
 		}
 		
-		/** DÃ©finit la parcelle active
+		/** Définit la parcelle active
 		 * @param parcelle	Numero de la parcelle Ã  activer
 		 */
 		public void updateParcelle(Parcelle parcelle){
@@ -148,15 +148,15 @@ public class GestionParcelle extends Fragment
 			}
 		}
 		
-		/** DÃ©finit la parcelle active
-		 * @return Parcelle sÃ©lectionnÃ©e
+		/** Définit la parcelle active
+		 * @return Parcelle sélectionnée
 		 */
 		public void setActive_parcelle(int active_parcelle) {
 			this.active_parcelle = active_parcelle;
 		}
 		
 		/** Indique la parcelle active
-		 * @return Parcelle sÃ©lectionnÃ©e
+		 * @return Parcelle sélectionnée
 		 */
 		public Parcelle getCurent_parcelle(){
 			return vect_parcelles.elementAt(active_parcelle);
@@ -169,7 +169,7 @@ public class GestionParcelle extends Fragment
 			return vect_parcelles.size();
 		}
 		
-		/** Definit la parcelle sÃ©lectionnÃ©
+		/** Definit la parcelle sélectionné
 		 * @param i	 Numero de la parcelle a sellectionner
 		 */
 		public void setCheck(int i){
@@ -177,7 +177,7 @@ public class GestionParcelle extends Fragment
 		}
 	}
     
-	/** Affiche une date picker et retourne la date dans le champ passÃ© en paramÃ¨tre
+	/** Affiche une date picker et retourne la date dans le champ passé en paramètre
 	 * @param champ	Champ de l'affichage Ã  modifier*/
 	private void datepikerdialog(final EditText champ) throws java.text.ParseException {
 
@@ -185,7 +185,7 @@ public class GestionParcelle extends Fragment
 		int month = 0;
 		int day = 0;
 		
-		if(champ.getText().toString().length() >= 9){ //une date est composÃ©e d'au moins 9 caractÃ¨res
+		if(champ.getText().toString().length() >= 9){ //une date est composée d'au moins 9 caractères
 			Log.d("debug", "La date est = " + champ.getText().toString()); 
 			String [] date = champ.getText().toString().split("/");
 			year = Integer.parseInt(date[2]);
@@ -253,9 +253,9 @@ public class GestionParcelle extends Fragment
 	public void onActivityCreated (Bundle savedInstanceState)
 	{
 		super.onActivityCreated(savedInstanceState);
-        /** RÃ©cupere l'identifiant de la campagne depuis les paramÃ¨tres de l'application
-         * Affiche un message en cas de problÃ¨me et renvoie Ã  la page de sÃ©lection des campagnes **/
-		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //rÃ©cupere les paramÃ¨tres de l'application
+        /** Récupere l'identifiant de la campagne depuis les paramètres de l'application
+         * Affiche un message en cas de problème et renvoie Ã  la page de sélection des campagnes **/
+		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupere les paramètres de l'application
         campagne_id = (int)preferences.getLong("CAMPAGNE_ID", -1);
         if(campagne_id == -1){
         	if(!Securite.valideProjet(activity))
@@ -263,7 +263,7 @@ public class GestionParcelle extends Fragment
         }
         
 		/**gestion du gps **/   
-		//(GPS) Gestion des rÃ©seaux et du temps de pull
+		//(GPS) Gestion des réseaux et du temps de pull
 		locationMgr = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
 		locationMgr.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 10000, 0, onLocationChange);
 		locationMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 10000, 0,onLocationChange);
@@ -275,7 +275,7 @@ public class GestionParcelle extends Fragment
         /** Zone d'affichage des Parcelles **/
 		radiogroup = new RadioGroup(activity); //groupe d'affichage pour la liste de radiobouton
 		
-		/*Gestion de la sÃ©lection d'une parcelle*/
+		/*Gestion de la sélection d'une parcelle*/
 		radiogroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 			public void onCheckedChanged(RadioGroup rg, int checkedId){
 				for(int i=0; i<rg.getChildCount(); i++) {
@@ -283,7 +283,7 @@ public class GestionParcelle extends Fragment
 	                	   parcelles.setActive_parcelle(i);
 	                	   Parcelle parcelle = parcelles.getCurent_parcelle();
 	                	   
-					    	/*affichage des Ã©lÃ©ments dans leurs champs respectifs*/
+					    	/*affichage des éléments dans leurs champs respectifs*/
 					    	EditText nomParcelle = (EditText)activity.findViewById( R.id.nomParcelle );
 							nomParcelle.setText(parcelle.getNom());
 							
@@ -308,12 +308,12 @@ public class GestionParcelle extends Fragment
 	        }
 		});
 		
-		/** SÃ©lection de la premiÃ¨re parcelle lors de l'initialisation de la vue*/
+		/** Sélection de la première parcelle lors de l'initialisation de la vue*/
         parcelles = new ParcellesButton(bdd.getParcelles(campagne_id));
         if(parcelles.count() != 0)
         	parcelles.setCheck(0);
         
-        /** phrase de sÃ©lection de parcelle **/
+        /** phrase de sélection de parcelle **/
 		LinearLayout layout_liste = (LinearLayout)activity.findViewById( R.id.linearLayout4 );
         TextView tv = new TextView(activity);
 		tv.setText(R.string.selectionnerParcelle);
@@ -349,7 +349,7 @@ public class GestionParcelle extends Fragment
 	    );
 		
 		/**GPS**/
-		//rÃ©cuperation de la position & stockage dans le champ curent_location
+		//récuperation de la position & stockage dans le champ curent_location
 		final Button localiserGPS = (Button) activity.findViewById(R.id.localiserGPS);
 		localiserGPS.setOnClickListener(new View.OnClickListener() {
 		    public void onClick(View v) {
@@ -358,11 +358,11 @@ public class GestionParcelle extends Fragment
 		        	gpsParcelle.setText(curent_location.getLatitude() + " ; " + curent_location.getLongitude());
 		        }
 		        else
-		        	alertbox("Attention !", "Pas de signale GPS");
+		        	alertbox("Attention !", "Pas de signal GPS");
 		    }
 
 		});
-		/**gestion du bouton sÃ©lectionner**/
+		/**gestion du bouton sélectionner**/
 		final Button buttonselectionner = (Button) activity.findViewById(R.id.selectionner);
 		buttonselectionner.setOnClickListener(new View.OnClickListener() {
 
@@ -440,7 +440,7 @@ public class GestionParcelle extends Fragment
             }
         });
 		
-		/**gestion du bouton crÃ©er**/
+		/**gestion du bouton créer**/
 		final Button buttoncreer = (Button) activity.findViewById(R.id.creer);
 		buttoncreer.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -491,11 +491,11 @@ public class GestionParcelle extends Fragment
             public void onClick(View v) {
             	if(parcelles.count() != 0){
                	
-		    		/** crÃ©ation d'une alerte boxe avant la suppression*/
+		    		/** création d'une alerte boxe avant la suppression*/
 		    		AlertDialog deleteAlert = new AlertDialog.Builder(activity).create();
 		    		deleteAlert.setTitle(R.string.attention);
 		    		//deleteAlert.setMessage(R.string.supprimerParcelle);
-		    		deleteAlert.setMessage("Voulez-vous supprimer cette parcelle ?"); //On ne met pas le texte ainsi, mais la forme prÃ©cÃ©dente rencontre un problÃ¨me de type qui n'est pas encore rÃ©solu
+		    		deleteAlert.setMessage("Voulez-vous supprimer cette parcelle ?"); //On ne met pas le texte ainsi, mais la forme précédente rencontre un problème de type qui n'est pas encore résolu
 		    		/**si oui**/
 		    		deleteAlert.setButton(DialogInterface.BUTTON_POSITIVE,"Oui", new DialogInterface.OnClickListener(){
 		

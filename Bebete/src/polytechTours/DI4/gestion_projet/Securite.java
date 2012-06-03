@@ -95,7 +95,7 @@ public class Securite {
 			return false;
 		}
 		else if(piege_id == -1){
-        	alertbox(activity, "Attention !", "Sélectionner un piége");
+        	alertbox(activity, "Attention !", "Sélectionner un piège");
         	
         	FragmentManager manager = activity.getFragmentManager();  
     		
