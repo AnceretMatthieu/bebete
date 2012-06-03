@@ -328,4 +328,39 @@ public class ReacherQR
 		}
 		return listResult;
 	}
+	
+	public Resultat getResultatFomImage( String cheminImage )
+	{
+		Vector<Resultat> listResultat = new Vector<Resultat>();
+		
+		for(int i = 0; i < listQuestion.size(); i++ )
+		{
+			Vector<Reponse> listReponse = listQuestion.get(i).getListReponse();
+			
+			for( int j = 0; j < listReponse.size(); j++ )
+			{
+				if( listReponse.get(j).getResultat() != null  )
+				{
+					listResultat.add( listReponse.get(j).getResultat() );
+				}
+			}
+		}
+
+		for( int i = 0; i < listResultat.size(); i++ )
+		{
+			Vector<String> listChemin = listResultat.get(i).getListeImage();
+			
+			for( int j = 0; j < listChemin.size(); j++ )
+			{
+				Log.d("Comparaison", "Comp : " + listChemin.get(j) + " " + cheminImage );
+				if( listChemin.get(j).equalsIgnoreCase( cheminImage ) )
+				{
+					return listResultat.get(i);
+				} 
+			}
+		}
+		return null;
+	}
+	
+	
 }

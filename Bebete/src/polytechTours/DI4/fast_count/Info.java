@@ -10,6 +10,8 @@ import java.io.File;
 
 import polytechTours.DI4.R;
 import polytechTours.DI4.GesionIdentification.FileManager;
+import polytechTours.DI4.GesionIdentification.ReacherQR;
+import polytechTours.DI4.GesionIdentification.Resultat;
 import polytechTours.DI4.bdd.Recolte;
 import polytechTours.DI4.bdd.RecolteBDD;
 import android.app.Activity;
@@ -24,6 +26,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -53,6 +56,7 @@ public class Info extends Fragment implements ViewFactory
 	private ImageView InfoSwitcher;   
 	private String cheminImage;
 	private Bitmap bitmap;
+	private Resultat resultat;
 	
 	/**message d'alert, seul valider est disponible
 	 * @param title	Titre de l'alerte
@@ -73,7 +77,8 @@ public class Info extends Fragment implements ViewFactory
 	{
 		piege_id = id;
 		cheminImage = chemin;
-
+		ReacherQR  reacher = new ReacherQR();
+		resultat = reacher.getResultatFomImage(cheminImage);
 		nomIndividu = chemin.split("\\.")[0];
 	}
 
@@ -130,6 +135,8 @@ public class Info extends Fragment implements ViewFactory
                 recolte.setPege_id(piege_id);
                 
             	bdd.insinsertOrUpdateRecolte(recolte);
+            	
+            	Log.d("Compteur", "Nom de la bebete : " + resultat.getNom() );
             	
             	Image image = new Image();
             	
