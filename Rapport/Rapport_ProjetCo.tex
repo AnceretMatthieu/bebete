@@ -20,7 +20,7 @@
 }
 
 \supervisors{%
-	\category{Encadrants}{%
+	\category{Encadrants}{% encadrant professeur de Polytech'Tours
 		\name{Gilles VENTURINI} \mail{gilles.venturini@univ-tours.fr}
 	}
 	\details{Université François-Rabelais, Tours} 
@@ -35,10 +35,10 @@
 
 \nolistoftables
 
-\abstracts{Blabla de présentation du sujet (cf. intro + présentation). Ce rapport est la synthèse de tout le projet, des phases de modélisation aux phases de tests en passant par les phases de développement et les parties gestion de projet. Ce rapport est un guide technique, qui pourra servir à un développeur désireux de reprendre et de comprendre les applications existantes, mais aussi un guide utilisateur, qui permettra à l'usager de trouver les réponses à ses questions à propos du fonctionnement des logiciels.}
-{Mots clés français}
-{Description en anglais}
-{Mots clés en anglais}
+\abstracts{L'objectif du projet était de réaliser deux applications pour l'équipe INNOPHYT de l'université de Tours. La première est une application mobile destinée à permettre l'identification  d'un insecte grâce à une succession de questions et la deuxième est une application PC permettant de modifier la base de données contenant les questions, les réponses et les médias. Ce rapport est la synthèse de tout le projet, des phases de modélisation aux phases de tests en passant par les phases de développement et les parties gestion de projet. Ce rapport est un guide technique, qui pourra servir à un développeur désireux de reprendre et de comprendre les applications existantes, mais aussi un guide utilisateur, qui permettra à l'usager de trouver les réponses à ses questions à propos du fonctionnement des logiciels.}
+{qt, java, android, insectes, xml, innophyt, morpho espèce}
+{The objective of the project was to realize two applications for the team INNOPHYT of the university of Tours. The first one is a mobile application intended to allow the identification of an insect thanks to a succession of questions and the second is an pc application allowing to modify the database containing the questions, the answers and the media. This report is the synthesis of all the project, the phrases of modelling in the phases of tests by way of the phases of development and the parts of project management. This report is a technical guide, who can be use to a developer avid to resume and to understand the existing application, but also a user guide, which allow the user to find the answers to his questions about the functioning of the software.}
+{qt, java, android, insects, xml, innophyt, species}
 
 \begin{document}
 
@@ -47,15 +47,27 @@ Notre projet est un projet collectif à 8 personnes dans le cadre de notre cursus
 Ce rapport est un guide technique, qui pourra servir à un développeur désireux de reprendre et de comprendre les applications existantes, mais aussi un guide utilisateur, qui permettra à l'usager de trouver les réponses à ses questions à propos du fonctionnement des logiciels.
 
 \chapter{Présentation du projet}
-L'objectif du projet est de réaliser deux applications : une application PC et une application mobile. L'application mobile permet, à partir du visuel d'un insecte, de déterminer grâce à une succession de question si celui-ci est nuisible ou non. L'application PC permet quand a elle de consulter et de modifier la base de données associée à l'application mobile, c'est-à-dire les questions, les réponses et les médias. 
-<!-- à compléter... -->
+L'objectif du projet est de réaliser deux applications : 
+\begin{itemize}
+	\item Une application sur PC qui permet de consulter la base de données (l'arbre de décision) et de
+la faire évoluer (ajout/modification/suppression d'espèces, de questions, de réponses, de médias...).
+Cette application sera principalement utilisée par l'équipe INNOPHYT ou éventuellement par des
+experts du domaine. Elle permet de visualiser rapidement les éléments sur lesquels il manque
+des informations. Elle permet aussi d'exporter la base de données pour la mettre à disposition de l'application
+mobile. 
+	 	
+	\item Une application mobile qui permet à l'utilisateur, directement sur le terrain, de déterminer le
+type de l'insecte et de décider s'il est nuisible ou non. L'application va poser un certains nombres
+de questions et va déduire des choses à partir des réponses obtenues (via l'arbre de décision). Celle-ci propose à l'utilisateur différents médias (photos, vidéos, sons, animations...) pour l'aider à prendre une décision. Elle permet aussi de fournir un rapport des actions effectuées sur celle-ci (espèces inconnues, questions/réponses floues, résultat...) pour permettre à l'équipe INNOPHYT de corriger ou de faire évoluer la base.
+\end{itemize}
+ 
+Nous devons donc produire un logiciel d'aide à la décision le plus pertinent possible pour l'utilisateur. Actuellement, l'équipe INNOPHYT utilise un fichier tableur (Excel), construit sous forme arborescente et contenant les questions et les réponses. Ce type de fichier est assez difficile à maintenir et à faire évoluer facilement. De plus, ce n'est pas un format adapté pour la visualisation et l'exploitation de ce type de données (arborescence). Les futurs utilisateurs pouvant être aussi bien des scientifiques du domaine que des utilisateurs lambda, il est primordial de proposer un outil accessible et utilisable pour tout le monde (familiariser à l'informatique ou non), et ce, particulièrement pour l'application mobile. 
 
 \chapter{Analyse complémentaires}
 Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteriori du cahier de spécifications. En effet, lors de la rédaction du cahier de spécification, nous n'avions pas encore modélisé la partie "intelligence" des applications.  
 	
 	\section{Modélisation UML}		
 	Avant de développer l'application PC, nous avons pris soin de modéliser une structure fiable et efficace à même de réaliser toutes les fonctionnalités demandées et de pouvoir évoluer de façon simple. 
-	%à voir comment améliorer l'affichage du diagramme de classe 
 	
 \begin{figure}[!h]
 	\centering	
@@ -63,7 +75,28 @@ Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteri
 	\caption{Diagramme de classes de l'application PC}
 	\label{diagramme classes appli PC}
 \end{figure}
-	
+
+	Ce diagramme de classe illustre l'ensemble des objets de notre application et la manière dont ils communiquent entre eux. Étant donné que nous travaillons sur une arborescence, il a fallu trouver un modèle pour représenter cet arbre. Le fichier XML représentant déjà un arbre avec la notion de noeud parent et enfant, nous avons associé chaque balise XML à une classe. Petit rappel sur les équivalents entre diagramme de classe et fichier XML : 
+\begin{center}
+	\begin{tabular}{ l | l | }
+     \hline
+     Nommage fichier XML & Nommage modélisation UML \\ \hline
+     branche & Catégorie \\ \hline
+     question & Question \\ \hline
+     legende & Media \\ \hline
+     img & Media \\ \hline
+     audio & Media \\ \hline
+     video & Media \\ \hline
+     reponse & Reponse \\ \hline
+     resultat & Espece \\ 
+     \hline
+   \end{tabular}
+\end{center}
+
+On remarque que la balise "media" n'a pas de classe associée. En effet, cette balise servant simplement à délimiter l'ensemble des médias (legende, img, audio...) d'une question, d'une réponse ou d'un résultat, nous n'avons pas à nous en occuper.
+
+Maintenant que nous avons identifié les classes que nous allons utiliser, il faut les remplir avec des attributs. Outre les informations propres à chacune des classes, comme par exemple le texte associé a une question, il faut penser à garder la notion d'arborescence (c'est à dire la notion de parenté). Pour cela, chaque classe possède un attribut qui pointe vers son père et une liste contenant des pointeurs vers ses fils. C'est ici qu'interviennent nos classes ListeXXXX. Elles sont utile pour représenter la notion de parenté, mais elles nous permettent aussi de ne pas avoir à re-lire notre fichier XML à chaque recherche des fils d'un objet. Le seul point négatif de cette méthode est qu'elle nous oblige à charger en mémoire la totalité de l'arbre au lancement de l'application. Mais cela nous permet aussi, en cas de modification d'éléments, de différer la sauvegarde (tout est en mémoire). De ce fait, il y a plus de souplesse dans la gestion de l'enregistrement et dans la lecture du fichier XML. 
+
 	\section{Le fichier XML et sa DTD}
 	Notre base de données est représentée sous la forme d'un fichier XML. Ce format a été privilégié car il est relativement simple à manipuler et assez performant pour de petites bases, comparativement à une base SQL/SQLite par exemple. N'ayant de toutes manières pas besoin de relation, d'intégrité et d'indexation, la choix du XML s'est imposé de lui-même. 
 	
@@ -106,7 +139,7 @@ Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteri
 	\subsubsection{Balise <!ATTLIST>}
 	La balise ATTLIST nous indique que l'élément qui lui est relié aura des attributs. Les attributs sont des données indiquées à l'intérieur des balises dans le fichier XML. Elles donnent généralement des détails sur l'élément qui ne seront pas considérés comme des données.
 \begin{itemize}
-	\item \textbf{ \#IMPLIED :} indique que l'attribut est facultatif pour l'élément
+	\item \textbf{\#IMPLIED :} indique que l'attribut est facultatif pour l'élément
 	\item \textbf{\#REQUIRED :} indique que l'attribut est obligatoire pour l'élément
 	\item \textbf{CDATA :} indique que l'attribut sera une chaine de caractères
 	\item \textbf{NMTOKENS :} indique que l'attribut sera une chaine de caractères réduite (seul une partie des caractères sont autorisés)
@@ -120,11 +153,7 @@ Nous allons présenter ici les modélisations et diagrammes UML réalisés à posteri
 \chapter{Application PC}
 
 \section{Interface et utilisation}
-- Pseudo mode d'emploi / guide utilisateur de la partie PC
-- Explication de l'interface
-- Explication des boutons
-
-Nous devions afficher une grande quantité de données à l'écran (questions, réponses, résultats et médias), sous une forme pas forcément évidente (arborescence). Nous avons donc conçu une interface sous forme de  4 bandeaux verticaux contenant chacun un type d'information. Cette disposition permet d'avoir accès à toutes les informations nécessaires en même temps à l'écran. 
+Nous devions afficher une grande quantité de données à l'écran (questions, réponses, résultats et médias), sous une forme pas forcément évidente (arborescence). Nous avons donc conçu une interface sous forme de 4 bandeaux verticaux contenant chacun un type d'information. Cette disposition permet d'avoir accès à toutes les informations nécessaires en même temps à l'écran. 
 
 La figure \ref{pc vide} permet de voir l'interface principale de l'application au démarrage (les questions ne sont pas déroulées). On remarque les 4 bandeaux, qui, de gauche à droite, servent à : gérer les questions, gérer les médias associés à la question courante, gérer les réponses et les médias des réponses de la question courante et enfin d'afficher les images et les résultats. 
 \begin{figure}[!h]
@@ -134,8 +163,40 @@ La figure \ref{pc vide} permet de voir l'interface principale de l'application a
 	\label{pc vide}
 \end{figure}
 
-Sur la figure \ref{pc select question}, on peut voir que les bandeaux sont remplis. En effet, l'utilisateur ayant sélectionné une question, les médias et les réponses associés à cette question vont venir remplir les bandeaux correspondants. De plus, on voit qu'une image apparait dans la bandeau le plus à droite. C'est le résultat du clic sur le media "insecte.jpg" dans le bandeau des médias de la question. 
-<!-- Descriptif des boutons de l'interface -->
+Sur la figure \ref{pc select question}, on peut voir que les autres bandeaux sont remplis. En effet, l'utilisateur ayant sélectionné une question, les médias et les réponses associés à cette question vont venir remplir les bandeaux correspondants. De plus, on voit qu'une image apparait dans le bandeau le plus à droite. C'est le résultat du clic sur le média "insecte.jpg" dans le bandeau des médias de la question. 
+
+Nous allons maintenant passer à une explication, bandeau par bandeau, de chaque bouton de l'interface :  
+	\subsection{Bandeau des questions}
+\begin{itemize}
+		\item \textbf{Ajouter un frère :} permet d'ajouter une nouvelle question au même niveau (mais en dernière position) que la question actuellement sélectionnée.  Si l'on se réfère à l'arbre XML, cette question est le frère de la question sélectionnée. Lors du clic, une fenêtre va s'ouvrir permettant de rentrer le texte de la question, ainsi que les critères "visible à l'oeil nu" et "visible à la loupe". 
+		\item \textbf{Ajouter un fils :} permet d'ajouter une nouvelle question en tant que fils de la question sélectionnée. Le fonctionnement est identique à "Ajouter un frère". 
+		\item \textbf{Modifier :} permet d'afficher une fenêtre, avec ses champs pré-remplis par rapport à la question sélectionnée. 
+		\item \textbf{Supprimer :} permet de supprimer une question de la liste. 
+\end{itemize}
+	
+	\subsection{Bandeau des médias d'une question}
+\begin{itemize}
+	\item \textbf{Ajouter média :} cette fonction ouvre une fenêtre de sélection de fichier qui permet de choisir un média à ajouter à la question sélectionnée. 
+	\item \textbf{Ajouter commentaire :} cette fonction affiche une fenêtre permettant de taper le texte que l'on souhaite ajouter en tant que média de la question sélectionnée. 
+	\item \textbf{Modifier :} permet de modifier le média sélectionnée. 
+	\item \textbf{Supprimer :} permet de supprimer le média sélectionnée. 
+\end{itemize}
+	
+	\subsection{Bandeau des réponses}
+\begin{itemize}
+	\item \textbf{Ajouter réponse :} Permet d'ajouter une nouvelle réponse à la question sélectionnée. Cette réponse est ajoutée à la fin de la liste des réponses. 
+	\item \textbf{Modifier réponse :} Permet de modifier le contenu d'une réponse. 
+	\item \textbf{Supprimer réponse :} Permet de supprimer une réponse. 
+	\item \textbf{Ajouter média :} Permet d'ajouter un média à la réponse sélectionnée. Ce média est ajouté à la fin de la liste des médias. 
+	\item \textbf{Ajouter commentaire :} Permet d'ajouter un média textuel à la réponse sélectionnée. 
+	\item \textbf{Modifier média :} Permet de modifier le média sélectionnée. 
+	\item \textbf{Supprimer média :} Permet de supprimer le média sélectionnée. 
+\end{itemize}
+Attention, lorsque l'on clic sur un bouton "Supprimer", aucun confirmation n'est demandée. 
+	
+	\subsection{Bandeau d'affichage des résultats et des médias}
+	Ce bandeau permet d'afficher les médias images lorsqu'ils sont sélectionnés dans un des autres bandeaux. Il permet aussi d'afficher les résultats, si lorsque l'on clic sur une réponse, celle-ci débouche sur un résultat. 
+	
 \begin{figure}[!h]
 	\centering	
 	\includegraphics[width=1\textwidth]{images/pc_select_question.png}
@@ -152,10 +213,70 @@ Lorsque l'utilisateur veut créer/modifier une question, il aura affaire à la fen
 \end{figure}
 
 \section{Module de lecture/écriture XML}
-Partie de Martin et Jérome
+Dans cette partie, nous allons nous intéresser à la lecture d'un fichier XML. Étant donné que notre diagramme UML est circulaire, nous allons avoir à traiter plusieurs fois les mêmes balises à des profondeur différentes dans le fichier XML. Pour éviter la redondance du code, nous avons découpé en 4 sous-classes la classe gérant le fichier XML. Chaque classe gère une autre classe bien spécifique : par exemple QuestionBDD s'occupe de lire et écrire un objet Question avec des fils. Nous avons ensuite créé pour chaque classe des méthodes réalisant une lecture ou une écriture. Cependant, pour pouvoir parcourir l'arborescence d'un fichier XML, nous avons besoin de connaître le noeud à partir duquel nous lisons/écrivons des fils. C'est pourquoi nous avons ajouté un attribut "static currentNode" à la classe BDD, qui est utilisé par toutes les classes filles. Grâce à cet attribut, on peut écrire un code générique qui effectue des opérations sur le fichier XML.
+
+	\subsection{Déroulement d'une lecture XML}  
+Au départ, nous partons du noeud racine du fichier XML, c'est à dire la balise "arbre". Ensuite, nous allons avoir différentes branches en fonction de la catégorie de l'insecte. Nous allons donc utiliser CatégorieBDD pour lister nos branches. Afin de ne pas perdre le fil, nous mettons à jour notre variable currentNode. Ensuite, dans chaque branche, nous pouvons avoir une liste de questions. Pour récupérer ces questions, nous allons utiliser QuestionBDD qui va lire toutes les questions depuis le noeud père pointé par currentNode. Puis, pour chaque question, nous allons modifier la valeur de currentNode et lire la liste de réponse associée à chaque question en utilisant notre classe ReponseBDD. Enfin, il ne faut pas oublier qu'une réponse ou une question peut avoir des médias, d'où l'appel à la classe MediaBDD avant de parcourir les fils. Pour finir, suite à une question, on peut arriver sur un résultat (une espèce) et dans ce cas nous utiliserons EspeceBDD, ou sur une catégorie d'espèce et dans ce cas on recommence la lecture en rappelant CategorieBDD.
+
+Nous faisons cette démarche à chaque fois, de façon récursive, pour traiter nos éléments de façon logique. De cette façon, la partie lecture sera opérationnelle. Nous allons maintenant voir la partie enregistrement.
+
+Afin de pouvoir ajouter des questions, des réponses et médias, il a fallu gérer l'enregistrement de notre arbre dans un fichier XML. Pour ce faire, nous allons utiliser la même structure que pour la lecture. Cependant, nous allons recréer des fonctions EnregistrerXXX en fonction de ce qu'il faut enregistrer. Ces fonctions seront créée dans les classes CatégorieBDD, ReponseBDD, QuestionBDD, MediaBDD et EspeceBDD. Ainsi, nous allons construire un fichier XML qui aura la même structure que notre fichier XML d'origine. 
+
+	\subsection{Déroulement d'un enregistrement XML}
+Dans un premier temps, nous créons une balise "arbre" grâce à la fonction BDD::enregistrerArbre(). Ensuite, nous créons ses fils, les balises "branches", avec la fonction CategorieBDD::enregistrerCategorie(). Nous avançons en profondeur d'abord de la même façon pour la lecture et nous écrivons les balises "questions" grâce à QuestionBDD::enregistrerQuestion(). Nous gardons la même procédure pour les balises "reponses". Évidemment, il ne faut pas oublier de mettre à jour au fur et à mesure notre variable currentNode. Puis, selon le type du fils, nous enregistrons une espèce (un résultat) via EspeceBDD::EnregistrerEspece() ou une catégorie avec CategorieBDD::EnregistrerCategorie(). Sans oublier que pour les questions, les réponses et les espèce, il faut enregistrer les médias qui leur sont associés grâce à MediaBDD::EnregistrerMedia.
 
 \section{Mécanisme d'affichage des arborescences}
-Expliquer comment fonctionne les TreeView : mécanisme d'index, de coordonnées...
+Pour visualiser les questions, les réponses et les médias, nous avons utilisé le composant Qt QTreeView. Ce composant est particulièrement adapté pour visualiser des structures arborescentes. Il fonctionne sur le principe du modèle Vue/Contrôleur. Nous allons aborder rapidement le fonctionnement de ce composant : 
+\begin{itemize}
+	\item \textbf{Création du QTreeView :} ceci est réalisé via le créateur d'interface de QtCreator.  
+	\item \textbf{Création du modèle :} \\
+		QStandardItemModel model = new QStandardItemModel; 
+		ui->unTreeView->setModel(model);
+	\item \textbf{Récupération de l'élément sélectionné :} il faut implémenter un mécanisme de Signal/Slot sur le composant QTreeView et intercepter le signal "clicked". Ce signal fournit comme paramètre un QModelIndex. Celui-ci permet de récupérer la ligne et la colonne de l'élément. On peut aussi, à partir de cet index, récupérer l'élément en lui-même grâce à la fonction "itemFromIndex()" du modèle du treeview. 		
+	\item \textbf{Ajout d'un élément :} \\ 
+		QStandardItem elem = new QStandardItem(icon, texte); // le paramètre "icon" est optionnel 
+		model->appendRow(elem);
+	\item \textbf{Modifier un élément :} il faut récupérer l'élément (QStandardItem), le modifier via les setteurs correspondants et le modifier dans le modèle du treeview. 
+	\item \textbf{Supprimer un élément :} le modèle propose une méthode "remove()" prenant en paramètre la ligne et l'élément parent de l'élément à supprimer. 
+\end{itemize}
+
+La vue est automatiquement mise à jour lorsque le modèle est changé. 
+
+Au démarrage de l'application, nous chargeons le fichier XML en mémoire et nous remplissons le treeview des questions (le bandeau le plus à gauche). Les autres treeview sont remplis en fonction de la question cliquée par l'utilisateur.  
+
+Étant donné que nous ne stockons que le texte de la question dans les éléments du treeview, nous devions trouver une solution pour pouvoir retrouver l'objet "Question" lors du clic dans le treeview. Pour cela, nous avons décidé de stocker les objets questions dans une QMap, avec comme clé les coordonnées sous forme de QString. Cela nous permet, à partir des coordonnées de l'élément sélectionné que nous pouvons calculer facilement, de retrouver la question associée. Grâce à celle-ci, nous pourrons remplir les autres treeview. 
+Pour les coordonnées, nous sommes parti sur le principe suivant (les coordonnées sont entre parenthèse) : 
+\begin{verbatim}
+Racine (0)
+	-- Elem 1 (00)
+		-- Elem 11 (000)
+		-- Elem 12 (001)
+	-- Elem 2 (01)
+		-- Elem 21 (010)
+			-- Elem 211 (0100)
+		-- Elem 22 (011)
+\end{verbatim}
+
+Nous avons développés une fonction pour calculer les coordonnées d'une question :  
+\begin{verbatim}
+QString MainWindow::calculerCoordonnees(QModelIndex index)
+{
+    QString coord;
+    coord = QString::number(index.row());
+    QModelIndex currentIndex = index.parent();
+    while(currentIndex != QModelIndex())
+    {
+        coord = QString::number(currentIndex.row()) + coord;
+        currentIndex = currentIndex.parent();
+    }
+
+    return coord;
+}
+\end{verbatim}
+Cette fonction permet donc, à partir d'un QModelIndex, de calculer ses coordonnées. On peut ensuite, grâce à la méthode "value()" de la QMap, récupérer la valeur (l'objet Question *) associée à la clé (les coordonnées). 
+
+Une des difficultés a été de garder la cohérence entre ce qui est affiché dans les treeview et ce qui se trouve en mémoire. 
+% <!-- à détailler... -->
 
 \section{Visualisation des médias}
 Les questions, réponses et résultats de notre arborescence peuvent être accompagnés de médias pour aider l'utilisateur à se déterminer. Les 3 principaux formats de médias retenus sont les images, les sons et les vidéos. Nous avons donc développer 3 méthodes pour afficher ces médias. 
@@ -240,9 +361,25 @@ Ensuite nous effectuons des tests suivant le nombre d'éléments détectés puis de 
 \end{figure}
 	
 \chapter{Application mobile}
-L'application tablette doit permettre d'exploiter le fichier XML conçu via le logiciel bureau. Un utilisateur doit pouvoir, via une série de questions, associer l'insecte qu'il observe sous la caméra avec une morpho espèce de notre base de données. Pour cela il dispose d'aide textuelle, ou visuelle lui permettant de repérer des points clés sur les insectes permettant leurs identifications.L'application tablette est destinée à des personnes non scientifiques. Ceci a été très important pour nous puisqu'il a fallu concevoir une interface graphique adapté simple, sans terme technique particulier et tout en gardant en tête que la personne devait pouvoir se retrouver facilement sans aucune connaissance pré requises.
-\\
-Les croquis de base de l'interface d'identification ont constamment évolué au cours du développement de l'application. En effet,  nos manipulations fréquentes nous ont permis de nous rendre compte de certaines choses non pratiques notamment en temps de réponse, comme par exemple l'acquisition de la caméra. Les remarques de l'équipe Innophyt ainsi que de Mr Venturini, nous ont aussi poussées à constamment modifier notre maquette.
+La tablette est l'outil utilisé par les biologistes de terrain. Elle doit permettre d'exploiter le fichier XML conçu via le logiciel bureau. Un utilisateur doit pouvoir, via une série de questions, associer l'insecte qu'il observe sous la caméra avec une morpho-espèce de notre base de données. Pour cela il dispose d'aide textuelle, ou visuelle lui permettant de repérer des points clés sur les insectes permettant leurs identifications. L'application tablette est destinée à des personnes non scientifiques. Ceci a été très important pour nous puisqu'il a fallu concevoir une interface graphique adapté simple, sans terme technique particulier et tout en gardant en tête que la personne devait pouvoir se retrouver facilement sans aucune connaissance pré requises.
+
+Les croquis de base de l'interface d'identification ont constamment évolué au cours du développement de l'application. En effet,  nos manipulations fréquentes nous ont permis de nous rendre compte de certaines choses non pratiques notamment en temps de réponse, comme par exemple l'acquisition de la caméra. Les remarques de l'équipe INNOPHYT ainsi que de M. Venturini, nous ont aussi poussées à constamment modifier notre maquette.
+
+Voici les principales fonctionnalités de l'application tablette :
+\begin{itemize}
+	\item Gestion des utilisateurs, des campagnes, des parcelles et des pièges
+	\item Identification de l'insecte via une série de questions pour guider le biologiste
+	\item Identification rapide via l'image de l'insecte
+	\item Gestion des erreurs et des incompréhensions du biologiste
+	\item Création d'un rapport au format CSV exploitable par INNOPHYT
+\end{itemize}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/menu_accueil.jpg}
+	\caption{Menu d'accueil de l'application mobile}
+	\label{app mobile menu accueil}
+\end{figure}
 
 \begin{figure}[!h]
 	\centering	
@@ -251,13 +388,12 @@ Les croquis de base de l'interface d'identification ont constamment évolué au co
 	\label{app mobile ident insecte}
 \end{figure}
 
-
 \section{Fonctionnalités}
 
 La partie identification de la tablette possède un certain nombre de fonctionnalités requises que nous allons détailler.
 \\
-L'utilisateur voit directement dans une zone assez grande le flux vidéo en direct de la caméra arrière de l'appareil. Par une simple pression sur cette zone celui-ci sauvegarde l'image, pour pouvoir la comparer à d'autres photos par la suite. Juste au-dessus de cette zone, ce trouve la question de base de l'arbre XML avec une aide visuelle et textuelle au besoin. Sur la droite de l'application se situe la zone des réponses. Chaque réponse peut contenir une galerie de média, pouvant être scroller de droite à gauche et comparer à l'image sauvegardée via un long clique sur une des images de la galerie. Si l'espace occupé verticalement par les réponses est trop grand la zone sera rendu scrollable et pourra contenir autant de réponses que l'on souhaite.Le changement de questions et donc l'avancer dans l'arbre d'identification s'effectue en cochant une des réponses. Dans le cas où la question suivante de conviendrai pas à l'utilisateur, un historique permet de revenir en arrière sur ses choix.Lors de la mise en veille ou en arrière-plan de l'application celle-ci est sauvegarder dans son état et sera restaurer avec l'historique dans l'état dans lequel elle était. On peut quitter et reprendre l'identification à son aise.Lorsque nous sommes dans la partie identification un bouton d'alerte triangulaire orange apparait dans la barre d'action, permettant à tout moment de signaler que nous sommes bloqués dans le processus d'identification. Cela génère un rapport contenant des informations utiles comme un screen de l'écran utilisateur ou ses commentaires, pour analyse ultérieur.
-\\
+L'utilisateur voit directement dans une zone assez grande le flux vidéo en direct de la caméra arrière de l'appareil. Par une simple pression sur cette zone celui-ci sauvegarde l'image, pour pouvoir la comparer à d'autres photos par la suite. Juste au-dessus de cette zone, ce trouve la question de base de l'arbre XML avec une aide visuelle et textuelle au besoin. Sur la droite de l'application se situe la zone des réponses. Chaque réponse peut contenir une galerie de média, pouvant être scrollé de droite à gauche et comparer à l'image sauvegardée via un long clique sur une des images de la galerie. Si l'espace occupé verticalement par les réponses est trop grand la zone sera rendu scrollable et pourra contenir autant de réponses que l'on souhaite.Le changement de questions et donc l'avancer dans l'arbre d'identification s'effectue en cochant une des réponses. Dans le cas où la question suivante de conviendrai pas à l'utilisateur, un historique permet de revenir en arrière sur ses choix.Lors de la mise en veille ou en arrière-plan de l'application celle-ci est sauvegarder dans son état et sera restaurer avec l'historique dans l'état dans lequel elle était. On peut quitter et reprendre l'identification à son aise.Lorsque nous sommes dans la partie identification un bouton d'alerte triangulaire orange apparait dans la barre d'action, permettant à tout moment de signaler que nous sommes bloqués dans le processus d'identification. Cela génère un rapport contenant des informations utiles comme un screen de l'écran utilisateur ou ses commentaires, pour analyse ultérieur.
+
  Ceci est une présentation sommaire des fonctionnalités offertes, dans la prochaine partie nous allons rentrer plus en détails dans la partie technique.
 
 \section{La zone d'affichage}
@@ -272,20 +408,19 @@ L'application possède deux zones importantes, l'action barre contenant un menu f
 \end{figure}
 
 Voici quelques conseils et considérations sur l'utilisation des fragments :
-
 \begin{enumerate}
-\item  Lors du onAttach conserver dans votre fragment une référence sur l'activity. Cela est essentiel notamment pour retrouver le fragentManager de l'activity dans notre QuestionFragment.
+	\item  Lors du onAttach conserver dans votre fragment une référence sur l'activity. Cela est essentiel notamment pour retrouver le fragentManager de l'activity dans notre QuestionFragment.
 
-\item  On ne peut accéder aux éléments définie dans un fichier de layout XML personnalisée que lors du onActivityCreated pas avant, difficilement après.
+	\item  On ne peut accéder aux éléments définie dans un fichier de layout XML personnalisée que lors du onActivityCreated pas avant, difficilement après.
 
-\item  La veille via le bouton retour de l'application détruit le fragment contrairement à celle du menu home qui la met en pause et au bouton d'alimentation qui la met en position stop.
+	\item  La veille via le bouton retour de l'application détruit le fragment contrairement à celle du menu home qui la met en pause et au bouton d'alimentation qui la met en position stop.
 
-\item  Un système de log complet à était mis en place il est très utile pour savoir ce qu'il se passe, penser à l'utiliser et le compléter au besoin.
+	\item  Un système de log complet à était mis en place il est très utile pour savoir ce qu'il se passe, penser à l'utiliser et le compléter au besoin.
 
-\item  Lors de l'ajout de plusieurs fragment à la suite via le code, il faut bien penser qu'un fragment doit obligatoirement être contenue dans un layout.
+	\item  Lors de l'ajout de plusieurs fragment à la suite via le code, il faut bien penser qu'un fragment doit obligatoirement être contenue dans un layout.
 \end{enumerate}
 
-Au moment où l'on accède à l'interface d'identification nous chargeons dans l'espace principale le Fragment QuestionFragment. Celui-ci est responsable de beaucoup de chose~:- Il récupère l'accès à la camera - Lit la question dont il a besoin dans le XML- Gère l'historique des questions parcourue
+Au moment où l'on accède à l'interface d'identification nous chargeons dans l'espace principale le Fragment QuestionFragment. Celui-ci est responsable de beaucoup de chose~: - Il récupère l'accès à la camera - Lit la question dont il a besoin dans le XML - Gère l'historique des questions parcourue
 
 \section{La caméra}
 
@@ -301,11 +436,11 @@ La gestion de la caméra est assez délicate. En effet, si l'on passe outre l'inte
 La caméra récupérer est maintenant récupérée et affichée, seulement l'image n'était pas bonne du tout, et cela est normale puisque nous gérons la caméra d'un point de vue bas niveau il faut lui spécifier dans ses paramètres tous les modules que nous voulons activer. Cela s'effectue au niveau de la fonction d'acquisition de la caméra.Nous avons activé trois modules~:
 
 \begin{enumerate}
-\item  La balance automatique des blancs
+	\item  La balance automatique des blancs
 
-\item  La mise au point automatique
+	\item  La mise au point automatique
 
-\item  Et l'antibanding qui essaye d'atténuer l'effet de bande horizontal, comme lorsque qu'on filme un écran de télé avec un caméscope.
+	\item  Et l'antibanding qui essaye d'atténuer l'effet de bande horizontal, comme lorsque qu'on filme un écran de télé avec un caméscope.
 \end{enumerate}
 
 Maintenant reste à expliquer un point qui fût particulièrement problématique. Lors de la mise en veille, via la touche power, de la tablette et de sa remise en route nous retrouvions l'application dans l'exact même état qu'avant à l'exception de la zone vidéo qui était figée sur la dernière image, vue avant la mise en veille.Nous avons cherchons longtemps, en partant notamment sur des fausses pistes comme une mauvaise acquisition ou libération de la caméra, finalement cela venait du bout de code donner par Android pour commencer. En effet, nous devons définir un nouveau type de zone pour pouvoir afficher le flux de la caméra sur cette zone. Ce bout de code nous est fournie par la documentation Android et nous l'avons considérer trop longtemps comme acquis sans y regarder de plus près. Et lorsque nous l'avons fait nous nous sommes rendu compte qu'il manquait tout simplement une fonction de rafraîchissement de cette zone. Pourquoi il y a besoin de rafraîchir la zone uniquement lors de la mise en veille de la tablette et non lors de la mise en veille de l'application cela reste pour le moment un mystère.
@@ -335,14 +470,14 @@ Nous avons aussi dû demander au système de réduire la taille des images enregist
 La gestion de l'historique des questions n'a pas posé de problème mais nécessite d'être expliqué.Au démarrage du fragment, le parsage du fichier XML est lancé, il nous renvoie la première question que nous stockons dans la classe sous le nom de currentQuestion. Une fois cette question récupérer nous appelons la fonction changeUI qui adapte l'interface graphique du fragment à la currentQuestion. Le but du jeu est donc de changer en fonction de la position dans l'historique la currentQuestion et de rappeler changeUI. Pour cela nous avons trois éléments~:
 
 \begin{enumerate}
-\item  Un vecteur contenant toutes les questions vues par l'utilisateur listQuestion
+	\item  Un vecteur contenant toutes les questions vues par l'utilisateur listQuestion
 
-\item  Un vecteur contenant toutes les réponses choisies par l'utilisateur listReponseChoisi
+	\item  Un vecteur contenant toutes les réponses choisies par l'utilisateur listReponseChoisi
 
-\item  Un int navigation qui indique la position dans le vecteur listQuestion de l'historique
+	\item  Un int navigation qui indique la position dans le vecteur listQuestion de l'historique
 \end{enumerate}
 
-Nous pouvons en déduire que lorsque navigation = listQuestion.size()-1 nous sommes à la fn du vecteur listQuestion est donc nous sommes sur la dernière question vue pas l'utilisateur, une question à laquelle il n'a pas encore répondue.Nous devons donc activer la flèche de retour en arrière tant que navigation~!= listQuestion.size()-1 et navigation $>$= 0. Si navigation atteint 0 c'est que nous sommes au début de l'historique il faut désactiver la flèche de retour dans l'historique.Même principe pour la flèche suivant de l'action barre, si navigation $>$= 0 et navigation~!= listQuestion.size()-1 alors il faut activer la flèche sinon la désactiver0.
+Nous pouvons en déduire que lorsque navigation = listQuestion.size()-1 nous sommes à la fn du vecteur listQuestion est donc nous sommes sur la dernière question vue pas l'utilisateur, une question à laquelle il n'a pas encore répondue.Nous devons donc activer la flèche de retour en arrière tant que navigation~!= listQuestion.size()-1 et navigation $>$= 0. Si navigation atteint 0 c'est que nous sommes au début de l'historique il faut désactiver la flèche de retour dans l'historique.Même principe pour la flèche suivant de l'action barre, si navigation $>$= 0 et navigation~!= listQuestion.size()-1 alors il faut activer la flèche sinon la désactiver.
 \\
 Pour obtenir la question suivant de la question actuelle il suffit d'utiliser la classe ReacherQR responsable du parsing du fichier XML.Dans le cas où la question n'est pas une question finale, et mène donc à une autre question cela ce résume à~:
 
@@ -358,9 +493,97 @@ Il faut bien penser à gérer le cas où l'utilisateur revient en arrière dans l'hi
 Maintenant il faut pouvoir retrouver et cocher la checkbox de l'ancienne réponse que l'utilisateur a choisie, parmi toutes les réponses que possède la question. Pour cela nous conservons toutes les réponses à la currentQuestion dans un vecteur listReponseFragment. Cela nous permet de le parcourir et par comparaison de retrouver et de cocher la checkbox de l'ancienne réponse coché.
 \\
 
-\section{JDom}
-cf. rapport de Zhengyi LIU
+\section{La gestion des projets}
 
+	\subsection{D'un point de vue utilisateur}
+La tablette peut être utilisée par plusieurs biologistes, dans le logiciel, l'utilisateur est identifié par son nom. L'application ne supporte qu'un utilisateur en même temps. Les biologistes travaillent sur différentes campagnes : une campagne est un projet défini dans le temps et dans l'espace. Cette localisation se fait par l'intermédiaire des parcelles où les pièges sont posés. Pour chaque piège, plusieurs insectes sont trouvables et comptables.
+
+Pour pouvoir utiliser l'application, l'utilisateur doit donc s'identifier en indiquant son nom. Après il peut créer, sélectionner, éditer ou supprimer ses campagnes. Il possède les mêmes fonctionnalités pour les parcelles et les pièges.
+
+On observe une structure arborescente où l'utilisateur est la racine. Au deuxième étage se trouve les campagnes, au troisième les parcelles, au quatrième les pièges et pour finir les insectes trouvés.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/arbre.png}
+	\caption{Structure arborescente de la gestion des utilisateurs}
+	\label{arbre gestion utilisateur}
+\end{figure}
+
+Pour se faire, le biologiste est amené à se déplacer dans différentes vues pour sélectionner le piège sur lequel il travaille. Chaque vue (campagne, parcelle, piège) demande le même type d'informations :
+\begin{itemize}
+	\item Un nom
+    \item Un descriptif
+    \item Une date de début et de fin
+    \item Une adresse
+    \item Une position GPS
+\end{itemize}
+    
+Les pièges exceptés, seul le nom est obligatoire, les autres informations sont disponibles pour permettre au biologiste d'être le plus précis sur son travail. La particularité des pièges vient du fait qui doivent être limité dans le temps afin de pouvoir suivre l'évolution de la quantité d'insecte qu'ils capturent. C'est pour quoi, il faut obligatoirement que la date de fin soit indiqué.
+Dans ces différentes vues, les champs dates peuvent être renseignées avec le clavier ou avec un calendrier qui apparait lors d'un double clic sur la case date.
+Le bouton GPS permet de récupérer la latitude et longitude actuelles, ces informations ne sont disponibles que s'il y a suffisamment de satellites connus par l'appareil ; cela marche très bien en extérieur. En cas d'échec un message apparait.
+
+Les images ci-dessous vous montrent les vues pour la gestion des campagnes, des parcelles et des pièges. On peut constater leur grande ressemblance. Cela permet à l'utilisateur de n'avoir qu'un seul type d'interface à prendre en compte, cela vise à le rassurer.	
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image7.jpg}
+	\caption{Interface d'identification d'un utilisateur}
+	\label{interface identification utilisateur}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image8.jpg}
+	\caption{Interface de gestion des campagnes}
+	\label{interface gestion campagnes}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image9.jpg}
+	\caption{Interface de gestion des parcelles}
+	\label{interface gestion parcelles}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/image10.jpg}
+	\caption {Interface de gestion des pièges}
+	\label{interface gestion pieges}
+\end{figure}
+	
+	\subsection{Structure du logiciel}
+	Les informations sur les utilisateurs et les projets sont enregistrés dans une base de données SQLite.
+Plusieurs tables ont été créées et les clefs étrangères font la liaison entre elles. Le diagramme de la figure \ref{modelisation bdd} montre leur interaction.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/bdd.png}
+	\caption {Modélisation de la base de données}
+	\label{modelisation bdd}
+\end{figure}
+
+On retrouve une table utilisateur, définie par un identifiant et un nom. Le nom doit être unique pour éviter les doublons et les problèmes de connections que cela poserait.
+La table campagne est définie par un identifiant, un nom, des dates de début et de fin, une description, une adresse et une position GPS définie par une latitude et une longitude. La relation avec la table utilisateur est faite avec une clef étrangère qui est l'identifiant de l'utilisateur possédant la campagne. Cette table possède une contrainte d'unicité sur son nom et l'identifiant de l'utilisateur, de manière à s'assurer qu'un biologiste ne puisse pas faire de doublon et que son collègue puisse tout de même créer une campagne de même nom.
+Les tables parcelle et piège sont construites en suivant le même modèle. Mis à part le principe d'unicité de la table piège qui est étendu à la date de fin pour que les relevés puissent être suivis dans le temps
+Pour la dernière table nommée Récolte, le principe de clef étrangère reste le même.
+Le terme récolte désigne tous les insectes comptés et enregistrés.
+
+Le diagramme de classes se trouvant en figure \ref{modelisation interactions bdd appli} montre les interactions entre la base de données et l'application.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/classe.png}
+	\caption {Modélisation des interactions entre la BDD et l'application}
+	\label{modelisation interactions bdd appli}
+\end{figure}
+
+La classe GestionBDD permet la création et la ré-initialisation des tables de la base de données. Elle est utilisée par les autres classes de gestion pour se connecter à celle-ci.
+Les classes UtilisateurBDD, CampagneBDD, ParcelleBDD, PiegeBDD, et RecolteBDD permettent l'ouverture et la fermeture de la base de données, l'insertion, la suppression et la modification ainsi que la lecture d'éléments de la table. Respectivement, elles gèrent des utilisateurs, des campagnes, des parcelles, des pièges et des récoltes.
+Les classes Utilisateur, Campagne, Parcelle, Piège et Récolte sont présentes pour instancier ces informations. Ce sont ces objets qui sont utilisés pour communiquer avec le gestionnaire de base de données.
+Les vues présentées précédemment demandent, modifient, et renvoient ces objets au gestionnaire pour lire, écrire modifier et enregistrer des informations. Les vues GestionCampagne, GestionParcelle et GestionPiege gèrent respectivement des liste de Campagne de Parcelle et de Piege ce qui explique les attribut un à plusieurs sur les compositions.
+
+Les paramètres de l'application comme les identifiants de l'utilisateur, de la campagne, de la parcelle et du piège sélectionné sont enregistrés dans les settings du logiciel. La méthode statique nommée "sécurité" de la classe Securite s'assure que tous les paramètres nécessaires à la vue demandée sont bien présents dans les settings. Si ce n'est pas le cas; l'utilisateur est redirigé vers la vue nécessaire pour combler le manque.
 
 \chapter{Aspect gestion de projet}
 Pour coller au mieux aux attentes du client, nous avons essayé d'organiser le plus souvent possible des réunions de travail avec le client. Ces réunions avaient pour but de discuter des choix d'ergonomie des applications et de présenter notre travail. Cela a permis à l'équipe INNOPHYT de suivre notre travail au plus près, et de relever les erreurs ou les incohérences au plus tôt, afin que nous puissions les corriger au plus vite. 
@@ -424,16 +647,21 @@ Grâce à ces conditions, nous avons aussi pu réaliser les diverses difficultés d'
 	\end{quotation}
 	Matthieu ANCERET --- \textsl{chef de projet}.
 
-	\section{Calendrier prévisionnel et calendrier réel} 
-	<!-- expliquer les différences existantes entre prévisionnel et réel
-	éventuellement, produire un diagramme avec les tâches critiques, les tâches en retard... -->
+	\section{Calendrier prévisionnel et calendrier réel}
 	
 \begin{figure}[!h]
 	\centering	
 	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/calendrier_previsionnel_taches.png}
 	\caption{Calendrier prévisionnel par tâches}
 	\label{calendrier previsionnel}
-\end{figure}
+\end{figure} 
+
+	Les retards ont principalement eu lieu au niveau de la phase de développement (tâche 4 pour le calendrier prévisionnel et tâche 5 pour le calendrier réel). Nous avons commencé cette phase avec une semaine de retard sur le planning à cause de la tâche "Correction du fichier XML et de sa DTD" qui n'était pas prévue à l'origine. 
+	
+	On remarque ensuite que les durées des tâches "Application PC" et "Application mobile" ne correspondent pas entre calendrier prévisionnel et réel. 
+	L'application PC a eu 14 jours de retard. Ce retard s'explique principalement par la durée excessive prise par la tâche "Lecture du fichier XML". Suite à plusieurs difficultés, nous avons perdu beaucoup de temps sur cette tâche. Étant une tâche critique du projet, un retard sur celle-ci à engendré des retards sur les autres tâches qui avaient besoin qu'elle soit terminée (écriture XML par exemple). Le module de visualisation des médias a lui aussi pris beaucoup plus de temps que prévu. Celui-ci étant moins important, son impact sur la faisabilité du projet est moindre (il compte malgré tout dans les 53 jours de développement). Ce retard nous a empêché de terminer complètement l'application et plusieurs fonctionnalités sont malheureusement manquantes.  	
+	
+	L'application mobile a eu 27 jours de retard. Ce retard important est du au modèle de recherche rapide (identification rapide) qui n'était pas une tâche critique. Ce retard important par rapport au planning prévisionnel est donc à relativiser, et cela n'a absolument pas empêcher l'application mobile d'être globalement terminée et fonctionnelle dans les temps. 
 
 \begin{figure}[!h]
 	\centering	
@@ -441,10 +669,6 @@ Grâce à ces conditions, nous avons aussi pu réaliser les diverses difficultés d'
 	\caption{Calendrier réel par tâches}
 	\label{calendrier reel}
 \end{figure}
-
-	\section{Erreurs commises et problèmes rencontrés}
-	+ parler des solutions mises en place
-	Cette partie est en relation avec la partie calendrier. En effet, les retards du calendrier réel sont dus aux erreurs qui seront reportés ici. 
 	
 \chapter{Futur du projet}
 Globalement, le projet est utilisable en l'état actuel. Il reste malgré tout plusieurs éléments à terminer ou à compléter, que ce soit par manque de temps ou parce que ces fonctionnalités ne faisaient pas partis du périmètre du projet. En voici une liste détaillée :  
@@ -456,23 +680,139 @@ Globalement, le projet est utilisable en l'état actuel. Il reste malgré tout plu
 		
 	\item Au niveau de l'application mobile, il serait intéressant de pouvoir visualiser les résultats et les statistiques directement sur la tablette, via une interface pratique et adaptée. Actuellement, la seule façon de consulter les résultats est de produire un fichier tableur à partir de tablette, de récupérer ce fichier et de l'ouvrir sur un PC avec un logiciel adapté (Excel, OpenOffice...). Pouvoir les consulter directement sur la tablette permettrait d'éviter cette étape d'exportation et de pouvoir gagner du temps dans le cas où l'utilisateur veut simplement vérifier ou consulter certains résultats intermédiaires en cours d'une campagne d'acquisition. 
 	
-	\item Toujours au niveau de l'application mobile, il n'est actuellement pas possible de changer le fichier de données lorsque l'application fonctionne. Il faut arrêter l'application, modifier le fichier XML et son dossier de médias associé et redémarrer l'application. Il serait intéresser de pouvoir changer la base de données (fichier XML + médias) "à la volée", à partir d'un menu de paramètre par exemple. Cela permettrait d'avoir, directement embarquée sur la tablette, plusieurs bases de données (insectes, oiseaux, plantes...) pour étendre les possibilités de l'application. 
+	\item Toujours au niveau de l'application mobile, il n'est actuellement pas possible de changer le fichier de données lorsque l'application fonctionne. Il faut arrêter l'application, modifier le fichier XML et son dossier de médias associé et redémarrer l'application. Il serait intéresser de pouvoir changer la base de données (fichier XML + médias) "à la volée", à partir d'un menu de paramètre par exemple. Cela permettrait d'avoir, directement embarquée sur la tablette, plusieurs bases de données (insectes, oiseaux, plantes...) pour étendre les possibilités de l'application.
 	
 	\item Pour rendre l'application tablette presque entièrement indépendante, il faudrait mettre en place un système de mise à jour automatique des bases de données embarquées. Actuellement, une fois la base modifiée via l'application PC, il faut copier manuellement les fichiers de cette nouvelle base sur la tablette. Une idée pourrait être d'installer un serveur sur lequel serait poussée les mises à jour réalisées par l'application PC et où l'application mobile irait régulièrement chercher les nouvelles informations. Ce mode de fonctionnement permettrait aussi à plusieurs tablettes de récupérer rapidement la dernière version de la base. La seule contrainte étant d'avoir un accès à internet à partir de la tablette (de plus en plus courant). Ce système permettrait aussi d'envoyer sur le serveur (et donc de centraliser) les résultats et les statistiques de chaque tablette. 
+	
+	\item Lors de la dernière présentation de l'application mobile à l'équipe d'INNOPHYT, celle-ci avait soumis l'idée d'une représentation graphique des campagnes, des parcelles et des pièges sur une carte (la position étant obtenue via le capteur GPS). Cette fonctionnalité n'ayant pas été prévue dans le cahier de spécification écrit au début du projet, elle n'a pas été implémentée. Cependant, voici quelques pistes pour la réaliser. 
+	Les coordonnées GPS sont déjà utilisées et enregistrées par l'application, il manque simplement l'affichage. Le hors-série de LINUX magazine/France de mai-juin 2012 explique comment faire. Voici la démarche en quelques mots :
+	Le chapitre : "Implémenter une Google Map" est consacré à la mise en place et à la gestion de la carte.
+Pour utiliser une Google Map, il faut une clé API. Pour cela, il vous faut le code MD5 de votre application et aller sur le site \href{http://code.google.com/intl/fr/android/maps-api-signature.html}{Google Code}. Une nouvelle clef est donnée par le site, sous réserve d'acceptation des termes d'utilisation. Cette clef est liée au compte Google qui en a fait la demande, ce qui peut poser des problèmes lors d'un développement collectif sur des ordinateurs différents. Dans tous les cas, ces deux clefs vont de paire, et en cas de problème, il faut les régénérer.
+L'article explique également comment intégrer cette carte à l'application et comment la contrôler. Nous ne rentrerons pas dans les détails car tout y est très bien détaillé.
+Le second chapitre qui nous intéresse s'intitule : "Géolocalisation sur une Google Map". C'est le deuxième point sur lequel on va s'attarder car il y est expliqué comment ajouter des points sur la carte.
+Une chose qui est passée sous silence dans ce magazine, c'est le dessin de zone sur la map. Pour cela, il faut que les zones soient contenues dans un ficher au format KML (Keyhole Markup Language). Ce langage est utilisé pour l'affichage de données dans tous les outils Google pour la localisation.
+L'insertion se fait très simplement en utilisant la méthode addOverlay() de l'objet map. Comme pour créer un overlay depuis un fichier KML, il faut utiliser GGoXml : map.addOverlay(new GGeoXml('monfichier.kml'));
+
 \end{itemize}
 
 \chapter{Conclusion}
-Faire un bilan global sur le projet et une petite ouverture sur son avenir... 
+Ce projet collectif a été une expérience très enrichissante pour toute l'équipe. Il nous a permis de mener à bien un projet long et complet. Cela permet de se forger une première expérience de ce qui pourrait se passer en entreprise. Dans l'état actuel des choses, le projet n'est pas tout à fait terminé, principalement au niveau de l'application PC à laquelle il manque encore plusieurs fonctionnalités. Une base solide a malgré tout été posée, et le format de données XML offre en tous cas une approche plus simple et plus pratique pour l'édition des données que la solution existante. L'application mobile est quand a elle entièrement fonctionnelle. L'équipe INNOPHYT pourra dès maintenant proposer une phase de test en condition réelle de l'application tablette à ses collaborateurs pour obtenir des premiers retours. 
 
 \annexes
 
+\chapter{Documentation utilisateur de l'application mobile} 
+
+\section{Introduction}
+Bienvenue dans l'application d'INNOPHYT pour la reconnaissance d'insectes nuisibles. Cette documentation vous guide pas à pas dans son utilisation.
+
+\section{Objectif de l'application}
+Cette application est utilisée par des biologistes de terrain pour déterminer si les insectes capturés sont nuisibles. En fonction des informations indiquées et renvoyées, INNOPHYT aura connaissance de ces insectes.
+La sauvegarde d'informations se fait au travers de projets définis dans le temps et dans l'espace. Ce qui permet de suivre l'évolution des insectes géographiquement et temporellement.
+
+L'application est conçue pour être utilisée par plusieurs personnes. C'est pourquoi il est nécessaire de rentrer son nom avant toute utilisation. Chaque biologiste possède ses propres projets, ceux-ci sont nommés campagnes et sont découpés en parcelles et en pièges.
+
+\section{Créer et configurer un compte}
+Dès l'ouverture du logiciel, toutes les fonctionnalités ne sont pas disponibles. Vous devez vous créer un compte ou si c'est déjà fait, il faut vous connecter.
+Pour cela, allez dans le menu à l'onglet "utilisateur" et appuyez dessus. Vous devriez avoir une vue comme celle-ci :
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/connexion.jpg}
+	\caption{Interface de connexion à l'application mobile}
+	\label{interface connexion app mobile}
+\end{figure}
+
+Dans le champ texte qui est juste en dessous de "Veuillez commencer par vous identifier" indiquez votre nom et appuyez sur "Créer un compte".
+Si vous possédez déjà un compte sur ce terminal, rentrer votre nom et appuyez sur "Valider".
+Cette action vous mène directement sur la vue vous permettant de gérer vos campagnes.
+Au début, elle doit ressembler à ceci :
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/campagne_vide.jpg}
+	\caption{Interface de sélection d'une campagne}
+	\label{interface select campagne}
+\end{figure}
+
+Cette interface est découpée en deux parties distinctes. La colonne de gauche liste vos campagnes, au départ vous n'en avez pas, c'est normal, il faut que vous les créiez. Lorsque vous en posséderez plusieurs, vous pouvez en sélectionner une en appuyant sur son nom.
+Dans la partie droite se trouvent toutes les informations relatives à la campagne en cours de création ou qui est sélectionnée. Ces informations sont les suivantes :
+\begin{itemize}
+	\item Le nom
+	\item La description
+	\item La date de début
+	\item La date de fin
+	\item L'adresse
+	\item La position PGS
+\end{itemize}
+
+Pour remplir les dates, soit, vous le faites à la main avec le clavier ou par l'interface en appuyant deux fois sur le champ de la date à écrire ; un calendrier apparait.
+Pour indiquer votre position avec le GPS, si tenté que cela définisse la position de votre campagne, appuyez sur le bouton "Localiser". Si un message d'erreur apparait, c'est que la tablette ne connait pas encore sa position, attendez quelques instants et recommencez.
+Pour configurer convenablement une campagne, il est important d'être le plus précis possible. Cependant, seul le nom est obligatoire.
+
+Pour la gestion des campagnes, les options suivantes sont disponibles :
+\begin{itemize}
+	\item Créer : enregistre une nouvelle la campagne. Ne marche pas si une autre campagne porte le même nom.
+	\item Modifier : enregistre les modifications portées à la campagne.
+	\item Supprimer : supprime définitivement la campagne ainsi que les parcelles, les pièges et les insectes associés.
+	\item Sélectionner : indique sur quelle campagne vous voulez travailler et vous permet de passer à la gestion des parcelles.
+\end{itemize}
+
+Il en va de même pour la configuration et la sélection des parcelles et des pièges. Attention, pour ces derniers, il subsiste une légère différence. En plus du nom, la date de fin est obligatoire. C'est ce qui détermine à quel moment les insectes dans le piège ont été récupérés.
+
+\section{L'identification}
+Une fois votre campagne, votre parcelle et votre piège sélectionnés, vous pouvez commencer l'identification. Si vous ne le faites pas, les résultats ne seront pas enregistrés.
+Une série de questions vous sera posée ; pour chaque question vous aurez une liste de réponses sur la partie droite de l'écran. Chacune de ces réponses sera accompagnée d'images et/ou de textes pour vous aider dans votre choix. De plus, en dessous de la question posée, vous avez l'affichage en direct de la caméra arrière de votre tablette. Si vous avez besoin de comparer en particulier un insecte, à une image de votre caméra, il vous suffit de tapoter sur la zone d'affichage de la caméra. Cela aura pour effet de prendre une photo de l'insecte, ensuite dans le panel des réponses, appuyez longuement sur la photo avec laquelle vous souhaitez comparer l'image sauvegardée. Une fenêtre de comparaison s'ouvre alors, une fois votre analyse terminée, appuyez sur une des deux images pour fermer la fenêtre.
+Pour sélectionner une réponse, il vous suffit d'appuyer sur le texte de la réponse ou d'appuyer sur la case à cocher à coté du texte. Soit cela vous mène à d'autres questions, soit une petite fenêtre s'ouvre et vous propose un insecte. Dans ce deuxième cas, s'il correspond, vous pouvez enregistrer votre résultat en indiquant le nombre qu'il y en a dans votre piège.
+Si vous vous êtes trompé dans votre choix de réponse, ce n'est pas grave une flèche en haut à gauche de l'application est disponible pour vous permettre de naviguer dans vos choix déjà effectués, un peu comme l'historique de votre navigateur internet.
+Si vous vous retrouvez bloqué, c'est à dire que vous ne trouvez pas de réponse qui vous convienne, remplissez un rapport d'incident en appuyant sur le gros triangle orange en haut de l'interface. Décrivez votre problème, cela aidera l'équipe INNOPHYT à améliorer l'application.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/question_cours.jpg}
+	\caption{Interface d'identification d'un insecte}
+	\label{interface ident insect}
+\end{figure}
+Sur cette capture d'écran (figure \ref{interface ident insect}, on observe le titre au-dessus de la zone verte qui correspond à la vue camera. Sur le côté se trouve la liste des réponses.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/sauvegarde.jpg}
+	\caption{Interface d'affichage du résultat}
+	\label{interface resultat}
+\end{figure}
+La vue de la figure \ref{interface resultat} est obtenue quand vous avez répondu à toutes les questions.
+
+\section{L'identification rapide}
+Une fois votre campagne, votre parcelle et votre piège sélectionnés, vous pouvez commencer l'identification. Si vous ne le faites pas, les résultats ne seront pas enregistrés.
+Vous serez amené à utiliser cette partie si vous avez reconnu un insecte et que vous ne voulez pas avoir à répondre aux questions. 
+Sélectionnez dans le menu, l'entrée "Identification rapide", cela vous montre une mosaïque d'insectes (figure \ref{mosaique ident rapide}). En appuyant sur l'image de l'insecte que vous recherchez, une nouvelle vue (figure \ref{save result ident rapid}) apparait et vous demande le nombre que vous en avez dans votre piège.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/mosaique.jpg}
+	\caption{Mosaïque des insectes pour l'identification rapide}
+	\label{mosaique ident rapide}
+\end{figure}
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/ident_rapid.jpg}
+	\caption{Sauvegarde du résultat de l'identification rapide}
+	\label{save result ident rapid}
+\end{figure}
+
+\section{L'exportation}
+L'exportation est la phase la plus importante, l'ensemble des données que vous avez saisi dans le terminal est enregistré dans un format texte utilisable par INNOPHYT.
+Pour faire cet export, vous devez vous connecter en indiquant votre nom et appuyez sur l'entrée "Exporter" dans le menu. Un message apparait vous indiquant où trouver ce fichier qui contient tout votre travail.
+
+\begin{figure}[!h]
+	\centering	
+	\includegraphics*[width=1\textwidth, keepaspectratio=false]{images/export.jpg}
+	\caption{Exportation des résultats au format CSV}
+	\label{export resultat csv}
+\end{figure}
+
 \chapter{Documentation Doxygen}
 Un lien vers la doc Doxygen ou directement la doc complète au format PDF ? 
-
-\chapter{Documentation utilisateur (manuel d'utilisation)} 
-Cette partie sera surement intégré tout au long du rapport en lui-même
-
-\chapter{Quelques éléments techniques bien précis}
-Je ne pense pas que cette partie soit utile, on en parle déjà au fur et mesure dans le rapport
 
 \end{document}

@@ -1,29 +1,43 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagramme de classes de l'application PC}}{7}{figure.7}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Version finale du fichier XML}}{9}{figure.9}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces DTD de notre fichier XML}}{10}{figure.10}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Diagramme de classes de l'application PC}}{8}{figure.7}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Version finale du fichier XML}}{10}{figure.9}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces DTD de notre fichier XML}}{11}{figure.10}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Interface principale de l'application au démarrage}}{12}{figure.16}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Interface principale après avoir sélectionné une question}}{13}{figure.17}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Boite de dialogue lorsque l'on veut créer/modifier une question}}{13}{figure.18}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Code permettant d'afficher une image}}{14}{figure.23}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Capture d'écran du lecteur audio}}{15}{figure.25}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Capture d'écran du lecteur vidéo}}{16}{figure.27}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Coloration des questions selon la quantité d'informations présentes}}{17}{figure.29}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Interface principale de l'application au démarrage}}{13}{figure.16}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Interface principale après avoir sélectionné une question}}{15}{figure.21}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Boite de dialogue lorsque l'on veut créer/modifier une question}}{15}{figure.22}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Code permettant d'afficher une image}}{18}{figure.29}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Capture d'écran du lecteur audio}}{19}{figure.31}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Capture d'écran du lecteur vidéo}}{20}{figure.33}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Coloration des questions selon la quantité d'informations présentes}}{21}{figure.35}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Interface d'identification d'un insecte - application mobile}}{18}{figure.31}
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Schéma explicatif du fonctionnement des fragments}}{20}{figure.34}
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Code permettant d'éviter les problèmes liés à la caméra}}{21}{figure.41}
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Mise à jour de l'objet caméra et rafraichissement de la zone de visualisation de la classe CameraPreview}}{22}{figure.45}
-\contentsline {figure}{\numberline {5.5}{\ignorespaces Destructeur de la classe ImageAdapter}}{22}{figure.47}
-\contentsline {figure}{\numberline {5.6}{\ignorespaces Code pour passer à la question suivante}}{23}{figure.52}
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Menu d'accueil de l'application mobile}}{23}{figure.37}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Interface d'identification d'un insecte - application mobile}}{24}{figure.38}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Schéma explicatif du fonctionnement des fragments}}{25}{figure.41}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Code permettant d'éviter les problèmes liés à la caméra}}{26}{figure.48}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Mise à jour de l'objet caméra et rafraichissement de la zone de visualisation de la classe CameraPreview}}{27}{figure.52}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Destructeur de la classe ImageAdapter}}{27}{figure.54}
+\contentsline {figure}{\numberline {5.7}{\ignorespaces Code pour passer à la question suivante}}{28}{figure.59}
+\contentsline {figure}{\numberline {5.8}{\ignorespaces Structure arborescente de la gestion des utilisateurs}}{29}{figure.62}
+\contentsline {figure}{\numberline {5.9}{\ignorespaces Interface d'identification d'un utilisateur}}{30}{figure.63}
+\contentsline {figure}{\numberline {5.10}{\ignorespaces Interface de gestion des campagnes}}{31}{figure.64}
+\contentsline {figure}{\numberline {5.11}{\ignorespaces Interface de gestion des parcelles}}{31}{figure.65}
+\contentsline {figure}{\numberline {5.12}{\ignorespaces Interface de gestion des pièges}}{32}{figure.66}
+\contentsline {figure}{\numberline {5.13}{\ignorespaces Modélisation de la base de données}}{32}{figure.68}
+\contentsline {figure}{\numberline {5.14}{\ignorespaces Modélisation des interactions entre la BDD et l'application}}{33}{figure.69}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {6.1}{\ignorespaces Calendrier prévisionnel par tâches}}{27}{figure.57}
-\contentsline {figure}{\numberline {6.2}{\ignorespaces Calendrier réel par tâches}}{28}{figure.58}
+\contentsline {figure}{\numberline {6.1}{\ignorespaces Calendrier prévisionnel par tâches}}{37}{figure.73}
+\contentsline {figure}{\numberline {6.2}{\ignorespaces Calendrier réel par tâches}}{38}{figure.74}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {A.1}{\ignorespaces Interface de connexion à l'application mobile}}{43}{figure.81}
+\contentsline {figure}{\numberline {A.2}{\ignorespaces Interface de sélection d'une campagne}}{44}{figure.82}
+\contentsline {figure}{\numberline {A.3}{\ignorespaces Interface d'identification d'un insecte}}{45}{figure.84}
+\contentsline {figure}{\numberline {A.4}{\ignorespaces Interface d'affichage du résultat}}{46}{figure.85}
+\contentsline {figure}{\numberline {A.5}{\ignorespaces Mosaïque des insectes pour l'identification rapide}}{46}{figure.87}
+\contentsline {figure}{\numberline {A.6}{\ignorespaces Sauvegarde du résultat de l'identification rapide}}{47}{figure.88}
+\contentsline {figure}{\numberline {A.7}{\ignorespaces Exportation des résultats au format CSV}}{47}{figure.90}
 \addvspace {10\p@ }
