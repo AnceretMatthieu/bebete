@@ -5,6 +5,7 @@
 #include <QModelIndex>
 
 #include "Question.h"
+#include "ListeReponse.h"
 
 namespace Ui {
     class ModifQuestionWindow;
@@ -14,7 +15,7 @@ class ModifQuestionWindow : public QDialog {
         Q_OBJECT
 
     public:
-        ModifQuestionWindow(Question * currentQuestion, QWidget *parent = 0);
+        ModifQuestionWindow(Question * currentQuestion, QWidget *parent);
         ~ModifQuestionWindow();
 
         Question * laQuestion;

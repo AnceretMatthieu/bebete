@@ -1,10 +1,10 @@
 #include "EspeceBDD.h"
 
 void EspeceBDD::enregistrerEspece(Espece * esp) {
-    QDomNode memoire = currentNode;
+    QDomNode * memoire = currentNodeWrite;
     QDomElement domesp = doc.createElement("resultat");
     domesp.setAttribute("id", "res"+QString::number(esp->getIdentifiant()));
-    currentNode.appendChild(domesp);
+    currentNodeWrite->appendChild(domesp);
 
     QDomElement nom = doc.createElement("nom");
     QDomText txtnom = doc.createTextNode(esp->getNom());
@@ -30,12 +30,12 @@ void EspeceBDD::enregistrerEspece(Espece * esp) {
     if(lm->size() > 0)  {
         QDomElement dommed = doc.createElement("media");
         domesp.appendChild(dommed);
-        currentNode = dommed;
-        qDebug() << currentNode.nodeName();
+        currentNodeWrite = &dommed;
+        qDebug() << currentNodeWrite->nodeName();
     }
 
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }
-    currentNode = memoire;
+    currentNodeWrite = memoire;
 }

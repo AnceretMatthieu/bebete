@@ -20,13 +20,13 @@ INPUT(
 ./release\BDD.o
 ./release\audioplayer.o
 ./release\videoplayer.o
-./release\ajoutertexte.o
 ./release\modifreponsewindow.o
+./release\newreponsewindow.o
 ./release\moc_mainwindow.o
 ./release\moc_aboutwindow.o
 ./release\moc_modifquestionwindow.o
 ./release\moc_audioplayer.o
 ./release\moc_videoplayer.o
-./release\moc_ajoutertexte.o
 ./release\moc_modifreponsewindow.o
+./release\moc_newreponsewindow.o
 );

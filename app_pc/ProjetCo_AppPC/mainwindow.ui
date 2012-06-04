@@ -647,7 +647,7 @@
            </font>
           </property>
           <property name="text">
-           <string>Média 1</string>
+           <string>Média ou résultat</string>
           </property>
          </widget>
         </item>
@@ -662,7 +662,7 @@
          <widget class="QLabel" name="labelImage1">
           <property name="font">
            <font>
-            <family>DejaVu Sans</family>
+            <family>MS Shell Dlg 2</family>
             <pointsize>10</pointsize>
            </font>
           </property>
@@ -673,6 +673,12 @@
         </item>
         <item>
          <widget class="QLabel" name="labelImage2">
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -680,6 +686,12 @@
         </item>
         <item>
          <widget class="QLabel" name="labelImage3">
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
           <property name="text">
            <string/>
           </property>
@@ -687,6 +699,19 @@
         </item>
         <item>
          <widget class="QLabel" name="labelImage4">
+          <property name="font">
+           <font>
+            <family>MS Shell Dlg 2</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="labelImage5">
           <property name="text">
            <string/>
           </property>

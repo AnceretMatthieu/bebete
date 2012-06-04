@@ -1,17 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-<<<<<<< HEAD
-** Created: Fri 1. Jun 00:40:44 2012
-=======
-<<<<<<< HEAD
-** Created: Thu 31. May 10:16:17 2012
-**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
-=======
-** Created: Wed 30. May 23:36:36 2012
->>>>>>> ed99ca6351cba1554acf4d5a3b48d46d493391f8
+** Created: Tue 5. Jun 01:10:55 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
->>>>>>> c93afa60a1ce59ea481eef9cf1ef90b48af1bad6
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -20,7 +11,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.0. It"
+#error "This file was generated using the moc from 4.8.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -41,38 +32,38 @@ static const uint qt_meta_data_MainWindow[] = {
 
  // slots: signature, parameters, type, tag, flags
       12,   11,   11,   11, 0x08,
-      41,   11,   11,   11, 0x08,
-      75,   11,   11,   11, 0x08,
-     109,   11,   11,   11, 0x08,
-     131,  125,   11,   11, 0x08,
-     167,  125,   11,   11, 0x08,
-     209,  125,   11,   11, 0x08,
-     252,  243,   11,   11, 0x08,
-     271,  243,   11,   11, 0x08,
-     309,  290,   11,   11, 0x08,
-     332,   11,   11,   11, 0x08,
-     350,   11,   11,   11, 0x08,
-     369,   11,   11,   11, 0x08,
-     388,   11,   11,   11, 0x08,
-     408,   11,   11,   11, 0x08,
-     425,   11,   11,   11, 0x08,
-     436,   11,   11,   11, 0x08,
-     452,   11,   11,   11, 0x08,
-     469,   11,   11,   11, 0x08,
-     482,   11,   11,   11, 0x08,
-     500,   11,   11,   11, 0x08,
-     519,   11,   11,   11, 0x08,
-     540,   11,   11,   11, 0x08,
-     558,   11,   11,   11, 0x08,
-     581,   11,   11,   11, 0x08,
+      38,   11,   11,   11, 0x08,
+      69,   11,   11,   11, 0x08,
+     100,   11,   11,   11, 0x08,
+     122,  116,   11,   11, 0x08,
+     158,  116,   11,   11, 0x08,
+     200,  116,   11,   11, 0x08,
+     243,  234,   11,   11, 0x08,
+     262,  234,   11,   11, 0x08,
+     300,  281,   11,   11, 0x08,
+     323,   11,   11,   11, 0x08,
+     341,   11,   11,   11, 0x08,
+     360,   11,   11,   11, 0x08,
+     379,   11,   11,   11, 0x08,
+     399,   11,   11,   11, 0x08,
+     416,   11,   11,   11, 0x08,
+     427,   11,   11,   11, 0x08,
+     443,   11,   11,   11, 0x08,
+     460,   11,   11,   11, 0x08,
+     473,   11,   11,   11, 0x08,
+     491,   11,   11,   11, 0x08,
+     510,   11,   11,   11, 0x08,
+     531,   11,   11,   11, 0x08,
+     549,   11,   11,   11, 0x08,
+     572,   11,   11,   11, 0x08,
 
        0        // eod
 };
 
 static const char qt_meta_stringdata_MainWindow[] = {
-    "MainWindow\0\0on_actionQuitter_triggered()\0"
-    "on_actionExporter_XML_triggered()\0"
-    "on_actionImporter_XML_triggered()\0"
+    "MainWindow\0\0actionQuitter_triggered()\0"
+    "actionExporter_XML_triggered()\0"
+    "actionImporter_XML_triggered()\0"
     "actionApropos()\0index\0"
     "clickTreeViewQuestions(QModelIndex)\0"
     "clickTreeViewMediasQuestions(QModelIndex)\0"
@@ -95,9 +86,9 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         Q_ASSERT(staticMetaObject.cast(_o));
         MainWindow *_t = static_cast<MainWindow *>(_o);
         switch (_id) {
-        case 0: _t->on_actionQuitter_triggered(); break;
-        case 1: _t->on_actionExporter_XML_triggered(); break;
-        case 2: _t->on_actionImporter_XML_triggered(); break;
+        case 0: _t->actionQuitter_triggered(); break;
+        case 1: _t->actionExporter_XML_triggered(); break;
+        case 2: _t->actionImporter_XML_triggered(); break;
         case 3: _t->actionApropos(); break;
         case 4: _t->clickTreeViewQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
         case 5: _t->clickTreeViewMediasQuestions((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;

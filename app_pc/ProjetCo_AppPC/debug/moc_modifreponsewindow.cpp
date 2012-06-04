@@ -1,13 +1,8 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'modifreponsewindow.h'
 **
-<<<<<<< HEAD
-** Created: Fri 1. Jun 00:40:53 2012
+** Created: Tue 5. Jun 01:11:04 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.1)
-=======
-** Created: Thu 31. May 10:16:19 2012
-**      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
->>>>>>> ed99ca6351cba1554acf4d5a3b48d46d493391f8
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -16,7 +11,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'modifreponsewindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 63
-#error "This file was generated using the moc from 4.8.0. It"
+#error "This file was generated using the moc from 4.8.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif

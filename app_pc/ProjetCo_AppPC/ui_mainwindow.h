@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Fri 1. Jun 00:40:15 2012
+** Created: Tue 5. Jun 01:10:23 2012
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -94,6 +94,7 @@ public:
     QLabel *labelImage2;
     QLabel *labelImage3;
     QLabel *labelImage4;
+    QLabel *labelImage5;
     QSpacerItem *verticalSpacer_3;
     QMenuBar *menuBar;
     QMenu *menuFichier;
@@ -520,27 +521,32 @@ public:
 
         labelImage1 = new QLabel(centralWidget);
         labelImage1->setObjectName(QString::fromUtf8("labelImage1"));
-        QFont font6;
-        font6.setFamily(QString::fromUtf8("DejaVu Sans"));
-        font6.setPointSize(10);
-        labelImage1->setFont(font6);
+        labelImage1->setFont(font1);
 
         verticalLayout_3->addWidget(labelImage1);
 
         labelImage2 = new QLabel(centralWidget);
         labelImage2->setObjectName(QString::fromUtf8("labelImage2"));
+        labelImage2->setFont(font1);
 
         verticalLayout_3->addWidget(labelImage2);
 
         labelImage3 = new QLabel(centralWidget);
         labelImage3->setObjectName(QString::fromUtf8("labelImage3"));
+        labelImage3->setFont(font1);
 
         verticalLayout_3->addWidget(labelImage3);
 
         labelImage4 = new QLabel(centralWidget);
         labelImage4->setObjectName(QString::fromUtf8("labelImage4"));
+        labelImage4->setFont(font1);
 
         verticalLayout_3->addWidget(labelImage4);
+
+        labelImage5 = new QLabel(centralWidget);
+        labelImage5->setObjectName(QString::fromUtf8("labelImage5"));
+
+        verticalLayout_3->addWidget(labelImage5);
 
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -604,11 +610,12 @@ public:
         button_ajouterComMediaReponse->setText(QApplication::translate("MainWindow", "Ajouter commentaire", 0, QApplication::UnicodeUTF8));
         button_supprimerMediaReponse->setText(QApplication::translate("MainWindow", "Modifier m\303\251dia", 0, QApplication::UnicodeUTF8));
         button_ajouterMediaReponse->setText(QApplication::translate("MainWindow", "Supprimer m\303\251dia", 0, QApplication::UnicodeUTF8));
-        labelReponse2->setText(QApplication::translate("MainWindow", "M\303\251dia 1", 0, QApplication::UnicodeUTF8));
+        labelReponse2->setText(QApplication::translate("MainWindow", "M\303\251dia ou r\303\251sultat", 0, QApplication::UnicodeUTF8));
         labelImage1->setText(QString());
         labelImage2->setText(QString());
         labelImage3->setText(QString());
         labelImage4->setText(QString());
+        labelImage5->setText(QString());
         menuFichier->setTitle(QApplication::translate("MainWindow", "Fichier", 0, QApplication::UnicodeUTF8));
         menuAide->setTitle(QApplication::translate("MainWindow", "Aide", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
