@@ -59,29 +59,30 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
 }
 
 void QuestionBDD::enregistrerQuestion(Question * quest) {
-    QDomNode memoire = currentNode;
+    QDomNode * memoire = currentNodeWrite;
     QDomElement question = doc.createElement("question");
     question.setAttribute("id", "q"+QString::number(quest->getIdentifiant()));
     question.setAttribute("texte", quest->getQuestion());
     question.setAttribute("visible", quest->getVisible());
-    currentNode.appendChild(question);
+    qDebug() << "q"+QString::number(quest->getIdentifiant()) +" "+quest->getQuestion() + " " +quest->getVisible();
+    currentNodeWrite->appendChild(question);
 
-    currentNode = question;
+    currentNodeWrite = &question;
 
     ListeMedia * lm = quest->getListeMedia();
     if(lm->size() > 0)  {
         QDomElement dommed = doc.createElement("media");
-        currentNode.appendChild(dommed);
-        currentNode = dommed;
+        currentNodeWrite->appendChild(dommed);
+        currentNodeWrite = &dommed;
 
         }
     for(int i = 0; i < lm->size(); i++)   {
         MediaBDD::enregistrerMedia(lm->at(i));
     }
-    currentNode = question;
+    currentNodeWrite = &question;
     ListeReponse * lr = quest->getListeReponse();
     for(int i = 0; i < lr->size(); i++)   {
         ReponseBDD::enregistrerReponse(lr->at(i));
     }
-    currentNode = memoire;
+    currentNodeWrite = memoire;
 }

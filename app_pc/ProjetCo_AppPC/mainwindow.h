@@ -69,9 +69,9 @@ class MainWindow : public QMainWindow
         QString calculerCoordonnees(QModelIndex index);
 
     private slots:
-        void on_actionQuitter_triggered();
-        void on_actionExporter_XML_triggered();
-        void on_actionImporter_XML_triggered();
+        void actionQuitter_triggered();
+        void actionExporter_XML_triggered();
+        void actionImporter_XML_triggered();
         void actionApropos();
         void clickTreeViewQuestions(const QModelIndex &index);
         void clickTreeViewMediasQuestions(const QModelIndex &index);

@@ -2,6 +2,7 @@
 #include "categoriebdd.h"
 
 QDomNode BDD::currentNode;
+QDomNode * BDD::currentNodeWrite;
 QDomDocument BDD::doc;
 
 ListeQuestion * BDD::CreerArbre(QString filePath)
@@ -23,14 +24,15 @@ ListeQuestion * BDD::CreerArbre(QString filePath)
 
 void BDD::enregistrerArbre(Categorie *racine, QString filePath)
 {
-    doc.clear();
+    BDD::doc = QDomDocument("");
+
     QDomNode noeud = doc.createProcessingInstruction("xml", "version=\"1.0\"");
     doc.appendChild(noeud);
 
     QDomElement arbre = doc.createElement("arbre");
     doc.appendChild(arbre);
 
-    currentNode = arbre;
+    currentNodeWrite = &arbre;
 
     CategorieBDD::enregistrerCategorie(racine);
 
@@ -43,7 +45,9 @@ void BDD::enregistrerArbre(Categorie *racine, QString filePath)
     else    {
         QTextStream textStream(&fichier);
         qDebug() <<"\n Enregistrement dans le fichier";
-        textStream <<  doc.toString();
+
+        doc.save(textStream, 5);
+
         qDebug() <<"\n Enregistrement dans le fichier OK";
     }
 

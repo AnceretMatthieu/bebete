@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Si ce n'est pas le cas, le faire.
 
     // TODO : à supprimer ; se trouve désormais dans la fonction du menu "Importer XML"
-    maListeQuestions = BDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
+    //maListeQuestions = BDD::CreerArbre(QDir::currentPath() + "/accueil.xml");
 
     /* Peuplement des TreeView */
     // TODO : il faudrait que le TreeView des réponses et celui des médiasQuestions soient composés de 2 colonnes : une pour le type et l'autre pour le contenu
@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     model_tvMediaQuestion = new QStandardItemModel;
 
     // TODO : à supprimer ; se trouve désormais dans la fonction du menu "Importer XML"
-    peuplerListeQuestionsXML(maListeQuestions, NULL, 0, "");
+    //peuplerListeQuestionsXML(maListeQuestions, NULL, 0, "");
 
     ui->setupUi(this);
 
@@ -105,9 +105,9 @@ void MainWindow::peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QSt
 void MainWindow::createAction()
 {
     /* Affectation des actions sur les boutons du menu */
-    connect(ui->actionExporter_XML, SIGNAL(triggered()), this, SLOT(on_actionExporter_XML_triggered()));
-    connect(ui->actionImporter_XML, SIGNAL(triggered()), this, SLOT(on_actionImporter_XML_triggered()));
-    connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(on_actionQuitter_triggered()));
+    connect(ui->actionExporter_XML, SIGNAL(triggered()), this, SLOT(actionExporter_XML_triggered()));
+    connect(ui->actionImporter_XML, SIGNAL(triggered()), this, SLOT(actionImporter_XML_triggered()));
+    connect(ui->actionQuitter, SIGNAL(triggered()), this, SLOT(actionQuitter_triggered()));
     connect(ui->actionA_propos_de, SIGNAL(triggered()), this, SLOT(actionApropos()));
 
     /* Gestion du clic sur les items */
@@ -139,33 +139,41 @@ void MainWindow::createAction()
     connect(ui->button_supprimerMediaReponse, SIGNAL(clicked()), this, SLOT(supprimerMediaReponse()));
 }
 
-void MainWindow::on_actionImporter_XML_triggered()
+void MainWindow::actionImporter_XML_triggered()
 {
+
     // TODO : peut-être penser à vider tous les TreeView & Co avant d'importer un nouvel arbre ;
     // peut-être proposer aussi d'enregistrer le travail courant
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
 
     // Parsage de l'arbre
-    maListeQuestions = CategorieBDD::CreerArbre(fileName);
+    maListeQuestions = BDD::CreerArbre(fileName);
 
     // Remplissage des TreeView
     peuplerListeQuestionsXML(maListeQuestions, NULL, 0, "");
+
 }
 
-void MainWindow::on_actionExporter_XML_triggered()
+void MainWindow::actionExporter_XML_triggered()
 {
     // TODO : l'encodage du fichier de sortie n'est pas bon ; il faudrait être en UTF-8
-    // TODO : la fenêtre de selection du fichier de sortie s'affiche 2 fois...
     // TODO : une fois les 2 fenêtres apparues, l'application affiche un message d'erreur et plante subitement...
 
     QString fileName = QFileDialog::getSaveFileName(this, tr("Enregistrer le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
 
-    Categorie * categorie = new Categorie(1);
+    Categorie categorie(1);
     if(maListeQuestions->size() != 0)
     {
-        categorie->ajouterQuestion(maListeQuestions->at(0));
-        CategorieBDD::enregistrerArbre(categorie, fileName);
+        categorie.ajouterQuestion(maListeQuestions->at(0));
+        BDD::enregistrerArbre(&categorie, fileName);
+
+        ui->treeViewQuestion->reset();
+        model_tvQuestion->clear();
+        mapTreeQuestions.clear();
+
+        maListeQuestions = BDD::CreerArbre(fileName);
+        peuplerListeQuestionsXML(maListeQuestions, NULL, 0, "");
     }
     else
     {
@@ -173,7 +181,7 @@ void MainWindow::on_actionExporter_XML_triggered()
     }
 }
 
-void MainWindow::on_actionQuitter_triggered()
+void MainWindow::actionQuitter_triggered()
 {
     close();
 }

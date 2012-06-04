@@ -15,6 +15,7 @@ class BDD {
          * \brief attribut mémorisant le noeud xml que l'on est en train de lire ou ecrire
          */
         static QDomNode currentNode;
+        static QDomNode * currentNodeWrite;
         /**
          * \brief attribut mémorisant le document que l'on est en train de lire ou ecrire
          */
