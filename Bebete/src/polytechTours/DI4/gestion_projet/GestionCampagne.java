@@ -108,8 +108,8 @@ public class GestionCampagne extends Fragment
 			}
 		}
 
-		/** Ajoute une campagne Ã  afficher
-		 * @param campagne	Campagne Ã  ajouter
+		/** Ajoute une campagne à afficher
+		 * @param campagne	Campagne à ajouter
 		 */
 		public void insertCampagne(Campagne campagne){
 			String name = campagne.getNom();
@@ -156,8 +156,8 @@ public class GestionCampagne extends Fragment
 			}
 		}
 		
-		/** Met Ã  jour une campagne
-		 * @param campagne	Campagne Ã  modifier
+		/** Met à jour une campagne
+		 * @param campagne	Campagne à modifier
 		 */
 		public void updateCampagne(Campagne campagne){
 			int i = 0;
@@ -173,7 +173,7 @@ public class GestionCampagne extends Fragment
 		}
 		
 		/** Définit la campagne active
-		 * @param active_campagne	Numéro de la  campagne Ã  activer
+		 * @param active_campagne	Numéro de la  campagne à activer
 		 */
 		public void setActive_campagne(int active_campagne) {
 			this.active_campagne = active_campagne;
@@ -194,7 +194,7 @@ public class GestionCampagne extends Fragment
 		}
 		
 		/** Définit la campagne sélectionnée
-		 * @param i	Numero de la  campagne Ã  sélectionner
+		 * @param i	Numero de la  campagne à sélectionner
 		 */
 		public void setCheck(int i){
 			vect_radioButton.elementAt(i).setChecked(true);
@@ -202,7 +202,7 @@ public class GestionCampagne extends Fragment
 	}
     
 	/** affiche une date picker et retourne la date dans le champ passé en paramètre
-	 * @param champ	Champ de l'affichage Ã  modifier*/
+	 * @param champ	Champ de l'affichage à modifier*/
     private void datepikerdialog(final EditText champ) throws java.text.ParseException {
 
 		int year = 0;
@@ -278,7 +278,7 @@ public class GestionCampagne extends Fragment
 	{
 		super.onActivityCreated(savedInstanceState);
         /** Récupere l'identifiant de l'utilisateur depuis les paramètres de l'application
-         * Affiche un message en cas de probèeme et renvoie Ã  la page de sélection des utilisateurs **/
+         * Affiche un message en cas de probèeme et renvoie à la page de sélection des utilisateurs **/
 		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); //récupère les paramètres de l'application
         utilisateur_id = (int)preferences.getLong("UTILISATEUR_ID", -1);
         if(utilisateur_id == -1){
@@ -453,8 +453,8 @@ public class GestionCampagne extends Fragment
 				    		campagne.setLatitude(str[0]);
 				    		campagne.setLongitude(str[1]);
 			    		}else{
-				    		campagne.setLatitude("pas de valeur");
-				    		campagne.setLongitude("pas de valeur");
+				    		campagne.setLatitude("");
+				    		campagne.setLongitude("");
 			    		}
 			    		
 			    		EditText adresseCampagne = (EditText)activity.findViewById( R.id.adresseCampagne );

@@ -426,8 +426,8 @@ public class GestionParcelle extends Fragment
 			    		parcelle.setLatitude(str[0]);
 			    		parcelle.setLongitude(str[1]);
 		    		}else{
-			    		parcelle.setLatitude("pas de valeur");
-			    		parcelle.setLongitude("pas de valeur");
+			    		parcelle.setLatitude("");
+			    		parcelle.setLongitude("");
 		    		}
 		    		
 		    		EditText adresseParcelle = (EditText)activity.findViewById( R.id.adresseParcelle );

@@ -37,7 +37,7 @@
                     android:layout_alignParentTop="true"
                     android:layout_marginLeft="36dp"
                     android:layout_marginTop="36dp"
-                    android:text="Bienvenue sur l&apos;application d&apos;identification d&apos;insecte"
+                    android:text="Bienvenue sur l&apos;application d&apos;identification d&apos;insectes"
                     android:textColor="@color/color_blue"
                     android:textSize="32px" />
 

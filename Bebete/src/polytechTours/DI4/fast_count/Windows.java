@@ -159,9 +159,17 @@ public class Windows extends RelativeLayout implements OnClickListener
 
 	public void onClick(View v) 
 	{
-		String path = listChemin.get(v.getId());
-		photoURL=path;			
-		Log.d("LOL", "117 " + path );
+		int nb = 0;
+		
+		if( v.getId()+1 < listChemin.size() )
+		{
+			nb = v.getId()+1;
+		}
+		
+		Log.d("LOL", "id " + v.getId() + " " + listChemin.size() );
+		
+		String path = listChemin.get(nb);
+		photoURL=path;	
 		
 		SharedPreferences preferences = activity.getPreferences(Context.MODE_PRIVATE); 
         int piege_id = (int)preferences.getLong("PIEGE_ID", -1);

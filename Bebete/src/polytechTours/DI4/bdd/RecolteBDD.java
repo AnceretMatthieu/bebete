@@ -109,8 +109,10 @@ public class RecolteBDD {
 	 * @return La recolte ciblé
 	 */
 	public Recolte getRecolteWithNOM(String nom, int piege_id){
-		Cursor recolte = db.query(TABLE_RECOLTE, new String[]{COL_ID, COL_PIEGE_ID, COL_NOM, COL_NOMBRE}, COL_NOM + " LIKE \"" + nom + "\" AND " + COL_PIEGE_ID +" LIKE \"" + piege_id + "\"", null, null, null, null);
-		return CursorToRecolte(recolte);		
+		Cursor crecolte = db.query(TABLE_RECOLTE, new String[]{COL_ID, COL_PIEGE_ID, COL_NOM, COL_NOMBRE}, COL_NOM + " LIKE \"" + nom + "\" AND " + COL_PIEGE_ID +" LIKE \"" + piege_id + "\"", null, null, null, null);
+		Recolte recolte = CursorToRecolte(crecolte);
+		crecolte.close();
+		return recolte;			
 	}
 	
 	/** Importe une récolte de la base de données
@@ -119,8 +121,10 @@ public class RecolteBDD {
 	 * @return La recolte ciblée
 	 */
 	public Recolte getRecolteWithID(String id, int piege_id){
-		Cursor recolte = db.query(TABLE_RECOLTE, new String[]{COL_ID, COL_PIEGE_ID, COL_NOM, COL_NOMBRE}, COL_ID + " LIKE \"" + id + "\" AND " + COL_PIEGE_ID +" LIKE \"" + piege_id + "\"", null, null, null, null);
-		return CursorToRecolte(recolte);		
+		Cursor crecolte = db.query(TABLE_RECOLTE, new String[]{COL_ID, COL_PIEGE_ID, COL_NOM, COL_NOMBRE}, COL_ID + " LIKE \"" + id + "\" AND " + COL_PIEGE_ID +" LIKE \"" + piege_id + "\"", null, null, null, null);
+		Recolte recolte = CursorToRecolte(crecolte);
+		crecolte.close();
+		return recolte;		
 	}
 
 	/** Importe toutes les récoltes du piège depuis la base de données
@@ -128,13 +132,11 @@ public class RecolteBDD {
 	 * @return Vecteur de récolte appartenant au piège  
 	 */
 	public Vector<Recolte> getRecoltes(int piege_id){
-		Vector<Recolte> recoltes = null;
+		Vector<Recolte> recoltes = new Vector<Recolte>();
 		Cursor cp = db.query(TABLE_RECOLTE, new String[]{COL_ID, COL_PIEGE_ID, COL_NOM, COL_NOMBRE}, COL_PIEGE_ID + " LIKE \"" + piege_id + "\"", null, null, null, null);
 		cp.moveToFirst();
 		for(int i=0; i < cp.getCount() ; ++i) {
 			cp.moveToPosition(i);
-			if(recoltes == null)
-				recoltes = new Vector<Recolte>();
 			
 			Recolte recolte = CursorToRecolte(cp);
 			recoltes.add(recolte);
@@ -160,8 +162,6 @@ public class RecolteBDD {
 		recolte.setPege_id(cr.getInt(NUM_COL_PIEGE_ID));
 		recolte.setNom(cr.getString(NUM_COL_NOM));
 		recolte.setNombre(cr.getInt(NUM_COL_NOMBRE));
-		
-		cr.close();
 		
 		return recolte;
 	}

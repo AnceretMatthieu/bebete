@@ -442,8 +442,8 @@ public class GestionPiege extends Fragment
         			    		piege.setLatitude(str[0]);
         			    		piege.setLongitude(str[1]);
         		    		}else{
-        			    		piege.setLatitude("pas de valeur");
-        			    		piege.setLongitude("pas de valeur");
+        			    		piege.setLatitude("");
+        			    		piege.setLongitude("");
         		    		}
         				    		
         		    		EditText adressePiege = (EditText)activity.findViewById( R.id.adressePiege );
