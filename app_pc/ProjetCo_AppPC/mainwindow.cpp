@@ -211,15 +211,6 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
     // On récupère, via la QMap, la question correpondant à l'item cliqué
     Question * currentQuestion = mapTreeQuestions.value(coord);
 
-<<<<<<< HEAD
-    // TODO : plantage sur la ligne suivante
-    // si l'on clic sur un élément crée via le bouton fils et qui est en deuxième position
-    // (ça ne plante pas si c'est le premier fils de la liste)
-    ListeReponse * lr = currentQuestion->getListeReponse();
-    qDebug() << lr;
-    // TODO : penser à appliquer une méthode similaire à la nouvelle méthode de calcul des coordonnées pour le TreeView des réponses
-=======
->>>>>>> 49eceb9c90eb025a199ad621c1bd81ae8f72d055
     // On remplit le TreeView des réponses
     ListeReponse * lr = currentQuestion->getListeReponse();
     for(int i = 0; i < lr->size(); i++)
@@ -291,74 +282,14 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
         Reponse * r = mapTreeReponses.value(QString::number(index.row()));
         if(r != NULL)
         {
-            ListeMedia * lm = r->getListeIllustration();
-            int nbImage = 0;
-            if(!lm->isEmpty())
+            if(r->getTypeSuiv() != TYPE_EMPTY)
             {
-                for(int i = 0; i < lm->size(); i++)
+                ListeMedia * lm = r->getListeIllustration();
+                int nbImage = 0;
+                if(!lm->isEmpty())
                 {
-                    if(lm->at(i)->getType() == MEDIA_TYPE_IMAGE) // si le média est une image
+                    for(int i = 0; i < lm->size(); i++)
                     {
-                        QString fileName = lm->at(i)->getPath();
-                        QImage * myImg = new QImage("images/" + fileName);
-
-                        if(myImg->isNull() != true)
-                        {
-                            QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
-
-                            QPixmap * img = new QPixmap();
-                            img->convertFromImage(myScaledImg, Qt::AutoColor);
-
-                            if(nbImage == 0) {
-                                ui->labelImage1->setPixmap(*img);
-                            }
-                            else if(nbImage == 1) {
-                                ui->labelImage2->setPixmap(*img);
-                            }
-                            else if(nbImage == 2) {
-                                ui->labelImage3->setPixmap(*img);
-                            }
-                            else if(nbImage == 3) {
-                                ui->labelImage4->setPixmap(*img);
-                            }
-                            nbImage++;
-                        }
-                    }
-                }
-            }
-
-            // On affiche le nom de la question qui suit la réponse selectionnée
-            ListeQuestion * lq = ((Categorie *)r->getSuiv())->getListeQuestion();
-
-            if(lq->getEstVide() == 0)
-            {
-                if(lq->size() != 0)
-                {
-                    ui->labelReponse2->setText("Question suivante : " + lq->at(0)->getQuestion());
-                }
-                else
-                {
-                    ui->labelReponse2->setText("Pas de question suivante...");
-                }
-            }
-            else // si la liste des questions est vide, cela veut dire qu'il y a un résultat
-            {
-                Espece * currentResult = ((Espece *)r->getSuiv());
-
-                QString result = "Résultat";
-                QString nom = currentResult->getNom();
-                QString type = currentResult->getType();
-                QString regime = currentResult->getRegimeAlimentaire();
-                QString info = currentResult->getInformation();
-                ui->labelReponse2->setText(result);
-                ui->labelImage1->setText("Nom : " + nom);
-                ui->labelImage2->setText("Type : " + type);
-                ui->labelImage3->setText("Régime alimentaire : " + regime);
-                ui->labelImage4->setText("Informations : " + info);
-
-                ListeMedia * lm = currentResult->getListeMedia();
-                if(lm->size() != 0) {
-                    for(int i = 0; i < lm->size(); i++) {
                         if(lm->at(i)->getType() == MEDIA_TYPE_IMAGE) // si le média est une image
                         {
                             QString fileName = lm->at(i)->getPath();
@@ -371,11 +302,79 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
                                 QPixmap * img = new QPixmap();
                                 img->convertFromImage(myScaledImg, Qt::AutoColor);
 
-                                ui->labelImage5->setPixmap(*img);
+                                if(nbImage == 0) {
+                                    ui->labelImage1->setPixmap(*img);
+                                }
+                                else if(nbImage == 1) {
+                                    ui->labelImage2->setPixmap(*img);
+                                }
+                                else if(nbImage == 2) {
+                                    ui->labelImage3->setPixmap(*img);
+                                }
+                                else if(nbImage == 3) {
+                                    ui->labelImage4->setPixmap(*img);
+                                }
+                                nbImage++;
                             }
                         }
                     }
                 }
+
+                // On affiche le nom de la question qui suit la réponse selectionnée
+
+                if(r->getTypeSuiv() == TYPE_CATEGORIE)
+                {
+                    ListeQuestion * lq = ((Categorie *)r->getSuiv())->getListeQuestion();
+
+                    if(lq->size() != 0)
+                    {
+                        ui->labelReponse2->setText("Question suivante : " + lq->at(0)->getQuestion());
+                    }
+                    else
+                    {
+                        ui->labelReponse2->setText("Pas de question suivante...");
+                    }
+                }
+                else // c'est une espèce
+                {
+                    Espece * currentResult = ((Espece *)r->getSuiv());
+
+                    QString result = "Résultat";
+                    QString nom = currentResult->getNom();
+                    QString type = currentResult->getType();
+                    QString regime = currentResult->getRegimeAlimentaire();
+                    QString info = currentResult->getInformation();
+                    ui->labelReponse2->setText(result);
+                    ui->labelImage1->setText("Nom : " + nom);
+                    ui->labelImage2->setText("Type : " + type);
+                    ui->labelImage3->setText("Régime alimentaire : " + regime);
+                    ui->labelImage4->setText("Informations : " + info);
+
+                    ListeMedia * lm = currentResult->getListeMedia();
+                    if(lm->size() != 0) {
+                        for(int i = 0; i < lm->size(); i++) {
+                            if(lm->at(i)->getType() == MEDIA_TYPE_IMAGE) // si le média est une image
+                            {
+                                QString fileName = lm->at(i)->getPath();
+                                QImage * myImg = new QImage("images/" + fileName);
+
+                                if(myImg->isNull() != true)
+                                {
+                                    QImage myScaledImg = myImg->scaled(QSize(250, 250), Qt::KeepAspectRatio);
+
+                                    QPixmap * img = new QPixmap();
+                                    img->convertFromImage(myScaledImg, Qt::AutoColor);
+
+                                    ui->labelImage5->setPixmap(*img);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            else {
+                ui->labelReponse2->setText("Cette réponse n'a pas de question associée");
             }
         }
     }
@@ -596,7 +595,7 @@ void MainWindow::newReponse()
         Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
         // On ajoute la réponse à la liste des réponses de la question courante
-        currentQuestion->getListeReponse()->append(newReponse);
+        currentQuestion->ajouterReponse(newReponse);
 
         // On ajoute la réponse à la QMap
         mapTreeReponses.insert(QString::number(elemRep->index().row()), newReponse);

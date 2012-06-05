@@ -8,6 +8,7 @@
 #include "Categorie.h"
 
 #define MEDIA_NOT_IN_LIST_EXCEPTION 404
+#define TYPE_EMPTY -1
 #define TYPE_ESPECE 0
 #define TYPE_CATEGORIE 1
 

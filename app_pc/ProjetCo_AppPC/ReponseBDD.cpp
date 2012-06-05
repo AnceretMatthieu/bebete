@@ -28,6 +28,8 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
             rep->setSuiv(tempc);
             rep->setTypeSuiv(TYPE_CATEGORIE);
 
+            rep->setPrec(rep);
+
             BDD::currentNode = lstBaliseQuestion.at(i).toElement();
             if(recursif)
                 CategorieBDD::listeQuestionWithCategorie(tempc, recursif);

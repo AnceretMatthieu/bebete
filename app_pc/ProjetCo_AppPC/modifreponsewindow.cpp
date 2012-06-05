@@ -21,14 +21,14 @@ ModifReponseWindow::ModifReponseWindow(Reponse * currentReponse, QWidget *parent
     }
 
     // On remplie la comboBox des questions possibles
-    ListeQuestion * lq = ((Categorie *)currentReponse->getPrec())->getListeQuestion();
+    /*ListeQuestion * lq = ((Categorie *)currentReponse->getPrec())->getListeQuestion();
     for(int i = 0; i < lq->size(); i++)
     {
         // TODO : lq->at(0) suffirait probablement car on ne veut que le suivant
         // Il faudrait pouvoir afficher toutes les questions possibles et afficher la question courante suivante en premier
         Question * q = lq->at(i);
         ui->comboBox->addItem(q->getQuestion());
-    }
+    }*/
 }
 
 ModifReponseWindow::~ModifReponseWindow()

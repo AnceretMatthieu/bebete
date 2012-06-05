@@ -12,8 +12,8 @@ Reponse::Reponse(int id)    {
     fils = NULL;
     texte = QString("");
     pere = NULL;
-    typeFils = 0;
-    typePere = 0;
+    typeFils = TYPE_EMPTY;
+    typePere = TYPE_EMPTY;
 }
 
 void Reponse::ajouterMedia(Media *med) {
