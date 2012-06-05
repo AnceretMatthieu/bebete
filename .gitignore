@@ -4,6 +4,7 @@ app_pc/ProjetCo_AppPC/makefile
 
 # ignorer le fichier compile #
 app_pc/ProjetCo_AppPC/ProjetCo_AppPC.exe
+app_pc/ProjetCo_AppPC-build-desktop-Desktop_Qt_4_8_0_for_GCC__Qt_SDK__Debug
 
 # ignorer les .o #
 *.o
