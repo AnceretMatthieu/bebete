@@ -1,5 +1,5 @@
-#ifndef Media_h
-#define Media_h
+#ifndef MEDIA_H
+#define MEDIA_H
 
 #include <iostream>
 #include <QString>
@@ -15,7 +15,7 @@ class Question;
 /**
  *  \class Media
  *  \file Media.h
- *  \brief classe gÃ©rant un  média avec sa description
+ *  \brief classe gerant un média avec sa description
  */
 class Media {
 
@@ -90,4 +90,4 @@ class Media {
         }
 };
 
-#endif // Media_h
+#endif // MEDIA_H

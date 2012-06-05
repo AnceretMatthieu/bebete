@@ -30,18 +30,6 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
             ui->checkBox_visibleOeil->setChecked(true);
             ui->checkBox_visibleLoupe->setChecked(true);
         }
-
-        /*ui->comboBoxReponses->addItem("");
-        // On affiche les réponses qui ne pointent pas déjà sur une question
-        ListeQuestion * lq = currentQuestion->getCat()->getListeQuestion();
-        for(int i = 0; i < lq->size() ; i++) {
-            ListeReponse * lr = currentQuestion->getListeReponse();
-            for(int j = 0; j < lr->size(); j++) {
-                Reponse * tmpr = currentQuestion->getListeReponse()->at(i);
-                if(tmpr->getSuiv() == NULL)
-                    ui->comboBoxReponses->addItem(QString::number(i) + " - " + tmpr->getReponse());
-            }
-        }*/
     }
 }
 
@@ -66,17 +54,23 @@ void ModifQuestionWindow::on_buttonBox_accepted()
 {
     laQuestion->setQuestion(ui->textEdit->toPlainText());
 
-    if(ui->checkBox_visibleOeil->checkState() == Qt::Checked && ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
+    if(ui->checkBox_visibleOeil->checkState() == Qt::Checked)
     {
-        laQuestion->setVisible("both");
+        if(ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
+        {
+            laQuestion->setVisible("both");
+        }
+        else
+        {
+            laQuestion->setVisible("false");
+        }
     }
-    else if(ui->checkBox_visibleOeil->checkState() == Qt::Checked && ui->checkBox_visibleLoupe->checkState() == Qt::Unchecked)
+    else if(ui->checkBox_visibleOeil->checkState() == Qt::Unchecked)
     {
-        laQuestion->setVisible("true");
-    }
-    else if(ui->checkBox_visibleOeil->checkState() == Qt::Unchecked && ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
-    {
-        laQuestion->setVisible("false");
+        if(ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
+        {
+            laQuestion->setVisible("true");
+        }
     }
     else
     {

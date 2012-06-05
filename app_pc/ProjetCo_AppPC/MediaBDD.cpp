@@ -4,7 +4,7 @@ void MediaBDD::enregistrerMedia(Media* med) {
 
     if(med->getType() == MEDIA_TYPE_IMAGE)   {
         QDomElement img = doc.createElement("img");
-        img.setAttribute("id", "img0");
+        img.setAttribute("id", QString::number(med->getIdentifiant()));
         img.setAttribute("src", med->getPath());
         currentNodeWrite->appendChild(img);
     }
@@ -16,7 +16,7 @@ void MediaBDD::enregistrerMedia(Media* med) {
     }
     else if(med->getType() == MEDIA_TYPE_VIDEO) {
         QDomElement video = doc.createElement("img");
-        video.setAttribute("id", "video0");
+        video.setAttribute("id", "m"+med->getIdentifiant());
         video.setAttribute("src", med->getPath());
         currentNodeWrite->appendChild(video);
     }

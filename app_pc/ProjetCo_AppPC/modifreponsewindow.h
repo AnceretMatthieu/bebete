@@ -5,6 +5,7 @@
 #include "Reponse.h"
 #include "ListeQuestion.h"
 #include "Question.h"
+#include "Espece.h"
 
 namespace Ui {
     class ModifReponseWindow;

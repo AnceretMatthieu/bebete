@@ -5,7 +5,6 @@
 #include "Categorie.h"
 #include "Question.h"
 
-
 Question::Question(int id) {
     this->id = id;
     this->idleft = 0;

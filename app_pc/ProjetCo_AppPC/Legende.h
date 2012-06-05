@@ -1,15 +1,15 @@
-#ifndef Legende_h
-#define Legende_h
+#ifndef LEGENDE_H
+#define LEGENDE_H
 
 #include <string>
 #include "Media.h"
-#include "string.h"
+
 #define LEGENDE 4001
 
 /**
  *  \class Legende
  *  \file Legende.h
- *  \brief classe gÃ©rant une légende avec Ã§a description
+ *  \brief classe gerant une légende avec sa description
  */
 class Legende : public Media {
 
@@ -49,4 +49,4 @@ class Legende : public Media {
         }
 };
 
-#endif // Legende_h
+#endif // LEGENDE_H

@@ -1,5 +1,5 @@
-#ifndef QuestionBDD_h
-#define QuestionBDD_h
+#ifndef QUESTIONBDD_H
+#define QUESTIONBDD_H
 
 #include "BDD.h"
 #include "ListeQuestion.h"
@@ -17,8 +17,8 @@ class Categorie;
 
 /**
  *  \class QuestionBDD
- *  \brief Classe permettant de lire / √©crire une question dans un fichier XML, h√©rite de la classe BDD
- *  \file questionbdd.h
+ *  \brief Classe permettant de lire / ecrire une question dans un fichier XML, herite de la classe BDD
+ *  \file QuestionBDD.h
  */
 class QuestionBDD : public BDD {
 
@@ -27,17 +27,17 @@ class QuestionBDD : public BDD {
         /**
          *  \fn static void listeReponseFromQuestion(Question *quest, bool recursif);
          *  \brief lit les rÈponses du noeud en cours
-         *  \paramQuestion *quest : la question √  remplir
+         *  \param Question *quest : la question a remplir
          *  \param bool recursif : indique si l'on doit parcourrir les fils du noeud en cours
          */
         static void listeReponseFromQuestion(Question * quest, bool recursif);
 
         /**
          *  \fn static void enregistrerQuestion(Question * quest)
-         *  \brief enregistre la question pass√© en param√®tre dans le noeud courrant
-         *  \param Question * quest : la question √  enregistrer
+         *  \brief enregistre la question passÈe en parametre dans le noeud courrant
+         *  \param Question * quest : la question a enregistrer
          */
         static void enregistrerQuestion(Question * quest);
 };
 
-#endif // QuestionBDD_h
+#endif // QUESTIONBDD_H

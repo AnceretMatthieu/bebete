@@ -1,5 +1,5 @@
-#ifndef ListeQuestion_h
-#define ListeQuestion_h
+#ifndef LISTEQUESTION_H
+#define LISTEQUESTION_H
 
 #include <QVector>
 
@@ -32,8 +32,18 @@ class ListeQuestion : public QVector<Question*> {
          */
         Question * getElementById(int id);
 
+        /**
+         * \fn int getEstVide()
+         * \brief permet de savoir si la liste est vide ou non
+         * \return int : 0 si vide, 1 si non vide
+         */
         int getEstVide() { return estVide; }
+
+        /**
+         * \fn void setEstVide(int unBool)
+         * \brief permet de spécifier si la liste est vide ou non
+         */
         void setEstVide(int unBool) { estVide = unBool; }
 };
 
-#endif // ListeQuestion_h
+#endif // LISTEQUESTION_H

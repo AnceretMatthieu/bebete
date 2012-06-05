@@ -1,5 +1,5 @@
-#ifndef Question_h
-#define Question_h
+#ifndef QUESTION_H
+#define QUESTION_H
 
 #include <QVector>
 #include <QString>
@@ -13,7 +13,7 @@ class Categorie;
 /**
  *  \class Question
  *  \file Question.h
- *  \brief classe gÃ©rant une question avec sa description
+ *  \brief classe gerant une question avec sa description
  */
 class Question {
 
@@ -125,7 +125,7 @@ class Question {
         /**
          *  \fn void ajouterReponse(Reponse * rep)
          *  \brief Ajoute une réponse dans la liste des reponses
-         *  \param Reponse * rep : la réponse Ã  ajouter
+         *  \param Reponse * rep : la réponse a ajouter
          */
         void ajouterReponse(Reponse * rep);
 
@@ -144,25 +144,25 @@ class Question {
         ListeReponse* getListeReponse()  {return listeReponse;}
 
         /**
+         *  \fn ListeMedia * getListeMedia()
+         *  \brief retourne la liste des medias de la réponse
+         *  \return ListeMedia *
+         */
+        ListeMedia * getListeMedia() { return listeMedia; }
+
+        /**
          *  \fn void ajouterMedia(Media * med);
-         *  \brief ajoute un mÃ©dia pour illustrer la réponse
-         *  \param Media * med : le nouveau mÃ©dia
+         *  \brief ajoute un media pour illustrer la réponse
+         *  \param Media * med : le nouveau media
          */
         void ajouterMedia(Media * med);
 
         /**
          *  \fn void supprimerMedia(Media * med)
-         *  \brief supprime le mÃ©dia des réponses
-         *  \param Media * med : le mÃ©dia a supprimÃ©
+         *  \brief supprime le media des réponses
+         *  \param Media * med : le media a supprimer
          */
         void supprimerMedia(Media * med);
-
-        /**
-         *  \fn ListeMedia * getListeMedia()
-         *  \brief retourne la liste des mÃ©dias de la réponse
-         *  \return ListeMedia *
-         */
-        ListeMedia * getListeMedia()    {return listeMedia;}
 };
 
-#endif // Question_h
+#endif // QUESTION_H

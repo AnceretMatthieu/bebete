@@ -510,7 +510,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_8">
             <item>
-             <widget class="QPushButton" name="button_modifierMediaReponse">
+             <widget class="QPushButton" name="button_ajouterMediaReponse">
               <property name="font">
                <font>
                 <family>MS Shell Dlg 2</family>
@@ -548,7 +548,7 @@
           <item>
            <layout class="QHBoxLayout" name="horizontalLayout_7">
             <item>
-             <widget class="QPushButton" name="button_supprimerMediaReponse">
+             <widget class="QPushButton" name="button_modifierMediaReponse">
               <property name="font">
                <font>
                 <family>MS Shell Dlg 2</family>
@@ -565,7 +565,7 @@
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="button_ajouterMediaReponse">
+             <widget class="QPushButton" name="button_supprimerMediaReponse">
               <property name="font">
                <font>
                 <family>MS Shell Dlg 2</family>

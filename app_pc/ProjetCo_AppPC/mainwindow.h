@@ -29,6 +29,7 @@
 #include "modifreponsewindow.h"
 #include "Espece.h"
 #include "ListeReponse.h"
+#include "Media.h"
 
 namespace Ui {
     class MainWindow;
@@ -68,6 +69,7 @@ class MainWindow : public QMainWindow
 
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere, QString coordPere);
         void createAction();
+
         QString calculerCoordonnees(QModelIndex index);
 
     private slots:

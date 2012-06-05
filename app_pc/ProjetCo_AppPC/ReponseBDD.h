@@ -1,5 +1,5 @@
-#ifndef ReponseBDD_h
-#define ReponseBDD_h
+#ifndef REPONSEBDD_H
+#define REPONSEBDD_H
 
 #include "BDD.h"
 #include "Reponse.h"
@@ -16,7 +16,7 @@ class Question;
 /**
  *\file ReponseBDD.h
  *\class ReponseBDD
- *\brief Classe permettant de lire / Ã©crire une réponse dans un fichier XML, hÃ©rite de la classe BDD
+ *\brief Classe permettant de lire / ecrire une réponse dans un fichier XML, herite de la classe BDD
  */
 
 class ReponseBDD : public BDD {
@@ -31,17 +31,17 @@ class ReponseBDD : public BDD {
         /**
          *  \fn static void listeFromReponse(Reponse *rep, bool recursif);
          *  \brief lit les résultats du noeud en cours
-         *  \param Reponse *rep : la réponse Ã  remplir
+         *  \param Reponse *rep : la réponse a remplir
          *  \param bool recursif : indique si l'on doit parcourrir les fils du noeud en cours
          */
         static void listeFromReponse(Reponse * rep, bool recursif);
 
         /**
          *  \fn static void enregistrerReponse(Reponse * rep)
-         *  \brief enregistre la réponse passÃ© en paramÃ¨tre dans le noeud courrant
-         *  \param Reponse * rep : la réponse Ã  enregistrer
+         *  \brief enregistre la réponse passée en parametre dans le noeud courrant
+         *  \param Reponse * rep : la réponse a enregistrer
          */
         static void enregistrerReponse(Reponse * rep);
 };
 
-#endif // ReponseBDD_h
+#endif // REPONSEBDD_H

@@ -56,7 +56,6 @@ AudioPlayer::~AudioPlayer()
     delete ui;
 }
 
-//void AudioPlayer::changerTemps()
 void AudioPlayer::changerTemps()
 {
     qint64 temps = 0;

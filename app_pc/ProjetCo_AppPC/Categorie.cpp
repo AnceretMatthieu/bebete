@@ -8,7 +8,6 @@ Categorie::Categorie(int identifiant)   {
     this->label = QString("");
 }
 
-
 void Categorie::ajouterQuestion(Question *rep) {
     rep->setCat(this);
     myQuestion->append(rep);

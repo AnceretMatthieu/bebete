@@ -67,11 +67,11 @@ VideoPlayer::~VideoPlayer()
     delete ui;
 }
 
-//changerTemps()
 void VideoPlayer::changerTemps()
 {
     // Initialisation de la variable temps a 0
     qint64 temps = 0;
+
     // On récupère le temps parcouru dans le media en faisant la différance entre le temps total et le temps restant
     temps = mediaObjet->totalTime() - mediaObjet->remainingTime();
 
@@ -82,19 +82,16 @@ void VideoPlayer::changerTemps()
     ui->lcdNumber_2->display(monTemps.toString("mm:ss"));
 }
 
-//playVideo()
 void VideoPlayer::playVideo()
 {
     mediaObjet->play();
 }
 
-//pauseVideo()
 void VideoPlayer::pauseVideo()
 {
     mediaObjet->pause();
 }
 
-//stopVideo()
 void VideoPlayer::stopVideo()
 {
     mediaObjet->stop();

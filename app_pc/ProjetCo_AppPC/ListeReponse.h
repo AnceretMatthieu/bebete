@@ -1,5 +1,5 @@
-#ifndef ListeReponse_h
-#define ListeReponse_h
+#ifndef LISTEREPONSE_H
+#define LISTEREPONSE_H
 
 #include <QVector>
 #include "Reponse.h"
@@ -30,4 +30,4 @@ class ListeReponse : public QVector<Reponse*> {
         Reponse * getElementById(int id);
 };
 
-#endif // ListeReponse_h
+#endif // LISTEREPONSE_H

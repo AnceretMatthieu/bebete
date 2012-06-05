@@ -1,5 +1,5 @@
-#ifndef Reponse_h
-#define Reponse_h
+#ifndef REPONSE_H
+#define REPONSE_H
 
 #include <QVector>
 #include <QString>
@@ -20,7 +20,7 @@ class ListeMedia;
 /**
  *  \class Reponse
  *  \file Reponse.h
- *  \brief classe g√©rant une rÈponse avec sa description
+ *  \brief classe gerant une rÈponse avec sa description
  */
 class Reponse {
 
@@ -163,24 +163,24 @@ class Reponse {
 
         /**
          *  \fn void ajouterMedia(Media * med);
-         *  \brief ajoute un m√©dia pour illustrer le rÈsultat
-         *  \param Media * med : le nouveau m√©dia
+         *  \brief ajoute un media pour illustrer le rÈsultat
+         *  \param Media * med : le nouveau media
          */
         void ajouterMedia(Media * med);
 
         /**
          *  \fn void supprimerMedia(Media * med)
-         *  \brief supprime le m√©dia des rÈsultats
-         *  \param Media * med : le m√©dia a supprim√©
+         *  \brief supprime le media des rÈsultats
+         *  \param Media * med : le media a supprimer
          */
         void supprimerMedia(Media * med);
 
         /**
          *  \fn void supprimerMedia(int id)
-         *  \brief supprime le m√©dia des rÈsultats en fonction de son id
-         *  \param int id : l'identifiant du m√©dia a supprim√©
+         *  \brief supprime le media des rÈsultats en fonction de son id
+         *  \param int id : l'identifiant du media a supprimer
          */
         void supprimerMedia(int id);
 };
 
-#endif // Reponse_h
+#endif // REPONSE_H

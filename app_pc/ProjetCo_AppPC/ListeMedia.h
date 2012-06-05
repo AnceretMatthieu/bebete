@@ -1,5 +1,5 @@
-#ifndef ListeMedia_h
-#define ListeMedia_h
+#ifndef LISTEMEDIA_H
+#define LISTEMEDIA_H
 
 #include <QVector>
 #include <QString>
@@ -40,4 +40,4 @@ class ListeMedia : public QVector<Media*> {
         Media * getElementByPath(QString path);
 };
 
-#endif // ListeMedia_h
+#endif // LISTEMEDIA_H

@@ -4,6 +4,7 @@
 QDomNode BDD::currentNode;
 QDomNode * BDD::currentNodeWrite;
 QDomDocument BDD::doc;
+int BDD::lastId = 0;
 
 ListeQuestion * BDD::CreerArbre(QString filePath)
 {
@@ -16,6 +17,7 @@ ListeQuestion * BDD::CreerArbre(QString filePath)
     currentNode = currentNode.firstChild();
 
     Categorie * cat = new Categorie(0);
+    lastId = 0;
 
     CategorieBDD::listeQuestionWithCategorie(cat, true);
 
@@ -38,17 +40,19 @@ void BDD::enregistrerArbre(Categorie *racine, QString filePath)
 
     QFile fichier(filePath);
 
-    if ( !fichier.open(QIODevice::WriteOnly) ) {
-        qDebug("Impossible de créer le fichier xml pour sauvegarder les données");
+    if ( !fichier.open(QIODevice::WriteOnly) )
+    {
+        qDebug("Impossible de créer le fichier XML pour sauvegarder les données");
         return;
     }
-    else    {
+    else
+    {
         QTextStream textStream(&fichier);
-        qDebug() <<"\n Enregistrement dans le fichier";
+        qDebug() << "Enregistrement dans le fichier";
 
         doc.save(textStream, 5);
 
-        qDebug() <<"\n Enregistrement dans le fichier OK";
+        qDebug() << "Enregistrement dans le fichier OK";
     }
 
    fichier.close();

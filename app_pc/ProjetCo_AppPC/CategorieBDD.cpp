@@ -1,4 +1,4 @@
-#include "categoriebdd.h"
+#include "CategorieBDD.h"
 #include <QIODevice>
 
 void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = true)   {
@@ -11,7 +11,10 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
     for(i=0; i<lstBaliseQuestion.size(); i++)  {
 
         //découpage du q devant l'id
-        temp = new Question(0);
+        QString s3 = lstBaliseQuestion.at(i).toElement().attribute("id", QString("0"));
+        temp = new Question(s3.toInt());
+        if(s3.toInt() > BDD::lastId)
+            BDD::lastId = s3.toInt();
         QString s = lstBaliseQuestion.at(i).toElement().attribute("texte", QString(""));
         if(s.size() != 0)
             temp->setQuestion(s);
@@ -30,40 +33,15 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
     }
 }
 
-void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
-{
-    doc.clear();
-    QDomNode noeud = doc.createProcessingInstruction("xml", "version=\"1.0\"");
-    doc.appendChild(noeud);
-
-    QDomElement arbre = doc.createElement("arbre");
-    doc.appendChild(arbre);
-
-    currentNode = arbre;
-
-    QFile fichier(filePath);
-
-    if (!fichier.open(QIODevice::WriteOnly)) {
-        qDebug("Impossible de créer le fichier xml pour sauvegarder les données");
-        return;
-    }
-    else {
-        QTextStream textStream(&fichier);
-
-        enregistrerCategorie(racine);
-
-        qDebug() << "Enregistrement dans le fichier";
-        textStream << doc.toString();
-    }
-
-    fichier.close();
-}
-
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
     QDomNode * memoire = currentNodeWrite;
     QDomElement root = doc.createElement("branche");
-    root.setAttribute("id", "b0");
+    QString id = QString::number(currentCat->getIdentifiant());
+    root.setAttribute("id", id);
     root.setAttribute("type", currentCat->getLabel());
+    if(currentCat->getIdentifiant() > BDD::lastId)
+        BDD::lastId = currentCat->getIdentifiant();
+
     currentNodeWrite->appendChild(root);
 
     currentNodeWrite = &root;

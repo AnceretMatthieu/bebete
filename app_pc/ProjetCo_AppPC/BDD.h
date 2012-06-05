@@ -1,5 +1,5 @@
-#ifndef BDD_h
-#define BDD_h
+#ifndef BDD_H
+#define BDD_H
 
 #include <QByteArray>
 #include <QDomDocument>
@@ -10,17 +10,29 @@
 #include "Categorie.h"
 
 class BDD {
+
     protected:
         /**
-         * \brief attribut mÃ©morisant le noeud xml que l'on est en train de lire ou ecrire
+         * \brief attribut memorisant le noeud xml que l'on est en train de lire ou ecrire
          */
         static QDomNode currentNode;
-        static QDomNode * currentNodeWrite;
+
         /**
-         * \brief attribut mÃ©morisant le document que l'on est en train de lire ou ecrire
+         * \brief attribut memorisant le noeud xml que l'on est en train de lire ou ecrire sous la forme d'un pointeur
          */
-         static QDomDocument doc;
+        static QDomNode * currentNodeWrite;
+
+        /**
+         * \brief attribut memorisant le document que l'on est en train de lire ou ecrire
+         */
+        static QDomDocument doc;
+
     public:
+        /**
+         * \brief attribut memorisant la valeur actuelle de l'ID (incrémenté à chaque fois que l'on insère un élément)
+         */
+        static int lastId;
+
         /**
          *  \fn static ListeQuestion * CreerArbre()
          *  \brief lit tout l'arbre dans le fichier XML
@@ -30,10 +42,10 @@ class BDD {
 
         /**
          *  \fn static void enregistrerArbre(Categorie *racine)
-         *  \brief enregistre le fichier xml dans un fichier passer en paramÃ¨tre
+         *  \brief enregistre le fichier xml dans un fichier passer en parametre
          *  \param Categorie *racine : la categorie en racine de l'arborescence
          */
         static void enregistrerArbre(Categorie *racine, QString filePath);
 };
 
-#endif // BDD_h
+#endif // BDD_H

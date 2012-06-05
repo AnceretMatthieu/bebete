@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     /* Création des actions */
     createAction();
+
+    maListeQuestions = new ListeQuestion();
 }
 
 MainWindow::~MainWindow()
@@ -44,21 +46,22 @@ void MainWindow::peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QSt
     {
         Question * q = uneListeQuestions->at(i);
         QStandardItem * elem;
-
+        QString s = q->getQuestion();
         // Permet de déterminer la couleur
         if(q->getListeMedia()->size() < 1)
         {
-            elem = new QStandardItem(redIcon, q->getQuestion());
+
+            elem = new QStandardItem(redIcon, s);
         }
         else
         {
             if(q->getListeMedia()->size() < 2)
             {
-                elem = new QStandardItem(yellowIcon, q->getQuestion());
+                elem = new QStandardItem(yellowIcon, s);
             }
             else
             {
-                elem = new QStandardItem(greenIcon, q->getQuestion());
+                elem = new QStandardItem(greenIcon, s);
             }
         }
 
@@ -216,13 +219,15 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
     for(int i = 0; i < lr->size(); i++)
     {
         Reponse * r = lr->at(i);
-        QStandardItem * elemRep = new QStandardItem(r->getReponse());
+        QString s = r->getReponse();
+        QStandardItem * elemRep = new QStandardItem(s);
 
         // Pour chaque réponse, on ajoute ses médias associés
         ListeMedia * lm = r->getListeIllustration();
         for(int j = 0; j < lm->size(); j++)
         {
-            elemRep->appendRow(new QStandardItem(QString::number(lm->at(j)->getType()) + "-" + lm->at(j)->getPath()));
+            s = QString::number(lm->at(j)->getType()) + "-" + lm->at(j)->getPath();
+            elemRep->appendRow(new QStandardItem(s));
         }
 
         model_tvReponse->appendRow(elemRep);
@@ -253,12 +258,12 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
 
     // On récupère les médias associés à la question
     ListeMedia * lm = currentQuestion->getListeMedia();
-    qDebug() << lm;
     // TODO : améliorer la façon d'afficher les médias
     for(int i = 0; i < lm->size(); i++)
     {
         Media * m = lm->at(i);
-        QStandardItem * elemMed = new QStandardItem(QString::number(m->getType()) + "-" + m->getPath());
+        QString s = QString::number(m->getType()) + "-" + m->getPath();
+        QStandardItem * elemMed = new QStandardItem(s);
         model_tvMediaQuestion->appendRow(elemMed);
     }
 }
@@ -324,11 +329,11 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
 
                 if(r->getTypeSuiv() == TYPE_CATEGORIE)
                 {
-                    ListeQuestion * lq = ((Categorie *)r->getSuiv())->getListeQuestion();
-
+                    ListeQuestion * lq = ((Categorie *)(r->getSuiv()))->getListeQuestion();
                     if(lq->size() != 0)
                     {
-                        ui->labelReponse2->setText("Question suivante : " + lq->at(0)->getQuestion());
+                        QString s = "Question suivante : " + lq->at(0)->getQuestion();
+                        ui->labelReponse2->setText(s);
                     }
                     else
                     {
@@ -388,7 +393,6 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
 void MainWindow::newQuestionFils()
 {
     // Permet d'ajouter une question en tant que fils de la question courante
-
     Question * newQuestion = new Question(0);
 
     myWindowQues = new ModifQuestionWindow(newQuestion, this);
@@ -398,33 +402,38 @@ void MainWindow::newQuestionFils()
     if(newQuestion->getQuestion() != "") // si la question possède un contenu texte, on considère que l'utilisateur a cliqué sur "Annuler"
     {
         QModelIndex index = ui->treeViewQuestion->currentIndex();
-        QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
+        if(index.column() != -1)    {
+            QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
 
-        QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
+            QString s = newQuestion->getQuestion();
+            QStandardItem * elem = new QStandardItem(greenIcon, s);
 
-        // On calcul les coordonnées du noeud courant
-        QString coordonnees = calculerCoordonnees(index);
-        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+            // On ajoute l'élément en tant que fils de l'élément courant
+            currentSelection->appendRow(elem);
 
-        // On ajoute l'élément en tant que fils de l'élément courant
-        currentSelection->appendRow(elem);
+            // On calcul les coordonnées du nouveau noeud
+            QString coordonnees2 = calculerCoordonnees(elem->index());
 
-        // On calcul les coordonnées du nouveau noeud
-        QString coordonnees2 = calculerCoordonnees(elem->index());
+            // On récupère la réponse selectionnée
+            QModelIndex indexRep = ui->treeViewReponse->currentIndex();
+            Reponse * currentReponse = mapTreeReponses.value(QString::number(indexRep.row()));
 
-        // On récupère la réponse selectionnée
-        QModelIndex indexRep = ui->treeViewReponse->currentIndex();
-        Reponse * currentReponse = mapTreeReponses.value(QString::number(indexRep.row()));
-
-        // On crée une nouvelle catégorie après la réponse sélectionnée
-        Categorie * c = new Categorie(0);
-        // On ajoute la nouvelle question après cette nouvelle catégorie
-        c->ajouterQuestion(newQuestion);
-        // On ajoute la catégorie à la réponse courante
-        currentReponse->setSuiv(c);
-        currentReponse->setTypeSuiv(TYPE_CATEGORIE);
-
-        mapTreeQuestions.insert(coordonnees2, newQuestion);
+            // On crée une nouvelle catégorie après la réponse sélectionnée
+            Categorie * c = new Categorie(0);
+            // On ajoute la nouvelle question après cette nouvelle catégorie
+            c->ajouterQuestion(newQuestion);
+            // On ajoute la catégorie à la réponse courante
+            currentReponse->setSuiv(c);
+            currentReponse->setTypeSuiv(TYPE_CATEGORIE);
+            mapTreeQuestions.insert(coordonnees2, newQuestion);
+        }
+        else    {
+            QString s = newQuestion->getQuestion();
+            QStandardItem * elem = new QStandardItem(greenIcon, s);
+            model_tvQuestion->appendRow(elem);
+            maListeQuestions->append(newQuestion);
+            mapTreeQuestions.insert(calculerCoordonnees(elem->index()), newQuestion);
+        }
     }
 }
 
@@ -432,41 +441,45 @@ void MainWindow::newQuestionFrere()
 {
     // Permet d'ajouter une question au même niveau que la question courante à la fin
 
-    Question * newQuestion = new Question(0);
-
-    myWindowQues = new ModifQuestionWindow(newQuestion, this);
-    myWindowQues->setModal(true);
-    myWindowQues->exec();
-
-    if(newQuestion->getQuestion() != "")
+    if(mapTreeQuestions.size() != 0)
     {
-        QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
-        QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index); // on récupère l'item de la selection
+        Question * newQuestion = new Question(0);
 
-        QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
+        myWindowQues = new ModifQuestionWindow(newQuestion, this);
+        myWindowQues->setModal(true);
+        myWindowQues->exec();
 
-        // On calcul les coordonnées du noeud courant
-        QString coordonnees = calculerCoordonnees(index);
-        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
-
-        if (currentSelection->parent() != 0) // l'élément selectionné n'est pas un élément racine
+        if(newQuestion->getQuestion() != "")
         {
-            currentSelection->parent()->appendRow(elem);
+            QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
+            QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index); // on récupère l'item de la selection
+
+            QString s  = newQuestion->getQuestion();
+            QStandardItem * elem = new QStandardItem(greenIcon, s);
 
             // On calcul les coordonnées du noeud courant
-            QString coordonnees = calculerCoordonnees(elem->index());
-            // On ajoute la question en mémoire
-            currentQuestion->getCat()->ajouterQuestion(newQuestion);
-            // On ajoute la question à la map des questions
-            mapTreeQuestions.insert(coordonnees, newQuestion);
-        }
-        else // l'élément selectionné est à la racine
-        {
-            model_tvQuestion->appendRow(elem);
+            QString coordonnees = calculerCoordonnees(index);
+            Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-            QString coordonnees2 = calculerCoordonnees(elem->index());
-            currentQuestion->getCat()->ajouterQuestion(newQuestion);
-            mapTreeQuestions.insert(coordonnees2, newQuestion);
+            if (currentSelection->parent() != 0) // l'élément selectionné n'est pas un élément racine
+            {
+                currentSelection->parent()->appendRow(elem);
+
+                // On calcul les coordonnées du noeud courant
+                QString coordonnees = calculerCoordonnees(elem->index());
+                // On ajoute la question en mémoire
+                currentQuestion->getCat()->ajouterQuestion(newQuestion);
+                // On ajoute la question à la map des questions
+                mapTreeQuestions.insert(coordonnees, newQuestion);
+            }
+            else // l'élément selectionné est à la racine
+            {
+                model_tvQuestion->appendRow(elem);
+
+                QString coordonnees2 = calculerCoordonnees(elem->index());
+                currentQuestion->getCat()->ajouterQuestion(newQuestion);
+                mapTreeQuestions.insert(coordonnees2, newQuestion);
+            }
         }
     }
 }
@@ -538,7 +551,16 @@ void MainWindow::newMedia()
 {
     QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
 
-    model_tvMediaQuestion->appendRow(new QStandardItem(fileName));
+    model_tvMediaQuestion->appendRow(new QStandardItem("1-" + fileName));
+
+    QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
+    QString coordonnees = calculerCoordonnees(index);
+    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+
+    Media * m = new Media(++(BDD::lastId));
+    m->setPath(fileName);
+    m->setType(MEDIA_TYPE_IMAGE);
+    currentQuestion->ajouterMedia(m);
 
     // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
     //      SI oui, pas de problème
@@ -576,7 +598,7 @@ void MainWindow::newReponse()
 {
     // Permet d'ajouter une question au même niveau que la question courante à la fin
 
-    Reponse * newReponse = new Reponse(0);
+    Reponse * newReponse = new Reponse(++(BDD::lastId));
 
     myWindowRep = new ModifReponseWindow(newReponse, this);
     myWindowRep->setModal(true);
@@ -584,9 +606,9 @@ void MainWindow::newReponse()
 
     if(newReponse->getReponse() != "")
     {
-        newReponse->setReponse(newReponse->getReponse());
+        QString s = newReponse->getReponse();
 
-        QStandardItem * elemRep = new QStandardItem(newReponse->getReponse());
+        QStandardItem * elemRep = new QStandardItem(s);
         model_tvReponse->appendRow(elemRep);
 
         // On récupère la question courante (celle sélectionnée dans le treeview)
@@ -613,7 +635,8 @@ void MainWindow::modifierReponse()
 
     // On modifie l'item correspondant dans le modèle du TreeView
     QStandardItem * tmp = model_tvReponse->itemFromIndex(index);
-    tmp->setText(currentReponse->getReponse());
+    QString s = currentReponse->getReponse();
+    tmp->setText(s);
     model_tvReponse->setItem(index.row(), tmp);    
 }
 
@@ -644,7 +667,7 @@ void MainWindow::newComMediaReponse()
 
     // Création de l'item avec le texte reçu
     QStandardItem * elem = new QStandardItem(leTxt);
-    (model_tvMediaQuestion->itemFromIndex(ui->treeViewMediasQuestion->currentIndex()))->appendRow(elem);
+    (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(elem);
 
     // TODO : il faut associer le média à la question
     // ...
@@ -652,7 +675,21 @@ void MainWindow::newComMediaReponse()
 
 void MainWindow::newMediaReponse()
 {
+    QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
 
+    (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("1-" + fileName));
+
+    QModelIndex index = ui->treeViewReponse->currentIndex(); // on récupère l'index de la selection
+    Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+
+    Media * m = new Media(++(BDD::lastId));
+    m->setPath(fileName);
+    m->setType(MEDIA_TYPE_IMAGE);
+    currentReponse->ajouterMedia(m);
+
+    // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
+    //      SI oui, pas de problème
+    //      SI non, il faut le copier dans le dossier
 }
 
 void MainWindow::modifierMediaReponse()

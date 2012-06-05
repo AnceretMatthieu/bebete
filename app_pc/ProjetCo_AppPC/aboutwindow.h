@@ -9,18 +9,19 @@ namespace Ui {
 
 class AboutWindow : public QDialog {
     Q_OBJECT
-public:
-    AboutWindow(QWidget *parent = 0);
-    ~AboutWindow();
 
-protected:
-    void changeEvent(QEvent *e);
+    public:
+        AboutWindow(QWidget *parent = 0);
+        ~AboutWindow();
 
-private:
-    Ui::AboutWindow *ui;
+    protected:
+        void changeEvent(QEvent *e);
 
-private slots:
-    void on_pushButton_clicked();
+    private:
+        Ui::AboutWindow *ui;
+
+    private slots:
+        void on_pushButton_clicked();
 };
 
 #endif // ABOUTWINDOW_H
