@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'audioplayer.h'
 **
-** Created: Mon Jun 4 17:50:04 2012
+** Created: Tue Jun 5 11:13:21 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
 **
 ** WARNING! All changes made in this file will be lost!
@@ -23,7 +23,7 @@ static const uint qt_meta_data_AudioPlayer[] = {
        6,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
+       3,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -34,7 +34,6 @@ static const uint qt_meta_data_AudioPlayer[] = {
       13,   12,   12,   12, 0x0a,
       28,   12,   12,   12, 0x0a,
       50,   12,   12,   12, 0x0a,
-      76,   12,   12,   12, 0x08,
 
        0        // eod
 };
@@ -42,7 +41,6 @@ static const uint qt_meta_data_AudioPlayer[] = {
 static const char qt_meta_stringdata_AudioPlayer[] = {
     "AudioPlayer\0\0changerTemps()\0"
     "changerSourceVolume()\0changerSourceAvancement()\0"
-    "on_AudioPlayer_destroyed()\0"
 };
 
 void AudioPlayer::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
@@ -92,9 +90,9 @@ int AudioPlayer::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 3)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 3;
     }
     return _id;
 }

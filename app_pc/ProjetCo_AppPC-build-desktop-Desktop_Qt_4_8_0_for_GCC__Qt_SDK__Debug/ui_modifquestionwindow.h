@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modifquestionwindow.ui'
 **
-** Created: Mon Jun 4 16:58:27 2012
+** Created: Tue Jun 5 11:10:36 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -15,6 +15,7 @@
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
 #include <QtGui/QCheckBox>
+#include <QtGui/QComboBox>
 #include <QtGui/QDialog>
 #include <QtGui/QDialogButtonBox>
 #include <QtGui/QFormLayout>
@@ -37,20 +38,22 @@ public:
     QTextEdit *textEdit;
     QCheckBox *checkBox_visibleOeil;
     QCheckBox *checkBox_visibleLoupe;
+    QComboBox *comboBoxReponses;
+    QLabel *label_2;
 
     void setupUi(QDialog *ModifQuestionWindow)
     {
         if (ModifQuestionWindow->objectName().isEmpty())
             ModifQuestionWindow->setObjectName(QString::fromUtf8("ModifQuestionWindow"));
-        ModifQuestionWindow->resize(400, 300);
+        ModifQuestionWindow->resize(400, 371);
         buttonBox = new QDialogButtonBox(ModifQuestionWindow);
         buttonBox->setObjectName(QString::fromUtf8("buttonBox"));
-        buttonBox->setGeometry(QRect(30, 240, 341, 32));
+        buttonBox->setGeometry(QRect(30, 330, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         layoutWidget = new QWidget(ModifQuestionWindow);
         layoutWidget->setObjectName(QString::fromUtf8("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 10, 365, 230));
+        layoutWidget->setGeometry(QRect(10, 10, 365, 321));
         formLayout = new QFormLayout(layoutWidget);
         formLayout->setObjectName(QString::fromUtf8("formLayout"));
         formLayout->setFieldGrowthPolicy(QFormLayout::AllNonFixedFieldsGrow);
@@ -85,6 +88,16 @@ public:
 
         formLayout->setWidget(3, QFormLayout::FieldRole, checkBox_visibleLoupe);
 
+        comboBoxReponses = new QComboBox(layoutWidget);
+        comboBoxReponses->setObjectName(QString::fromUtf8("comboBoxReponses"));
+
+        formLayout->setWidget(4, QFormLayout::FieldRole, comboBoxReponses);
+
+        label_2 = new QLabel(layoutWidget);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+
+        formLayout->setWidget(4, QFormLayout::LabelRole, label_2);
+
 
         retranslateUi(ModifQuestionWindow);
         QObject::connect(buttonBox, SIGNAL(accepted()), ModifQuestionWindow, SLOT(accept()));
@@ -101,6 +114,7 @@ public:
         label_3->setText(QApplication::translate("ModifQuestionWindow", "Texte : ", 0, QApplication::UnicodeUTF8));
         checkBox_visibleOeil->setText(QApplication::translate("ModifQuestionWindow", "Visible \303\240 l'oeil nu", 0, QApplication::UnicodeUTF8));
         checkBox_visibleLoupe->setText(QApplication::translate("ModifQuestionWindow", "Visible \303\240 la loupe", 0, QApplication::UnicodeUTF8));
+        label_2->setText(QApplication::translate("ModifQuestionWindow", "R\303\251ponse :", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

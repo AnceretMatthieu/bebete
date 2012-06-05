@@ -10,6 +10,10 @@ Reponse::Reponse(int id)    {
     idright = 0;
     illustrationMedia = new ListeMedia();
     fils = NULL;
+    texte = QString("");
+    pere = NULL;
+    typeFils = 0;
+    typePere = 0;
 }
 
 void Reponse::ajouterMedia(Media *med) {

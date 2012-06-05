@@ -11,9 +11,13 @@ void CategorieBDD::listeQuestionWithCategorie(Categorie * cat, bool recursif = t
     for(i=0; i<lstBaliseQuestion.size(); i++)  {
 
         //découpage du q devant l'id
-        temp = new Question(lstBaliseQuestion.at(i).toElement().attribute("id").left(1).toInt());
-        temp->setQuestion(lstBaliseQuestion.at(i).toElement().attribute("texte"));
-        temp->setVisible(lstBaliseQuestion.at(i).toElement().attribute("visible"));
+        temp = new Question(0);
+        QString s = lstBaliseQuestion.at(i).toElement().attribute("texte", QString(""));
+        if(s.size() != 0)
+            temp->setQuestion(s);
+        QString s1 = lstBaliseQuestion.at(i).toElement().attribute("visible", QString(""));
+        if(s1.size() != 0)
+            temp->setVisible(s1);
 
         if(i > 0)   {
              cat->getListeQuestion()->at(i-1)->setIdRight(temp->getIdentifiant());
@@ -58,9 +62,8 @@ void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
     QDomNode * memoire = currentNodeWrite;
     QDomElement root = doc.createElement("branche");
-    root.setAttribute("id", "b"+QString::number(currentCat->getIdentifiant()));
+    root.setAttribute("id", "b0");
     root.setAttribute("type", currentCat->getLabel());
-    qDebug() << "b"+ QString::number(currentCat->getIdentifiant()) + " " + currentCat->getLabel();
     currentNodeWrite->appendChild(root);
 
     currentNodeWrite = &root;

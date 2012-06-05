@@ -5,6 +5,7 @@
 Espece::Espece(int identifiant)    {
     id = identifiant;
     listeMedia = new ListeMedia();
+    this->information = QString("");
 }
 
 void Espece::ajouterMedia(Media * med) {

@@ -3,6 +3,7 @@
 
 #include <QVector>
 #include <QString>
+#include <QDebug>
 
 #include "Categorie.h"
 
@@ -56,7 +57,7 @@ class Reponse {
          *  \brief retourne le texte de la réponse
          *  \return QString texte
          */
-        QString getReponse() {  return texte;   }
+        QString getReponse() { return texte;   }
 
         /**
          * \fn setSuiv(void* suiv)
@@ -149,7 +150,7 @@ class Reponse {
          *  \return void
          */
         void setReponse(QString rep) {
-            texte = rep;
+                texte = rep;
         }
 
         /**

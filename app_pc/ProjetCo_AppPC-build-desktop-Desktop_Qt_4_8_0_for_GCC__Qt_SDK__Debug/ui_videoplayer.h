@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'videoplayer.ui'
 **
-** Created: Mon Jun 4 16:58:27 2012
+** Created: Tue Jun 5 11:10:36 2012
 **      by: Qt User Interface Compiler version 4.8.0
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!

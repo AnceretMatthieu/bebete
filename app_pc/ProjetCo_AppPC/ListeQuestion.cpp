@@ -1,7 +1,7 @@
 #include "ListeQuestion.h"
 #include "Question.h"
 
-ListeQuestion::ListeQuestion()
+ListeQuestion::ListeQuestion() : QVector<Question*>()
 {
     estVide = 1;
 }

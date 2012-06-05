@@ -1,7 +1,7 @@
 #include "ListeMedia.h"
 #include "Media.h"
 
-ListeMedia::ListeMedia()
+ListeMedia::ListeMedia() : QVector<Media*>()
 {
 
 }

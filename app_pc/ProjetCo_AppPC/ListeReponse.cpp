@@ -1,8 +1,9 @@
 #include "Reponse.h"
 #include "ListeReponse.h"
 
-ListeReponse::ListeReponse()
+ListeReponse::ListeReponse() : QVector<Reponse*>()
 {
+
 }
 
 Reponse *ListeReponse::getElementById(int id)

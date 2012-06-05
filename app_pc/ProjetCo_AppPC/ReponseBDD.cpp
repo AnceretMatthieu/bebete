@@ -22,8 +22,8 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
         QDomNode tempNode = lstBaliseQuestion.at(i);
         if(tempNode.nodeName() == "branche")
         {
-            tempc = new Categorie(tempNode.toElement().attribute("id").left(1).toInt());
-            tempc->setLabel(tempNode.toElement().attribute("type"));
+            tempc = new Categorie(0);
+            tempc->setLabel(tempNode.toElement().attribute("type", QString("")));
 
             rep->setSuiv(tempc);
             rep->setTypeSuiv(TYPE_CATEGORIE);
@@ -40,11 +40,11 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
                 tempm = new Media(0);
                 if(lstMedia.at(j).nodeName() == "video")    {
                     tempm->setType(MEDIA_TYPE_VIDEO);
-                    tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                    tempm->setPath(lstMedia.at(j).toElement().attribute("src", QString("")));
                 }
                 else if(lstMedia.at(j).nodeName() == "img")    {
                      tempm->setType(MEDIA_TYPE_IMAGE);
-                     tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                     tempm->setPath(lstMedia.at(j).toElement().attribute("src", QString("")));
                 }
                 else if(lstMedia.at(j).nodeName() == "legende")    {
                      tempm->setType(MEDIA_TYPE_TEXT);
@@ -55,7 +55,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
         }
         else if(tempNode.nodeName() == "resultat")
         {
-            tempe = new Espece(tempNode.toElement().attribute("id").left(3).toInt());
+            tempe = new Espece(0);
             QDomNodeList toto = tempNode.childNodes();
             for(int p = 0; p < toto.size(); p++ ) {
                 if(toto.at(p).nodeName() == "nom") {
@@ -93,11 +93,11 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
                         tempm = new Media(0);
                         if(lstMedia.at(j).nodeName() == "video") {
                             tempm->setType(MEDIA_TYPE_VIDEO);
-                            tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                            tempm->setPath(lstMedia.at(j).toElement().attribute("src", QString("")));
                         }
                         else if(lstMedia.at(j).nodeName() == "img") {
                              tempm->setType(MEDIA_TYPE_IMAGE);
-                             tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                             tempm->setPath(lstMedia.at(j).toElement().attribute("src", QString("")));
                         }
                         else if(lstMedia.at(j).nodeName() == "legende") {
                              tempm->setType(MEDIA_TYPE_TEXT);
@@ -116,7 +116,7 @@ void ReponseBDD::listeFromReponse(Reponse * rep, bool recursif) {
 void ReponseBDD::enregistrerReponse(Reponse * rep)  {
     QDomNode * memoire = currentNodeWrite;
     QDomElement reponse = doc.createElement("reponse");
-    reponse.setAttribute("id", "r"+QString::number(rep->getIdentifiant()));
+    reponse.setAttribute("id", "r0");
     reponse.setAttribute("texte", rep->getReponse());
 
     currentNodeWrite->appendChild(reponse);

@@ -6,5 +6,6 @@ Media::Media(int identifiant)   {
     id = identifiant;
     myQuestion = NULL;
     myReponse = NULL;
-    path = "";
+    path = QString("");
+    this->type = 0;
 }

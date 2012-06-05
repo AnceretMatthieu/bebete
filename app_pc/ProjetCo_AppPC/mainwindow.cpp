@@ -215,7 +215,7 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
     // si l'on clic sur un élément crée via le bouton fils et qui est en deuxième position
     // (ça ne plante pas si c'est le premier fils de la liste)
     ListeReponse * lr = currentQuestion->getListeReponse();
-
+    qDebug() << lr;
     // TODO : penser à appliquer une méthode similaire à la nouvelle méthode de calcul des coordonnées pour le TreeView des réponses
     // On remplit le TreeView des réponses
     for(int i = 0; i < lr->size(); i++)
@@ -259,7 +259,7 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
 
     // On récupère les médias associés à la question
     ListeMedia * lm = currentQuestion->getListeMedia();
-
+    qDebug() << lm;
     // TODO : améliorer la façon d'afficher les médias
     for(int i = 0; i < lm->size(); i++)
     {

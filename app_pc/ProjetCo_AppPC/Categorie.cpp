@@ -5,6 +5,7 @@ Categorie::Categorie(int identifiant)   {
     this->id = identifiant;
     myQuestion = new ListeQuestion();
     this->myReponsePere = NULL;
+    this->label = QString("");
 }
 
 

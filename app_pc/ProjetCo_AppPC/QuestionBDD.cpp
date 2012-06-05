@@ -13,8 +13,10 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
         QDomNode tempNode = lstBaliseQuestion.at(i);
         if(tempNode.nodeName() == "reponse")
         {
-            tempr = new Reponse(tempNode.toElement().attribute("id").left(1).toInt());
-            tempr->setReponse(tempNode.toElement().attribute("texte"));
+            tempr = new Reponse(tempNode.toElement().attribute("id", QString("r0")).left(1).toInt());
+            QString s = tempNode.toElement().attribute("texte", QString(""));
+            if(s.size() != 0)
+                tempr->setReponse(s);
             quest->ajouterReponse(tempr);
 
             if(quest->getListeReponse()->size() > 1)
@@ -38,19 +40,27 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
                 tempm = new Media(0); // TODO : attention à bien prendre en compte l'ID présent dans le fichier XML
                 if(lstMedia.at(j).nodeName() == "video") {
                     tempm->setType(MEDIA_TYPE_VIDEO);
-                    tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                    QString s1 = lstMedia.at(j).toElement().attribute("src", QString(""));
+                    if(s1.size() != 0)
+                        tempm->setPath(s1);
                 }
                 else if(lstMedia.at(j).nodeName() == "audio") {
                     tempm->setType(MEDIA_TYPE_AUDIO);
-                    tempm->setPath((lstMedia.at(j).toElement().attribute("src")));
+                    QString s2 = lstMedia.at(j).toElement().attribute("src", QString(""));
+                    if(s2.size())
+                        tempm->setPath(s2);
                 }
                 else if(lstMedia.at(j).nodeName() == "img") {
                     tempm->setType(MEDIA_TYPE_IMAGE);
-                    tempm->setPath(lstMedia.at(j).toElement().attribute("src"));
+                    QString s3 = lstMedia.at(j).toElement().attribute("src", QString(""));
+                    if(s3.size() != 0)
+                        tempm->setPath(s3);
                 }
                 else if(lstMedia.at(j).nodeName() == "legende") {
                     tempm->setType(MEDIA_TYPE_TEXT);
-                    tempm->setPath(lstMedia.at(j).toElement().text());
+                    QString s4 = lstMedia.at(j).toElement().text();
+                    if(s4.size() != 0)
+                        tempm->setPath(s4);
                 }
                 quest->ajouterMedia(tempm);
             }
@@ -61,7 +71,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
 void QuestionBDD::enregistrerQuestion(Question * quest) {
     QDomNode * memoire = currentNodeWrite;
     QDomElement question = doc.createElement("question");
-    question.setAttribute("id", "q"+QString::number(quest->getIdentifiant()));
+    question.setAttribute("id", "q0");
     question.setAttribute("texte", quest->getQuestion());
     question.setAttribute("visible", quest->getVisible());
     qDebug() << "q"+QString::number(quest->getIdentifiant()) +" "+quest->getQuestion() + " " +quest->getVisible();

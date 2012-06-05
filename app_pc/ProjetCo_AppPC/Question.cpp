@@ -12,8 +12,9 @@ Question::Question(int id) {
     this->idright = 0;
     listeReponse = new ListeReponse();
     listeMedia = new ListeMedia();
-    this->texte = QString();
+    this->texte = QString("");
     myCategorie = NULL;
+    this->visible = QString("");
 }
 
 Question::Question(Question * uneQuestion)
