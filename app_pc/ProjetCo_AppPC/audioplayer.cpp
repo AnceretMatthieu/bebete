@@ -17,6 +17,9 @@ AudioPlayer::AudioPlayer(QString filePath, QWidget *parent) :
 
     mediaObjet->setTickInterval(1000);
 
+    // On initialise l'affichage du LCD Number
+    ui->lcdNumber->display("00:00");
+
     // Création des barres d'avancement et de volume
     // on cree la seek slider
     barreAvancement = new Phonon::SeekSlider(this);
