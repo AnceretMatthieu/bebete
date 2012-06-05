@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'videoplayer.h'
 **
-** Created: Tue Jun 5 11:13:23 2012
+** Created: Tue Jun 5 13:12:08 2012
 **      by: The Qt Meta Object Compiler version 63 (Qt 4.8.0)
 **
 ** WARNING! All changes made in this file will be lost!

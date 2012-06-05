@@ -31,6 +31,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     /* Création des actions */
     createAction();
+
+    maListeQuestions = new ListeQuestion();
 }
 
 MainWindow::~MainWindow()
@@ -44,21 +46,22 @@ void MainWindow::peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QSt
     {
         Question * q = uneListeQuestions->at(i);
         QStandardItem * elem;
-
+        QString s = q->getQuestion();
         // Permet de déterminer la couleur
         if(q->getListeMedia()->size() < 1)
         {
-            elem = new QStandardItem(redIcon, q->getQuestion());
+
+            elem = new QStandardItem(redIcon, s);
         }
         else
         {
             if(q->getListeMedia()->size() < 2)
             {
-                elem = new QStandardItem(yellowIcon, q->getQuestion());
+                elem = new QStandardItem(yellowIcon, s);
             }
             else
             {
-                elem = new QStandardItem(greenIcon, q->getQuestion());
+                elem = new QStandardItem(greenIcon, s);
             }
         }
 
@@ -216,13 +219,15 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
     for(int i = 0; i < lr->size(); i++)
     {
         Reponse * r = lr->at(i);
-        QStandardItem * elemRep = new QStandardItem(r->getReponse());
+        QString s = r->getReponse();
+        QStandardItem * elemRep = new QStandardItem(s);
 
         // Pour chaque réponse, on ajoute ses médias associés
         ListeMedia * lm = r->getListeIllustration();
         for(int j = 0; j < lm->size(); j++)
         {
-            elemRep->appendRow(new QStandardItem(QString::number(lm->at(j)->getType()) + "-" + lm->at(j)->getPath()));
+            s = QString::number(lm->at(j)->getType()) + "-" + lm->at(j)->getPath();
+            elemRep->appendRow(new QStandardItem(s));
         }
 
         model_tvReponse->appendRow(elemRep);
@@ -257,7 +262,8 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
     for(int i = 0; i < lm->size(); i++)
     {
         Media * m = lm->at(i);
-        QStandardItem * elemMed = new QStandardItem(QString::number(m->getType()) + "-" + m->getPath());
+        QString s = QString::number(m->getType()) + "-" + m->getPath();
+        QStandardItem * elemMed = new QStandardItem(s);
         model_tvMediaQuestion->appendRow(elemMed);
     }
 }
@@ -324,10 +330,10 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
                 if(r->getTypeSuiv() == TYPE_CATEGORIE)
                 {
                     ListeQuestion * lq = ((Categorie *)(r->getSuiv()))->getListeQuestion();
-
                     if(lq->size() != 0)
                     {
-                        ui->labelReponse2->setText("Question suivante : " + lq->at(0)->getQuestion());
+                        QString s = "Question suivante : " + lq->at(0)->getQuestion();
+                        ui->labelReponse2->setText(s);
                     }
                     else
                     {
@@ -397,33 +403,42 @@ void MainWindow::newQuestionFils()
     if(newQuestion->getQuestion() != "") // si la question possède un contenu texte, on considère que l'utilisateur a cliqué sur "Annuler"
     {
         QModelIndex index = ui->treeViewQuestion->currentIndex();
-        QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
+        if(index.column() != -1)    {
+            QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
 
-        QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
+            QString s = newQuestion->getQuestion();
+            QStandardItem * elem = new QStandardItem(greenIcon, s);
 
-        // On calcul les coordonnées du noeud courant
-        QString coordonnees = calculerCoordonnees(index);
-        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+            // On calcul les coordonnées du noeud courant
+            QString coordonnees = calculerCoordonnees(index);
+            Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-        // On ajoute l'élément en tant que fils de l'élément courant
-        currentSelection->appendRow(elem);
+            // On ajoute l'élément en tant que fils de l'élément courant
+            currentSelection->appendRow(elem);
 
-        // On calcul les coordonnées du nouveau noeud
-        QString coordonnees2 = calculerCoordonnees(elem->index());
+            // On calcul les coordonnées du nouveau noeud
+            QString coordonnees2 = calculerCoordonnees(elem->index());
 
-        // On récupère la réponse selectionnée
-        QModelIndex indexRep = ui->treeViewReponse->currentIndex();
-        Reponse * currentReponse = mapTreeReponses.value(QString::number(indexRep.row()));
+            // On récupère la réponse selectionnée
+            QModelIndex indexRep = ui->treeViewReponse->currentIndex();
+            Reponse * currentReponse = mapTreeReponses.value(QString::number(indexRep.row()));
 
-        // On crée une nouvelle catégorie après la réponse sélectionnée
-        Categorie * c = new Categorie(0);
-        // On ajoute la nouvelle question après cette nouvelle catégorie
-        c->ajouterQuestion(newQuestion);
-        // On ajoute la catégorie à la réponse courante
-        currentReponse->setSuiv(c);
-        currentReponse->setTypeSuiv(TYPE_CATEGORIE);
-
-        mapTreeQuestions.insert(coordonnees2, newQuestion);
+            // On crée une nouvelle catégorie après la réponse sélectionnée
+            Categorie * c = new Categorie(0);
+            // On ajoute la nouvelle question après cette nouvelle catégorie
+            c->ajouterQuestion(newQuestion);
+            // On ajoute la catégorie à la réponse courante
+            currentReponse->setSuiv(c);
+            currentReponse->setTypeSuiv(TYPE_CATEGORIE);
+            mapTreeQuestions.insert(coordonnees2, newQuestion);
+        }
+        else    {
+            QString s = newQuestion->getQuestion();
+            QStandardItem * elem = new QStandardItem(greenIcon, s);
+            model_tvQuestion->appendRow(elem);
+            maListeQuestions->append(newQuestion);
+            mapTreeQuestions.insert(calculerCoordonnees(elem->index()), newQuestion);
+        }
     }
 }
 
@@ -442,7 +457,8 @@ void MainWindow::newQuestionFrere()
         QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
         QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index); // on récupère l'item de la selection
 
-        QStandardItem * elem = new QStandardItem(greenIcon, newQuestion->getQuestion());
+        QString s  = newQuestion->getQuestion();
+        QStandardItem * elem = new QStandardItem(greenIcon, s);
 
         // On calcul les coordonnées du noeud courant
         QString coordonnees = calculerCoordonnees(index);
@@ -583,9 +599,9 @@ void MainWindow::newReponse()
 
     if(newReponse->getReponse() != "")
     {
-        newReponse->setReponse(newReponse->getReponse());
+        QString s = newReponse->getReponse();
 
-        QStandardItem * elemRep = new QStandardItem(newReponse->getReponse());
+        QStandardItem * elemRep = new QStandardItem(s);
         model_tvReponse->appendRow(elemRep);
 
         // On récupère la question courante (celle sélectionnée dans le treeview)
@@ -612,7 +628,8 @@ void MainWindow::modifierReponse()
 
     // On modifie l'item correspondant dans le modèle du TreeView
     QStandardItem * tmp = model_tvReponse->itemFromIndex(index);
-    tmp->setText(currentReponse->getReponse());
+    QString s = currentReponse->getReponse();
+    tmp->setText(s);
     model_tvReponse->setItem(index.row(), tmp);    
 }
 
