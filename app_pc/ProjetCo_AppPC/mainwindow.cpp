@@ -253,7 +253,6 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
 
     // On récupère les médias associés à la question
     ListeMedia * lm = currentQuestion->getListeMedia();
-    qDebug() << lm;
     // TODO : améliorer la façon d'afficher les médias
     for(int i = 0; i < lm->size(); i++)
     {
@@ -324,7 +323,7 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
 
                 if(r->getTypeSuiv() == TYPE_CATEGORIE)
                 {
-                    ListeQuestion * lq = ((Categorie *)r->getSuiv())->getListeQuestion();
+                    ListeQuestion * lq = ((Categorie *)(r->getSuiv()))->getListeQuestion();
 
                     if(lq->size() != 0)
                     {
