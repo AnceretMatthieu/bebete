@@ -1,0 +1,9 @@
+# ignorer les fichiers makefile #
+app_pc/ProjetCo_AppPC/Makefile.*
+app_pc/ProjetCo_AppPC/makefile
+
+# ignorer le fichier compile #
+app_pc/ProjetCo_AppPC/ProjetCo_AppPC.exe
+
+# ignorer les .o #
+*.o
