@@ -22,7 +22,7 @@
 							<resultat id="res1">
 								<nom>Espèces résultat</nom>
 								<type>Type</type>
-								<regimeAlimentaire>Régime alimentaire</regimeAlimentaire>
+								<regimeAlimentaire>Un regime alimentaire</regimeAlimentaire>
 								<informations>Des informations</informations>
 							</resultat>
 						</reponse>
@@ -96,6 +96,8 @@
 								</reponse>
 							</question>
 						</branche>
+					</reponse>
+					<reponse id="r5" texte="Ceci est une réponse sans suiv" >
 					</reponse>
 				</question>
 			  </branche>

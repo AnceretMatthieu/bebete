@@ -37,8 +37,6 @@ void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
 
     currentNode = arbre;
 
-    enregistrerCategorie(racine);
-
     QFile fichier(filePath);
 
     if (!fichier.open(QIODevice::WriteOnly)) {
@@ -47,6 +45,9 @@ void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
     }
     else {
         QTextStream textStream(&fichier);
+
+        enregistrerCategorie(racine);
+
         qDebug() << "Enregistrement dans le fichier";
         textStream << doc.toString();
     }
@@ -55,17 +56,18 @@ void CategorieBDD::enregistrerArbre(Categorie *racine, QString filePath)
 }
 
 void CategorieBDD::enregistrerCategorie(Categorie * currentCat) {
-    QDomNode memoire = currentNode;
+    QDomNode * memoire = currentNodeWrite;
     QDomElement root = doc.createElement("branche");
     root.setAttribute("id", "b"+QString::number(currentCat->getIdentifiant()));
     root.setAttribute("type", currentCat->getLabel());
-    currentNode.appendChild(root);
+    qDebug() << "b"+ QString::number(currentCat->getIdentifiant()) + " " + currentCat->getLabel();
+    currentNodeWrite->appendChild(root);
 
-    currentNode = root;
+    currentNodeWrite = &root;
 
     ListeQuestion *lq = currentCat->getListeQuestion();
     for(int i = 0; i < lq->size(); i++) {
         QuestionBDD::enregistrerQuestion(lq->at(i));
     }
-    currentNode = memoire;
+    currentNodeWrite = memoire;
 }

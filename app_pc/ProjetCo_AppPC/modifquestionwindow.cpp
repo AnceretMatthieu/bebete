@@ -10,10 +10,6 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
     // On sauvegarde la question envoyée par la fenêtre principale
     laQuestion = currentQuestion;
 
-    // Tester si la question vaut NULL
-    // ==> si c'est le cas, c'est une nouvelle question
-    // ==> sinon c'est une modification d'une question existante
-    // Penser à répercuter les modifications en mémoire
     if(currentQuestion->getQuestion() != QString())
     {
         ui->label_id->setText(QString::number(currentQuestion->getIdentifiant()));
@@ -34,6 +30,18 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
             ui->checkBox_visibleOeil->setChecked(true);
             ui->checkBox_visibleLoupe->setChecked(true);
         }
+
+        /*ui->comboBoxReponses->addItem("");
+        // On affiche les réponses qui ne pointent pas déjà sur une question
+        ListeQuestion * lq = currentQuestion->getCat()->getListeQuestion();
+        for(int i = 0; i < lq->size() ; i++) {
+            ListeReponse * lr = currentQuestion->getListeReponse();
+            for(int j = 0; j < lr->size(); j++) {
+                Reponse * tmpr = currentQuestion->getListeReponse()->at(i);
+                if(tmpr->getSuiv() == NULL)
+                    ui->comboBoxReponses->addItem(QString::number(i) + " - " + tmpr->getReponse());
+            }
+        }*/
     }
 }
 

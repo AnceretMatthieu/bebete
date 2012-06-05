@@ -8,7 +8,7 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication a(argc, argv);
+    //QCoreApplication a(argc, argv);
 
 
     Categorie* categ = new Categorie(1);
@@ -16,9 +16,13 @@ int main(int argc, char *argv[])
     if(lq->size() != 0) {
         categ->ajouterQuestion(lq->at(0));
         CategorieBDD::enregistrerArbre(categ);
+
+        CategorieBDD::enregistrerArbre(categ);
+
+        CategorieBDD::enregistrerArbre(categ);
     }
     else
         qDebug() << "Error";
 
-    return a.exec();
+    //return a.exec();
 }

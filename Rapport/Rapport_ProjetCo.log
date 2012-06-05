@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  4 JUN 2012 01:53
+This is pdfTeX, Version 3.1415926-2.3-1.40.12 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2012.1.9)  4 JUN 2012 13:33
 entering extended mode
 **Rapport_ProjetCo.tex
 (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.tex
@@ -480,7 +480,7 @@ LaTeX Font Warning: Font shape `OMS/lmss/m/n' undefined
 
 ]
 Chapter 3.
-<images/diag_classes_app_PC.jpg, id=333, 1136.245pt x 1606.0pt>
+<images/diag_classes_app_PC.jpg, id=338, 1136.245pt x 1606.0pt>
 File: images/diag_classes_app_PC.jpg Graphic file (type jpg)
 
 <use images/diag_classes_app_PC.jpg>
@@ -495,7 +495,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [8
 
-] [9] <images/fichier_xml.png, id=344, 583.42969pt x 739.26187pt>
+] [9] <images/fichier_xml.png, id=349, 583.42969pt x 739.26187pt>
 File: images/fichier_xml.png Graphic file (type png)
 
 <use images/fichier_xml.png>
@@ -505,7 +505,7 @@ Package pdftex.def Info: images/fichier_xml.png used on input line 111.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/dtd.png, id=346, 615.29875pt x 606.265pt>
+<images/dtd.png, id=351, 615.29875pt x 606.265pt>
 File: images/dtd.png Graphic file (type png)
  <use images/dtd.png>
 Package pdftex.def Info: images/dtd.png used on input line 120.
@@ -518,7 +518,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 C.jpg>] [13 <D:/Programmation/GitHub/bebete/Rapport/images/fichier_xml.png (PNG
  copy)>] [14 <D:/Programmation/GitHub/bebete/Rapport/images/dtd.png>]
 Chapter 4.
-<images/pc_vide.png, id=374, 1371.1225pt x 723.70375pt>
+<images/pc_vide.png, id=378, 1371.1225pt x 723.70375pt>
 File: images/pc_vide.png Graphic file (type png)
 
 <use images/pc_vide.png>
@@ -540,7 +540,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [15
 
  <D:/Programmation/GitHub/bebete/Rapport/images/pc_vide.png>]
-<images/pc_select_question.png, id=384, 1370.11874pt x 721.69624pt>
+<images/pc_select_question.png, id=385, 1370.11874pt x 721.69624pt>
 File: images/pc_select_question.png Graphic file (type png)
 
 <use images/pc_select_question.png>
@@ -550,7 +550,7 @@ Package pdftex.def Info: images/pc_select_question.png used on input line 207.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/pc_new_question.png, id=386, 1371.1225pt x 723.70375pt>
+<images/pc_new_question.png, id=387, 1371.1225pt x 723.70375pt>
 File: images/pc_new_question.png Graphic file (type png)
 
 <use images/pc_new_question.png>
@@ -586,7 +586,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 281--284
 
  []
 
-[19] <images/lecteur_image.png, id=410, 644.4075pt x 207.77625pt>
+[19] <images/lecteur_image.png, id=407, 644.4075pt x 207.77625pt>
 File: images/lecteur_image.png Graphic file (type png)
 
 <use images/lecteur_image.png>
@@ -613,7 +613,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 311--324
 
  []
 
-<images/lecteur_audio.png, id=420, 313.17pt x 164.11313pt>
+<images/lecteur_audio.png, id=413, 313.17pt x 164.11313pt>
 File: images/lecteur_audio.png Graphic file (type png)
 
 <use images/lecteur_audio.png>
@@ -630,7 +630,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 333--339
  []
 
 [21 <D:/Programmation/GitHub/bebete/Rapport/images/lecteur_audio.png>]
-<images/lecteur_video.png, id=426, 313.17pt x 324.46219pt>
+<images/lecteur_video.png, id=418, 313.17pt x 324.46219pt>
 File: images/lecteur_video.png Graphic file (type png)
 
 <use images/lecteur_video.png>
@@ -640,7 +640,7 @@ Package pdftex.def Info: images/lecteur_video.png used on input line 342.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [22 <D:/Programmation/GitHub/bebete/Rapport/images/lecteur_video.png>]
-<images/coloration_questions.png, id=433, 240.9pt x 87.32625pt>
+<images/coloration_questions.png, id=423, 240.9pt x 87.32625pt>
 File: images/coloration_questions.png Graphic file (type png)
 
 <use images/coloration_questions.png>
@@ -659,7 +659,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 367--372
 
  []
 
-<images/menu_accueil.jpg, id=440, 1284.8pt x 803.0pt>
+<images/menu_accueil.jpg, id=428, 1284.8pt x 803.0pt>
 File: images/menu_accueil.jpg Graphic file (type jpg)
 
 <use images/menu_accueil.jpg>
@@ -669,7 +669,7 @@ Package pdftex.def Info: images/menu_accueil.jpg used on input line 382.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/image1.jpg, id=442, 1284.8pt x 803.0pt>
+<images/image1.jpg, id=430, 1284.8pt x 803.0pt>
 File: images/image1.jpg Graphic file (type jpg)
  <use images/image1.jpg>
 Package pdftex.def Info: images/image1.jpg used on input line 389.
@@ -690,7 +690,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 396--401
 
 [24
 
-] <images/image2.png, id=449, 328.22626pt x 860.21375pt>
+] <images/image2.png, id=436, 328.22626pt x 860.21375pt>
 File: images/image2.png Graphic file (type png)
 
 <use images/image2.png>
@@ -702,7 +702,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [25 <D:/Programmation/GitHub/bebete/Rapport/images/menu_accueil.jpg>] [26 <D:/P
 rogrammation/GitHub/bebete/Rapport/images/image1.jpg>]
-<images/image3.png, id=470, 584.1825pt x 387.24675pt>
+<images/image3.png, id=454, 584.1825pt x 387.24675pt>
 File: images/image3.png Graphic file (type png)
  <use images/image3.png>
 Package pdftex.def Info: images/image3.png used on input line 434.
@@ -712,7 +712,7 @@ Package pdftex.def Info: images/image3.png used on input line 434.
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [27 <D:/Programmation/GitHub/bebete/Rapport/images/image2.png>]
-<images/image4.png, id=482, 405.31425pt x 170.43675pt>
+<images/image4.png, id=465, 405.31425pt x 170.43675pt>
 File: images/image4.png Graphic file (type png)
  <use images/image4.png>
 Package pdftex.def Info: images/image4.png used on input line 453.
@@ -721,7 +721,7 @@ Package pdftex.def Info: images/image4.png used on input line 453.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/image5.png, id=484, 264.99pt x 86.724pt>
+<images/image5.png, id=467, 264.99pt x 86.724pt>
 File: images/image5.png Graphic file (type png)
  <use images/image5.png>
 Package pdftex.def Info: images/image5.png used on input line 464.
@@ -737,7 +737,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 483--486
 
 [29 <D:/Programmation/GitHub/bebete/Rapport/images/image4.png> <D:/Programmatio
 n/GitHub/bebete/Rapport/images/image5.png>]
-<images/image6.png, id=509, 434.8245pt x 31.317pt>
+<images/image6.png, id=487, 434.8245pt x 31.317pt>
 File: images/image6.png Graphic file (type png)
  <use images/image6.png>
 Package pdftex.def Info: images/image6.png used on input line 489.
@@ -757,7 +757,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 501--506
 
  []
 
-<images/arbre.png, id=511, 344.28625pt x 255.95625pt>
+<images/arbre.png, id=489, 344.28625pt x 255.95625pt>
 File: images/arbre.png Graphic file (type png)
  <use images/arbre.png>
 Package pdftex.def Info: images/arbre.png used on input line 509.
@@ -772,7 +772,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 523--528
  []
 
 [30 <D:/Programmation/GitHub/bebete/Rapport/images/image6.png>]
-<images/connexion.jpg, id=522, 1284.8pt x 803.0pt>
+<images/connexion.jpg, id=497, 1284.8pt x 803.0pt>
 File: images/connexion.jpg Graphic file (type jpg)
  <use images/connexion.jpg>
 Package pdftex.def Info: images/connexion.jpg used on input line 531.
@@ -781,7 +781,7 @@ Package pdftex.def Info: images/connexion.jpg used on input line 531.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/image8.jpg, id=524, 1284.8pt x 803.0pt>
+<images/image8.jpg, id=499, 1284.8pt x 803.0pt>
 File: images/image8.jpg Graphic file (type jpg)
  <use images/image8.jpg>
 Package pdftex.def Info: images/image8.jpg used on input line 538.
@@ -790,7 +790,7 @@ Package pdftex.def Info: images/image8.jpg used on input line 538.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/image9.jpg, id=526, 1284.8pt x 803.0pt>
+<images/image9.jpg, id=501, 1284.8pt x 803.0pt>
 File: images/image9.jpg Graphic file (type jpg)
  <use images/image9.jpg>
 Package pdftex.def Info: images/image9.jpg used on input line 545.
@@ -799,7 +799,7 @@ Package pdftex.def Info: images/image9.jpg used on input line 545.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/image10.jpg, id=528, 1284.8pt x 803.0pt>
+<images/image10.jpg, id=503, 1284.8pt x 803.0pt>
 File: images/image10.jpg Graphic file (type jpg)
  <use images/image10.jpg>
 Package pdftex.def Info: images/image10.jpg used on input line 552.
@@ -808,7 +808,7 @@ Package pdftex.def Info: images/image10.jpg used on input line 552.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/bdd.png, id=531, 769.87625pt x 381.425pt>
+<images/bdd.png, id=506, 769.87625pt x 381.425pt>
 File: images/bdd.png Graphic file (type png)
  <use images/bdd.png>
 Package pdftex.def Info: images/bdd.png used on input line 563.
@@ -823,7 +823,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 568--574
  []
 
 [31 <D:/Programmation/GitHub/bebete/Rapport/images/arbre.png>]
-<images/classe.png, id=541, 1780.6525pt x 1955.305pt>
+<images/classe.png, id=515, 1780.6525pt x 1955.305pt>
 File: images/classe.png Graphic file (type png)
  <use images/classe.png>
 Package pdftex.def Info: images/classe.png used on input line 577.
@@ -863,117 +863,116 @@ Underfull \hbox (badness 10000) in paragraph at lines 590--595
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 606--608
+Underfull \hbox (badness 10000) in paragraph at lines 604--606
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 606--608
+Underfull \hbox (badness 10000) in paragraph at lines 604--606
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--612
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 610--612
 
  []
 
 [37
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 612--614
+Underfull \hbox (badness 10000) in paragraph at lines 613--619
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 612--614
+Underfull \hbox (badness 10000) in paragraph at lines 620--622
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 615--621
+Underfull \hbox (badness 10000) in paragraph at lines 620--622
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 622--624
+Underfull \hbox (badness 10000) in paragraph at lines 627--629
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 622--624
+Underfull \hbox (badness 10000) in paragraph at lines 627--629
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 629--631
+Underfull \hbox (badness 10000) in paragraph at lines 632--634
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 629--631
+Underfull \hbox (badness 10000) in paragraph at lines 632--634
 
  []
 
 [38]
-Underfull \hbox (badness 10000) in paragraph at lines 634--636
+Underfull \hbox (badness 10000) in paragraph at lines 637--639
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 634--636
+Underfull \hbox (badness 10000) in paragraph at lines 637--639
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 639--641
+Underfull \hbox (badness 10000) in paragraph at lines 645--647
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 639--641
+Underfull \hbox (badness 10000) in paragraph at lines 645--647
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 647--649
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 647--649
-
- []
-
-[39]
-<images/calendrier_previsionnel_taches.png, id=586, 487.8225pt x 685.05937pt>
+<images/calendrier_previsionnel_taches.png, id=553, 487.8225pt x 685.05937pt>
 File: images/calendrier_previsionnel_taches.png Graphic file (type png)
 
 <use images/calendrier_previsionnel_taches.png>
 Package pdftex.def Info: images/calendrier_previsionnel_taches.png used on inpu
-t line 660.
+t line 658.
 (pdftex.def)             Requested size: 483.69685pt x 679.2771pt.
 
 
-LaTeX Warning: Float too large for page by 22.14001pt on input line 663.
+LaTeX Warning: Float too large for page by 22.14001pt on input line 661.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 665--671
+Underfull \hbox (badness 10000) in paragraph at lines 663--669
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 665--671
+Underfull \hbox (badness 10000) in paragraph at lines 663--669
 
  []
 
-<images/calendrier_reel_taches.png, id=588, 493.0922pt x 685.8122pt>
+[39] <images/calendrier_reel_taches.png, id=559, 493.0922pt x 685.8122pt>
 File: images/calendrier_reel_taches.png Graphic file (type png)
 
 <use images/calendrier_reel_taches.png>
 Package pdftex.def Info: images/calendrier_reel_taches.png used on input line 6
-74.
+72.
 (pdftex.def)             Requested size: 483.69685pt x 672.78204pt.
 
 
-LaTeX Warning: Float too large for page by 15.64496pt on input line 677.
+LaTeX Warning: Float too large for page by 15.64496pt on input line 675.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -983,12 +982,12 @@ _taches.png>] [42 <D:/Programmation/GitHub/bebete/Rapport/images/calendrier_ree
 l_taches.png>]
 Chapter 7.
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--704
+Underfull \hbox (badness 10000) in paragraph at lines 691--702
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 693--704
+Underfull \hbox (badness 10000) in paragraph at lines 691--702
 
  []
 
@@ -1001,7 +1000,7 @@ Chapter 8.
 ]
 Appendix A.
 
-Underfull \hbox (badness 10000) in paragraph at lines 718--722
+Underfull \hbox (badness 10000) in paragraph at lines 716--720
 
  []
 
@@ -1010,69 +1009,69 @@ Underfull \hbox (badness 10000) in paragraph at lines 718--722
 ]
 File: images/connexion.jpg Graphic file (type jpg)
  <use images/connexion.jpg>
-Package pdftex.def Info: images/connexion.jpg used on input line 730.
+Package pdftex.def Info: images/connexion.jpg used on input line 728.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
  [47]
-<images/campagne_vide.jpg, id=633, 1284.8pt x 803.0pt>
+<images/campagne_vide.jpg, id=599, 1284.8pt x 803.0pt>
 File: images/campagne_vide.jpg Graphic file (type jpg)
 
 <use images/campagne_vide.jpg>
-Package pdftex.def Info: images/campagne_vide.jpg used on input line 743.
+Package pdftex.def Info: images/campagne_vide.jpg used on input line 741.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 759--764
+Underfull \hbox (badness 10000) in paragraph at lines 757--762
 
  []
 
 [48 <D:/Programmation/GitHub/bebete/Rapport/images/campagne_vide.jpg>]
-Underfull \hbox (badness 10000) in paragraph at lines 774--782
+Underfull \hbox (badness 10000) in paragraph at lines 772--780
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 774--782
+Underfull \hbox (badness 10000) in paragraph at lines 772--780
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 774--782
+Underfull \hbox (badness 10000) in paragraph at lines 772--780
 
  []
 
-[49] <images/question_cours.jpg, id=647, 1284.8pt x 803.0pt>
+[49] <images/question_cours.jpg, id=611, 1284.8pt x 803.0pt>
 File: images/question_cours.jpg Graphic file (type jpg)
 
 <use images/question_cours.jpg>
-Package pdftex.def Info: images/question_cours.jpg used on input line 786.
+Package pdftex.def Info: images/question_cours.jpg used on input line 784.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
  [50 <D:/Programmation/GitHub/bebete/Rapport/images/question_cours.jpg>] <image
-s/sauvegarde.jpg, id=655, 1284.8pt x 803.0pt>
+s/sauvegarde.jpg, id=619, 1284.8pt x 803.0pt>
 File: images/sauvegarde.jpg Graphic file (type jpg)
 
 <use images/sauvegarde.jpg>
-Package pdftex.def Info: images/sauvegarde.jpg used on input line 795.
+Package pdftex.def Info: images/sauvegarde.jpg used on input line 793.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
  [51 <D:/Programmation/GitHub/bebete/Rapport/images/sauvegarde.jpg>] <images/mo
-saique.jpg, id=667, 1284.8pt x 803.0pt>
+saique.jpg, id=629, 1284.8pt x 803.0pt>
 File: images/mosaique.jpg Graphic file (type jpg)
 
 <use images/mosaique.jpg>
-Package pdftex.def Info: images/mosaique.jpg used on input line 809.
+Package pdftex.def Info: images/mosaique.jpg used on input line 807.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
- <images/ident_rapid.jpg, id=669, 1284.8pt x 803.0pt>
+ <images/ident_rapid.jpg, id=631, 1284.8pt x 803.0pt>
 File: images/ident_rapid.jpg Graphic file (type jpg)
 
 <use images/ident_rapid.jpg>
-Package pdftex.def Info: images/ident_rapid.jpg used on input line 816.
+Package pdftex.def Info: images/ident_rapid.jpg used on input line 814.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-<images/export.jpg, id=671, 1284.8pt x 803.0pt>
+<images/export.jpg, id=633, 1284.8pt x 803.0pt>
 File: images/export.jpg Graphic file (type jpg)
  <use images/export.jpg>
-Package pdftex.def Info: images/export.jpg used on input line 827.
+Package pdftex.def Info: images/export.jpg used on input line 825.
 (pdftex.def)             Requested size: 483.69685pt x 302.31277pt.
 
 
@@ -1084,7 +1083,7 @@ AED: lastpage setting LastPage
 ammation/GitHub/bebete/Rapport/images/ident_rapid.jpg> <D:/Programmation/GitHub
 /bebete/Rapport/images/export.jpg>] ( FP-DIV ) ( FP-TRUNC ) ( FP-MUL )
 ( FP-SUB ) ( FP-TRUNC ) ( FP-ZERO? )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 832.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 830.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1093,182 +1092,38 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ]
 [55]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 832.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 830.
  (D:\Programmation\GitHub\bebete\Rapport\Rapport_ProjetCo.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 832.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 832.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 830.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 830.
+Package rerunfilecheck Info: File `Rapport_ProjetCo.out' has not changed.
+(rerunfilecheck)             Checksum: 7A761C13F6C80924ADF4611F09C2C185;3064.
 
-
-Package rerunfilecheck Warning: File `Rapport_ProjetCo.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `Rapport_ProjetCo.out':
-(rerunfilecheck)             Before: A0F3C93CCA21BD21E4695D06EC313D0A;2967
-(rerunfilecheck)             After:  7A761C13F6C80924ADF4611F09C2C185;3064.
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
  ) 
 Here is how much of TeX's memory you used:
- 7174 strings out of 494045
- 102241 string characters out of 3148379
+ 7130 strings out of 494045
+ 101800 string characters out of 3148379
  215612 words of memory out of 3000000
- 10110 multiletter control sequences out of 15000+200000
+ 10111 multiletter control sequences out of 15000+200000
  62527 words of font info for 44 fonts, out of 3000000 for 9000
  715 hyphenation exceptions out of 8191
- 41i,14n,48p,1618b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
-pdfTeX warning (dest): name{figure.89} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.86} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.83} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.80} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.72} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.67} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.61} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.58} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.53} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.51} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.47} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.40} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.36} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.34} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.32} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.30} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.28} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.20} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{figure.15} has been referenced but does not exist, 
-replaced by a fixed one
-
-pdfTeX warning (dest): name{section.88} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.85} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.82} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.77} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{appendix.76} has been referenced but does not exist
-, replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.74} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.70} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.69} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.66} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.60} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.59} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.54} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.52} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.46} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.38} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.35} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{section.33} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.31} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.29} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.27} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.25} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.23} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.22} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{subsection.16} has been referenced but does not exi
-st, replaced by a fixed one
-
-pdfTeX warning (dest): name{section.14} has been referenced but does not exist,
- replaced by a fixed one
-
-pdfTeX warning (dest): name{chapter.13} has been referenced but does not exist,
- replaced by a fixed one
-
-{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/MiK
-TeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/typ
-e1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/lm/lmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb><
-C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program Files/
-MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
-ype1/public/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lm
-ss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/lm/lmtt10.pfb>
-Output written on Rapport_ProjetCo.pdf (55 pages, 5380160 bytes).
+ 41i,14n,45p,1618b,403s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Program Files/MiKTeX 2.9/fonts/enc/dvips/lm/lm-ec.enc}{C:/Program Files/M
+iKTeX 2.9/fonts/enc/dvips/lm/lm-mathit.enc}<C:/Program Files/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/lm/lmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmbx12.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmmi10.pfb><C:/Program File
+s/MiKTeX 2.9/fonts/type1/public/lm/lmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts
+/type1/public/lm/lmss10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/
+lmss12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmssbx10.pfb><C:/
+Program Files/MiKTeX 2.9/fonts/type1/public/lm/lmsso10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/lm/lmtt10.pfb>
+Output written on Rapport_ProjetCo.pdf (55 pages, 5375846 bytes).
 PDF statistics:
- 792 PDF objects out of 1000 (max. 8388607)
- 196 named destinations out of 1000 (max. 500000)
- 632 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 743 PDF objects out of 1000 (max. 8388607)
+ 151 named destinations out of 1000 (max. 500000)
+ 640 words of extra memory for PDF output out of 10000 (max. 10000000)
 

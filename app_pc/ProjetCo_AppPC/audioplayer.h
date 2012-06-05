@@ -49,9 +49,6 @@ class AudioPlayer : public QDialog
          */
         void changerSourceAvancement();
 
-    private slots:
-        void on_AudioPlayer_destroyed();
-
     private:
         Ui::AudioPlayer *ui;
 

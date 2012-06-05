@@ -9,6 +9,7 @@ Reponse::Reponse(int id)    {
     idleft = 0;
     idright = 0;
     illustrationMedia = new ListeMedia();
+    fils = NULL;
 }
 
 void Reponse::ajouterMedia(Media *med) {
@@ -21,8 +22,6 @@ void Reponse::supprimerMedia(Media *med) {
         i++;
     if(i < illustrationMedia->size())
         illustrationMedia->remove(i);
-    else
-        throw exception();
 }
 
 void Reponse::supprimerMedia(int id) {
@@ -31,22 +30,16 @@ void Reponse::supprimerMedia(int id) {
         i++;
     if(i < illustrationMedia->size())
         illustrationMedia->remove(i);
-    else
-        throw exception();
 }
 
 void  Reponse::setTypeSuiv(int type) {
     if(type == TYPE_ESPECE || type == TYPE_CATEGORIE)
         typeFils = type;
-    else
-        throw exception();
 }
 
 void  Reponse::setTypePrec(int type) {
     if(type == TYPE_ESPECE || type == TYPE_CATEGORIE)
         typePere = type;
-    else
-        throw exception();
 }
 
 void Reponse::setSuiv(void * suiv)   {

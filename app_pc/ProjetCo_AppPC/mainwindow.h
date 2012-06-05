@@ -25,8 +25,10 @@
 #include "ListeMedia.h"
 #include "audioplayer.h"
 #include "videoplayer.h"
-#include "ajoutertexte.h"
+#include "newreponsewindow.h"
 #include "modifreponsewindow.h"
+#include "Espece.h"
+#include "ListeReponse.h"
 
 namespace Ui {
     class MainWindow;
@@ -60,18 +62,18 @@ class MainWindow : public QMainWindow
 
         ModifQuestionWindow * myWindowQues;
         ModifReponseWindow * myWindowRep;
+        NewReponseWindow * myWindowText;
         AudioPlayer * myAudioPlayer;
         VideoPlayer * myVideoPlayer;
-        AjouterTexte * myTxtWindow;
 
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere, QString coordPere);
         void createAction();
         QString calculerCoordonnees(QModelIndex index);
 
     private slots:
-        void on_actionQuitter_triggered();
-        void on_actionExporter_XML_triggered();
-        void on_actionImporter_XML_triggered();
+        void actionQuitter_triggered();
+        void actionExporter_XML_triggered();
+        void actionImporter_XML_triggered();
         void actionApropos();
         void clickTreeViewQuestions(const QModelIndex &index);
         void clickTreeViewMediasQuestions(const QModelIndex &index);

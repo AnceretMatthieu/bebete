@@ -9,7 +9,7 @@ class Reponse;
 /**
  *  \class Espece
  *  \file Espece.h
- *  \brief classe g√©rant une esp√®ce avec √ßa description et la liste de ces illustrations
+ *  \brief classe gerant une espece avec Áa description et la liste de ces illustrations
  */
 class Espece {
 
@@ -27,7 +27,7 @@ class Espece {
         /**
          * \fn Espece(int identifiant)
          * \brief constructeur
-         * \param int idenfifiant : l'identifiant unique de l'esp√®ce √  instancier
+         * \param int idenfifiant : l'identifiant unique de l'espece ‡ instancier
          */
         Espece(int identifiant);
 

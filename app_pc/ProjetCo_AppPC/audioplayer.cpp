@@ -67,13 +67,11 @@ void AudioPlayer::changerTemps()
     ui->lcdNumber->display(monTemps.toString("mm:ss"));
 }
 
-//changerSourceVolume()
 void AudioPlayer::changerSourceVolume()
 {
     barreVolume->setAudioOutput(sortie);
 }
 
-//changerSourceAvancement()
 void AudioPlayer::changerSourceAvancement()
 {
     barreAvancement->setMediaObject(mediaObjet);

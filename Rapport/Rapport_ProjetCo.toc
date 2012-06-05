@@ -32,7 +32,7 @@
 \contentsline {subsection}{\numberline {5.6.2}Structure du logiciel}{31}{subsection.67}
 \contentsline {chapter}{\numberline {6}Aspect gestion de projet}{37}{chapter.70}
 \contentsline {section}{\numberline {6.1}Témoignage de l'équipe}{37}{section.71}
-\contentsline {section}{\numberline {6.2}Calendrier prévisionnel et calendrier réel}{40}{section.72}
+\contentsline {section}{\numberline {6.2}Calendrier prévisionnel et calendrier réel}{39}{section.72}
 \contentsline {chapter}{\numberline {7}Futur du projet}{43}{chapter.75}
 \contentsline {chapter}{\numberline {8}Conclusion}{45}{chapter.76}
 \contentsline {chapter}{\numberline {A}Documentation utilisateur de l'application mobile}{46}{appendix.77}
