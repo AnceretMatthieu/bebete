@@ -3,7 +3,7 @@
 void EspeceBDD::enregistrerEspece(Espece * esp) {
     QDomNode * memoire = currentNodeWrite;
     QDomElement domesp = doc.createElement("resultat");
-    domesp.setAttribute("id", "res0");
+    domesp.setAttribute("id", QString::number(esp->getIdentifiant()));
     currentNodeWrite->appendChild(domesp);
 
     QDomElement nom = doc.createElement("nom");

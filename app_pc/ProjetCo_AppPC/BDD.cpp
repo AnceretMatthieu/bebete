@@ -4,6 +4,7 @@
 QDomNode BDD::currentNode;
 QDomNode * BDD::currentNodeWrite;
 QDomDocument BDD::doc;
+int BDD::lastId = 0;
 
 ListeQuestion * BDD::CreerArbre(QString filePath)
 {
@@ -16,6 +17,7 @@ ListeQuestion * BDD::CreerArbre(QString filePath)
     currentNode = currentNode.firstChild();
 
     Categorie * cat = new Categorie(0);
+    lastId = 0;
 
     CategorieBDD::listeQuestionWithCategorie(cat, true);
 

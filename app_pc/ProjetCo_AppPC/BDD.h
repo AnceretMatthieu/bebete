@@ -16,6 +16,8 @@ class BDD {
          */
         static QDomNode currentNode;
         static QDomNode * currentNodeWrite;
+        static int lastId;
+
         /**
          * \brief attribut mémorisant le document que l'on est en train de lire ou ecrire
          */

@@ -13,7 +13,7 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
         QDomNode tempNode = lstBaliseQuestion.at(i);
         if(tempNode.nodeName() == "reponse")
         {
-            tempr = new Reponse(tempNode.toElement().attribute("id", QString("r0")).left(1).toInt());
+            tempr = new Reponse(tempNode.toElement().attribute("id", QString("0")).toInt());
             QString s = tempNode.toElement().attribute("texte", QString(""));
             if(s.size() != 0)
                 tempr->setReponse(s);
@@ -71,10 +71,13 @@ void QuestionBDD::listeReponseFromQuestion(Question * quest, bool recursif = tru
 void QuestionBDD::enregistrerQuestion(Question * quest) {
     QDomNode * memoire = currentNodeWrite;
     QDomElement question = doc.createElement("question");
-    question.setAttribute("id", "q0");
+
+    question.setAttribute("id", QString::number(quest->getIdentifiant()));
+    if(BDD::lastId > quest->getIdentifiant())
+        BDD::lastId = quest->getIdentifiant();
     question.setAttribute("texte", quest->getQuestion());
     question.setAttribute("visible", quest->getVisible());
-    qDebug() << "q"+QString::number(quest->getIdentifiant()) +" "+quest->getQuestion() + " " +quest->getVisible();
+
     currentNodeWrite->appendChild(question);
 
     currentNodeWrite = &question;
