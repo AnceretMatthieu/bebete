@@ -8,7 +8,7 @@
 				<legende>Astuces : Compter le nombre de pattes pour commencer</legende>
 				<img src="insecte.jpg" />
 				<legende>Ceci est une autre légende...</legende>
-				<audio id="aud1" src="test_audio.wav" />
+				<audio id="aud1" src="test_audio.mp3" />
 			</media>
 			<reponse id="r1" texte="6 pattes" visible="true">
 				<media>

@@ -211,13 +211,8 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
     // On récupère, via la QMap, la question correpondant à l'item cliqué
     Question * currentQuestion = mapTreeQuestions.value(coord);
 
-    // TODO : plantage sur la ligne suivante
-    // si l'on clic sur un élément crée via le bouton fils et qui est en deuxième position
-    // (ça ne plante pas si c'est le premier fils de la liste)
-    ListeReponse * lr = currentQuestion->getListeReponse();
-
-    // TODO : penser à appliquer une méthode similaire à la nouvelle méthode de calcul des coordonnées pour le TreeView des réponses
     // On remplit le TreeView des réponses
+    ListeReponse * lr = currentQuestion->getListeReponse();
     for(int i = 0; i < lr->size(); i++)
     {
         Reponse * r = lr->at(i);
@@ -231,8 +226,7 @@ void MainWindow::clickTreeViewQuestions(const QModelIndex &index)
         }
 
         model_tvReponse->appendRow(elemRep);
-        // TODO : à voir, il faudra surement re-utiliser la fonction de calcul des coordonnées
-        mapTreeReponses.insert(QString::number(i), r);
+        mapTreeReponses.insert(QString::number(elemRep->index().row()), r);
     }
 
     // Gestion de l'attribut "visible" de la balise "Question" ==> on coche/décoche les checkbox
@@ -420,6 +414,7 @@ void MainWindow::newQuestionFils()
         c->ajouterQuestion(newQuestion);
         // On ajoute la catégorie à la réponse courante
         currentReponse->setSuiv(c);
+        currentReponse->setTypeSuiv(TYPE_CATEGORIE);
 
         mapTreeQuestions.insert(coordonnees2, newQuestion);
     }
@@ -595,8 +590,7 @@ void MainWindow::newReponse()
         currentQuestion->getListeReponse()->append(newReponse);
 
         // On ajoute la réponse à la QMap
-        QString coordNewRep = calculerCoordonnees(elemRep->index());
-        mapTreeReponses.insert(coordNewRep, newReponse);
+        mapTreeReponses.insert(QString::number(elemRep->index().row()), newReponse);
     }
 }
 
@@ -627,12 +621,11 @@ void MainWindow::supprimerReponse()
     Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
     // On supprime la réponse de la mémoire
-    QString coord = calculerCoordonnees(currentIndex);
-    Reponse * r = mapTreeReponses.value(coord);
+    Reponse * r = mapTreeReponses.value(QString::number(currentIndex.row()));
     currentQuestion->supprimerReponse(r);
 
     // On supprime la réponse de la QMap
-    mapTreeReponses.remove(coord);
+    mapTreeReponses.remove(QString::number(currentIndex.row()));
 }
 
 void MainWindow::newComMediaReponse()
