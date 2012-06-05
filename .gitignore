@@ -8,3 +8,6 @@ app_pc/ProjetCo_AppPC-build-desktop-Desktop_Qt_4_8_0_for_GCC__Qt_SDK__Debug
 
 # ignorer les .o #
 *.o
+
+*.pro.user
+*.pro
