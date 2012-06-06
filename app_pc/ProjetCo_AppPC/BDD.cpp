@@ -24,7 +24,7 @@ ListeQuestion * BDD::CreerArbre(QString filePath)
     return cat->getListeQuestion();
 }
 
-void BDD::enregistrerArbre(Categorie *racine, QString filePath)
+int BDD::enregistrerArbre(Categorie *racine, QString filePath)
 {
     BDD::doc = QDomDocument("");
 
@@ -40,20 +40,16 @@ void BDD::enregistrerArbre(Categorie *racine, QString filePath)
 
     QFile fichier(filePath);
 
-    if ( !fichier.open(QIODevice::WriteOnly) )
+    if (!fichier.open(QIODevice::WriteOnly))
     {
-        qDebug("Impossible de créer le fichier XML pour sauvegarder les données");
-        return;
+        return -1; // erreur dans l'enregistrement
     }
     else
     {
         QTextStream textStream(&fichier);
-        qDebug() << "Enregistrement dans le fichier";
-
         doc.save(textStream, 5);
-
-        qDebug() << "Enregistrement dans le fichier OK";
     }
 
    fichier.close();
+   return 0; // enregistrement OK
 }

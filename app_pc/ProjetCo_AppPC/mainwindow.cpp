@@ -8,6 +8,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     yellowIcon = QIcon("images/icon_yellow.png");
     redIcon = QIcon("images/icon_red.png");
 
+    /* Initialisation des formats de fichier reconnu par l'application */
+    formatImage << "jpg" << "png" << "jpeg";
+    formatAudio << "mp3" << "wav" << "wma";
+    formatVideo << "avi" << "wmv";
+
     // TODO : penser à vérifier que la structure des dossiers de médias est correctement créé
     // Si ce n'est pas le cas, le faire.
 
@@ -135,9 +140,19 @@ void MainWindow::createAction()
     connect(ui->button_supprimerMediaReponse, SIGNAL(clicked()), this, SLOT(supprimerMediaReponse()));
 }
 
+void MainWindow::receiveContents(QString str)
+{
+    returnText = str;
+}
+
 void MainWindow::actionImporter_XML_triggered()
 {
     // TODO : si une session de travail est en cours, proposer d'enregistrer le travail courant (export)
+    //      Tester si le treeview des questions est vide ou non
+    //          SI vide
+    //              ALORS on continu l'ouverture du nouveau fichier
+    //          SINON (pas vide)
+    //              ALORS on affiche une boite de dialogue demandant à l'utilisateur s'il veut enregistrer ou pas son travail
 
     QString fileName = QFileDialog::getOpenFileName(this, tr("Ouvrir le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
 
@@ -157,20 +172,28 @@ void MainWindow::actionImporter_XML_triggered()
 
 void MainWindow::actionExporter_XML_triggered()
 {
-    QString fileName = QFileDialog::getSaveFileName(this, tr("Enregistrer le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
-
-    if(fileName != "")
+    if(maListeQuestions->size() != 0)
     {
-        Categorie categorie(1);
-        if(maListeQuestions->size() != 0)
+        QString fileName = QFileDialog::getSaveFileName(this, tr("Enregistrer le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
+        if(fileName != "")
         {
+            Categorie categorie(1);
             categorie.ajouterQuestion(maListeQuestions->at(0));
-            BDD::enregistrerArbre(&categorie, fileName);
+            if(BDD::enregistrerArbre(&categorie, fileName) == 0) // enregistrement OK
+            {
+                QMessageBox::information(this, "Confirmation d'enregistrement du fichier", "Le fichier " + fileName + " a bien été enregistré.");
+
+            }
+            else // erreur dans l'enregistrement
+            {
+                QMessageBox::warning(this, "Erreur dans l'enregistrement du fichier", "L'application a rencontrée un problème dans l'enregistrement du fichier " + fileName + ".");
+            }
         }
-        else
-        {
-            qDebug() << "Erreur dans l'enregistrement.";
-        }
+    }
+    else
+    {
+        // S'il n'y a rien a enregistrer, on affiche un message d'erreur
+        QMessageBox::warning(this, "Erreur, pas de données à enregistrer", "Vous n'avez aucune données à enregistrer.");
     }
 }
 
@@ -393,7 +416,7 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
 void MainWindow::newQuestionFils()
 {
     // Permet d'ajouter une question en tant que fils de la question courante
-    Question * newQuestion = new Question(0);
+    Question * newQuestion = new Question(++(BDD::lastId));
 
     myWindowQues = new ModifQuestionWindow(newQuestion, this);
     myWindowQues->setModal(true);
@@ -443,7 +466,7 @@ void MainWindow::newQuestionFrere()
 
     if(mapTreeQuestions.size() != 0)
     {
-        Question * newQuestion = new Question(0);
+        Question * newQuestion = new Question(++(BDD::lastId));
 
         myWindowQues = new ModifQuestionWindow(newQuestion, this);
         myWindowQues->setModal(true);
@@ -523,17 +546,21 @@ void MainWindow::supprimerQuestion()
 
 void MainWindow::newCommentaire()
 {
-    QString leTxt("Nouveau commentaire");
+    myWindowTxt = new TexteWindow("");
 
-    // TODO : ouvrir une fenetre demandant le contenu du commentaire
+    /* Permet de recevoir les QString émit par la QDialog TexteWindow */
+    connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
+
+    myWindowTxt->setModal(true);
+    myWindowTxt->exec();
 
     // Création de l'item avec le texte reçu
-    QStandardItem * elem = new QStandardItem(leTxt);
+    QStandardItem * elem = new QStandardItem("2-" + returnText);
     model_tvMediaQuestion->appendRow(elem);
 
     // Création de l'objet média en mémoire
-    Media * newMedia = new Media(0);
-    newMedia->setPath(leTxt);
+    Media * newMedia = new Media(++(BDD::lastId));
+    newMedia->setPath(returnText);
     newMedia->setType(MEDIA_TYPE_TEXT);
 
     // On récupère l'index de la question selectionnée dans le TreeView des questions
@@ -549,34 +576,87 @@ void MainWindow::newCommentaire()
 
 void MainWindow::newMedia()
 {
-    QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
+    QFileInfo fi = QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"));
+    QString fileName = fi.fileName();
 
-    model_tvMediaQuestion->appendRow(new QStandardItem("1-" + fileName));
+    // Pour connaitre le type de média sélectionné, on regarde son extension
+    if(formatImage.contains(fi.suffix()))
+    {
+        model_tvMediaQuestion->appendRow(new QStandardItem("1-" + fileName));
 
-    QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
-    QString coordonnees = calculerCoordonnees(index);
-    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-    Media * m = new Media(++(BDD::lastId));
-    m->setPath(fileName);
-    m->setType(MEDIA_TYPE_IMAGE);
-    currentQuestion->ajouterMedia(m);
+        Media * m = new Media(++(BDD::lastId));
+        m->setPath(fileName);
+        m->setType(MEDIA_TYPE_IMAGE);
+        currentQuestion->ajouterMedia(m);
+    }
+    else if(formatVideo.contains(fi.suffix()))
+    {
+        model_tvMediaQuestion->appendRow(new QStandardItem("0-" + fileName));
 
-    // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
-    //      SI oui, pas de problème
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+
+        Media * m = new Media(++(BDD::lastId));
+        m->setPath(fileName);
+        m->setType(MEDIA_TYPE_VIDEO);
+        currentQuestion->ajouterMedia(m);
+    }
+    else if(formatAudio.contains(fi.suffix()))
+    {
+        model_tvMediaQuestion->appendRow(new QStandardItem("3-" + fileName));
+
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+
+        Media * m = new Media(++(BDD::lastId));
+        m->setPath(fileName);
+        m->setType(MEDIA_TYPE_AUDIO);
+        currentQuestion->ajouterMedia(m);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Problème de format de fichier", "Le format du fichier " + fileName + " n'est pas compatible avec l'application.");
+    }
+
+    // TODO : tester si le média est présent ou non dans le dossier des médias
     //      SI non, il faut le copier dans le dossier
 }
 
 void MainWindow::modifierMedia()
 {
-    QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
-
-    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
-
     // On modifie l'item correspondant dans le modèle du TreeView
+    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
     QStandardItem * tmp = model_tvMediaQuestion->itemFromIndex(currentIndex);
-    tmp->setText(fileName);
-    model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+
+    if(tmp->text().startsWith("2")) // si le média sélectionné est un texte
+    {
+        myWindowTxt = new TexteWindow(tmp->text().split("-")[1]);
+
+        /* Permet de recevoir les QString émit par la QDialog TexteWindow */
+        connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
+
+        myWindowTxt->setModal(true);
+        myWindowTxt->exec();
+
+        tmp->setText("2-" + returnText);
+        model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+    }
+    else // si c'est un média "classique"
+    {
+        QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
+
+        // TODO : on considère que le nouveau média sera du même type que l'ancien
+        tmp->setText(fileName);
+        model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+    }
+
+    // TODO : il faut changer le chemin du média en mémoire
 
     // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
     //      SI oui, pas de problème
@@ -661,34 +741,77 @@ void MainWindow::supprimerReponse()
 
 void MainWindow::newComMediaReponse()
 {
-    QString leTxt("Nouveau commentaire");
+    myWindowTxt = new TexteWindow("");
 
-    // TODO : ouvrir une fenetre demandant le contenu du commentaire
+    /* Permet de recevoir les QString émit par la QDialog TexteWindow */
+    connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
+
+    myWindowTxt->setModal(true);
+    myWindowTxt->exec();
 
     // Création de l'item avec le texte reçu
-    QStandardItem * elem = new QStandardItem(leTxt);
+    QStandardItem * elem = new QStandardItem("2-" + returnText);
     (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(elem);
 
-    // TODO : il faut associer le média à la question
-    // ...
+    // Création de l'objet média en mémoire
+    Media * newMedia = new Media(++(BDD::lastId));
+    newMedia->setPath(returnText);
+    newMedia->setType(MEDIA_TYPE_TEXT);
+
+    QModelIndex index = ui->treeViewReponse->currentIndex();
+    Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+
+    // On ajoute le média à la réponse courante
+    currentReponse->ajouterMedia(newMedia);
 }
 
 void MainWindow::newMediaReponse()
 {
-    QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
+    QFileInfo fi = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)")));
+    QString fileName = fi.fileName();
 
-    (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("1-" + fileName));
+    if(formatImage.contains(fi.suffix()))
+    {
+        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("1-" + fileName));
 
-    QModelIndex index = ui->treeViewReponse->currentIndex(); // on récupère l'index de la selection
-    Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+        QModelIndex index = ui->treeViewReponse->currentIndex();
+        Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
 
-    Media * m = new Media(++(BDD::lastId));
-    m->setPath(fileName);
-    m->setType(MEDIA_TYPE_IMAGE);
-    currentReponse->ajouterMedia(m);
+        Media * m = new Media(++(BDD::lastId));
+        m->setPath(fileName);
+        m->setType(MEDIA_TYPE_IMAGE);
+        currentReponse->ajouterMedia(m);
+    }
+    else if(formatVideo.contains(fi.suffix()))
+    {
+        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("0-" + fileName));
 
-    // TODO : il faudra penser à tester si le média est présent ou non dans le dossier des médias
-    //      SI oui, pas de problème
+        QModelIndex index = ui->treeViewReponse->currentIndex();
+        Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+
+        Media * m = new Media(++(BDD::lastId));
+        m->setPath(fileName);
+        m->setType(MEDIA_TYPE_VIDEO);
+        currentReponse->ajouterMedia(m);
+    }
+    else if(formatAudio.contains(fi.suffix()))
+    {
+        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("3-" + fileName));
+
+        QModelIndex index = ui->treeViewReponse->currentIndex();
+        Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+
+        Media * m = new Media(++(BDD::lastId));
+        m->setPath(fileName);
+        m->setType(MEDIA_TYPE_AUDIO);
+        currentReponse->ajouterMedia(m);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Problème de format de fichier", "Le format du fichier " + fileName + " n'est pas compatible avec l'application.");
+    }
+
+    // TODO : tester si le média est présent ou non dans le dossier des médias
     //      SI non, il faut le copier dans le dossier
 }
 

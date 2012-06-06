@@ -41,11 +41,12 @@ class BDD {
         static ListeQuestion * CreerArbre(QString filePath);
 
         /**
-         *  \fn static void enregistrerArbre(Categorie *racine)
+         *  \fn static int enregistrerArbre(Categorie *racine)
          *  \brief enregistre le fichier xml dans un fichier passer en parametre
          *  \param Categorie *racine : la categorie en racine de l'arborescence
+         *  \return int : 0 si enregistrement OK, -1 sinon
          */
-        static void enregistrerArbre(Categorie *racine, QString filePath);
+        static int enregistrerArbre(Categorie *racine, QString filePath);
 };
 
 #endif // BDD_H

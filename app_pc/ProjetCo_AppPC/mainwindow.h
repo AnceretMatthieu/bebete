@@ -30,6 +30,7 @@
 #include "Espece.h"
 #include "ListeReponse.h"
 #include "Media.h"
+#include "textewindow.h"
 
 namespace Ui {
     class MainWindow;
@@ -63,9 +64,16 @@ class MainWindow : public QMainWindow
 
         ModifQuestionWindow * myWindowQues;
         ModifReponseWindow * myWindowRep;
-        NewReponseWindow * myWindowText;
+        TexteWindow * myWindowTxt;
         AudioPlayer * myAudioPlayer;
         VideoPlayer * myVideoPlayer;
+
+        // Format de fichier reconnu par l'application
+        QList<QString> formatImage;
+        QList<QString> formatAudio;
+        QList<QString> formatVideo;
+
+        QString returnText;
 
         void peuplerListeQuestionsXML(ListeQuestion * uneListeQuestions, QStandardItem * pere, int nbPere, QString coordPere);
         void createAction();
@@ -84,6 +92,8 @@ class MainWindow : public QMainWindow
         void playAudio(QString fileName);
         void playVideo(QString fileName);
         void openMedia(QString fileName, int typeMedia);
+
+        void receiveContents(QString str);
 
         void newQuestionFils();
         void newQuestionFrere();

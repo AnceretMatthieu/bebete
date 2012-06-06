@@ -10,8 +10,11 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
     // On sauvegarde la question envoyée par la fenêtre principale
     laQuestion = currentQuestion;
 
+    // Dans le cas où c'est une modification de question
     if(currentQuestion->getQuestion() != QString())
     {
+        this->setWindowTitle("Modifier une question");
+
         ui->label_id->setText(QString::number(currentQuestion->getIdentifiant()));
         ui->textEdit->setText(currentQuestion->getQuestion());
 
@@ -30,6 +33,11 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
             ui->checkBox_visibleOeil->setChecked(true);
             ui->checkBox_visibleLoupe->setChecked(true);
         }
+    }
+    else
+    {
+        this->setWindowTitle("Nouvelle question");
+        ui->label_id->setText("Pas d'ID");
     }
 }
 
@@ -65,12 +73,9 @@ void ModifQuestionWindow::on_buttonBox_accepted()
             laQuestion->setVisible("false");
         }
     }
-    else if(ui->checkBox_visibleOeil->checkState() == Qt::Unchecked)
+    else if(ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
     {
-        if(ui->checkBox_visibleLoupe->checkState() == Qt::Checked)
-        {
-            laQuestion->setVisible("true");
-        }
+        laQuestion->setVisible("true");
     }
     else
     {
