@@ -56,7 +56,7 @@
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
-           <widget class="QPushButton" name="button_addQuestionFrere">
+           <widget class="QPushButton" name="button_addQuestion">
             <property name="font">
              <font>
               <family>MS Shell Dlg 2</family>
@@ -64,20 +64,11 @@
              </font>
             </property>
             <property name="text">
-             <string>Ajouter un frère</string>
+             <string>Ajouter une question</string>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="button_addQuestionFils">
-            <property name="font">
-             <font>
-              <family>MS Shell Dlg 2</family>
-              <pointsize>10</pointsize>
-             </font>
-            </property>
-            <property name="text">
-             <string>Ajouter un fils</string>
+            <property name="icon">
+             <iconset>
+              <normaloff>images/icon_ajouter.png</normaloff>images/icon_ajouter.png</iconset>
             </property>
            </widget>
           </item>
@@ -582,6 +573,56 @@
              </widget>
             </item>
            </layout>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="Line" name="line_10">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_9">
+          <item>
+           <widget class="QPushButton" name="button_ajouterResult">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Ajouter résultat</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_modifierResult">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Modifier résultat</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="button_supprimerResult">
+            <property name="font">
+             <font>
+              <family>MS Shell Dlg 2</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="text">
+             <string>Supprimer résultat</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>

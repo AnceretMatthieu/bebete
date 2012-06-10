@@ -29,8 +29,8 @@ SOURCES += main.cpp \
     audioplayer.cpp \
     videoplayer.cpp \
     modifreponsewindow.cpp \
-    newreponsewindow.cpp \
-    textewindow.cpp
+    textewindow.cpp \
+    newresultatwindow.cpp
 HEADERS += mainwindow.h \
     aboutwindow.h \
     modifquestionwindow.h \
@@ -52,13 +52,13 @@ HEADERS += mainwindow.h \
     audioplayer.h \
     videoplayer.h \
     modifreponsewindow.h \
-    newreponsewindow.h \
-    textewindow.h
+    textewindow.h \
+    newresultatwindow.h
 FORMS += mainwindow.ui \
     aboutwindow.ui \
     modifquestionwindow.ui \ 
     audioplayer.ui \
     videoplayer.ui \
     modifreponsewindow.ui \
-    newreponsewindow.ui \
-    textewindow.ui
+    textewindow.ui \
+    newresultatwindow.ui

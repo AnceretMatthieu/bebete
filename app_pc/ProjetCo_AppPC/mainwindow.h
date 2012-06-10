@@ -25,12 +25,12 @@
 #include "ListeMedia.h"
 #include "audioplayer.h"
 #include "videoplayer.h"
-#include "newreponsewindow.h"
 #include "modifreponsewindow.h"
 #include "Espece.h"
 #include "ListeReponse.h"
 #include "Media.h"
 #include "textewindow.h"
+#include "newresultatwindow.h"
 
 namespace Ui {
     class MainWindow;
@@ -65,6 +65,7 @@ class MainWindow : public QMainWindow
         ModifQuestionWindow * myWindowQues;
         ModifReponseWindow * myWindowRep;
         TexteWindow * myWindowTxt;
+        NewResultatWindow * myWindowResult;
         AudioPlayer * myAudioPlayer;
         VideoPlayer * myVideoPlayer;
 
@@ -95,8 +96,7 @@ class MainWindow : public QMainWindow
 
         void receiveContents(QString str);
 
-        void newQuestionFils();
-        void newQuestionFrere();
+        void newQuestion();
         void modifierQuestion();
         void supprimerQuestion();
 
@@ -113,6 +113,10 @@ class MainWindow : public QMainWindow
         void newMediaReponse();
         void modifierMediaReponse();
         void supprimerMediaReponse();
+
+        void newResultat();
+        void modifierResultat();
+        void supprimerResultat();
 };
 
 #endif // MAINWINDOW_H

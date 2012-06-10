@@ -87,7 +87,7 @@ class Espece {
          *  \brief change le regime alimentaire de l'espece
          *  \param QString unRegime : le nouveau regime alimentaire
          */
-        void setRegimeAlimentaire(QString unRegime) { regimeAlimentaire = unRegime; }
+        void setRegimeAlimentaire(QString unRegime);
 
         /**
          *  \fn void setInformation(QString uneInformation);

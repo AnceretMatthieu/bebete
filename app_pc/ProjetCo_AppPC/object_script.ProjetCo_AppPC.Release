@@ -21,14 +21,14 @@ INPUT(
 ./release\audioplayer.o
 ./release\videoplayer.o
 ./release\modifreponsewindow.o
-./release\newreponsewindow.o
 ./release\textewindow.o
+./release\newresultatwindow.o
 ./release\moc_mainwindow.o
 ./release\moc_aboutwindow.o
 ./release\moc_modifquestionwindow.o
 ./release\moc_audioplayer.o
 ./release\moc_videoplayer.o
 ./release\moc_modifreponsewindow.o
-./release\moc_newreponsewindow.o
 ./release\moc_textewindow.o
+./release\moc_newresultatwindow.o
 );

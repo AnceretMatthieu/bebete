@@ -5,6 +5,9 @@
 Espece::Espece(int identifiant)    {
     id = identifiant;
     listeMedia = new ListeMedia();
+    this->nom = QString("");
+    this->type = QString("");
+    this->regimeAlimentaire = QString("");
     this->information = QString("");
 }
 
@@ -20,4 +23,9 @@ void Espece::supprimerMedia(Media *med) {
     if(i != listeMedia->size())   {
         listeMedia->remove(i);
     }
+}
+
+void Espece::setRegimeAlimentaire(QString unRegime)
+{
+    regimeAlimentaire = unRegime;
 }

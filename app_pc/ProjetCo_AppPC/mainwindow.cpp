@@ -1,6 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+/* Erreurs/bugs à corriger...
+        - le clic sur le bouton "Annuler" des fenêtres modales (ajout d'un commentaire nottamment)
+        - gérer l'ajout de média sur les résultats
+*/
+
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
     /* Initialisation des icones */
@@ -117,8 +122,7 @@ void MainWindow::createAction()
     connect(ui->treeViewMediasQuestion, SIGNAL(clicked(QModelIndex)), this, SLOT(clickTreeViewMediasQuestions(QModelIndex)));
 
     /* Affectation des actions aux boutons des questions */
-    connect(ui->button_addQuestionFils, SIGNAL(clicked()), this, SLOT(newQuestionFils()));
-    connect(ui->button_addQuestionFrere, SIGNAL(clicked()), this, SLOT(newQuestionFrere()));
+    connect(ui->button_addQuestion, SIGNAL(clicked()), this, SLOT(newQuestion()));
     connect(ui->button_modifierQuestion, SIGNAL(clicked()), this, SLOT(modifierQuestion()));
     connect(ui->button_supprimerQuestion, SIGNAL(clicked()), this, SLOT(supprimerQuestion()));
 
@@ -138,6 +142,9 @@ void MainWindow::createAction()
     connect(ui->button_ajouterMediaReponse, SIGNAL(clicked()), this, SLOT(newMediaReponse()));
     connect(ui->button_modifierMediaReponse, SIGNAL(clicked()), this, SLOT(modifierMediaReponse()));
     connect(ui->button_supprimerMediaReponse, SIGNAL(clicked()), this, SLOT(supprimerMediaReponse()));
+    connect(ui->button_ajouterResult, SIGNAL(clicked()), this, SLOT(newResultat()));
+    connect(ui->button_modifierResult, SIGNAL(clicked()), this, SLOT(modifierResultat()));
+    connect(ui->button_supprimerResult, SIGNAL(clicked()), this, SLOT(supprimerResultat()));
 }
 
 void MainWindow::receiveContents(QString str)
@@ -177,7 +184,7 @@ void MainWindow::actionExporter_XML_triggered()
         QString fileName = QFileDialog::getSaveFileName(this, tr("Enregistrer le fichier de base de données"), QDir::currentPath(), tr("Fichier XML (*.xml)"));
         if(fileName != "")
         {
-            Categorie categorie(1);
+            Categorie categorie(++(BDD::lastId));
             categorie.ajouterQuestion(maListeQuestions->at(0));
             if(BDD::enregistrerArbre(&categorie, fileName) == 0) // enregistrement OK
             {
@@ -367,16 +374,11 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
                 {
                     Espece * currentResult = ((Espece *)r->getSuiv());
 
-                    QString result = "Résultat";
-                    QString nom = currentResult->getNom();
-                    QString type = currentResult->getType();
-                    QString regime = currentResult->getRegimeAlimentaire();
-                    QString info = currentResult->getInformation();
-                    ui->labelReponse2->setText(result);
-                    ui->labelImage1->setText("Nom : " + nom);
-                    ui->labelImage2->setText("Type : " + type);
-                    ui->labelImage3->setText("Régime alimentaire : " + regime);
-                    ui->labelImage4->setText("Informations : " + info);
+                    ui->labelReponse2->setText("Résultat");
+                    ui->labelImage1->setText("Nom : " + currentResult->getNom());
+                    ui->labelImage2->setText("Type : " + currentResult->getType());
+                    ui->labelImage3->setText("Régime alimentaire : " + currentResult->getRegimeAlimentaire());
+                    ui->labelImage4->setText("Informations : " + currentResult->getInformation());
 
                     ListeMedia * lm = currentResult->getListeMedia();
                     if(lm->size() != 0) {
@@ -413,95 +415,51 @@ void MainWindow::clickTreeViewReponse(const QModelIndex &index)
     }
 }
 
-void MainWindow::newQuestionFils()
+void MainWindow::newQuestion()
 {
     // Permet d'ajouter une question en tant que fils de la question courante
     Question * newQuestion = new Question(++(BDD::lastId));
 
     myWindowQues = new ModifQuestionWindow(newQuestion, this);
     myWindowQues->setModal(true);
-    myWindowQues->exec();
+    int value = myWindowQues->exec();
 
-    if(newQuestion->getQuestion() != "") // si la question possède un contenu texte, on considère que l'utilisateur a cliqué sur "Annuler"
+    if(value == QDialog::Accepted)
     {
-        QModelIndex index = ui->treeViewQuestion->currentIndex();
-        if(index.column() != -1)    {
-            QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
-
-            QString s = newQuestion->getQuestion();
-            QStandardItem * elem = new QStandardItem(greenIcon, s);
-
-            // On ajoute l'élément en tant que fils de l'élément courant
-            currentSelection->appendRow(elem);
-
-            // On calcul les coordonnées du nouveau noeud
-            QString coordonnees2 = calculerCoordonnees(elem->index());
-
-            // On récupère la réponse selectionnée
-            QModelIndex indexRep = ui->treeViewReponse->currentIndex();
-            Reponse * currentReponse = mapTreeReponses.value(QString::number(indexRep.row()));
-
-            // On crée une nouvelle catégorie après la réponse sélectionnée
-            Categorie * c = new Categorie(0);
-            // On ajoute la nouvelle question après cette nouvelle catégorie
-            c->ajouterQuestion(newQuestion);
-            // On ajoute la catégorie à la réponse courante
-            currentReponse->setSuiv(c);
-            currentReponse->setTypeSuiv(TYPE_CATEGORIE);
-            mapTreeQuestions.insert(coordonnees2, newQuestion);
-        }
-        else    {
-            QString s = newQuestion->getQuestion();
-            QStandardItem * elem = new QStandardItem(greenIcon, s);
-            model_tvQuestion->appendRow(elem);
-            maListeQuestions->append(newQuestion);
-            mapTreeQuestions.insert(calculerCoordonnees(elem->index()), newQuestion);
-        }
-    }
-}
-
-void MainWindow::newQuestionFrere()
-{
-    // Permet d'ajouter une question au même niveau que la question courante à la fin
-
-    if(mapTreeQuestions.size() != 0)
-    {
-        Question * newQuestion = new Question(++(BDD::lastId));
-
-        myWindowQues = new ModifQuestionWindow(newQuestion, this);
-        myWindowQues->setModal(true);
-        myWindowQues->exec();
-
-        if(newQuestion->getQuestion() != "")
+        if(newQuestion->getQuestion() != "") // si la question possède un contenu texte, on considère que l'utilisateur a cliqué sur "Annuler"
         {
-            QModelIndex index = ui->treeViewQuestion->currentIndex(); // on récupère l'index de la selection
-            QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index); // on récupère l'item de la selection
+            QModelIndex index = ui->treeViewQuestion->currentIndex();
+            if(index.column() != -1)    {
+                QStandardItem * currentSelection = model_tvQuestion->itemFromIndex(index);
 
-            QString s  = newQuestion->getQuestion();
-            QStandardItem * elem = new QStandardItem(greenIcon, s);
+                QString s = newQuestion->getQuestion();
+                QStandardItem * elem = new QStandardItem(greenIcon, s);
 
-            // On calcul les coordonnées du noeud courant
-            QString coordonnees = calculerCoordonnees(index);
-            Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+                // On ajoute l'élément en tant que fils de l'élément courant
+                currentSelection->appendRow(elem);
 
-            if (currentSelection->parent() != 0) // l'élément selectionné n'est pas un élément racine
-            {
-                currentSelection->parent()->appendRow(elem);
-
-                // On calcul les coordonnées du noeud courant
-                QString coordonnees = calculerCoordonnees(elem->index());
-                // On ajoute la question en mémoire
-                currentQuestion->getCat()->ajouterQuestion(newQuestion);
-                // On ajoute la question à la map des questions
-                mapTreeQuestions.insert(coordonnees, newQuestion);
-            }
-            else // l'élément selectionné est à la racine
-            {
-                model_tvQuestion->appendRow(elem);
-
+                // On calcul les coordonnées du nouveau noeud
                 QString coordonnees2 = calculerCoordonnees(elem->index());
-                currentQuestion->getCat()->ajouterQuestion(newQuestion);
+
+                // On récupère la réponse selectionnée
+                QModelIndex indexRep = ui->treeViewReponse->currentIndex();
+                Reponse * currentReponse = mapTreeReponses.value(QString::number(indexRep.row()));
+
+                // On crée une nouvelle catégorie après la réponse sélectionnée
+                Categorie * c = new Categorie(++(BDD::lastId));
+                // On ajoute la nouvelle question après cette nouvelle catégorie
+                c->ajouterQuestion(newQuestion);
+                // On ajoute la catégorie à la réponse courante
+                currentReponse->setSuiv(c);
+                currentReponse->setTypeSuiv(TYPE_CATEGORIE);
                 mapTreeQuestions.insert(coordonnees2, newQuestion);
+            }
+            else    {
+                QString s = newQuestion->getQuestion();
+                QStandardItem * elem = new QStandardItem(greenIcon, s);
+                model_tvQuestion->appendRow(elem);
+                maListeQuestions->append(newQuestion);
+                mapTreeQuestions.insert(calculerCoordonnees(elem->index()), newQuestion);
             }
         }
     }
@@ -527,21 +485,24 @@ void MainWindow::modifierQuestion()
 
 void MainWindow::supprimerQuestion()
 {
-    // TODO : demander confirmation avant de supprimer une question ? seulement si elle a des fils ?
+    int reponse = QMessageBox::question(this, "Supprimer une question", "Etes-vous sur(e) de vouloir supprimer la question \"" + model_tvQuestion->itemFromIndex(ui->treeViewQuestion->currentIndex())->text() + "\" ?", QMessageBox::Yes | QMessageBox::No);
 
-    QModelIndex index = ui->treeViewQuestion->currentIndex();
+    if(reponse == QMessageBox::Yes)
+    {
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
 
-    // On calcul les coordonnées du noeud courant
-    QString coordonnees = calculerCoordonnees(index);
-    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+        // On calcul les coordonnées du noeud courant
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-    // On supprime la question du modèle
-    model_tvQuestion->removeRow(index.row(), index.parent());
+        // On supprime la question du modèle
+        model_tvQuestion->removeRow(index.row(), index.parent());
 
-    // On supprime la question de la mémoire
-    // TODO : il faut penser à supprimer tous les fils de la question, les réponses et les médias associés
-    ListeQuestion * tmp = currentQuestion->getCat()->getListeQuestion();
-    tmp->remove(tmp->indexOf(currentQuestion));
+        // On supprime la question de la mémoire
+        // TODO : il faut penser à supprimer tous les fils de la question, les réponses et les médias associés
+        ListeQuestion * tmp = currentQuestion->getCat()->getListeQuestion();
+        tmp->remove(tmp->indexOf(currentQuestion));
+    }
 }
 
 void MainWindow::newCommentaire()
@@ -556,6 +517,8 @@ void MainWindow::newCommentaire()
 
     // Création de l'item avec le texte reçu
     QStandardItem * elem = new QStandardItem("2-" + returnText);
+    // On "vide" la variable contenant le texte retourné par la fenêtre
+    returnText = "";
     model_tvMediaQuestion->appendRow(elem);
 
     // Création de l'objet média en mémoire
@@ -588,10 +551,10 @@ void MainWindow::newMedia()
         QString coordonnees = calculerCoordonnees(index);
         Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-        Media * m = new Media(++(BDD::lastId));
-        m->setPath(fileName);
-        m->setType(MEDIA_TYPE_IMAGE);
-        currentQuestion->ajouterMedia(m);
+        Media * mImg = new Media(++(BDD::lastId));
+        mImg->setPath(fileName);
+        mImg->setType(MEDIA_TYPE_IMAGE);
+        currentQuestion->ajouterMedia(mImg);
     }
     else if(formatVideo.contains(fi.suffix()))
     {
@@ -601,10 +564,10 @@ void MainWindow::newMedia()
         QString coordonnees = calculerCoordonnees(index);
         Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-        Media * m = new Media(++(BDD::lastId));
-        m->setPath(fileName);
-        m->setType(MEDIA_TYPE_VIDEO);
-        currentQuestion->ajouterMedia(m);
+        Media * mVid = new Media(++(BDD::lastId));
+        mVid->setPath(fileName);
+        mVid->setType(MEDIA_TYPE_VIDEO);
+        currentQuestion->ajouterMedia(mVid);
     }
     else if(formatAudio.contains(fi.suffix()))
     {
@@ -614,10 +577,10 @@ void MainWindow::newMedia()
         QString coordonnees = calculerCoordonnees(index);
         Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-        Media * m = new Media(++(BDD::lastId));
-        m->setPath(fileName);
-        m->setType(MEDIA_TYPE_AUDIO);
-        currentQuestion->ajouterMedia(m);
+        Media * mAud = new Media(++(BDD::lastId));
+        mAud->setPath(fileName);
+        mAud->setType(MEDIA_TYPE_AUDIO);
+        currentQuestion->ajouterMedia(mAud);
     }
     else
     {
@@ -649,11 +612,28 @@ void MainWindow::modifierMedia()
     }
     else // si c'est un média "classique"
     {
-        QString fileName = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"))).fileName();
+        QFileInfo fi = QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)"));
+        QString fileName = fi.fileName();
 
-        // TODO : on considère que le nouveau média sera du même type que l'ancien
-        tmp->setText(fileName);
-        model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+        if(formatImage.contains(fi.suffix()))
+        {
+            tmp->setText("1-" + fileName);
+            model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+        }
+        else if(formatVideo.contains(fi.suffix()))
+        {
+            tmp->setText("0-" + fileName);
+            model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+        }
+        else if(formatAudio.contains(fi.suffix()))
+        {
+            tmp->setText("3-" + fileName);
+            model_tvMediaQuestion->setItem(currentIndex.row(), tmp);
+        }
+        else
+        {
+            QMessageBox::warning(this, "Problème de format de fichier", "Le format du fichier " + fileName + " n'est pas compatible avec l'application.");
+        }
     }
 
     // TODO : il faut changer le chemin du média en mémoire
@@ -665,13 +645,34 @@ void MainWindow::modifierMedia()
 
 void MainWindow::supprimerMedia()
 {
-    QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
-    model_tvMediaQuestion->removeRow(currentIndex.row());
+    int reponse = QMessageBox::question(this, "Supprimer un média", "Etes-vous sur(e) de vouloir supprimer le média \"" + model_tvMediaQuestion->itemFromIndex(ui->treeViewMediasQuestion->currentIndex())->text() + "\" ?", QMessageBox::Yes | QMessageBox::No);
 
-    // TODO : il faut aussi supprimer le média de la question associée
+    if(reponse == QMessageBox::Yes)
+    {
+        QModelIndex currentIndex = ui->treeViewMediasQuestion->currentIndex();
+        QStandardItem * tmp = model_tvMediaQuestion->itemFromIndex(currentIndex);
+        QString fileName = (tmp->text().split("-"))[1];
 
-    // TODO : il faut aussi (éventuellement) supprimer le fichier associé
-    //QFile::remove("images/" + model_tvMediaQuestion->itemFromIndex(currentIndex)->text());
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+        ListeMedia * lm = currentQuestion->getListeMedia();
+
+        for(int i = 0; i < lm->size(); i++)
+        {
+            Media * m = lm->at(i);
+            if(m->getPath() == fileName) // On se base sur le nom du fichier pour le supprimer de la liste des médias
+            {
+                lm->remove(i);
+            }
+        }
+
+        // On supprime la question du modèle du TreeView
+        model_tvMediaQuestion->removeRow(currentIndex.row());
+
+        // TODO : il faut aussi (éventuellement) supprimer le fichier associé
+        //QFile::remove("images/" + model_tvMediaQuestion->itemFromIndex(currentIndex)->text());
+    }
 }
 
 void MainWindow::newReponse()
@@ -682,25 +683,28 @@ void MainWindow::newReponse()
 
     myWindowRep = new ModifReponseWindow(newReponse, this);
     myWindowRep->setModal(true);
-    myWindowRep->exec();
+    int value = myWindowRep->exec();
 
-    if(newReponse->getReponse() != "")
+    if(value == QDialog::Accepted)
     {
-        QString s = newReponse->getReponse();
+        if(newReponse->getReponse() != "")
+        {
+            QString s = newReponse->getReponse();
 
-        QStandardItem * elemRep = new QStandardItem(s);
-        model_tvReponse->appendRow(elemRep);
+            QStandardItem * elemRep = new QStandardItem(s);
+            model_tvReponse->appendRow(elemRep);
 
-        // On récupère la question courante (celle sélectionnée dans le treeview)
-        QModelIndex index = ui->treeViewQuestion->currentIndex();
-        QString coordonnees = calculerCoordonnees(index);
-        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+            // On récupère la question courante (celle sélectionnée dans le treeview)
+            QModelIndex index = ui->treeViewQuestion->currentIndex();
+            QString coordonnees = calculerCoordonnees(index);
+            Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-        // On ajoute la réponse à la liste des réponses de la question courante
-        currentQuestion->ajouterReponse(newReponse);
+            // On ajoute la réponse à la liste des réponses de la question courante
+            currentQuestion->ajouterReponse(newReponse);
 
-        // On ajoute la réponse à la QMap
-        mapTreeReponses.insert(QString::number(elemRep->index().row()), newReponse);
+            // On ajoute la réponse à la QMap
+            mapTreeReponses.insert(QString::number(elemRep->index().row()), newReponse);
+        }
     }
 }
 
@@ -722,97 +726,114 @@ void MainWindow::modifierReponse()
 
 void MainWindow::supprimerReponse()
 {
-    // On supprimer la réponse du modèle du treeview
-    QModelIndex currentIndex = ui->treeViewReponse->currentIndex();
-    model_tvReponse->removeRow(currentIndex.row());
+    int reponse = QMessageBox::question(this, "Supprimer une réponse", "Etes-vous sur(e) de vouloir supprimer la réponse \"" + model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex())->text() + "\" ?", QMessageBox::Yes | QMessageBox::No);
 
-    // On récupère la question courante (celle sélectionnée dans le treeview)
-    QModelIndex index = ui->treeViewQuestion->currentIndex();
-    QString coordonnees = calculerCoordonnees(index);
-    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+    if(reponse == QMessageBox::Yes)
+    {
+        // On supprimer la réponse du modèle du treeview
+        QModelIndex currentIndex = ui->treeViewReponse->currentIndex();
+        model_tvReponse->removeRow(currentIndex.row());
 
-    // On supprime la réponse de la mémoire
-    Reponse * r = mapTreeReponses.value(QString::number(currentIndex.row()));
-    currentQuestion->supprimerReponse(r);
+        // On récupère la question courante (celle sélectionnée dans le treeview)
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        QString coordonnees = calculerCoordonnees(index);
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-    // On supprime la réponse de la QMap
-    mapTreeReponses.remove(QString::number(currentIndex.row()));
+        // On supprime la réponse de la mémoire
+        Reponse * r = mapTreeReponses.value(QString::number(currentIndex.row()));
+        currentQuestion->supprimerReponse(r);
+
+        // On supprime la réponse de la QMap
+        mapTreeReponses.remove(QString::number(currentIndex.row()));
+
+        QMessageBox::information(this, "Attention", "Pour éviter des incohérences dans les données, veuillez re-cliquer sur la question courante dans la bandeau de gauche");
+    }
 }
 
 void MainWindow::newComMediaReponse()
 {
-    myWindowTxt = new TexteWindow("");
-
-    /* Permet de recevoir les QString émit par la QDialog TexteWindow */
-    connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
-
-    myWindowTxt->setModal(true);
-    myWindowTxt->exec();
-
-    // Création de l'item avec le texte reçu
-    QStandardItem * elem = new QStandardItem("2-" + returnText);
-    (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(elem);
-
-    // Création de l'objet média en mémoire
-    Media * newMedia = new Media(++(BDD::lastId));
-    newMedia->setPath(returnText);
-    newMedia->setType(MEDIA_TYPE_TEXT);
-
+    // On récupère la réponse selectionnée
     QModelIndex index = ui->treeViewReponse->currentIndex();
     Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
 
-    // On ajoute le média à la réponse courante
-    currentReponse->ajouterMedia(newMedia);
+    if(index.parent() == QModelIndex()) // si l'élément courant n'a pas de parent (= c'est une réponse), alors on peut ajouter une réponse
+    {
+        myWindowTxt = new TexteWindow("");
+
+        /* Permet de recevoir les QString émit par la QDialog TexteWindow */
+        connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
+
+        myWindowTxt->setModal(true);
+        myWindowTxt->exec();
+
+        // Création de l'item avec le texte reçu
+        QStandardItem * elem = new QStandardItem("2-" + returnText);
+        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(elem);
+
+        // Création de l'objet média en mémoire
+        Media * newMedia = new Media(++(BDD::lastId));
+        newMedia->setPath(returnText);
+        newMedia->setType(MEDIA_TYPE_TEXT);
+
+        // On ajoute le média à la réponse courante
+        currentReponse->ajouterMedia(newMedia);
+    }
+    else
+    {
+        QMessageBox::warning(this, "Erreur d'insertion d'un nouveau média", "Vous ne pouvez pas ajouter un nouveau média en tant que fils d'un média existant.");
+    }
 }
 
 void MainWindow::newMediaReponse()
 {
-    QFileInfo fi = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)")));
-    QString fileName = fi.fileName();
+    // On récupère la réponse selectionnée
+    QModelIndex index = ui->treeViewReponse->currentIndex();
+    Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
 
-    if(formatImage.contains(fi.suffix()))
+    if(index.parent() == QModelIndex()) // si l'élément courant n'a pas de parent (= c'est une réponse), alors on peut ajouter une réponse
     {
-        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("1-" + fileName));
+        QFileInfo fi = QFileInfo(QFileDialog::getOpenFileName(this, tr("Selectionner un média à ajouter"), QDir::currentPath(), tr("Tous les fichiers(*.*)")));
+        QString fileName = fi.fileName();
 
-        QModelIndex index = ui->treeViewReponse->currentIndex();
-        Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+        if(formatImage.contains(fi.suffix()))
+        {
+            (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("1-" + fileName));
 
-        Media * m = new Media(++(BDD::lastId));
-        m->setPath(fileName);
-        m->setType(MEDIA_TYPE_IMAGE);
-        currentReponse->ajouterMedia(m);
-    }
-    else if(formatVideo.contains(fi.suffix()))
-    {
-        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("0-" + fileName));
+            Media * m = new Media(++(BDD::lastId));
+            m->setPath(fileName);
+            m->setType(MEDIA_TYPE_IMAGE);
+            currentReponse->ajouterMedia(m);
+        }
+        else if(formatVideo.contains(fi.suffix()))
+        {
+            (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("0-" + fileName));
 
-        QModelIndex index = ui->treeViewReponse->currentIndex();
-        Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
+            Media * m = new Media(++(BDD::lastId));
+            m->setPath(fileName);
+            m->setType(MEDIA_TYPE_VIDEO);
+            currentReponse->ajouterMedia(m);
+        }
+        else if(formatAudio.contains(fi.suffix()))
+        {
+            (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("3-" + fileName));
 
-        Media * m = new Media(++(BDD::lastId));
-        m->setPath(fileName);
-        m->setType(MEDIA_TYPE_VIDEO);
-        currentReponse->ajouterMedia(m);
-    }
-    else if(formatAudio.contains(fi.suffix()))
-    {
-        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(new QStandardItem("3-" + fileName));
+            Media * m = new Media(++(BDD::lastId));
+            m->setPath(fileName);
+            m->setType(MEDIA_TYPE_AUDIO);
+            currentReponse->ajouterMedia(m);
+        }
+        else
+        {
+            QMessageBox::warning(this, "Problème de format de fichier", "Le format du fichier " + fileName + " n'est pas compatible avec l'application.");
+        }
 
-        QModelIndex index = ui->treeViewReponse->currentIndex();
-        Reponse * currentReponse = mapTreeReponses.value(QString::number(index.row()));
-
-        Media * m = new Media(++(BDD::lastId));
-        m->setPath(fileName);
-        m->setType(MEDIA_TYPE_AUDIO);
-        currentReponse->ajouterMedia(m);
+        // TODO : tester si le média est présent ou non dans le dossier des médias
+        //      SI non, il faut le copier dans le dossier
     }
     else
     {
-        QMessageBox::warning(this, "Problème de format de fichier", "Le format du fichier " + fileName + " n'est pas compatible avec l'application.");
+        QMessageBox::warning(this, "Erreur d'insertion d'un nouveau média", "Vous ne pouvez pas ajouter un nouveau média en tant que fils d'un média existant.");
     }
-
-    // TODO : tester si le média est présent ou non dans le dossier des médias
-    //      SI non, il faut le copier dans le dossier
 }
 
 void MainWindow::modifierMediaReponse()
@@ -822,7 +843,73 @@ void MainWindow::modifierMediaReponse()
 
 void MainWindow::supprimerMediaReponse()
 {
+    int reponse = QMessageBox::question(this, "Supprimer un média", "Etes-vous sur(e) de vouloir supprimer le média \"" + model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex())->text() + "\" ?", QMessageBox::Yes | QMessageBox::No);
 
+    if(reponse == QMessageBox::Yes)
+    {
+
+    }
+}
+
+void MainWindow::newResultat()
+{
+    Reponse * r = mapTreeReponses.value(QString::number(ui->treeViewReponse->currentIndex().row()));
+
+    if(r->getTypeSuiv() == TYPE_EMPTY)
+    {
+        Espece * newEspece = new Espece(++(BDD::lastId));
+
+        myWindowResult = new NewResultatWindow(newEspece, this);
+        myWindowResult->setModal(true);
+        int value = myWindowResult->exec();
+
+        if(value == QDialog::Accepted)
+        {
+            // On ajoute la nouvelle espèce à la réponse
+            r->setSuiv(newEspece);
+            r->setTypeSuiv(TYPE_ESPECE);
+        }
+    }
+}
+
+void MainWindow::modifierResultat()
+{
+    Reponse * r = mapTreeReponses.value(QString::number(ui->treeViewReponse->currentIndex().row()));
+
+    if(r->getTypeSuiv() == TYPE_ESPECE)
+    {
+        Espece * uneEspece = (Espece *)r->getSuiv();
+
+        myWindowResult = new NewResultatWindow(uneEspece, this);
+        myWindowResult->setModal(true);
+        int value = myWindowResult->exec();
+
+        if(value == QDialog::Accepted)
+        {
+            r->setSuiv(uneEspece);
+        }
+    }
+}
+
+void MainWindow::supprimerResultat()
+{
+    Reponse * r = mapTreeReponses.value(QString::number(ui->treeViewReponse->currentIndex().row()));
+
+    if(r->getTypeSuiv() == TYPE_ESPECE)
+    {
+        int reponse = QMessageBox::question(this, "Supprimer un résultat", "Etes-vous sur(e) de vouloir supprimer le résultat \"" + ((Espece *)r->getSuiv())->getNom() + "\" ?", QMessageBox::Yes | QMessageBox::No);
+
+        if(reponse == QMessageBox::Yes)
+        {
+            // On affecte NULL en tant que successeur de la réponse
+            r->setSuiv(NULL);
+            r->setTypeSuiv(TYPE_EMPTY);
+        }
+    }
+    else
+    {
+        QMessageBox::warning(this, "Pas de résultat", "La réponse sélectionnée ne possède pas de résultat.");
+    }
 }
 
 void MainWindow::playAudio(QString fileName)

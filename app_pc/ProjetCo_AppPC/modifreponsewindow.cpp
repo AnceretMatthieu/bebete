@@ -10,14 +10,14 @@ ModifReponseWindow::ModifReponseWindow(Reponse * currentReponse, QWidget *parent
     // On sauvegarde la réponse envoyée par la fenêtre principale
     maReponse = currentReponse;
 
-    // Tester si la réponse vaut NULL
-    // ==> si c'est le cas, c'est une nouvelle réponse
-    // ==> sinon c'est une modification d'une réponse existante
-    // Penser à répercuter les modifications en mémoire
     if(currentReponse->getReponse() != "")
     {
         ui->label_idReponse->setText(QString::number(currentReponse->getIdentifiant()));
-        ui->textEdit->setText(currentReponse->getReponse());
+        ui->lineEdit->setText(currentReponse->getReponse());
+    }
+    else
+    {
+        ui->label_idReponse->setText(QString::number(currentReponse->getIdentifiant()));
     }
 
     if(currentReponse->getTypeSuiv() == TYPE_CATEGORIE) // c'est une catégorie
@@ -40,7 +40,7 @@ ModifReponseWindow::ModifReponseWindow(Reponse * currentReponse, QWidget *parent
     }
     else
     {
-
+        ui->labelQuestionSuivante->setText("Pas de question suivante...");
     }
 }
 
@@ -51,5 +51,5 @@ ModifReponseWindow::~ModifReponseWindow()
 
 void ModifReponseWindow::on_buttonBox_accepted()
 {
-    maReponse->setReponse(ui->textEdit->toPlainText());
+    maReponse->setReponse(ui->lineEdit->text());
 }

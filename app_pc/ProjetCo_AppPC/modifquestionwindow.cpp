@@ -16,7 +16,7 @@ ModifQuestionWindow::ModifQuestionWindow(Question * currentQuestion, QWidget *pa
         this->setWindowTitle("Modifier une question");
 
         ui->label_id->setText(QString::number(currentQuestion->getIdentifiant()));
-        ui->textEdit->setText(currentQuestion->getQuestion());
+        ui->lineEdit->setText(currentQuestion->getQuestion());
 
         if(currentQuestion->getVisible() == "true")
         {
@@ -60,7 +60,7 @@ void ModifQuestionWindow::changeEvent(QEvent *e)
 
 void ModifQuestionWindow::on_buttonBox_accepted()
 {
-    laQuestion->setQuestion(ui->textEdit->toPlainText());
+    laQuestion->setQuestion(ui->lineEdit->text());
 
     if(ui->checkBox_visibleOeil->checkState() == Qt::Checked)
     {
