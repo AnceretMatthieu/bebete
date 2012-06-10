@@ -61,6 +61,31 @@ public class BebeteActivity extends Activity implements OnClickListener
 	    return true;
 	}
 	
+	@Override
+	public void onBackPressed() 
+	{
+		 AlertDialog.Builder builder = new AlertDialog.Builder(this);
+         builder.setMessage("Etes-vous sûr de vouloir quitter ?")
+                 .setCancelable(false)
+                 .setPositiveButton("Oui",
+                         new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog,
+                                     int id) {
+
+                                 moveTaskToBack(true);
+                             }
+                         })
+                 .setNegativeButton("Non",
+                         new DialogInterface.OnClickListener() {
+                             public void onClick(DialogInterface dialog,
+                                     int id) {
+                                 dialog.cancel();
+                             }
+                         });
+         AlertDialog alert = builder.create();
+         alert.show();    
+    }
+	
 	/**
 	 * Gestion de l'interface graphique de base
 	 */
@@ -178,7 +203,7 @@ public class BebeteActivity extends Activity implements OnClickListener
     		SharedPreferences preferences = getPreferences(Context.MODE_PRIVATE); //recupere les setings de l'application
             int utilisateur_id = (int)preferences.getLong("UTILISATEUR_ID", -1);
             if(utilisateur_id == -1)
-            	alertbox("Attention !", "SÃ©lectionner un utilisateur");
+            	alertbox("Attention !", "Sélectionner un utilisateur");
             else
             	Export.Export(this, utilisateur_id);
     	}
@@ -257,7 +282,7 @@ public class BebeteActivity extends Activity implements OnClickListener
 					out.write( new String( "<?xml version=\"1.0\"?>").getBytes() );
 					out.write( new String( "<arbre><branche id=\"b1\" type=\"accueil\" date=\"jj/mm/yyy\">" ).getBytes() );
 					out.write( new String( "<question id=\"q1\" texte=\"Aucun fichier XML trouver\" observation=\"oeil\">" +
-							"<media><legende>Veuillez vï¿½rifier que les fichiers ont bien ï¿½tï¿½ copiï¿½s dans /Innophyt/</legende>" +
+							"<media><legende>Veuillez vérifier que les fichiers ont bien été copiés dans /Innophyt/</legende>" +
 							"</media> </question> </branche> </arbre>").getBytes() );
 					out.close();
 
@@ -265,14 +290,14 @@ public class BebeteActivity extends Activity implements OnClickListener
 				} 
 				catch (IOException e) 
 				{
-					Log.d("Fichier de base", "Erreur lors de l'ï¿½criture du fichier XML de base");
+					Log.d("Fichier de base", "Erreur lors de l'écriture du fichier XML de base");
 					e.printStackTrace();
 				}
 				
 			} 
 			catch (FileNotFoundException e) 
 			{
-				Log.d("Fichier de base", "Erreur lors de la crï¿½ation des fichiers de base");
+				Log.d("Fichier de base", "Erreur lors de la création des fichiers de base");
 				e.printStackTrace();
 			}			
 		}

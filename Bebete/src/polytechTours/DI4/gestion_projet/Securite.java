@@ -37,7 +37,7 @@ public class Securite {
 		int piege_id = (int)preferences.getLong("PIEGE_ID", -1);
         
 		if(utilisateur_id == -1){
-        	alertbox(activity, "Attention !", "S√©lectionner un utilisateur");
+        	alertbox(activity, "Attention !", "SÈlectionner un utilisateur");
         	
     		FragmentManager manager = activity.getFragmentManager();  
     		
@@ -57,7 +57,7 @@ public class Securite {
 			return false;
 		}
 		else if(campagne_id == -1){
-        	alertbox(activity, "Attention !", "S√©lectionner une campagne");
+        	alertbox(activity, "Attention !", "SÈlectionner une campagne");
         	FragmentManager manager = activity.getFragmentManager();  
     		
         	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
@@ -76,7 +76,7 @@ public class Securite {
 			return false;
 		}
 		else if(parcelle_id == -1){
-        	alertbox(activity, "Attention !", "S√©lectionner une parcelle");
+        	alertbox(activity, "Attention !", "SÈlectionner une parcelle");
         	FragmentManager manager = activity.getFragmentManager();  
     		
         	Fragment fragmentEnCours = manager.findFragmentByTag("enCours");
@@ -95,7 +95,7 @@ public class Securite {
 			return false;
 		}
 		else if(piege_id == -1){
-        	alertbox(activity, "Attention !", "S√©lectionner un pi√®ge");
+        	alertbox(activity, "Attention !", "SÈlectionner un pi√®ge");
         	
         	FragmentManager manager = activity.getFragmentManager();  
     		

@@ -89,6 +89,7 @@ public class Export {
 			if(csv.exists())
 				csv.delete();
 			csv.createNewFile();
+			
 			if(!csv.exists()){
 				Log.d("exportCSV", "failed to create file export");
 				return;
@@ -122,8 +123,9 @@ public class Export {
 			str += Recolte.headerCSV() + "\n";
 			
 			output.write(str);
+			
+			FileManager.updateFileSystem(csv, activity);
 
-		    
 			/*récuperation des campagnes*/
 			CampagneBDD campagneBDD = new CampagneBDD(context);
 			campagneBDD.open();
