@@ -513,28 +513,31 @@ void MainWindow::newCommentaire()
     connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
 
     myWindowTxt->setModal(true);
-    myWindowTxt->exec();
+    int value = myWindowTxt->exec();
 
-    // Création de l'item avec le texte reçu
-    QStandardItem * elem = new QStandardItem("2-" + returnText);
-    // On "vide" la variable contenant le texte retourné par la fenêtre
-    returnText = "";
-    model_tvMediaQuestion->appendRow(elem);
+    if(value == QDialog::Accepted)
+    {
+        // Création de l'item avec le texte reçu
+        QStandardItem * elem = new QStandardItem("2-" + returnText);
+        // On "vide" la variable contenant le texte retourné par la fenêtre
+        returnText = "";
+        model_tvMediaQuestion->appendRow(elem);
 
-    // Création de l'objet média en mémoire
-    Media * newMedia = new Media(++(BDD::lastId));
-    newMedia->setPath(returnText);
-    newMedia->setType(MEDIA_TYPE_TEXT);
+        // Création de l'objet média en mémoire
+        Media * newMedia = new Media(++(BDD::lastId));
+        newMedia->setPath(returnText);
+        newMedia->setType(MEDIA_TYPE_TEXT);
 
-    // On récupère l'index de la question selectionnée dans le TreeView des questions
-    QModelIndex index = ui->treeViewQuestion->currentIndex();
-    // On calcul les coordonnées du noeud courant
-    QString coordonnees = calculerCoordonnees(index);
-    // On récupère la question courante
-    Question * currentQuestion = mapTreeQuestions.value(coordonnees);
+        // On récupère l'index de la question selectionnée dans le TreeView des questions
+        QModelIndex index = ui->treeViewQuestion->currentIndex();
+        // On calcul les coordonnées du noeud courant
+        QString coordonnees = calculerCoordonnees(index);
+        // On récupère la question courante
+        Question * currentQuestion = mapTreeQuestions.value(coordonnees);
 
-    // On ajoute le média à la question courante
-    currentQuestion->getListeMedia()->append(newMedia);
+        // On ajoute le média à la question courante
+        currentQuestion->getListeMedia()->append(newMedia);
+    }
 }
 
 void MainWindow::newMedia()
@@ -764,19 +767,22 @@ void MainWindow::newComMediaReponse()
         connect(myWindowTxt, SIGNAL(sendContents(QString)), this, SLOT(receiveContents(QString)));
 
         myWindowTxt->setModal(true);
-        myWindowTxt->exec();
+        int value = myWindowTxt->exec();
 
-        // Création de l'item avec le texte reçu
-        QStandardItem * elem = new QStandardItem("2-" + returnText);
-        (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(elem);
+        if(value == QDialog::Accepted)
+        {
+            // Création de l'item avec le texte reçu
+            QStandardItem * elem = new QStandardItem("2-" + returnText);
+            (model_tvReponse->itemFromIndex(ui->treeViewReponse->currentIndex()))->appendRow(elem);
 
-        // Création de l'objet média en mémoire
-        Media * newMedia = new Media(++(BDD::lastId));
-        newMedia->setPath(returnText);
-        newMedia->setType(MEDIA_TYPE_TEXT);
+            // Création de l'objet média en mémoire
+            Media * newMedia = new Media(++(BDD::lastId));
+            newMedia->setPath(returnText);
+            newMedia->setType(MEDIA_TYPE_TEXT);
 
-        // On ajoute le média à la réponse courante
-        currentReponse->ajouterMedia(newMedia);
+            // On ajoute le média à la réponse courante
+            currentReponse->ajouterMedia(newMedia);
+        }
     }
     else
     {

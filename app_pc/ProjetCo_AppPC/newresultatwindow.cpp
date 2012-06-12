@@ -32,9 +32,11 @@ void NewResultatWindow::clic_accepted()
     monEspece->setType(ui->editType->text());
     monEspece->setRegimeAlimentaire(ui->editRegimeAlim->text());
     monEspece->setInformation(ui->editInfos->text());
+
+    accept();
 }
 
 void NewResultatWindow::clic_rejected()
 {
-    close();
+    reject();
 }

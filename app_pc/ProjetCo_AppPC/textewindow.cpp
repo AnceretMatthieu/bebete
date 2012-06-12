@@ -21,10 +21,10 @@ TexteWindow::~TexteWindow()
 void TexteWindow::textewindow_accepted()
 {
     emit sendContents(ui->textEdit->toPlainText());
-    close();
+    accept();
 }
 
 void TexteWindow::textewindow_rejected()
 {
-    close();
+    reject();
 }
