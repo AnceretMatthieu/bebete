@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:orientation="horizontal" >
+        
+	    <ImageView
+	        android:id="@+id/Switcher2"
+	        android:layout_width="800dp"
+	        android:layout_height="fill_parent" >
+	
+	    </ImageView>
+	
+	    <LinearLayout
+	        android:layout_width="wrap_content"
+	        android:layout_height="match_parent"
+	        android:layout_margin="50px"
+	        android:orientation="vertical" >
+	        
+		    <LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal" >
+			</LinearLayout>    
+    
+			    <TextView
+			        android:id="@+id/textView4"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_marginTop="10dp"
+			        android:text="Nombre d'individus trouvés :"
+			        android:textAppearance="?android:attr/textAppearanceLarge" />
+			
+			    <EditText
+			        android:id="@+id/NombreIndividu"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:ems="10"
+			        android:inputType="number"
+			        android:text="0"
+			         />
+
+	
+			<LinearLayout
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal" >	
+
+			    <Button
+			        android:id="@+id/valider"
+			        android:layout_width="match_parent"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentBottom="true"
+			        android:layout_marginBottom="25dp"
+			        android:layout_marginTop="25px"
+			        android:layout_toRightOf="@+id/textView1"
+			        android:text="Valider" />
+
+			    <Button
+			        android:id="@+id/annuler"
+			        android:layout_width="wrap_content"
+			        android:layout_height="wrap_content"
+			        android:layout_alignParentBottom="true"
+			        android:layout_marginBottom="25dp"
+			        android:layout_marginTop="25px"
+			        android:layout_toRightOf="@+id/textView2"
+			        android:text="Annuler" />
+
+			</LinearLayout>
+	    </LinearLayout>
+	</LinearLayout>
+
+</RelativeLayout>

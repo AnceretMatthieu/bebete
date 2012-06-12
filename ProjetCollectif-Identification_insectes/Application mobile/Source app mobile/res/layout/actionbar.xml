@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content" >
+
+   		  <item android:id="@+id/menu_utilisateurs"
+          android:title="Utilisateurs"
+          android:showAsAction="always" />
+          <item android:id="@+id/menu_campagne"
+          android:title="Campagnes"
+          android:showAsAction="always" />
+   		  <item android:id="@+id/menu_parcelle"
+          android:title="Parcelles"
+          android:showAsAction="always" />
+		  <item android:id="@+id/menu_piege"
+          android:title="Pièges"
+          android:showAsAction="always" />
+		  <item android:id="@+id/menu_identifier"
+          android:title="Identifier"
+          android:showAsAction="always" />
+		  <item android:title="Identification rapide" 
+		  android:showAsAction="always" 
+		  android:id="@+id/menu_fast_count"/>
+		  <item android:id="@+id/export"
+          android:title="Exporter"
+          android:showAsAction="always" />
+		  
+		  
+</menu>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:baselineAligned="true"
+    android:orientation="horizontal"
+    android:padding="5px" >
+
+    <ImageButton
+        android:id="@+id/home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/home" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="15dp"
+        android:layout_height="wrap_content"
+        android:text="vi"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/histo_gauche"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrowl"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/histo_droite"
+        android:layout_width="65dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow"
+        android:visibility="invisible" />
+
+    <ImageButton
+        android:id="@+id/imageAlerte"
+        android:layout_width="50dp"
+        android:layout_height="38dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/alerte"
+        android:visibility="invisible" />
+
+</LinearLayout>

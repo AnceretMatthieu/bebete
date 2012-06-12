@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:editable="false"
+                android:text="@string/selectionnerPiege"
+                android:textColor="@color/color_blue"
+                android:textSize="28sp" >
+            </EditText>
+
+	        <LinearLayout
+	            android:id="@+id/linearLayout5"
+	            android:layout_width="match_parent"
+	            android:layout_height="0dip"
+	            android:layout_weight="0.99"
+	            android:orientation="horizontal" >
+	            
+	            <ScrollView
+	                xmlns:android="http://schemas.android.com/apk/res/android"
+	                android:layout_width="390dp"
+	                android:layout_height="fill_parent" >
+	            
+					<LinearLayout
+					    android:id="@+id/linearLayout4"
+					    android:layout_width="390dp"
+					    android:layout_height="wrap_content"
+					    android:orientation="vertical" >
+	
+		            </LinearLayout>
+				</ScrollView>
+
+	            <LinearLayout
+	                android:id="@+id/linearLayout3"
+	                android:layout_width="880dp"
+	                android:layout_height="match_parent"
+	                android:orientation="vertical" >
+
+	                <TextView
+	                    android:id="@+id/labNomPiege"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:text="@string/nomPiege" />
+
+	                <EditText
+	                    android:id="@+id/nomPiege"
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:ems="10" >
+
+	                </EditText>
+
+	                <TextView
+	                    android:id="@+id/labDescriptionPiege"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:text="@string/descriptionPiege" />
+
+	                <EditText
+	                    android:id="@+id/descriptionPiege"
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:ems="10"
+	                    android:inputType="textMultiLine" />
+	                
+					<LinearLayout
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:orientation="horizontal" >
+	                    
+		                <TextView
+		                    android:id="@+id/labDebutPiege"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/debutPiege" />
+	
+		                <EditText
+		                    android:id="@+id/debutPiege"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:ems="10"
+		                    android:inputType="date" />
+	
+		                <TextView
+		                    android:id="@+id/labFinPiege"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/finPiege" />
+	
+		                <EditText
+		                    android:id="@+id/finPiege"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:ems="10"
+		                    android:inputType="date" />
+		                
+	               </LinearLayout>
+	               
+	                <TextView
+	                    android:id="@+id/labAdressePiege"
+	                    android:layout_width="wrap_content"
+	                    android:layout_height="wrap_content"
+	                    android:text="@string/adressePiege" />
+
+
+	                <EditText
+	                    android:id="@+id/adressePiege"
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:ems="10"
+	                    android:inputType="textMultiLine" />
+
+
+	                <LinearLayout
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:orientation="horizontal" >
+
+	                    <TextView
+	                        android:id="@+id/adresseGPSPiege"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:text="@string/adresseGPSPiege" />
+
+
+	                    <EditText
+	                        android:id="@+id/gpsPiege"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:layout_weight="0.21"
+	                        android:ems="10"
+	                        android:inputType="text" />
+
+	                    <Button
+	                        android:id="@+id/localiserGPS"
+	                        android:layout_width="wrap_content"
+	                        android:layout_height="wrap_content"
+	                        android:text="@string/localiser" />
+	                </LinearLayout>
+	               
+	                <LinearLayout
+	                    android:layout_width="match_parent"
+	                    android:layout_height="wrap_content"
+	                    android:orientation="horizontal" >
+	              
+		                <Button
+		                    android:id="@+id/selectionner"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/selectionner" />
+
+		                <Button
+		                    android:id="@+id/creer"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/creer" />
+	
+		                <Button
+		                    android:id="@+id/modifier"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/modifier" />
+	
+		                <Button
+		                    android:id="@+id/supprimer"
+		                    android:layout_width="wrap_content"
+		                    android:layout_height="wrap_content"
+		                    android:text="@string/supprimer" />
+	                </LinearLayout>
+	            </LinearLayout>
+	        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
